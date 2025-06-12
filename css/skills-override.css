@@ -1,0 +1,337 @@
+/* Clean Technical Skills & Industry Expertise Override */
+
+/* Hide any old complex backgrounds */
+.skills-section .about-bg-elements,
+.skills-section .floating-dots,
+.skills-section .about-shape {
+    display: none !important;
+}
+
+/* Main Skills Section - Updated to match universal background */
+.skills-section {
+    padding: var(--section-padding-desktop) !important;
+    background: linear-gradient(135deg, #f8fafb 0%, #ffffff 50%, #f5f7fa 100%) !important;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Add About-style background elements to Skills section */
+.skills-section::after {
+    content: '';
+    position: absolute;
+    top: 20%;
+    left: 12%;
+    width: 150px;
+    height: 150px;
+    background: linear-gradient(135deg, rgba(44, 62, 80, 0.04), rgba(52, 152, 219, 0.06));
+    border-radius: 50%;
+    animation: floatShape 22s ease-in-out infinite;
+    z-index: 1;
+}
+
+.skills-section::before {
+    content: '';
+    position: absolute;
+    bottom: 30%;
+    right: 18%;
+    width: 8px;
+    height: 8px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    opacity: 0.15;
+    animation: dotFloat 16s linear infinite;
+    box-shadow: 
+        45px -25px 0 rgba(44, 62, 80, 0.1),
+        -35px 45px 0 rgba(52, 152, 219, 0.12),
+        65px 15px 0 rgba(44, 62, 80, 0.08),
+        -55px -15px 0 rgba(52, 152, 219, 0.1),
+        85px -45px 0 rgba(44, 62, 80, 0.09);
+    z-index: 1;
+}
+
+.skills-section .container {
+    position: relative;
+    z-index: 2;
+}
+
+/* Technical Skills Showcase - Clean Card Design */
+.technical-skills-showcase {
+    margin-bottom: 60px !important;
+    padding: 40px !important;
+    background: rgba(255, 255, 255, 0.95) !important;
+    border-radius: 20px !important;
+    box-shadow: 0 10px 40px rgba(44, 62, 80, 0.08) !important;
+    border: 1px solid rgba(44, 62, 80, 0.08) !important;
+}
+
+/* Section Titles */
+.subsection-title {
+    font-size: 2rem !important;
+    color: var(--primary-color) !important;
+    text-align: center !important;
+    margin-bottom: 50px !important;
+    font-weight: 700 !important;
+    position: relative !important;
+}
+
+.subsection-title::after {
+    content: '' !important;
+    display: block !important;
+    width: 80px !important;
+    height: 3px !important;
+    background: linear-gradient(90deg, var(--primary-color), #3498db) !important;
+    margin: 15px auto 0 !important;
+    border-radius: 2px !important;
+}
+
+/* Core Skills Container - Grid Layout */
+.core-skills-container {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) !important;
+    gap: 30px !important;
+}
+
+/* Individual Skill Groups */
+.skill-group {
+    background: rgba(255, 255, 255, 0.9) !important;
+    padding: 30px !important;
+    border-radius: 16px !important;
+    box-shadow: 0 8px 25px rgba(44, 62, 80, 0.06) !important;
+    border: 1px solid rgba(44, 62, 80, 0.05) !important;
+    transition: all 0.3s ease !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+.skill-group::before {
+    content: '' !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 4px !important;
+    background: linear-gradient(90deg, var(--primary-color), #3498db) !important;
+}
+
+.skill-group:hover {
+    transform: translateY(-5px) !important;
+    box-shadow: 0 15px 35px rgba(44, 62, 80, 0.12) !important;
+}
+
+/* Skill Group Headers */
+.skill-group h4 {
+    font-size: 1.4rem !important;
+    color: var(--primary-color) !important;
+    margin-bottom: 25px !important;
+    display: flex !important;
+    align-items: center !important;
+    font-weight: 700 !important;
+    position: relative !important;
+}
+
+.skill-group h4::after {
+    display: none !important;
+}
+
+.skill-group h4 i {
+    margin-right: 15px !important;
+    font-size: 1.5em !important;
+    color: #3498db !important;
+    width: 32px !important;
+    text-align: center !important;
+}
+
+/* Skill Tags */
+.skill-group ul {
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 10px !important;
+}
+
+.skill-group ul li {
+    font-size: 0.9rem !important;
+    color: var(--primary-color) !important;
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef) !important;
+    padding: 8px 16px !important;
+    border-radius: 25px !important;
+    font-weight: 500 !important;
+    transition: all 0.3s ease !important;
+    border: 1px solid rgba(44, 62, 80, 0.1) !important;
+}
+
+.skill-group ul li:hover {
+    background: linear-gradient(135deg, var(--primary-color), #3498db) !important;
+    color: white !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 5px 15px rgba(44, 62, 80, 0.2) !important;
+}
+
+/* Industry Expertise Section */
+.industry-expertise-showcase {
+    margin-top: 60px !important;
+    padding: 40px !important;
+    background: rgba(255, 255, 255, 0.95) !important;
+    border-radius: 20px !important;
+    box-shadow: 0 10px 40px rgba(44, 62, 80, 0.08) !important;
+    border: 1px solid rgba(44, 62, 80, 0.08) !important;
+}
+
+.industry-expertise-title {
+    margin-bottom: 50px !important;
+}
+
+/* Expertise Items - Clean Layout */
+.expertise-list {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 40px !important;
+}
+
+.expertise-item {
+    display: flex !important;
+    align-items: center !important;
+    gap: 40px !important;
+    padding: 30px !important;
+    background: rgba(255, 255, 255, 0.9) !important;
+    border-radius: 16px !important;
+    box-shadow: 0 8px 25px rgba(44, 62, 80, 0.06) !important;
+    border: 1px solid rgba(44, 62, 80, 0.05) !important;
+    transition: all 0.3s ease !important;
+}
+
+.expertise-item:hover {
+    transform: translateY(-5px) !important;
+    box-shadow: 0 15px 35px rgba(44, 62, 80, 0.12) !important;
+}
+
+.expertise-item:nth-child(even) {
+    flex-direction: row-reverse !important;
+}
+
+/* Expertise Images */
+.expertise-image {
+    flex: 0 0 200px !important;
+    height: 150px !important;
+    border-radius: 12px !important;
+    overflow: hidden !important;
+    box-shadow: 0 8px 20px rgba(44, 62, 80, 0.1) !important;
+}
+
+.expertise-image img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    transition: transform 0.3s ease !important;
+}
+
+.expertise-item:hover .expertise-image img {
+    transform: scale(1.05) !important;
+}
+
+/* Expertise Content */
+.expertise-content {
+    flex: 1 !important;
+}
+
+.expertise-content h3 {
+    font-size: 1.5rem !important;
+    color: var(--primary-color) !important;
+    margin-bottom: 15px !important;
+    font-weight: 700 !important;
+}
+
+.expertise-content h3::after {
+    display: none !important;
+}
+
+.expertise-content .industry-subtitle {
+    font-size: 1rem !important;
+    color: #3498db !important;
+    font-weight: 600 !important;
+    margin-bottom: 15px !important;
+    font-style: italic !important;
+}
+
+.expertise-content .industry-description {
+    font-size: 0.95rem !important;
+    color: var(--text-color) !important;
+    line-height: 1.6 !important;
+    margin: 0 !important;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .core-skills-container {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)) !important;
+        gap: 20px !important;
+    }
+    
+    .expertise-item,
+    .expertise-item:nth-child(even) {
+        flex-direction: column !important;
+        text-align: center !important;
+    }
+    
+    .expertise-image {
+        flex: 0 0 150px !important;
+        height: 120px !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .technical-skills-showcase,
+    .industry-expertise-showcase {
+        padding: 30px 20px !important;
+        margin-bottom: 40px !important;
+    }
+    
+    .subsection-title {
+        font-size: 1.7rem !important;
+        margin-bottom: 30px !important;
+    }
+    
+    .skill-group {
+        padding: 25px 20px !important;
+    }
+    
+    .expertise-item {
+        padding: 25px 20px !important;
+    }
+    
+    .expertise-content h3 {
+        font-size: 1.3rem !important;
+    }
+    
+    .expertise-image {
+        flex: 0 0 120px !important;
+        height: 100px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .core-skills-container {
+        grid-template-columns: 1fr !important;
+    }
+    
+    .technical-skills-showcase,
+    .industry-expertise-showcase {
+        padding: 25px 15px !important;
+    }
+    
+    .subsection-title {
+        font-size: 1.5rem !important;
+        margin-bottom: 25px !important;
+    }
+    
+    .skill-group ul li {
+        font-size: 0.85rem !important;
+        padding: 6px 12px !important;
+    }
+    
+    .expertise-content .industry-description {
+        font-size: 0.9rem !important;
+    }
+} 

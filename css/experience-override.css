@@ -1,0 +1,153 @@
+/* Clean Experience Section Override */
+
+/* Hide complex timeline elements */
+.timeline-line,
+.timeline-marker,
+.experience-grid-pattern,
+.experience-floating-icons,
+.experience-shapes {
+    display: none !important;
+}
+
+/* Remove timeline positioning */
+.experience-item:nth-child(odd),
+.experience-item:nth-child(even) {
+    padding: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+.experience-item {
+    margin-bottom: 2rem !important;
+}
+
+/* Use universal background system */
+.experience-section {
+    background: linear-gradient(135deg, #f8fafb 0%, #ffffff 50%, #f5f7fa 100%) !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+/* Add About-style background elements to Experience section */
+.experience-section::after {
+    content: '';
+    position: absolute;
+    bottom: 25%;
+    right: 10%;
+    width: 170px;
+    height: 170px;
+    background: linear-gradient(135deg, rgba(44, 62, 80, 0.04), rgba(52, 152, 219, 0.06));
+    border-radius: 50%;
+    animation: floatShape 24s ease-in-out infinite reverse;
+    z-index: 1;
+}
+
+.experience-section::before {
+    content: '';
+    position: absolute;
+    top: 30%;
+    left: 8%;
+    width: 8px;
+    height: 8px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    opacity: 0.15;
+    animation: dotFloat 14s linear infinite;
+    box-shadow: 
+        60px 25px 0 rgba(44, 62, 80, 0.1),
+        -25px -40px 0 rgba(52, 152, 219, 0.12),
+        90px -20px 0 rgba(44, 62, 80, 0.08),
+        -45px 55px 0 rgba(52, 152, 219, 0.1),
+        75px 50px 0 rgba(44, 62, 80, 0.09);
+    z-index: 1;
+}
+
+.experience-section .container {
+    position: relative;
+    z-index: 2;
+}
+
+/* Modern experience cards */
+.experience-card {
+    border-radius: 16px !important;
+    box-shadow: 0 4px 25px rgba(44, 62, 80, 0.08) !important;
+    transition: all 0.3s ease !important;
+    background: rgba(255, 255, 255, 0.95) !important;
+    border: 1px solid rgba(44, 62, 80, 0.05) !important;
+}
+
+.experience-card:hover {
+    transform: translateY(-5px) !important;
+    box-shadow: 0 8px 35px rgba(44, 62, 80, 0.12) !important;
+}
+
+.card-header {
+    background: transparent !important;
+    border-radius: 16px 16px 0 0 !important;
+    padding: 25px !important;
+    border-bottom: 1px solid rgba(44, 62, 80, 0.08) !important;
+}
+
+.card-header:hover {
+    background: rgba(248, 250, 251, 0.5) !important;
+}
+
+.card-header[aria-expanded="true"] {
+    background: rgba(248, 250, 251, 0.8) !important;
+    border-bottom-color: rgba(44, 62, 80, 0.12) !important;
+}
+
+.card-header[aria-expanded="true"]:hover {
+    background: rgba(248, 250, 251, 0.9) !important;
+}
+
+/* Enhanced stats styling */
+.experience-stats {
+    margin-bottom: 40px !important;
+    position: relative;
+    z-index: 2;
+}
+
+.exp-stat {
+    background: rgba(255, 255, 255, 0.9) !important;
+    border-radius: 12px !important;
+    padding: 20px !important;
+    box-shadow: 0 4px 20px rgba(44, 62, 80, 0.06) !important;
+    border: 1px solid rgba(44, 62, 80, 0.05) !important;
+    transition: all 0.3s ease !important;
+}
+
+.exp-stat:hover {
+    transform: translateY(-3px) !important;
+    box-shadow: 0 8px 25px rgba(44, 62, 80, 0.1) !important;
+}
+
+/* Hide year indicators */
+.experience-item[data-year]::before {
+    display: none !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .experience-stats {
+        margin-bottom: 30px !important;
+    }
+    
+    .exp-stat {
+        padding: 15px !important;
+    }
+    
+    .card-header {
+        padding: 20px !important;
+    }
+    
+    .experience-item {
+        margin-bottom: 1.5rem !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .experience-item {
+        margin-bottom: 1rem !important;
+    }
+} 

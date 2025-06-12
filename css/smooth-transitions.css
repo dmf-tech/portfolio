@@ -1,0 +1,348 @@
+/* Smooth Transitions & Enhanced Image Rendering */
+
+/* Global Performance Optimizations */
+* {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+/* Enhanced Image Rendering */
+img {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    image-rendering: optimizeQuality;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+    will-change: transform, opacity;
+}
+
+/* Smooth Image Loading States */
+img:not([src]) {
+    opacity: 0;
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+}
+
+img[src] {
+    opacity: 0;
+    transition: opacity 0.6s ease-in-out;
+}
+
+img[src].loaded,
+img:not([loading="lazy"]) {
+    opacity: 1;
+}
+
+@keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
+/* Enhanced Page Transitions */
+body {
+    transition: opacity 0.3s ease-in-out;
+}
+
+main > section {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+}
+
+/* Smooth Scroll Behavior */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Enhanced Hover Transitions - Preserve existing while improving */
+.btn,
+.project-card,
+.certification-card,
+.experience-card,
+.skill-group,
+.expertise-item,
+.contact-method {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* Improved Project Card Animations */
+.project-card {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    will-change: transform, box-shadow;
+}
+
+.project-card:hover {
+    transform: translateY(-8px) translateZ(0) !important;
+    transition-duration: 0.3s !important;
+}
+
+/* Enhanced Image Carousel Transitions */
+.carousel-image {
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+    will-change: opacity, transform;
+}
+
+.carousel-image:not(.active) {
+    opacity: 0;
+    transform: translateX(20px) translateZ(0);
+}
+
+.carousel-image.active {
+    opacity: 1;
+    transform: translateX(0) translateZ(0);
+}
+
+/* Smooth Navigation Transitions */
+.carousel-nav,
+.carousel-nav-btn {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    will-change: transform, opacity;
+}
+
+.carousel-nav:hover,
+.carousel-nav-btn:hover {
+    transform: scale(1.1) translateZ(0) !important;
+}
+
+/* Enhanced Button Interactions */
+.btn {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    will-change: transform, box-shadow;
+}
+
+.btn::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.4s ease, height 0.4s ease;
+    pointer-events: none;
+}
+
+.btn:hover::after {
+    width: 300px;
+    height: 300px;
+}
+
+/* Improved Skill Tag Animations */
+.skill-group ul li {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    will-change: transform, background, color;
+}
+
+.skill-group ul li:hover {
+    transform: translateY(-2px) scale(1.05) translateZ(0) !important;
+}
+
+/* Enhanced Section Animations */
+.animate-on-scroll {
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    will-change: transform, opacity;
+}
+
+/* Smooth Background Element Animations */
+.about-shape,
+.experience-section::after,
+.skills-section::after,
+.projects-section::after,
+.certifications-section::after,
+.contact-section::after {
+    will-change: transform;
+    backface-visibility: hidden;
+}
+
+/* Enhanced Modal Transitions */
+.modal,
+.cert-modal,
+.blog-modal {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+
+.modal-content,
+.cert-modal-content,
+.blog-modal-content {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    will-change: transform, opacity;
+}
+
+.modal.active .modal-content,
+.cert-modal.active .cert-modal-content,
+.blog-modal.active .blog-modal-content {
+    transform: scale(1) translateZ(0) !important;
+}
+
+/* Improved Form Input Transitions */
+input, textarea, select {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    will-change: border-color, box-shadow;
+}
+
+/* Enhanced Navigation Menu */
+#header .nav-menu a {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    will-change: color, transform;
+}
+
+#header .nav-menu a::before {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* Smooth Hero Section Animations */
+.hero-title,
+.hero-subtitle,
+.hero-description {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+}
+
+/* Enhanced Stats Animations */
+.stat-item,
+.exp-stat {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    will-change: transform, box-shadow;
+}
+
+/* Improved Tab Transitions */
+.tab-link {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    will-change: background, color;
+}
+
+.tab-pane {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    will-change: opacity, transform;
+}
+
+/* Enhanced Loading States */
+.loading {
+    position: relative;
+    pointer-events: none;
+}
+
+.loading::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: inherit;
+    z-index: 1000;
+}
+
+.loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 2px solid #f3f3f3;
+    border-top: 2px solid var(--primary-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    z-index: 1001;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Intersection Observer Enhanced Animations */
+.animate-on-scroll:not(.is-visible) {
+    opacity: 0;
+    transform: translateY(30px) translateZ(0);
+}
+
+.animate-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0) translateZ(0);
+}
+
+.animate-on-scroll.slide-left:not(.is-visible) {
+    transform: translateX(-30px) translateZ(0);
+}
+
+.animate-on-scroll.slide-right:not(.is-visible) {
+    transform: translateX(30px) translateZ(0);
+}
+
+/* Performance Optimizations for Mobile */
+@media (max-width: 768px) {
+    /* Reduce animation complexity on mobile */
+    .animate-on-scroll,
+    .project-card,
+    .certification-card,
+    .skill-group {
+        transition-duration: 0.2s !important;
+    }
+    
+    /* Disable complex animations on very small screens */
+    @media (max-width: 480px) {
+        .btn::after {
+            display: none;
+        }
+        
+        /* Simplify hover effects for touch devices */
+        .project-card:hover,
+        .certification-card:hover,
+        .skill-group:hover {
+            transform: none !important;
+        }
+    }
+}
+
+/* Prefetch and Preload Optimizations */
+img[loading="lazy"] {
+    transition: opacity 0.6s ease-in-out;
+}
+
+/* Smooth Focus States */
+*:focus {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* Enhanced Scroll Indicator */
+.scroll-indicator {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    will-change: transform, opacity;
+}
+
+/* Preserve existing functionality while enhancing */
+.certification-carousel .carousel-nav-btn,
+.image-carousel .carousel-nav {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* Smooth Section Transitions */
+section {
+    transform: translateZ(0);
+    will-change: transform;
+}
+
+/* Enhanced About Section Image */
+.image-wrapper img {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    will-change: transform;
+}
+
+.image-wrapper:hover img {
+    transform: scale(1.05) translateZ(0) !important;
+} 

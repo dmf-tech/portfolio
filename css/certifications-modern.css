@@ -1,0 +1,747 @@
+/* ========================================
+   MODERN CERTIFICATIONS ENHANCEMENT (SIMPLIFIED)
+   ======================================== */
+
+/* Enhanced Certificate Cards - Simplified */
+.certification-card {
+    background: #ffffff;
+    border-radius: 12px !important;
+    box-shadow: 0 4px 20px rgba(44, 62, 80, 0.06) !important;
+    border: 1px solid rgba(44, 62, 80, 0.08);
+    overflow: hidden !important;
+    position: relative;
+    transition: all 0.3s ease !important;
+    flex: 0 0 auto !important; /* Prevent flex shrinking */
+    width: calc((100% - 40px) / 3) !important; /* 3 cards per view on desktop */
+    min-width: 300px !important; /* Reduced minimum width to fit 3 cards */
+    max-width: 360px !important; /* Reduced maximum width */
+    min-height: 270px !important; /* Slightly reduced height */
+}
+
+.certification-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #2c3e50, #3498db);
+    z-index: 1;
+}
+
+.certification-card:hover {
+    transform: translateY(-6px) !important;
+    box-shadow: 0 12px 40px rgba(44, 62, 80, 0.12) !important;
+}
+
+/* Enhanced Certification Icon */
+.certification-icon {
+    position: relative !important;
+    z-index: 2;
+    transition: transform 0.3s ease;
+}
+
+.certification-card:hover .certification-icon {
+    transform: scale(1.05);
+}
+
+.certification-icon i {
+    font-size: 2.2rem !important;
+    color: var(--primary-color) !important;
+    transition: color 0.3s ease;
+}
+
+.certification-card:hover .certification-icon i {
+    color: #3498db !important;
+}
+
+/* Enhanced Certification Info */
+.certification-info {
+    padding: 1.25rem !important;
+    position: relative;
+    z-index: 2;
+}
+
+.certification-info h3 {
+    font-size: 1.15rem !important;
+    font-weight: 600 !important;
+    color: var(--primary-color) !important;
+    margin-bottom: 0.75rem !important;
+    line-height: 1.4 !important;
+}
+
+.certification-info .issuer {
+    color: #5a6c7d !important;
+    font-weight: 500 !important;
+    font-size: 0.9rem !important;
+    margin-bottom: 0.5rem !important;
+}
+
+.certification-info .date {
+    color: #7f8c8d !important;
+    font-size: 0.85rem !important;
+    margin-bottom: 1rem !important;
+}
+
+/* Fixed Certification Actions - Ensure visibility */
+.certification-actions {
+    display: flex !important;
+    gap: 0.5rem !important;
+    margin-top: 1rem !important;
+}
+
+.certification-actions .btn {
+    padding: 0.5rem 0.75rem !important;
+    font-size: 0.8rem !important;
+    border-radius: 6px !important;
+    font-weight: 500 !important;
+    text-decoration: none !important;
+    transition: all 0.3s ease !important;
+    opacity: 1 !important; /* Force visibility */
+    visibility: visible !important; /* Force visibility */
+    display: inline-block !important; /* Force visibility */
+}
+
+.certification-actions .btn-secondary {
+    background: var(--primary-color) !important;
+    color: white !important;
+    border: 1px solid var(--primary-color) !important;
+}
+
+.certification-actions .btn-secondary:hover {
+    background: #34495e !important;
+    transform: translateY(-1px);
+}
+
+.certification-actions .btn-outline {
+    background: transparent !important;
+    color: var(--primary-color) !important;
+    border: 1px solid var(--primary-color) !important;
+}
+
+.certification-actions .btn-outline:hover {
+    background: var(--primary-color) !important;
+    color: white !important;
+    transform: translateY(-1px);
+}
+
+/* Enhanced Carousel Navigation - Improved next button behavior */
+.carousel-nav-btn {
+    background: rgba(255, 255, 255, 0.95) !important;
+    border: 1px solid rgba(44, 62, 80, 0.15) !important;
+    border-radius: 50% !important;
+    width: 44px !important;
+    height: 44px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1) !important;
+    box-shadow: 0 2px 12px rgba(44, 62, 80, 0.1) !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    color: var(--primary-color) !important;
+    transform: translateY(0) scale(1) !important;
+    cursor: pointer !important;
+    position: relative !important;
+    outline: none !important;
+    user-select: none !important;
+}
+
+/* Enhanced hover state with better next button feedback */
+.carousel-nav-btn:hover:not(.disabled) {
+    background: var(--primary-color) !important;
+    color: white !important;
+    transform: scale(1.1) translateY(-2px) !important;
+    box-shadow: 0 6px 24px rgba(44, 62, 80, 0.2) !important;
+    border-color: var(--primary-color) !important;
+}
+
+/* Active state for better button feedback */
+.carousel-nav-btn:active:not(.disabled) {
+    transform: scale(0.95) translateY(0) !important;
+    box-shadow: 0 2px 8px rgba(44, 62, 80, 0.15) !important;
+    transition: transform 0.1s ease !important;
+}
+
+/* Enhanced disabled state with better visual feedback */
+.carousel-nav-btn.disabled {
+    opacity: 0.4 !important;
+    cursor: not-allowed !important;
+    pointer-events: none !important;
+    transform: scale(0.9) !important;
+    background: rgba(240, 240, 240, 0.8) !important;
+    color: #bbb !important;
+    border-color: rgba(44, 62, 80, 0.08) !important;
+    box-shadow: 0 1px 6px rgba(44, 62, 80, 0.05) !important;
+}
+
+/* Focus state for accessibility */
+.carousel-nav-btn:focus {
+    outline: 2px solid var(--primary-color) !important;
+    outline-offset: 2px !important;
+    box-shadow: 0 2px 16px rgba(44, 62, 80, 0.15), 0 0 0 3px rgba(44, 62, 80, 0.1) !important;
+}
+
+/* Next button specific enhancements */
+.carousel-nav-btn:last-of-type:hover:not(.disabled) {
+    background: linear-gradient(135deg, var(--primary-color) 0%, #1a2530 100%) !important;
+    transform: scale(1.12) translateY(-3px) !important;
+    box-shadow: 0 8px 28px rgba(44, 62, 80, 0.25) !important;
+}
+
+/* Loading/animating state */
+.carousel-nav-btn.animating {
+    pointer-events: none !important;
+    opacity: 0.7 !important;
+}
+
+/* Icon styling within buttons */
+.carousel-nav-btn i {
+    font-size: 1.1rem !important;
+    transition: transform 0.2s ease !important;
+}
+
+.carousel-nav-btn:hover:not(.disabled) i {
+    transform: scale(1.1) !important;
+}
+
+/* Ripple effect for better button feedback */
+.carousel-nav-btn::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(44, 62, 80, 0.15);
+    transform: translate(-50%, -50%);
+    transition: width 0.3s ease, height 0.3s ease, opacity 0.3s ease;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.carousel-nav-btn:active:not(.disabled)::after {
+    width: 40px;
+    height: 40px;
+    opacity: 1;
+    transition: width 0.1s ease, height 0.1s ease, opacity 0.1s ease;
+}
+
+/* Tooltip-like feedback for disabled state */
+.carousel-nav-btn.disabled::before {
+    content: attr(title);
+    position: absolute;
+    bottom: -35px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 1000;
+}
+
+.carousel-nav-btn.disabled:hover::before {
+    opacity: 1;
+}
+
+/* Responsive adjustments for better mobile experience */
+@media (max-width: 768px) {
+    .carousel-nav-btn {
+        width: 40px !important;
+        height: 40px !important;
+        box-shadow: 0 2px 8px rgba(44, 62, 80, 0.12) !important;
+    }
+    
+    .carousel-nav-btn:hover:not(.disabled) {
+        transform: scale(1.08) translateY(-1px) !important;
+        box-shadow: 0 4px 16px rgba(44, 62, 80, 0.18) !important;
+    }
+    
+    .carousel-nav-btn i {
+        font-size: 1rem !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .carousel-nav-btn {
+        width: 36px !important;
+        height: 36px !important;
+    }
+    
+    .carousel-nav-btn i {
+        font-size: 0.9rem !important;
+    }
+}
+
+/* Smooth entrance animation for buttons */
+@keyframes buttonEntrance {
+    from {
+        opacity: 0;
+        transform: scale(0.8) translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.carousel-nav-btn.entering {
+    animation: buttonEntrance 0.4s ease-out;
+}
+
+/* Pulse animation for active navigation */
+@keyframes buttonPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.carousel-nav-btn.pulse {
+    animation: buttonPulse 0.3s ease-in-out;
+}
+
+/* ========================================
+   SIMPLIFIED CERTIFICATION MODAL
+   ======================================== */
+
+.cert-modal {
+    backdrop-filter: blur(4px) !important;
+    background: rgba(0, 0, 0, 0.5) !important;
+    transition: all 0.3s ease !important;
+}
+
+.cert-modal-content {
+    background: #ffffff !important;
+    border-radius: 12px !important;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15) !important;
+    max-width: 750px !important;
+    width: 90% !important;
+    max-height: 85vh !important;
+    overflow-y: auto !important;
+    transition: all 0.3s ease !important;
+}
+
+/* Enhanced Modal Header */
+.cert-modal-header {
+    padding: 20px 30px 8px;
+    border-bottom: 2px solid #f8f9fa;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.cert-modal-header h2 {
+    margin: 0;
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: white;
+    text-align: center !important;
+}
+
+/* Fixed Modal Close Button */
+.cert-modal-close {
+    position: absolute !important;
+    top: 1.25rem !important;
+    right: 1.25rem !important;
+    background: rgba(255, 255, 255, 0.9) !important;
+    border: 1px solid rgba(44, 62, 80, 0.15) !important;
+    border-radius: 50% !important;
+    width: 32px !important;
+    height: 32px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 1rem !important;
+    color: #666 !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    z-index: 100 !important;
+    opacity: 1 !important; /* Force visibility */
+    visibility: visible !important; /* Force visibility */
+}
+
+.cert-modal-close:hover {
+    background: #e74c3c !important;
+    color: white !important;
+    transform: scale(1.1) !important;
+}
+
+/* Enhanced Modal Body */
+.cert-modal-body {
+    padding: 15px 30px 30px;
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+/* Simplified Details Grid */
+.cert-details-grid {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)) !important;
+    gap: 1rem !important;
+    margin-bottom: 1.5rem !important;
+}
+
+.cert-detail-item {
+    background: #f8f9fa !important;
+    padding: 1.25rem !important;
+    border-radius: 8px !important;
+    border: 1px solid rgba(44, 62, 80, 0.08) !important;
+    transition: transform 0.3s ease !important;
+}
+
+.cert-detail-item:hover {
+    transform: translateY(-2px) !important;
+}
+
+.cert-detail-item h4 {
+    font-size: 0.9rem !important;
+    font-weight: 600 !important;
+    color: var(--primary-color) !important;
+    margin-bottom: 0.5rem !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+}
+
+.cert-detail-item h4 i {
+    color: #3498db !important;
+    font-size: 1rem !important;
+}
+
+.cert-detail-item p {
+    color: #5a6c7d !important;
+    font-size: 0.9rem !important;
+    line-height: 1.4 !important;
+    margin: 0 !important;
+}
+
+/* Enhanced Description Section */
+.cert-description {
+    background: #f8f9fa !important;
+    padding: 1.5rem !important;
+    border-radius: 8px !important;
+    border: 1px solid rgba(44, 62, 80, 0.08) !important;
+    margin-bottom: 1.5rem !important;
+}
+
+.cert-description h4 {
+    font-size: 1.1rem !important;
+    font-weight: 600 !important;
+    color: var(--primary-color) !important;
+    margin-bottom: 1rem !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+}
+
+.cert-description h4 i {
+    color: #3498db !important;
+    font-size: 1.2rem !important;
+}
+
+.cert-description p {
+    color: #5a6c7d !important;
+    line-height: 1.6 !important;
+    font-size: 0.9rem !important;
+    margin-bottom: 0.75rem !important;
+}
+
+.cert-description strong {
+    color: var(--primary-color) !important;
+    font-weight: 600 !important;
+}
+
+.cert-description ul {
+    margin: 0.75rem 0 !important;
+    padding-left: 1.25rem !important;
+}
+
+.cert-description li {
+    color: #5a6c7d !important;
+    margin-bottom: 0.4rem !important;
+    line-height: 1.5 !important;
+}
+
+/* Fixed Skills Section - Ensure visibility */
+.cert-skills {
+    background: #f8f9fa !important;
+    padding: 1.5rem !important;
+    border-radius: 8px !important;
+    border: 1px solid rgba(44, 62, 80, 0.08) !important;
+}
+
+.cert-skills h4 {
+    font-size: 1.1rem !important;
+    font-weight: 600 !important;
+    color: var(--primary-color) !important;
+    margin-bottom: 1rem !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+}
+
+.cert-skills h4 i {
+    color: #3498db !important;
+    font-size: 1.2rem !important;
+}
+
+/* Fixed Skills Tags - Ensure they show properly */
+.skills-tags {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 0.5rem !important;
+}
+
+.skills-tags .skill-tag {
+    background: rgba(44, 62, 80, 0.08) !important;
+    color: var(--primary-color) !important;
+    padding: 0.4rem 0.8rem !important;
+    border-radius: 15px !important;
+    font-size: 0.8rem !important;
+    font-weight: 500 !important;
+    border: 1px solid rgba(44, 62, 80, 0.12) !important;
+    transition: all 0.3s ease !important;
+    opacity: 1 !important; /* Force visibility */
+    visibility: visible !important; /* Force visibility */
+    display: inline-block !important; /* Force visibility */
+}
+
+.skills-tags .skill-tag:hover {
+    background: var(--primary-color) !important;
+    color: white !important;
+    transform: translateY(-1px) !important;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .cert-modal-content {
+        width: 95% !important;
+        margin: 1rem !important;
+    }
+    
+    .cert-modal-header,
+    .cert-modal-body {
+        padding: 1.25rem !important;
+    }
+    
+    .cert-details-grid {
+        grid-template-columns: 1fr !important;
+        gap: 0.75rem !important;
+    }
+    
+    .certification-actions {
+        flex-direction: column !important;
+        gap: 0.4rem !important;
+    }
+    
+    .skills-tags .skill-tag {
+        font-size: 0.75rem !important;
+        padding: 0.35rem 0.7rem !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .cert-modal-header h2 {
+        font-size: 1.3rem !important;
+        padding-right: 2rem !important;
+    }
+    
+    .cert-modal-close {
+        top: 1rem !important;
+        right: 1rem !important;
+        width: 28px !important;
+        height: 28px !important;
+        font-size: 0.9rem !important;
+    }
+}
+
+/* Loading Animation - Simplified */
+.cert-modal.loading .cert-modal-content::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 30px;
+    height: 30px;
+    border: 2px solid rgba(44, 62, 80, 0.1);
+    border-top: 2px solid var(--primary-color);
+    border-radius: 50%;
+    animation: simpleSpinner 1s linear infinite;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+}
+
+@keyframes simpleSpinner {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* Accessibility Enhancements */
+.certification-card:focus-within {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+.cert-modal-close:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+    .certification-card,
+    .cert-modal-content,
+    .cert-detail-item,
+    .skills-tags .skill-tag,
+    .certification-actions .btn,
+    .carousel-nav-btn {
+        transition: none !important;
+        animation: none !important;
+    }
+}
+
+/* ========================================
+   SIMPLIFIED CAROUSEL STRUCTURE
+   ======================================== */
+
+/* Simplified wrapper structure - no container needed */
+.certifications-carousel-wrapper {
+    position: relative !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+    padding: 0 !important; /* Remove padding since buttons will be positioned differently */
+    overflow: visible !important; /* Allow buttons to be visible outside */
+}
+
+/* New container for certificates only */
+.certifications-container {
+    position: relative !important;
+    width: 100% !important;
+    overflow: hidden !important; /* Hide overflow for smooth carousel effect */
+    background: rgba(255, 255, 255, 0.02) !important; /* Subtle background */
+    border-radius: 12px !important; /* Rounded corners */
+    padding: 20px 0 !important; /* Reduced padding for more space */
+    box-shadow: 0 2px 20px rgba(44, 62, 80, 0.05) !important; /* Subtle shadow */
+}
+
+/* Grid becomes the main carousel element */
+.certifications-grid {
+    display: flex !important;
+    gap: 20px !important; /* Reduced gap for more space */
+    transition: transform 0.3s ease !important;
+    width: fit-content !important;
+    padding: 0 20px !important; /* Reduced horizontal padding */
+}
+
+/* Position buttons on opposite sides of the container */
+.carousel-nav-btn {
+    position: absolute !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    z-index: 10 !important;
+}
+
+.carousel-nav-btn.prev {
+    left: -60px !important; /* Position outside left edge */
+}
+
+.carousel-nav-btn.next {
+    right: -60px !important; /* Position outside right edge */
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+    .certifications-container {
+        padding: 20px 0 !important;
+        border-radius: 10px !important;
+    }
+    
+    .certifications-grid {
+        gap: 20px !important;
+        padding: 0 20px !important;
+    }
+    
+    .carousel-nav-btn.prev {
+        left: -50px !important;
+    }
+    
+    .carousel-nav-btn.next {
+        right: -50px !important;
+    }
+}
+
+@media (max-width: 767px) {
+    .certifications-container {
+        padding: 15px 0 !important;
+        border-radius: 8px !important;
+    }
+    
+    .certifications-grid {
+        gap: 15px !important;
+        padding: 0 15px !important;
+    }
+    
+    .carousel-nav-btn.prev {
+        left: -45px !important;
+    }
+    
+    .carousel-nav-btn.next {
+        right: -45px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .certifications-container {
+        padding: 12px 0 !important;
+        border-radius: 6px !important;
+    }
+    
+    .certifications-grid {
+        gap: 12px !important;
+        padding: 0 12px !important;
+    }
+    
+    .carousel-nav-btn.prev {
+        left: -40px !important;
+    }
+    
+    .carousel-nav-btn.next {
+        right: -40px !important;
+    }
+}
+
+/* ========================================
+   ENHANCED CERTIFICATIONS ENHANCEMENT (SIMPLIFIED)
+   ======================================== */
+
+/* Responsive card sizing */
+@media (max-width: 991px) {
+    .certification-card {
+        width: calc((100% - 20px) / 2) !important; /* 2 cards per view on tablet */
+        min-width: 320px !important; /* Can be larger on tablet with only 2 cards */
+        min-height: 290px !important;
+    }
+}
+
+@media (max-width: 767px) {
+    .certification-card {
+        width: calc(100% - 40px) !important; /* 1 card per view on mobile */
+        min-width: 300px !important;
+        max-width: 100% !important;
+        min-height: 280px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .certification-card {
+        width: calc(100% - 20px) !important;
+        min-width: 280px !important;
+        min-height: 260px !important;
+    }
+} 
