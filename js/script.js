@@ -483,12 +483,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const aboutTabsNav = select('.about-tabs-nav');
     if (aboutTabsNav) {
         const tabLinks = selectAll('.tab-link', aboutTabsNav);
-        const tabPanes = selectAll('.tab-pane', select('.about-tabs-content'));
+        const aboutTabsContent = select('.about-tabs-content');
+        const tabPanes = selectAll('.tab-pane', aboutTabsContent);
 
         tabLinks.forEach(link => {
             link.addEventListener('click', function(e) {
                 e.preventDefault();
                 const targetId = this.dataset.target;
+
+                // Only process if this is an about tab (not a skills tab)
+                if (!aboutTabsContent || !aboutTabsContent.contains(select('#' + targetId))) {
+                    return; // This is not an about tab, let Skills tabs handle it
+                }
 
                 // Update button active states
                 tabLinks.forEach(btn => {
@@ -1131,5 +1137,168 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     `;
     document.head.appendChild(rippleStyle);
+
+    // Skills Tab Functionality
+    function initSkillsTabs() {
+        // Use more specific selectors and add debugging
+        const skillsTabsNav = select('.skills-tabs-nav');
+        if (!skillsTabsNav) {
+            console.warn('Skills tabs nav not found');
+            return;
+        }
+        
+        const tabLinks = selectAll('.tab-link', skillsTabsNav);
+        const skillsTabsContent = select('.skills-tabs-content');
+        
+        if (!skillsTabsContent) {
+            console.warn('Skills tabs content not found');
+            return;
+        }
+        
+        const tabPanes = selectAll('.tab-pane', skillsTabsContent);
+
+        if (tabLinks.length === 0) {
+            console.warn('No skills tab links found');
+            return;
+        }
+
+        if (tabPanes.length === 0) {
+            console.warn('No skills tab panes found');
+            return;
+        }
+
+        console.log('Skills tabs initialized:', {
+            navFound: !!skillsTabsNav,
+            linksCount: tabLinks.length,
+            panesCount: tabPanes.length
+        });
+
+        function switchTab(targetId) {
+            console.log('Switching to skills tab:', targetId);
+            
+            // Update active state of tab links (only within skills nav)
+            tabLinks.forEach(link => {
+                const linkTarget = link.getAttribute('data-target');
+                if (linkTarget === targetId) {
+                    link.classList.add('active');
+                    link.setAttribute('aria-selected', 'true');
+                    // Scroll tab into view on mobile
+                    if (window.innerWidth <= 1024) {
+                        link.scrollIntoView({ 
+                            behavior: 'smooth', 
+                            block: 'nearest', 
+                            inline: 'center' 
+                        });
+                    }
+                    console.log('Activated link for:', targetId);
+                } else {
+                    link.classList.remove('active');
+                    link.setAttribute('aria-selected', 'false');
+                }
+            });
+
+            // Show selected tab pane (only within skills content)
+            let targetPaneFound = false;
+            tabPanes.forEach(pane => {
+                pane.classList.remove('active');
+                pane.style.display = 'none';
+                pane.style.opacity = '0';
+                pane.style.visibility = 'hidden';
+                
+                if (pane.id === targetId) {
+                    targetPaneFound = true;
+                    console.log('Activating pane:', targetId);
+                    
+                    // Force display with multiple methods
+                    pane.classList.add('active');
+                    pane.style.display = 'block';
+                    pane.style.opacity = '1';
+                    pane.style.visibility = 'visible';
+                    
+                    // Add animation class for smooth transition
+                    pane.style.transform = 'translateY(0)';
+                    
+                    // Ensure skill-content is visible
+                    const skillContent = pane.querySelector('.skill-content');
+                    if (skillContent) {
+                        skillContent.style.display = 'block';
+                        skillContent.style.opacity = '1';
+                        skillContent.style.visibility = 'visible';
+                    }
+                    
+                    console.log('Pane activated successfully:', targetId);
+                }
+            });
+
+            if (!targetPaneFound) {
+                console.error('Target pane not found:', targetId);
+            }
+
+            // Trigger a reflow to ensure changes are applied
+            skillsTabsContent.offsetHeight;
+        }
+
+        // Enhanced event delegation for better performance and reliability
+        skillsTabsNav.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            const targetButton = e.target.closest('.tab-link');
+            if (!targetButton) return;
+            
+            const targetId = targetButton.getAttribute('data-target');
+            if (!targetId) {
+                console.warn('Tab link missing data-target:', targetButton);
+                return;
+            }
+            
+            console.log('Skills tab clicked:', targetId);
+            
+            // Add visual feedback
+            targetButton.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                targetButton.style.transform = '';
+            }, 150);
+            
+            switchTab(targetId);
+        });
+
+        // Keyboard navigation support
+        skillsTabsNav.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                const targetButton = e.target.closest('.tab-link');
+                if (targetButton) {
+                    targetButton.click();
+                }
+            }
+        });
+
+        // Initialize the first tab as active if none are active
+        const activeTab = skillsTabsNav.querySelector('.tab-link.active');
+        if (activeTab) {
+            const targetId = activeTab.getAttribute('data-target');
+            if (targetId) {
+                switchTab(targetId);
+            }
+        } else if (tabLinks.length > 0) {
+            // Activate first tab if no active tab found
+            const firstTab = tabLinks[0];
+            const targetId = firstTab.getAttribute('data-target');
+            if (targetId) {
+                firstTab.classList.add('active');
+                firstTab.setAttribute('aria-selected', 'true');
+                switchTab(targetId);
+            }
+        }
+
+        console.log('Skills tabs setup complete');
+    }
+
+    // Initialize skills tabs when DOM is loaded
+    // Add a small delay to ensure all elements are properly rendered
+    setTimeout(() => {
+        initSkillsTabs();
+    }, 200);
 
 }); 
