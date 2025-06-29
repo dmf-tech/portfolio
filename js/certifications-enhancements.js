@@ -128,9 +128,9 @@
         function formatCertificationDescription(description) {
             return description
                 .replace(/\|/g, '<br>')
-                .replace(/COURSES:/g, '<strong>COURSES:</strong>')
-                .replace(/MODULES:/g, '<strong>MODULES:</strong>')
-                .replace(/•/g, '<span style="color: var(--primary-color); font-weight: 600; margin-right: 0.5rem;">•</span>');
+                .replace(/COURSES:/g, '<br><br><strong>COURSES:</strong>')
+                .replace(/MODULES:/g, '<br><br><strong>MODULES:</strong>')
+                .replace(/•/g, '<span style="color: #2C3E50; font-weight: 600; margin-right: 0.5rem;">•</span>');
         }
     }
 

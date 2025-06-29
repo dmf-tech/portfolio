@@ -515,6 +515,94 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // --- Skills Section Tabs ---
+    const skillsTabsNav = select('.skills-tabs-nav');
+    if (skillsTabsNav) {
+        const skillsTabLinks = selectAll('.tab-link', skillsTabsNav);
+        const skillsTabsContent = select('.skills-tabs-content');
+        const skillsTabPanes = selectAll('.tab-pane', skillsTabsContent);
+
+        // Skills content mapping
+        const skillsContentMap = {
+            'skills-pane-frontend': 'skills/frontend-skills.html',
+            'skills-pane-backend': 'skills/backend-skills.html',
+            'skills-pane-sysadmin': 'skills/sysadmin-skills.html',
+            'skills-pane-devops': 'skills/data-science-skills.html',
+            'skills-pane-ai': 'skills/ai-skills.html'
+        };
+
+        // Function to load skills content
+        const loadSkillsContent = async (targetId, contentContainer) => {
+            const contentFile = skillsContentMap[targetId];
+            if (!contentFile) return;
+
+            try {
+                const response = await fetch(contentFile);
+                if (response.ok) {
+                    const content = await response.text();
+                    contentContainer.innerHTML = content;
+                } else {
+                    throw new Error(`Failed to load ${contentFile}`);
+                }
+            } catch (error) {
+                console.error('Error loading skills content:', error);
+                contentContainer.innerHTML = `
+                    <div class="loading-placeholder">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <p>Failed to load content. Please try again.</p>
+                    </div>
+                `;
+            }
+        };
+
+        skillsTabLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.dataset.target;
+
+                // Only process if this is a skills tab
+                if (!skillsTabsContent || !skillsTabsContent.contains(select('#' + targetId))) {
+                    return; // This is not a skills tab
+                }
+
+                // Update button active states
+                skillsTabLinks.forEach(btn => {
+                    btn.classList.remove('active');
+                    btn.setAttribute('aria-selected', 'false');
+                });
+                this.classList.add('active');
+                this.setAttribute('aria-selected', 'true');
+
+                // Update content pane visibility
+                skillsTabPanes.forEach(pane => {
+                    pane.classList.remove('active');
+                    if (pane.id === targetId) {
+                        pane.classList.add('active');
+                        
+                        // Load content if not already loaded
+                        const contentContainer = pane.querySelector('.content-card');
+                        if (contentContainer && contentContainer.querySelector('.loading-placeholder')) {
+                            loadSkillsContent(targetId, contentContainer);
+                        }
+                    }
+                });
+            });
+        });
+
+        // Load initial content for the active tab
+        const activeTab = skillsTabsNav.querySelector('.tab-link.active');
+        if (activeTab) {
+            const targetId = activeTab.dataset.target;
+            const activePane = select('#' + targetId);
+            if (activePane) {
+                const contentContainer = activePane.querySelector('.content-card');
+                if (contentContainer) {
+                    loadSkillsContent(targetId, contentContainer);
+                }
+            }
+        }
+    }
+
     // --- Certification Details Modal Functionality ---
     const certificationModal = select('#certificationModal');
     const closeCertModalBtn = select('#closeCertModal');
@@ -823,7 +911,14 @@ document.addEventListener('DOMContentLoaded', () => {
                         htmlContentBody += `<h${safeLevel}>${escapeHTML(item.text)}</h${safeLevel}>`;
                         break;
                     case 'image':
-                        htmlContentBody += `<img src="${escapeHTML(item.src)}" alt="${escapeHTML(item.alt || '')}" class="${item.isInline ? 'full-blog-image-inline' : 'full-blog-image'}" loading="lazy">`;
+                        let sanitizedSrc = 'https://via.placeholder.com/300x200?text=Invalid+Image'; // Default placeholder
+                        if (typeof item.src === 'string') {
+                            const url = item.src.toLowerCase();
+                            if (url.startsWith('https://') || url.startsWith('http://') || url.startsWith('/') || url.startsWith('data:image')) {
+                                sanitizedSrc = escapeHTML(item.src);
+                            }
+                        }
+                        htmlContentBody += `<img src="${sanitizedSrc}" alt="${escapeHTML(item.alt || '')}" class="${item.isInline ? 'full-blog-image-inline' : 'full-blog-image'}" loading="lazy">`;
                         break;
                     case 'code':
                         const lang = item.language ? escapeHTML(item.language) : 'plaintext';
@@ -1138,167 +1233,10 @@ document.addEventListener('DOMContentLoaded', () => {
     `;
     document.head.appendChild(rippleStyle);
 
-    // Skills Tab Functionality
-    function initSkillsTabs() {
-        // Use more specific selectors and add debugging
-        const skillsTabsNav = select('.skills-tabs-nav');
-        if (!skillsTabsNav) {
-            console.warn('Skills tabs nav not found');
-            return;
-        }
-        
-        const tabLinks = selectAll('.tab-link', skillsTabsNav);
-        const skillsTabsContent = select('.skills-tabs-content');
-        
-        if (!skillsTabsContent) {
-            console.warn('Skills tabs content not found');
-            return;
-        }
-        
-        const tabPanes = selectAll('.tab-pane', skillsTabsContent);
-
-        if (tabLinks.length === 0) {
-            console.warn('No skills tab links found');
-            return;
-        }
-
-        if (tabPanes.length === 0) {
-            console.warn('No skills tab panes found');
-            return;
-        }
-
-        console.log('Skills tabs initialized:', {
-            navFound: !!skillsTabsNav,
-            linksCount: tabLinks.length,
-            panesCount: tabPanes.length
-        });
-
-        function switchTab(targetId) {
-            console.log('Switching to skills tab:', targetId);
-            
-            // Update active state of tab links (only within skills nav)
-            tabLinks.forEach(link => {
-                const linkTarget = link.getAttribute('data-target');
-                if (linkTarget === targetId) {
-                    link.classList.add('active');
-                    link.setAttribute('aria-selected', 'true');
-                    // Scroll tab into view on mobile
-                    if (window.innerWidth <= 1024) {
-                        link.scrollIntoView({ 
-                            behavior: 'smooth', 
-                            block: 'nearest', 
-                            inline: 'center' 
-                        });
-                    }
-                    console.log('Activated link for:', targetId);
-                } else {
-                    link.classList.remove('active');
-                    link.setAttribute('aria-selected', 'false');
-                }
-            });
-
-            // Show selected tab pane (only within skills content)
-            let targetPaneFound = false;
-            tabPanes.forEach(pane => {
-                pane.classList.remove('active');
-                pane.style.display = 'none';
-                pane.style.opacity = '0';
-                pane.style.visibility = 'hidden';
-                
-                if (pane.id === targetId) {
-                    targetPaneFound = true;
-                    console.log('Activating pane:', targetId);
-                    
-                    // Force display with multiple methods
-                    pane.classList.add('active');
-                    pane.style.display = 'block';
-                    pane.style.opacity = '1';
-                    pane.style.visibility = 'visible';
-                    
-                    // Add animation class for smooth transition
-                    pane.style.transform = 'translateY(0)';
-                    
-                    // Ensure skill-content is visible
-                    const skillContent = pane.querySelector('.skill-content');
-                    if (skillContent) {
-                        skillContent.style.display = 'block';
-                        skillContent.style.opacity = '1';
-                        skillContent.style.visibility = 'visible';
-                    }
-                    
-                    console.log('Pane activated successfully:', targetId);
-                }
-            });
-
-            if (!targetPaneFound) {
-                console.error('Target pane not found:', targetId);
-            }
-
-            // Trigger a reflow to ensure changes are applied
-            skillsTabsContent.offsetHeight;
-        }
-
-        // Enhanced event delegation for better performance and reliability
-        skillsTabsNav.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            
-            const targetButton = e.target.closest('.tab-link');
-            if (!targetButton) return;
-            
-            const targetId = targetButton.getAttribute('data-target');
-            if (!targetId) {
-                console.warn('Tab link missing data-target:', targetButton);
-                return;
-            }
-            
-            console.log('Skills tab clicked:', targetId);
-            
-            // Add visual feedback
-            targetButton.style.transform = 'scale(0.95)';
-            setTimeout(() => {
-                targetButton.style.transform = '';
-            }, 150);
-            
-            switchTab(targetId);
-        });
-
-        // Keyboard navigation support
-        skillsTabsNav.addEventListener('keydown', function(e) {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                const targetButton = e.target.closest('.tab-link');
-                if (targetButton) {
-                    targetButton.click();
-                }
-            }
-        });
-
-        // Initialize the first tab as active if none are active
-        const activeTab = skillsTabsNav.querySelector('.tab-link.active');
-        if (activeTab) {
-            const targetId = activeTab.getAttribute('data-target');
-            if (targetId) {
-                switchTab(targetId);
-            }
-        } else if (tabLinks.length > 0) {
-            // Activate first tab if no active tab found
-            const firstTab = tabLinks[0];
-            const targetId = firstTab.getAttribute('data-target');
-            if (targetId) {
-                firstTab.classList.add('active');
-                firstTab.setAttribute('aria-selected', 'true');
-                switchTab(targetId);
-            }
-        }
-
-        console.log('Skills tabs setup complete');
-    }
-
     // Initialize skills tabs when DOM is loaded
     // Add a small delay to ensure all elements are properly rendered
     setTimeout(() => {
-        initSkillsTabs();
+        // Skills tabs removed - section no longer exists
     }, 200);
 
 }); 

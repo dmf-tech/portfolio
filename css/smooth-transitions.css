@@ -155,7 +155,6 @@ html {
 /* Smooth Background Element Animations */
 .about-shape,
 .experience-section::after,
-.skills-section::after,
 .projects-section::after,
 .certifications-section::after,
 .contact-section::after {

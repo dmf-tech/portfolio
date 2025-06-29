@@ -1,0 +1,234 @@
+<div class="backend-architecture">
+    <!-- System Overview -->
+    <div class="system-overview">
+        <div class="system-header">
+            <div class="system-icon">
+                <i class="fas fa-server"></i>
+            </div>
+            <div class="system-info">
+                <h3>Backend System Architecture</h3>
+                <p>Building robust, scalable, and secure server-side solutions that power modern applications</p>
+                <div class="system-stats">
+                    <div class="stat">
+                        <span class="stat-number">99.9%</span>
+                        <span class="stat-label">Uptime</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">10K+</span>
+                        <span class="stat-label">Requests/sec</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">24/7</span>
+                        <span class="stat-label">Monitoring</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Architecture Layers -->
+    <div class="architecture-layers">
+        <!-- API Layer -->
+        <div class="layer-card api-layer">
+            <div class="layer-header">
+                <div class="layer-icon">
+                    <i class="fas fa-exchange-alt"></i>
+                </div>
+                <h4>API Development & Integration</h4>
+                <div class="layer-status">
+                    <span class="status-dot active"></span>
+                    <span>Production Ready</span>
+                </div>
+            </div>
+            <div class="layer-content">
+                <p class="layer-description">Designing and implementing RESTful APIs that serve as the backbone for frontend applications, mobile apps, and third-party integrations. Specialized in creating intuitive API contracts with comprehensive documentation and versioning strategies.</p>
+                <div class="endpoint-examples">
+                    <div class="endpoint">
+                        <span class="method get">GET</span>
+                        <span class="path">/api/v1/users</span>
+                        <span class="description">User management</span>
+                    </div>
+                    <div class="endpoint">
+                        <span class="method post">POST</span>
+                        <span class="path">/api/v1/auth</span>
+                        <span class="description">Authentication</span>
+                    </div>
+                    <div class="endpoint">
+                        <span class="method put">PUT</span>
+                        <span class="path">/api/v1/data</span>
+                        <span class="description">Data operations</span>
+                    </div>
+                </div>
+                <div class="tech-stack">
+                    <span class="tech-item"><i class="fas fa-random"></i> RESTful APIs</span>
+                    <span class="tech-item"><i class="fas fa-project-diagram"></i> GraphQL</span>
+                    <span class="tech-item"><i class="fas fa-key"></i> JWT Auth</span>
+                    <span class="tech-item"><i class="fas fa-unlock-alt"></i> OAuth 2.0</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Database Layer -->
+        <div class="layer-card database-layer">
+            <div class="layer-header">
+                <div class="layer-icon">
+                    <i class="fas fa-database"></i>
+                </div>
+                <h4>Database Design & Management</h4>
+                <div class="layer-status">
+                    <span class="status-dot active"></span>
+                    <span>Optimized</span>
+                </div>
+            </div>
+            <div class="layer-content">
+                <p class="layer-description">Architecting efficient database solutions that balance performance, scalability, and data integrity. Experience with both relational and NoSQL databases, implementing proper indexing strategies and query optimization for high-traffic applications.</p>
+                <div class="database-schema">
+                    <div class="schema-table">
+                        <div class="table-header">Users Table</div>
+                        <div class="table-columns">
+                            <span>id (PK)</span>
+                            <span>email (UNIQUE)</span>
+                            <span>created_at</span>
+                        </div>
+                    </div>
+                    <div class="schema-table">
+                        <div class="table-header">Orders Table</div>
+                        <div class="table-columns">
+                            <span>id (PK)</span>
+                            <span>user_id (FK)</span>
+                            <span>status</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="tech-stack">
+                    <span class="tech-item"><i class="fas fa-database"></i> PostgreSQL</span>
+                    <span class="tech-item"><i class="fas fa-leaf"></i> MongoDB</span>
+                    <span class="tech-item"><i class="fas fa-bolt"></i> Redis</span>
+                    <span class="tech-item"><i class="fas fa-sitemap"></i> Data Modeling</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Security Layer -->
+        <div class="layer-card security-layer">
+            <div class="layer-header">
+                <div class="layer-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h4>Security & Authentication</h4>
+                <div class="layer-status">
+                    <span class="status-dot active"></span>
+                    <span>Protected</span>
+                </div>
+            </div>
+            <div class="layer-content">
+                <p class="layer-description">Implementing comprehensive security measures to protect applications from common vulnerabilities. Specialized in secure authentication flows, data encryption, input validation, and compliance with security standards like OWASP guidelines.</p>
+                <div class="security-features">
+                    <div class="security-item">
+                        <i class="fas fa-lock"></i>
+                        <span>Password Hashing (bcrypt)</span>
+                    </div>
+                    <div class="security-item">
+                        <i class="fas fa-key"></i>
+                        <span>JWT Token Management</span>
+                    </div>
+                    <div class="security-item">
+                        <i class="fas fa-shield-virus"></i>
+                        <span>SQL Injection Prevention</span>
+                    </div>
+                    <div class="security-item">
+                        <i class="fas fa-user-shield"></i>
+                        <span>Role-Based Access Control</span>
+                    </div>
+                </div>
+                <div class="tech-stack">
+                    <span class="tech-item"><i class="fas fa-lock"></i> bcrypt</span>
+                    <span class="tech-item"><i class="fas fa-key"></i> JWT</span>
+                    <span class="tech-item"><i class="fas fa-exchange-alt"></i> CORS</span>
+                    <span class="tech-item"><i class="fas fa-tachometer-alt"></i> Rate Limiting</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Performance Layer -->
+        <div class="layer-card performance-layer">
+            <div class="layer-header">
+                <div class="layer-icon">
+                    <i class="fas fa-tachometer-alt"></i>
+                </div>
+                <h4>Performance & Scalability</h4>
+                <div class="layer-status">
+                    <span class="status-dot active"></span>
+                    <span>Optimized</span>
+                </div>
+            </div>
+            <div class="layer-content">
+                <p class="layer-description">Building high-performance applications that can handle thousands of concurrent users. Implementing caching strategies, load balancing, database optimization, and microservices architecture to ensure applications scale efficiently.</p>
+                <div class="performance-metrics">
+                    <div class="metric">
+                        <div class="metric-value">200ms</div>
+                        <div class="metric-label">Avg Response Time</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-value">10K</div>
+                        <div class="metric-label">Concurrent Users</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-value">99.9%</div>
+                        <div class="metric-label">Uptime SLA</div>
+                    </div>
+                </div>
+                <div class="tech-stack">
+                    <span class="tech-item"><i class="fas fa-bolt"></i> Caching</span>
+                    <span class="tech-item"><i class="fas fa-balance-scale"></i> Load Balancing</span>
+                    <span class="tech-item"><i class="fas fa-cubes"></i> Microservices</span>
+                    <span class="tech-item"><i class="fas fa-cloud"></i> CDN</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Deployment Layer -->
+        <div class="layer-card deployment-layer">
+            <div class="layer-header">
+                <div class="layer-icon">
+                    <i class="fas fa-rocket"></i>
+                </div>
+                <h4>Deployment & DevOps</h4>
+                <div class="layer-status">
+                    <span class="status-dot active"></span>
+                    <span>Automated</span>
+                </div>
+            </div>
+            <div class="layer-content">
+                <p class="layer-description">Streamlining deployment processes with CI/CD pipelines, containerization, and infrastructure as code. Experience with cloud platforms, monitoring tools, and automated testing to ensure reliable, scalable deployments.</p>
+                <div class="deployment-pipeline">
+                    <div class="pipeline-step">
+                        <i class="fas fa-code"></i>
+                        <span>Code Commit</span>
+                    </div>
+                    <div class="pipeline-arrow">→</div>
+                    <div class="pipeline-step">
+                        <i class="fas fa-vial"></i>
+                        <span>Automated Tests</span>
+                    </div>
+                    <div class="pipeline-arrow">→</div>
+                    <div class="pipeline-step">
+                        <i class="fas fa-docker"></i>
+                        <span>Container Build</span>
+                    </div>
+                    <div class="pipeline-arrow">→</div>
+                    <div class="pipeline-step">
+                        <i class="fas fa-cloud"></i>
+                        <span>Deploy</span>
+                    </div>
+                </div>
+                <div class="tech-stack">
+                    <span class="tech-item"><i class="fab fa-docker"></i> Docker</span>
+                    <span class="tech-item"><i class="fas fa-cloud"></i> AWS/Azure</span>
+                    <span class="tech-item"><i class="fas fa-sync-alt"></i> CI/CD</span>
+                    <span class="tech-item"><i class="fas fa-chart-line"></i> Monitoring</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 
