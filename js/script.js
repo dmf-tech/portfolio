@@ -429,7 +429,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Project Filtering ---
     const initializeProjectFiltering = () => {
-        const filterContainer = select('.project-filters');
+    const filterContainer = select('.project-filters');
         if (!filterContainer) return;
 
         const filterButtons = selectAll('.filter-btn', filterContainer);

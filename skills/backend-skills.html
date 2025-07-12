@@ -25,24 +25,26 @@
             </div>
             <div class="layer-content">
                 <p class="layer-description">Designing and implementing RESTful and GraphQL APIs that serve as the backbone for frontend applications and third-party integrations. Specialized in creating intuitive API contracts with comprehensive documentation, versioning, and robust authentication strategies like JWT and OAuth 2.0.</p>
-                <div class="api-showcase">
-                    <div class="api-card">
-                        <div class="api-request">
-                            <span class="method get">GET</span>
-                            <span class="path">/api/v1/users/{id}</span>
-                        </div>
-                        <div class="api-response">
-                            <pre><code>{\n  "id": "user-123",\n  "name": "Daniel Florencio",\n  "email": "dev@example.com"\n}</code></pre>
-                        </div>
+                <div class="api-showcase-simplified">
+                    <div class="api-endpoint">
+                        <span class="method get">GET</span>
+                        <span class="path">/api/v1/users</span>
+                        <span class="description">Retrieve a list of users</span>
                     </div>
-                    <div class="api-card">
-                        <div class="api-request">
-                            <span class="method post">POST</span>
-                            <span class="path">/api/v1/orders</span>
-                        </div>
-                        <div class="api-response">
-                             <pre><code>{\n  "orderId": "order-456",\n  "status": "processing"\n}</code></pre>
-                        </div>
+                    <div class="api-endpoint">
+                        <span class="method post">POST</span>
+                        <span class="path">/api/v1/users</span>
+                        <span class="description">Create a new user</span>
+                    </div>
+                    <div class="api-endpoint">
+                        <span class="method patch">PATCH</span>
+                        <span class="path">/api/v1/users/{id}</span>
+                        <span class="description">Update a user's details</span>
+                    </div>
+                    <div class="api-endpoint">
+                        <span class="method delete">DELETE</span>
+                        <span class="path">/api/v1/users/{id}</span>
+                        <span class="description">Remove a user</span>
                     </div>
                 </div>
                 <div class="tech-stack">
@@ -68,26 +70,78 @@
             </div>
             <div class="layer-content">
                 <p class="layer-description">Architecting efficient relational and NoSQL database solutions that balance performance, scalability, and data integrity. Experienced in data modeling, indexing strategies, and query optimization for high-traffic applications. Proficient with PostgreSQL for structured data and MongoDB for flexible, scalable data storage.</p>
-                <div class="erd-diagram">
-                    <div class="erd-entity">
-                        <div class="entity-header">Users</div>
-                        <div class="entity-columns">
-                            <span><i class="fas fa-key"></i> id (PK)</span>
-                            <span><i class="fas fa-envelope"></i> email (UNIQUE)</span>
-                            <span><i class="fas fa-calendar-alt"></i> created_at</span>
+                <div class="database-tables">
+                    <div class="db-table">
+                        <div class="table-header">
+                            <h5><i class="fas fa-table"></i> Users</h5>
                         </div>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Column</th>
+                                    <th>Type</th>
+                                    <th>Constraints</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><i class="fas fa-key"></i> id</td>
+                                    <td>SERIAL</td>
+                                    <td>PRIMARY KEY</td>
+                                </tr>
+                                <tr>
+                                    <td><i class="fas fa-user-circle"></i> username</td>
+                                    <td>VARCHAR(50)</td>
+                                    <td>UNIQUE, NOT NULL</td>
+                                </tr>
+                                <tr>
+                                    <td><i class="fas fa-envelope"></i> email</td>
+                                    <td>VARCHAR(100)</td>
+                                    <td>UNIQUE, NOT NULL</td>
+                                </tr>
+                                <tr>
+                                    <td><i class="fas fa-calendar-alt"></i> created_at</td>
+                                    <td>TIMESTAMP</td>
+                                    <td>DEFAULT NOW()</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
-                    <div class="erd-relationship">
-                        <div class="relationship-line"></div>
-                        <div class="relationship-text">One-to-Many</div>
-                    </div>
-                    <div class="erd-entity">
-                        <div class="entity-header">Orders</div>
-                        <div class="entity-columns">
-                            <span><i class="fas fa-key"></i> id (PK)</span>
-                            <span><i class="fas fa-user"></i> user_id (FK)</span>
-                            <span><i class="fas fa-shopping-cart"></i> status</span>
+                    <div class="db-table">
+                        <div class="table-header">
+                            <h5><i class="fas fa-table"></i> Orders</h5>
                         </div>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Column</th>
+                                    <th>Type</th>
+                                    <th>Constraints</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><i class="fas fa-key"></i> id</td>
+                                    <td>SERIAL</td>
+                                    <td>PRIMARY KEY</td>
+                                </tr>
+                                <tr>
+                                    <td><i class="fas fa-user"></i> user_id</td>
+                                    <td>INTEGER</td>
+                                    <td>FOREIGN KEY (Users)</td>
+                                </tr>
+                                <tr>
+                                    <td><i class="fas fa-box"></i> product</td>
+                                    <td>VARCHAR(100)</td>
+                                    <td>NOT NULL</td>
+                                </tr>
+                                <tr>
+                                    <td><i class="fas fa-shopping-cart"></i> status</td>
+                                    <td>VARCHAR(20)</td>
+                                    <td>DEFAULT 'pending'</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
                 <div class="tech-stack">

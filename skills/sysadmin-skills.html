@@ -19,59 +19,63 @@
                 <i class="fas fa-microchip"></i>
                 <h4>Physical Infrastructure</h4>
             </div>
-            <div class="server-cluster">
-                <div class="server-node primary">
-                    <div class="server-icon">
-                        <i class="fas fa-server"></i>
-                    </div>
-                    <div class="server-info">
-                        <h5>Primary Node</h5>
-                        <p>Proxmox VE Host</p>
-                        <div class="server-status">
-                            <span class="status-dot active"></span>
-                            <span>Online</span>
+            <div class="server-rack-container">
+                <div class="rack-item-grid">
+                    <!-- Network Gear -->
+                    <div class="rack-item network-switch">
+                        <div class="rack-item-header">
+                            <i class="fas fa-network-wired"></i>
+                            <h5>Managed L3 Switch</h5>
+                        </div>
+                        <div class="rack-item-body">
+                            <p class="item-description">Configuration of enterprise-grade switches for optimal performance and security.</p>
+                            <div class="item-details">
+                                <span class="detail-tag">VLAN Segmentation</span>
+                                <span class="detail-tag">Link Aggregation (LACP)</span>
+                                <span class="detail-tag">802.1X Port Security</span>
+                            </div>
+                        </div>
+                        <div class="rack-item-footer">
+                            <span class="status-light active"></span>
+                            <span>STATUS: OPERATIONAL</span>
                         </div>
                     </div>
-                    <div class="server-metrics">
-                        <div class="metric">
-                            <span class="metric-label">CPU</span>
-                            <span class="metric-value">45%</span>
+                    <!-- Server 1 -->
+                    <div class="rack-item server-host">
+                        <div class="rack-item-header">
+                            <i class="fas fa-server"></i>
+                            <h5>Hypervisor Host</h5>
                         </div>
-                        <div class="metric">
-                            <span class="metric-label">RAM</span>
-                            <span class="metric-value">78%</span>
+                        <div class="rack-item-body">
+                            <p class="item-description">Bare-metal installation and hardening of virtualization hosts for high-density computing.</p>
+                            <ul class="spec-list">
+                                <li><strong>CPU:</strong> Dual Intel Xeon Scalable</li>
+                                <li><strong>RAM:</strong> 256GB DDR4 ECC</li>
+                                <li><strong>Storage:</strong> RAID 10 NVMe SSDs</li>
+                            </ul>
                         </div>
-                        <div class="metric">
-                            <span class="metric-label">Storage</span>
-                            <span class="metric-value">62%</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="server-node secondary">
-                    <div class="server-icon">
-                        <i class="fas fa-server"></i>
-                    </div>
-                    <div class="server-info">
-                        <h5>Secondary Node</h5>
-                        <p>Proxmox VE Host</p>
-                        <div class="server-status">
-                            <span class="status-dot active"></span>
-                            <span>Online</span>
+                         <div class="rack-item-footer">
+                            <span class="status-light active"></span>
+                            <span>STATUS: ONLINE</span>
                         </div>
                     </div>
-                    <div class="server-metrics">
-                        <div class="metric">
-                            <span class="metric-label">CPU</span>
-                            <span class="metric-value">38%</span>
+                    <!-- Storage Array -->
+                    <div class="rack-item storage-array">
+                        <div class="rack-item-header">
+                            <i class="fas fa-hdd"></i>
+                            <h5>Storage Area Network (SAN)</h5>
                         </div>
-                        <div class="metric">
-                            <span class="metric-label">RAM</span>
-                            <span class="metric-value">65%</span>
+                        <div class="rack-item-body">
+                            <p class="item-description">Management of centralized storage solutions for high availability and performance.</p>
+                            <div class="item-details">
+                                <span class="detail-tag">iSCSI & Fibre Channel</span>
+                                <span class="detail-tag">LUN Provisioning</span>
+                                <span class="detail-tag">Snapshot & Replication</span>
+                            </div>
                         </div>
-                        <div class="metric">
-                            <span class="metric-label">Storage</span>
-                            <span class="metric-value">55%</span>
+                         <div class="rack-item-footer">
+                            <span class="status-light active"></span>
+                            <span>STATUS: OPTIMAL</span>
                         </div>
                     </div>
                 </div>
@@ -270,29 +274,72 @@
         </div>
 
         <!-- Network & Security -->
-        <div class="topology-layer network-layer">
+        <div class="topology-layer network-security-layer">
             <div class="layer-title">
-                <i class="fas fa-network-wired"></i>
-                <h4>Networking & Security</h4>
+                <i class="fas fa-shield-alt"></i>
+                <h4>Network & Security Management</h4>
             </div>
-            <div class="network-infrastructure">
-                <div class="network-card firewall-card">
-                    <div class="network-icon">
-                        <i class="fas fa-fire-alt"></i>
+            <div class="network-components">
+                <div class="network-component firewall">
+                    <div class="component-icon">
+                        <i class="fas fa-fire-extinguisher"></i>
                     </div>
-                    <div class="network-info">
-                        <h5>Firewall & Gateway</h5>
-                        <p>Configuring and managing network security through advanced firewall rules, VPNs, and gateway policies to protect the infrastructure from external threats and control traffic flow.</p>
+                    <div class="component-info">
+                        <h5>Firewall & Access Control</h5>
+                        <p>Configured stateful firewalls to enforce strict inbound/outbound traffic rules and network segmentation.</p>
+                        <div class="component-status">
+                            <span class="status-dot active"></span>
+                            <span>Active & Enforcing</span>
+                        </div>
                     </div>
                 </div>
-                <div class="network-card monitoring-card">
-                    <div class="network-icon">
-                        <i class="fas fa-shield-alt"></i>
+                <div class="network-component ids-ips">
+                    <div class="component-icon">
+                        <i class="fas fa-search-location"></i>
                     </div>
-                    <div class="network-info">
-                        <h5>Intrusion Detection System (IDS)</h5>
-                        <p>Implementing and monitoring intrusion detection systems to identify and respond to potential security breaches, ensuring the integrity and safety of the network and its data.</p>
+                    <div class="component-info">
+                        <h5>Intrusion Detection/Prevention (IDS/IPS)</h5>
+                        <p>Deployed network-based IDS/IPS to monitor for malicious activity and block potential threats in real-time.</p>
+                        <div class="component-status">
+                            <span class="status-dot active"></span>
+                            <span>Monitoring & Blocking</span>
+                        </div>
                     </div>
+                </div>
+                <div class="network-component vpn">
+                    <div class="component-icon">
+                        <i class="fas fa-user-secret"></i>
+                    </div>
+                    <div class="component-info">
+                        <h5>VPN & Remote Access</h5>
+                        <p>Established secure VPN tunnels for remote administration and encrypted site-to-site connections.</p>
+                        <div class="component-status">
+                            <span class="status-dot active"></span>
+                            <span>Secure & Operational</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="security-services-grid">
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-shield-virus"></i></div>
+                    <h5>Vulnerability Scanning</h5>
+                    <p>Regularly perform automated and manual scans to identify and patch system vulnerabilities.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-user-lock"></i></div>
+                    <h5>Access Control Lists (ACLs)</h5>
+                    <p>Implement granular ACLs on network devices to restrict access based on user roles and policies.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-network-wired"></i></div>
+                    <h5>Network Segmentation</h5>
+                    <p>Isolate critical systems into secure zones (e.g., DMZ, internal, database) to contain threats.</p>
+                </div>
+                 <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-history"></i></div>
+                    <h5>Logging & Auditing</h5>
+                    <p>Maintain comprehensive logs and conduct regular audits to ensure security compliance and incident response.</p>
                 </div>
             </div>
         </div>
