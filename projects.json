@@ -1,0 +1,75 @@
+[
+  {
+    "id": "project-alpha",
+    "featured": true,
+    "title": "Project Alpha",
+    "filterClasses": "web-app ui-ux",
+    "imageSrcs": [
+      "data:image/svg+xml;charset=UTF-8,%3csvg width='500' height='300' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 300' preserveAspectRatio='none'%3e%3crect width='100%25' height='100%25' fill='%23e9ecef'%3e%3c/rect%3e%3c/svg%3e",
+      "data:image/svg+xml;charset=UTF-8,%3csvg width='500' height='300' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 300' preserveAspectRatio='none'%3e%3crect width='100%25' height='100%25' fill='%23e9ecef'%3e%3c/rect%3e%3c/svg%3e",
+      "data:image/svg+xml;charset=UTF-8,%3csvg width='500' height='300' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 300' preserveAspectRatio='none'%3e%3crect width='100%25' height='100%25' fill='%23e9ecef'%3e%3c/rect%3e%3c/svg%3e"
+    ],
+    "categories": ["Web App", "UI/UX"],
+    "shortDescription": "A comprehensive web application designed for task management, featuring a clean UI and collaborative tools.",
+    "technologies": ["React", "Node.js", "MongoDB"],
+    "githubUrl": "#",
+    "modalData": {
+      "description": "A comprehensive web application designed for task management, featuring a clean UI and collaborative tools. This project was built from the ground up to address the needs of modern teams, focusing on intuitive design and seamless real-time synchronization.",
+      "features": "<li>Real-time collaborative task management</li><li>Drag-and-drop interface for easy organization</li><li>Notification system for updates and deadlines</li><li>OAuth 2.0 for secure authentication</li>"
+    }
+  },
+  {
+    "id": "project-beta",
+    "title": "Project Beta",
+    "filterClasses": "mobile-app",
+    "imageSrcs": [
+      "data:image/svg+xml;charset=UTF-8,%3csvg width='500' height='300' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 300' preserveAspectRatio='none'%3e%3crect width='100%25' height='100%25' fill='%23e9ecef'%3e%3c/rect%3e%3c/svg%3e",
+      "data:image/svg+xml;charset=UTF-8,%3csvg width='500' height='300' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 300' preserveAspectRatio='none'%3e%3crect width='100%25' height='100%25' fill='%23e9ecef'%3e%3c/rect%3e%3c/svg%3e",
+      "data:image/svg+xml;charset=UTF-8,%3csvg width='500' height='300' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 300' preserveAspectRatio='none'%3e%3crect width='100%25' height='100%25' fill='%23e9ecef'%3e%3c/rect%3e%3c/svg%3e"
+    ],
+    "categories": ["Mobile App"],
+    "shortDescription": "A native mobile application for iOS and Android that helps users track their fitness goals.",
+    "technologies": ["Swift", "Kotlin", "Firebase"],
+    "githubUrl": "#",
+    "modalData": {
+      "description": "A native mobile application for iOS and Android that helps users track their fitness goals. The app provides a seamless user experience, motivating users to stay active through personalized plans and interactive features.",
+      "features": "<li>Personalized goal setting and tracking</li><li>Integration with Apple Health and Google Fit</li><li>Gamified challenges to encourage consistency</li><li>Progress analytics and visual reports</li>"
+    }
+  },
+  {
+    "id": "project-gamma",
+    "title": "Project Gamma",
+    "filterClasses": "data-science",
+    "imageSrcs": [
+      "data:image/svg+xml;charset=UTF-8,%3csvg width='500' height='300' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 300' preserveAspectRatio='none'%3e%3crect width='100%25' height='100%25' fill='%23e9ecef'%3e%3c/rect%3e%3c/svg%3e",
+      "data:image/svg+xml;charset=UTF-8,%3csvg width='500' height='300' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 300' preserveAspectRatio='none'%3e%3crect width='100%25' height='100%25' fill='%23e9ecef'%3e%3c/rect%3e%3c/svg%3e",
+      "data:image/svg+xml;charset=UTF-8,%3csvg width='500' height='300' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 300' preserveAspectRatio='none'%3e%3crect width='100%25' height='100%25' fill='%23e9ecef'%3e%3c/rect%3e%3c/svg%3e"
+    ],
+    "categories": ["Data Science"],
+    "shortDescription": "A Python-based tool for analyzing large datasets and generating insightful reports. Utilizes Pandas and Matplotlib.",
+    "technologies": ["Python", "Pandas", "Matplotlib"],
+    "githubUrl": "#",
+    "modalData": {
+      "description": "A Python-based tool for analyzing large datasets and generating insightful reports. Utilizes Pandas for data manipulation and Matplotlib/Seaborn for creating compelling visualizations, enabling data-driven decision-making.",
+      "features": "<li>Automated data ingestion from multiple sources (CSV, SQL)</li><li>Advanced data cleaning and preprocessing pipelines</li><li>Interactive visualizations and dashboards</li><li>Export functionality for reports (PDF, Excel)</li>"
+    }
+  },
+  {
+    "id": "project-delta",
+    "title": "Project Delta",
+    "filterClasses": "other web-app",
+    "imageSrcs": [
+      "data:image/svg+xml;charset=UTF-8,%3csvg width='500' height='300' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 300' preserveAspectRatio='none'%3e%3crect width='100%25' height='100%25' fill='%23e9ecef'%3e%3c/rect%3e%3c/svg%3e",
+      "data:image/svg+xml;charset=UTF-8,%3csvg width='500' height='300' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 300' preserveAspectRatio='none'%3e%3crect width='100%25' height='100%25' fill='%23e9ecef'%3e%3c/rect%3e%3c/svg%3e",
+      "data:image/svg+xml;charset=UTF-8,%3csvg width='500' height='300' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 300' preserveAspectRatio='none'%3e%3crect width='100%25' height='100%25' fill='%23e9ecef'%3e%3c/rect%3e%3c/svg%3e"
+    ],
+    "categories": ["Web App", "Other"],
+    "shortDescription": "An experimental project exploring WebAssembly for browser-based image processing.",
+    "technologies": ["Rust", "WebAssembly", "JavaScript"],
+    "githubUrl": "#",
+    "modalData": {
+      "description": "An experimental project exploring WebAssembly for browser-based image processing. This tool demonstrates how Rust can be compiled to WASM to perform computationally intensive tasks directly in the browser at high speed.",
+      "features": "<li>High-performance, in-browser image filtering (grayscale, sepia, invert)</li><li>Leverages WebAssembly for near-native processing speed</li><li>Real-time previews and adjustments</li><li>Minimal JavaScript footprint for core functionality</li>"
+    }
+  }
+] 

@@ -428,8 +428,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // --- Project Filtering ---
-    const filterContainer = select('.project-filters');
-    if (filterContainer) {
+    const initializeProjectFiltering = () => {
+        const filterContainer = select('.project-filters');
+        if (!filterContainer) return;
+
         const filterButtons = selectAll('.filter-btn', filterContainer);
         const projectsGrid = select('.projects-grid'); 
         
@@ -444,28 +446,189 @@ document.addEventListener('DOMContentLoaded', () => {
                     const filterValue = this.getAttribute('data-filter');
 
                     projectItems.forEach(item => {
-                        item.style.display = 'none'; // Hide all project cards in the grid first
+                        // Use a class to control visibility for smoother transitions
+                        item.classList.add('project-hidden');
+                        item.style.display = 'none';
 
                         if (filterValue === '*' || item.classList.contains(filterValue.substring(1))) {
-                            item.style.display = ''; // Show item if it matches 'All' or the specific category
+                            item.style.display = '';
+                            // Delay to allow display property to apply before animation
+                            setTimeout(() => item.classList.remove('project-hidden'), 10);
                         }
                     });
                 });
             });
 
-            // Trigger the 'All' filter on page load
             const allButton = Array.from(filterButtons).find(btn => btn.getAttribute('data-filter') === '*');
             if (allButton) {
                 allButton.click();
             } else if (filterButtons.length > 0) {
                 filterButtons[0].click(); 
             }
-        } else {
-            console.warn("Projects grid container (.projects-grid) not found for filtering.");
         }
-    } else {
-        // console.log("Project filters container (.project-filters) not found."); 
-    }
+    };
+
+    // --- Dynamic Project Loading ---
+    const renderProjectCard = (project) => {
+        const imagesHTML = project.imageSrcs.map((src, index) => 
+            `<img src="${src}" alt="${project.title} Screenshot ${index + 1}" class="carousel-image ${index === 0 ? 'active' : ''}">`
+        ).join('');
+
+        const categoriesHTML = project.categories.map(cat => `<span class="category-tag">${cat}</span>`).join('');
+        const technologiesHTML = project.technologies.map(tech => `<span>${tech}</span>`).join('');
+
+        return `
+            <div class="project-card ${project.filterClasses} animate-on-scroll fade-up"
+                 data-project-title="${escapeHTML(project.title)}"
+                 data-project-description="${escapeHTML(project.modalData.description)}"
+                 data-project-features="${project.modalData.features}">
+                <div class="project-image-area">
+                    <div class="image-carousel" data-project-carousel="${project.id}">
+                        <div class="carousel-images">${imagesHTML}</div>
+                        <button class="carousel-nav prev" aria-label="Previous image"><i class="fas fa-chevron-left"></i></button>
+                        <button class="carousel-nav next" aria-label="Next image"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <h3>${escapeHTML(project.title)}</h3>
+                    <p class="project-categories">${categoriesHTML}</p>
+                    <p>${escapeHTML(project.shortDescription)}</p>
+                    <div class="project-technologies">${technologiesHTML}</div>
+                    <div class="project-links">
+                        <button class="btn btn-secondary btn-small view-project-details">View Details</button>
+                        <a href="${escapeHTML(project.githubUrl)}" class="btn btn-outline btn-small" target="_blank" rel="noopener noreferrer">GitHub</a>
+                    </div>
+                </div>
+            </div>
+        `;
+    };
+
+    const loadProjects = async () => {
+        const projectsGrid = select('.projects-grid');
+        const featuredProjectWrapper = select('.featured-project-wrapper');
+
+        if (!projectsGrid || !featuredProjectWrapper) return;
+
+        try {
+            const response = await fetch('projects.json');
+            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+            const projects = await response.json();
+
+            // Find the featured project
+            const featuredProject = projects.find(p => p.featured);
+            const regularProjects = projects.filter(p => !p.featured);
+
+            // Render the featured project
+            if (featuredProject) {
+                const featuredImagesHTML = featuredProject.imageSrcs.map((src, index) => 
+                    `<img src="${src}" alt="${featuredProject.title} Screenshot ${index + 1}" class="carousel-image ${index === 0 ? 'active' : ''}">`
+                ).join('');
+                const featuredCategoriesHTML = featuredProject.categories.map(cat => `<span class="category-tag">${cat}</span>`).join('');
+                const featuredTechnologiesHTML = featuredProject.technologies.map(tech => `<span>${tech}</span>`).join('');
+
+                featuredProjectWrapper.innerHTML = `
+                    <h3>Featured Project: <span class="highlight">${escapeHTML(featuredProject.title)}</span></h3>
+                    <div class="featured-project-content">
+                        <div class="featured-project-image-area">
+                            <div class="image-carousel" data-project-carousel="featured">
+                                <div class="carousel-images">${featuredImagesHTML}</div>
+                                <button class="carousel-nav prev" aria-label="Previous image"><i class="fas fa-chevron-left"></i></button>
+                                <button class="carousel-nav next" aria-label="Next image"><i class="fas fa-chevron-right"></i></button>
+                            </div>
+                        </div>
+                        <div class="featured-project-details">
+                            <p class="project-categories">${featuredCategoriesHTML}</p>
+                            <h4>${escapeHTML(featuredProject.title)}</h4>
+                            <p>${escapeHTML(featuredProject.modalData.description)}</p>
+                            <div class="project-technologies">${featuredTechnologiesHTML}</div>
+                            <div class="project-links">
+                                <button class="btn btn-primary view-project-details">View Details</button>
+                                <a href="${escapeHTML(featuredProject.githubUrl)}" class="btn btn-secondary" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> Explore on GitHub</a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                 // Add data attributes to the wrapper for the modal
+                featuredProjectWrapper.setAttribute('data-project-title', featuredProject.title);
+                featuredProjectWrapper.setAttribute('data-project-description', featuredProject.modalData.description);
+                featuredProjectWrapper.setAttribute('data-project-features', featuredProject.modalData.features);
+            }
+
+            // Render the rest of the projects
+            projectsGrid.innerHTML = regularProjects.map(renderProjectCard).join('');
+            
+            // Re-initialize all functionalities that depend on the dynamic content
+            selectAll('.image-carousel').forEach(initializeProjectCarousel);
+            initializeProjectFiltering();
+            initializeProjectModal();
+
+        } catch (error) {
+            console.error("Failed to load projects:", error);
+            projectsGrid.innerHTML = '<p class="error-message">Could not load projects. Please try again later.</p>';
+            featuredProjectWrapper.innerHTML = '';
+        }
+    };
+
+    // Initial load
+    loadProjects();
+
+
+    // --- Project Details Modal ---
+    const initializeProjectModal = () => {
+        const projectModal = select('#projectModal');
+        if (!projectModal) return;
+
+        const viewProjectDetailsButtons = selectAll('.view-project-details');
+        const closeProjectModalBtn = select('#closeProjectModal');
+
+        viewProjectDetailsButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const projectCard = button.closest('.project-card, .featured-project-wrapper');
+                
+                // Get data from the card
+                const title = projectCard.dataset.projectTitle;
+                const description = projectCard.dataset.projectDescription;
+                const features = projectCard.dataset.projectFeatures;
+
+                // Get technologies from the visible elements
+                const techSpans = projectCard.querySelectorAll('.project-technologies span');
+                const technologies = Array.from(techSpans).map(span => `<span>${span.innerHTML}</span>`).join('');
+                
+                // Populate modal
+                select('#projectModalTitle').textContent = title;
+                select('#projectModalDescription').textContent = description;
+                select('#projectModalFeatures').innerHTML = features;
+                select('#projectModalTechnologies').innerHTML = technologies.replace(/<span>/g, '<span class="skill-tag">');
+
+                // Show modal
+                projectModal.style.display = 'flex';
+                setTimeout(() => projectModal.classList.add('active'), 10);
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        const closeProjectModal = () => {
+            projectModal.classList.remove('active');
+            setTimeout(() => {
+                projectModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }, 300);
+        };
+
+        closeProjectModalBtn.addEventListener('click', closeProjectModal);
+
+        projectModal.addEventListener('click', (e) => {
+            if (e.target === projectModal) {
+                closeProjectModal();
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && projectModal.classList.contains('active')) {
+                closeProjectModal();
+            }
+        });
+    };
 
     // --- Dynamic Year in Footer ---
     const yearSpan = select('#currentYear');
