@@ -1586,4 +1586,204 @@ document.addEventListener('DOMContentLoaded', () => {
             securityToggleButton.classList.toggle('disabled', isSecurityDisabled);
         });
     }
-}); 
+
+    // Resume Modal Logic - KEEP THIS NEW IMPLEMENTATION
+    const openResumeModal = async () => {
+        const resumeModal = document.getElementById('resumeModal');
+        if (!resumeModal) return;
+
+        resumeModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+
+        // Reset to default view
+        const chronoBtn = document.getElementById('chrono-resume-btn');
+        const functionalBtn = document.getElementById('functional-resume-btn');
+        if (chronoBtn) chronoBtn.classList.add('active');
+        if (functionalBtn) functionalBtn.classList.remove('active');
+
+        if (!window.resumeData) {
+            try {
+                const response = await fetch('resume.json');
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                window.resumeData = await response.json();
+                renderResume(window.resumeData); // Always render the chronological format
+            } catch (error) {
+                console.error('Failed to fetch resume data:', error);
+                const resumeContainer = document.getElementById('resumeContainer');
+                if (resumeContainer) {
+                    resumeContainer.innerHTML = '<p>Error loading resume. Please try again later.</p>';
+                }
+            }
+        } else {
+            renderResume(window.resumeData);
+        }
+    };
+
+    // --- Resume Modal ---
+    // This part is now placed in the global scope to be accessible.
+    const resumeModal = document.getElementById('resumeModal');
+    const openResumeBtn = document.getElementById('viewResumeBtn');
+    const closeResumeBtn = document.getElementById('closeResumeModal');
+
+    if (openResumeBtn && resumeModal && closeResumeBtn) {
+        openResumeBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            resumeModal.classList.add('active');
+            fetchResumeData();
+        });
+
+        closeResumeBtn.addEventListener('click', () => {
+            resumeModal.classList.remove('active');
+        });
+
+        // Close modal if backdrop is clicked
+        resumeModal.addEventListener('click', (e) => {
+            if (e.target === resumeModal) {
+                resumeModal.classList.remove('active');
+            }
+        });
+    }
+});
+
+/**
+ * Fetches resume data from resume.json and renders it.
+ */
+async function fetchResumeData() {
+    const resumeContainer = document.getElementById('resumeContainer');
+    if (!resumeContainer) return;
+
+    // Show loading state only if content isn't already loaded
+    if (!resumeContainer.querySelector('.resume-view')) {
+        resumeContainer.innerHTML = `
+            <div class="loading-placeholder">
+                <i class="fas fa-spinner fa-spin"></i>
+                <p>Loading Resume...</p>
+            </div>
+        `;
+    }
+
+    try {
+        const response = await fetch('resume.json');
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const resumeData = await response.json();
+        renderResume(resumeData);
+    } catch (error) {
+        console.error("Error fetching or parsing resume data:", error);
+        if (resumeContainer) {
+            resumeContainer.innerHTML = '<p style="text-align: center; color: red;">Error loading resume. Please try again later.</p>';
+        }
+    }
+}
+
+/**
+ * Renders the entire resume in the modal.
+ * @param {object} data - The resume data from resume.json.
+ */
+function renderResume(data) {
+    const resumeContainer = document.getElementById('resumeContainer');
+    if (!resumeContainer) return;
+
+    const headerHTML = `
+        <div class="resume-header">
+            <h1 class="name">${data.name}</h1>
+            <p class="title">${data.title}</p>
+            <div class="contact-info">
+                ${data.contact.email ? `<span><i class="fas fa-envelope"></i> <a href="mailto:${data.contact.email}">${data.contact.email}</a></span>` : ''}
+                ${data.contact.phone ? `<span><i class="fas fa-phone"></i> ${data.contact.phone}</span>` : ''}
+                ${data.contact.linkedin ? `<span><i class="fab fa-linkedin"></i> <a href="${data.contact.linkedin}" target="_blank" rel="noopener noreferrer">LinkedIn</a></span>` : ''}
+                ${data.contact.github ? `<span><i class="fab fa-github"></i> <a href="${data.contact.github}" target="_blank" rel="noopener noreferrer">GitHub</a></span>` : ''}
+                ${data.contact.location ? `<span><i class="fas fa-map-marker-alt"></i> ${data.contact.location}</span>` : ''}
+            </div>
+        </div>
+    `;
+
+    const summaryHTML = data.summary ? `
+        <div class="resume-section resume-summary">
+            <h2 class="resume-section-title">Professional Summary</h2>
+            <p>${data.summary}</p>
+        </div>
+    ` : '';
+
+    const experienceHTML = data.experience && data.experience.length > 0 ? `
+        <div class="resume-section resume-experience">
+            <h2 class="resume-section-title">Work Experience</h2>
+            ${data.experience.map(job => `
+                <div class="chrono-item">
+                    <div class="chrono-item-header">
+                        <h3 class="item-title">${job.title}</h3>
+                        <span class="item-dates">${job.dates}</span>
+                    </div>
+                    <p class="item-subtitle">${job.company} | ${job.location}</p>
+                    <ul class="item-details">
+                        ${(job.description || []).map(desc => `<li>${desc}</li>`).join('')}
+                    </ul>
+                </div>
+            `).join('')}
+        </div>
+    ` : '';
+
+    const projectsHTML = data.projects && data.projects.length > 0 ? `
+        <div class="resume-section resume-projects">
+            <h2 class="resume-section-title">Projects</h2>
+            ${data.projects.map(project => `
+                <div class="extra-item">
+                    <h3 class="extra-item-header">${project.name}</h3>
+                    <p class="item-subtitle">${(project.technologies || []).join(', ')}</p>
+                    <div class="item-details">${project.description || ''}</div>
+                </div>
+            `).join('')}
+        </div>
+    ` : '';
+
+    const educationHTML = data.education && data.education.length > 0 ? `
+        <div class="resume-section resume-education">
+            <h2 class="resume-section-title">Education</h2>
+            ${data.education.map(edu => `
+                <div class="chrono-item">
+                    <div class="chrono-item-header">
+                        <h3 class="item-title">${edu.degree}</h3>
+                        <span class="item-dates">${edu.graduationDate}</span>
+                    </div>
+                    <p class="item-subtitle">${edu.institution}</p>
+                </div>
+            `).join('')}
+        </div>
+    ` : '';
+
+    const skillsHTML = data.skills && data.skills.length > 0 ? `
+        <div class="resume-section resume-skills">
+            <h2 class="resume-section-title">Skills</h2>
+            <ul class="skills-list">
+                ${data.skills.map(skill => `<li>${skill}</li>`).join('')}
+            </ul>
+        </div>
+    ` : '';
+    
+    const certificationsHTML = data.certifications && data.certifications.length > 0 ? `
+        <div class="resume-section resume-certifications">
+            <h2 class="resume-section-title">Certifications</h2>
+            ${data.certifications.map(cert => `
+                 <div class="extra-item">
+                    <h3 class="extra-item-header">${cert.title}</h3>
+                    <p class="item-subtitle">${cert.issuer} (${cert.date})</p>
+                </div>
+            `).join('')}
+        </div>
+    ` : '';
+
+    resumeContainer.innerHTML = `
+        <div class="resume-view">
+            ${headerHTML}
+            ${summaryHTML}
+            ${experienceHTML}
+            ${projectsHTML}
+            ${educationHTML}
+            ${skillsHTML}
+            ${certificationsHTML}
+        </div>
+    `;
+} 

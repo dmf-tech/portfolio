@@ -27,6 +27,7 @@
     <link rel="stylesheet" href="css/content-protection.css">
     <link rel="stylesheet" href="css/dev-toggle.css">
     <link rel="stylesheet" href="css/projects-enhancements.css">
+    <link rel="stylesheet" href="css/resume-modal.css">
     <!-- 
         Google Fonts: Applying SRI to Google Fonts is complex due to their dynamic CSS delivery.
         For maximum security, consider downloading and self-hosting these fonts.
@@ -311,10 +312,10 @@
                                         </div>
                                         
                                         <div class="action-buttons">
-                                            <a href="#" class="btn btn-primary" download rel="noopener noreferrer">
-                                                <i class="fas fa-download"></i>
-                                                <span>Download Resume</span>
-                                            </a>
+                                            <button id="viewResumeBtn" class="btn btn-primary">
+                                                <i class="fas fa-file-alt"></i>
+                                                <span>View Resume</span>
+                                            </button>
                                             <a href="#contact" class="btn btn-secondary">
                                                 <i class="fas fa-envelope"></i>
                                                 <span>Get In Touch</span>
@@ -1377,6 +1378,29 @@
         </div>
     </div>
     <!-- End Blog Modal -->
+
+    <!-- Resume Modal -->
+    <div id="resumeModal" class="resume-modal">
+        <div class="resume-modal-content">
+            <div class="resume-modal-header">
+                <div class="resume-actions">
+                    <a href="/resume/Daniel-Florencio-Resume.pdf" id="downloadResumeBtn" class="btn btn-primary btn-small" download>
+                        <i class="fas fa-download"></i> Download PDF
+                    </a>
+                    <button class="resume-modal-close" id="closeResumeModal" aria-label="Close modal">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="resume-modal-body" id="resumeContainer">
+                <!-- Resume content will be dynamically loaded here -->
+                 <div class="loading-placeholder">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <p>Loading Resume...</p>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer id="footer">

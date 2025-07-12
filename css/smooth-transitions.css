@@ -30,10 +30,13 @@ img[src] {
     transition: opacity 0.6s ease-in-out;
 }
 
-img[src].loaded,
-img:not([loading="lazy"]) {
+
+
+
+img[src].loaded {
     opacity: 1;
 }
+
 
 @keyframes shimmer {
     0% { background-position: -200% 0; }
@@ -309,7 +312,7 @@ input, textarea, select {
 }
 
 /* Prefetch and Preload Optimizations */
-img[loading="lazy"] {
+img {
     transition: opacity 0.6s ease-in-out;
 }
 

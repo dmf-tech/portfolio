@@ -1,0 +1,122 @@
+{
+  "name": "Daniel Florencio",
+  "title": "Full-Stack Developer & AI Enthusiast",
+  "contact": {
+    "email": "dmflorencio.main@gmail.com",
+    "phone": "",
+    "linkedin": "https://www.linkedin.com/in/daniel-mark-florencio/",
+    "github": "https://github.com/Daniel-Florencio",
+    "location": "Philippines"
+  },
+  "summary": "A results-oriented Full-Stack Developer and AI Enthusiast with 3+ years of experience across telecommunications, FinTech, and AI sectors. Passionate about building intelligent, scalable applications that bridge the gap between complex problems and elegant user experiences. Proven ability to architect robust systems, lead AI integration projects, and deliver high-quality software solutions. Graduated Cum Laude with a specialization in Data Science.",
+  "experience": [
+    {
+      "title": "Full Stack Developer",
+      "company": "Coral System Technologies Inc.",
+      "dates": "Feb 2025 - Present",
+      "location": "Philippines",
+      "description": [
+        "Led the maintenance and enhancement of a FreeSWITCH-based call center infrastructure serving 500+ concurrent users, achieving 99.9% uptime and reducing call routing latency by 40%.",
+        "Developed comprehensive CLI scripting solutions and automation workflows in a Linux environment, reducing manual system administration tasks by 60%.",
+        "Implemented Docker-based deployment pipelines that streamlined application delivery, reducing deployment time from hours to minutes.",
+        "Architected and configured a Proxmox VE platform managing 50+ virtual machines, implementing high-availability clustering that improved system resilience and resource utilization by 35%."
+      ]
+    },
+    {
+      "title": "Online Tutor",
+      "company": "Freelance",
+      "dates": "Nov 2024 - May 2025",
+      "location": "Remote",
+      "description": [
+        "Delivered tailored tutoring sessions to over 25 students in Computer Science and Mathematics, resulting in a 90% average grade improvement.",
+        "Developed innovative teaching methodologies to explain complex concepts in algorithms, data structures, and advanced mathematics, receiving a 100% student satisfaction rate."
+      ]
+    },
+    {
+      "title": "AI Developer & Junior Software Developer",
+      "company": "Offshorly",
+      "dates": "May 2024 - Oct 2024",
+      "location": "Philippines",
+      "description": [
+        "Designed and implemented cutting-edge AI solutions integrating Large Language Models (LLMs) that automated 70% of repetitive tasks and improved workflow efficiency by 45%.",
+        "Built scalable vector database solutions and Retrieval-Augmented Generation (RAG) pipelines, enhancing data accessibility by 60% and reducing information retrieval time by 80%.",
+        "Collaborated with senior developers on over 8 AI and web development projects, contributing to 100% on-time delivery and maintaining high code quality standards."
+      ]
+    },
+    {
+      "title": "Software Developer (Internship)",
+      "company": "Coreware Technologies, Inc.",
+      "dates": "Feb 2024 - Mar 2024",
+      "location": "Philippines",
+      "description": [
+        "Designed and developed a high-performance GUI for an ATM Switch Card Management system using Flutter for Windows, reducing transaction processing time by 30%.",
+        "Collaborated with design teams using Figma to translate complex requirements into intuitive, responsive interfaces, improving user adoption by 40%."
+      ]
+    },
+    {
+      "title": "Full-stack Developer (Internship)",
+      "company": "51st Engineer Brigade, Philippine Army",
+      "dates": "Jan 2024 - May 2024",
+      "location": "Philippines",
+      "description": [
+        "Co-designed and implemented a comprehensive Management Information System (MIS) serving over 200 military personnel, improving data accessibility by 75% and reducing administrative processing time by 60%.",
+        "Streamlined organizational data management processes through advanced analytics and reporting capabilities, enabling data-informed decision-making that improved operational efficiency by 45%."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "institution": "Technological Institute of the Philippines",
+      "degree": "Bachelor of Science, Computer Science",
+      "graduationDate": "Aug 2020 - Sep 2024",
+      "details": [
+        "Graduated with Cum Laude honors.",
+        "Specialization in Data Science.",
+        "Thesis: Designed and implemented a Convolutional Neural Network (CNN) for image classification, achieving a 95-98% accuracy rate.",
+        "Relevant Coursework: Data Structures & Algorithms, Machine Learning, Artificial Intelligence, Database Systems, Software Engineering, Network Security."
+      ]
+    }
+  ],
+  "skills": [
+    "Generative AI", "Large Language Models (LLMs)", "RAG Pipelines", "Vector Databases", "Convolutional Neural Networks (CNN)", "Scikit-learn", "TensorFlow", "Python", "Node.js", "REST API Design", "SQL (MySQL, PostgreSQL)", "JavaScript (ES6+)", "HTML5", "CSS3", "React", "Flutter", "Figma", "Linux Administration", "Docker", "Proxmox VE", "Bash Scripting", "FreeSWITCH", "Network Security"
+  ],
+  "projects": [
+    {
+      "name": "AI-Powered Customer Support Agent",
+      "technologies": ["Python", "FastAPI", "LLMs", "RAG", "ChromaDB", "Docker"],
+      "description": "Developed a conversational AI agent using LLMs and a RAG pipeline to answer customer queries from a knowledge base, improving response time by 90%. Built with Python, FastAPI, and a vector database (ChromaDB), and deployed in a Docker container for scalability."
+    },
+    {
+      "name": "Personal Portfolio Website",
+      "technologies": ["JavaScript (ES6+)", "HTML5", "CSS3", "Netlify"],
+      "description": "Engineered a fully responsive, modern single-page application using vanilla JavaScript, HTML5, and CSS3 to showcase professional skills and projects. Implemented dynamic content loading from JSON, Intersection Observer for animations, and a Netlify-integrated contact form with reCAPTCHA."
+    },
+    {
+      "name": "High-Accuracy CNN Image Classifier",
+      "technologies": ["Python", "TensorFlow", "Keras", "CNN"],
+      "description": "Authored a university thesis project to classify images with high precision using a custom-built Convolutional Neural Network. Achieved a 95-98% accuracy rate, demonstrating a deep understanding of model architecture, data augmentation, training, and evaluation. Built with Python, TensorFlow, and Keras."
+    }
+  ],
+  "certifications": [
+    {
+      "title": "Human Skills in the Age of AI",
+      "issuer": "Microsoft and LinkedIn",
+      "date": "April 30, 2025"
+    },
+    {
+      "title": "Career Essentials in Generative AI",
+      "issuer": "Microsoft and LinkedIn",
+      "date": "April 14, 2024"
+    },
+    {
+      "title": "Career Essentials in Software Development",
+      "issuer": "Microsoft and LinkedIn",
+      "date": "April 1, 2024"
+    },
+    {
+      "title": "Zendesk Customer Service Professional Certificate",
+      "issuer": "Zendesk",
+      "date": "April 22, 2024"
+    }
+  ]
+} 

@@ -1,0 +1,589 @@
+/* Resume Modal Styles - Enhanced */
+.resume-modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent backdrop */
+    z-index: 1060;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.resume-modal.active {
+    display: flex; /* Becomes visible when active */
+    opacity: 1;
+}
+
+.resume-modal-content {
+    background-color: #fdfdff; /* A slightly off-white, clean background */
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+    max-height: 90vh;
+    width: 90%;
+    max-width: 950px; /* Slightly wider for better content flow */
+    border-radius: 12px;
+    transform: scale(0.95);
+    transition: transform 0.3s ease-in-out;
+    border: 1px solid #e0e0e0; /* Subtle border */
+}
+
+.resume-modal.active .resume-modal-content {
+    transform: scale(1);
+}
+
+.resume-modal-header {
+    display: flex;
+    justify-content: flex-end; /* Align actions to the right */
+    align-items: center;
+    padding: 12px 20px; /* Adjusted padding */
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #dee2e6;
+    position: sticky;
+    top: 0;
+    z-index: 1061;
+    flex-shrink: 0; /* Prevent header from shrinking */
+}
+
+.resume-format-switcher {
+    display: flex;
+    gap: 8px; /* Tighter gap */
+    background-color: #e9ecef;
+    padding: 4px; /* Tighter padding */
+    border-radius: 8px;
+}
+
+.format-btn {
+    padding: 6px 14px; /* Adjusted padding */
+    border: 1px solid transparent; /* Prepare for active border */
+    background-color: transparent;
+    color: #495057;
+    font-size: 13px; /* Slightly smaller font */
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: all 0.2s ease; /* Animate all properties */
+}
+
+.format-btn:hover {
+    background-color: #dee2e6;
+    color: #212529;
+}
+
+.format-btn.active {
+    background-color: #fff;
+    color: #0056b3; /* A deeper blue for active state */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-color: #cdd4da;
+}
+
+.resume-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.resume-actions .btn-primary {
+    font-size: 13px;
+    padding: 6px 14px;
+}
+
+.resume-modal-close {
+    background: transparent;
+    border: none;
+    font-size: 24px;
+    color: #6c757d;
+    cursor: pointer;
+    padding: 0 5px;
+    line-height: 1;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.resume-modal-close:hover {
+    color: #343a40;
+    transform: rotate(90deg);
+}
+
+.resume-modal-body {
+    overflow-y: auto; /* Enable scrolling for the body */
+    padding: 0; /* Remove padding from the body itself */
+}
+
+.resume-modal-body .loading-placeholder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 300px;
+    font-size: 1.2rem;
+    color: #888;
+}
+
+.resume-modal-body .loading-placeholder i {
+    margin-right: 10px;
+    animation: spin 1.5s linear infinite;
+}
+
+/* Custom Scrollbar for Webkit browsers (Chrome, Safari) */
+.resume-modal-body::-webkit-scrollbar {
+    width: 8px;
+}
+
+.resume-modal-body::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.resume-modal-body::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 10px;
+}
+
+.resume-modal-body::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
+
+/* Print-specific styles */
+@media print {
+    body > *:not(.resume-modal-body) {
+        display: none;
+    }
+    .resume-modal-body {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: auto;
+        padding: 0;
+        margin: 0;
+        box-shadow: none;
+        border: none;
+    }
+    .resume-modal-header, .resume-modal-footer, #downloadResumeBtn, #closeResumeModal {
+        display: none !important;
+    }
+    .resume-document {
+        box-shadow: none !important;
+        border-radius: 0 !important;
+        border: none !important;
+    }
+}
+
+/* Resume Document Styling */
+.resume-document {
+    background-color: #fff;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Base styles for resume content */
+.resume-view {
+    font-family: 'Open Sans', sans-serif;
+    color: #333;
+    line-height: 1.6;
+}
+
+.resume-view h2,
+.resume-view h3,
+.resume-view h4,
+.resume-view h5 {
+    font-family: 'Montserrat', sans-serif;
+    color: #1a2533;
+    margin-top: 0;
+}
+
+.resume-section {
+    margin-bottom: 24px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid #e0e0e0;
+    text-align: center; /* Center section titles */
+}
+
+.resume-section:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+.resume-section-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #34495e;
+    margin-bottom: 25px;
+    padding-bottom: 10px;
+    display: inline-block;
+    position: relative;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.resume-section-title::after {
+    content: none !important;
+}
+
+
+/* Header */
+.resume-header {
+    text-align: center;
+    margin-bottom: 24px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.resume-header .name {
+    font-size: 2.8rem;
+    font-weight: 700;
+    margin: 0;
+    color: #1a2533;
+}
+
+.resume-header .title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #555;
+    margin: 4px 0 12px;
+}
+
+.resume-header .contact-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px 24px;
+    font-size: 0.95rem;
+}
+
+.resume-header .contact-info a {
+    color: #0056b3;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.resume-header .contact-info a:hover {
+    color: #003d82;
+    text-decoration: underline;
+}
+
+.resume-header .contact-info i {
+    margin-right: 6px;
+}
+
+/* Summary / Profile Section */
+.resume-summary p,
+.resume-profile p {
+    font-size: 1rem;
+    text-align: justify;
+}
+
+/* --- Reverse-Chronological Layout --- */
+
+/* Experience & Education Item */
+.chrono-item {
+    margin-bottom: 20px;
+    text-align: left; /* Reset alignment for content */
+}
+.chrono-item:last-child {
+    margin-bottom: 0;
+}
+
+.chrono-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+}
+
+.chrono-item-header .item-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.chrono-item-header .item-dates {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #555;
+    white-space: nowrap;
+    padding-left: 16px;
+}
+
+.chrono-item .item-subtitle {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #444;
+    margin: 0 0 10px 0;
+}
+
+.chrono-item .item-details {
+    list-style-type: disc;
+    padding-left: 20px;
+    margin: 0;
+}
+
+.chrono-item .item-details li {
+    margin-bottom: 6px;
+}
+
+/* Skills Section (Chronological) */
+.skills-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 0;
+    margin: 0;
+    justify-content: center; /* Center the skill tags */
+    list-style: none;
+}
+
+.skills-list li {
+    background-color: #e9f2fa;
+    color: #0056b3;
+    padding: 6px 12px;
+    border-radius: 16px;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+/* Universal Certifications/Projects/Awards (shared styles) */
+.extra-item {
+    margin-bottom: 16px;
+    text-align: left; /* Reset alignment for content */
+}
+.extra-item:last-child {
+    margin-bottom: 0;
+}
+
+.extra-item-header {
+    font-weight: 700;
+    font-size: 1.05rem;
+    margin: 0 0 4px 0;
+}
+
+.extra-item .item-subtitle {
+    font-size: 0.95rem;
+    color: #555;
+    margin: 0 0 8px 0;
+    font-style: italic;
+}
+
+.extra-item .item-details {
+    font-size: 0.95rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .resume-header .name {
+        font-size: 2.2rem;
+    }
+    .resume-header .title {
+        font-size: 1.1rem;
+    }
+    .resume-header .contact-info {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .chrono-item-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .chrono-item-header .item-dates {
+        padding-left: 0;
+        margin-top: 4px;
+    }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .resume-modal-body {
+        padding: 1.5rem;
+    }
+    .resume-header h1 {
+        font-size: 2rem;
+    }
+    .experience-header, .education-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.25rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .resume-modal-content {
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
+    }
+     .resume-modal-body {
+        padding: 1.5rem;
+    }
+    .resume-header h1 {
+        font-size: 1.8rem;
+    }
+    .resume-contact-info {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+    }
+} 
+
+#resumeContainer {
+    padding: 25px 40px; /* Apply padding here */
+    font-family: 'Open Sans', sans-serif; /* Use consistent site font */
+    color: #333;
+    background-color: #fdfdff;
+    line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+    #resumeContainer {
+        padding: 20px 25px;
+    }
+}
+
+.resume-header .name {
+    margin: 0;
+    padding: 0;
+    font-size: 2.2em; /* Slightly adjusted */
+    font-weight: 700;
+    color: #2c3e50;
+    letter-spacing: 0.5px;
+}
+
+.resume-header .contact-info {
+    margin: 5px 0 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    font-size: 1em;
+    color: #555;
+}
+
+.resume-section h2 {
+    font-size: 1.4em;
+    font-weight: 700;
+    color: #34495e;
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.resume-experience-item, .resume-education-item, .resume-project-item, .resume-certification-item {
+    margin-bottom: 20px;
+}
+
+.resume-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 5px;
+}
+
+.resume-item-header h3 {
+    font-size: 1.2em;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.resume-item-header .date {
+    font-style: italic;
+    color: #7f8c8d;
+    font-size: 0.9em;
+}
+
+.resume-item-subheader {
+    font-style: italic;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.resume-item-subheader .company, .resume-item-subheader .institution {
+    font-weight: 600;
+}
+
+.resume-item-list {
+    list-style-type: disc;
+    margin-left: 20px;
+    padding-left: 5px;
+}
+
+.resume-item-list li {
+    margin-bottom: 8px;
+}
+
+.resume-skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.resume-skill-category h3 {
+    font-size: 1.1em;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+.resume-skill-list {
+    list-style: none;
+    padding: 0;
+}
+
+.resume-skill-list li {
+    background-color: #f2f2f2;
+    padding: 5px 10px;
+    border-radius: 4px;
+    margin-bottom: 5px;
+    display: inline-block;
+    margin-right: 5px;
+    font-size: 0.95em;
+}
+
+.skill-accomplishments-list {
+    list-style-type: disc;
+    margin-left: 20px;
+    padding-left: 5px;
+    margin-top: 10px;
+}
+
+.skill-accomplishments-list li {
+    margin-bottom: 8px;
+}
+
+.skill-accomplishments-list .company-tag {
+    font-size: 0.8em;
+    font-weight: bold;
+    color: #7f8c8d;
+    margin-left: 8px;
+    background-color: #e9ecef;
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+.functional-resume .resume-experience-item-simple {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.functional-resume .resume-experience-item-simple:last-child {
+    border-bottom: none;
+}
+
+.functional-resume .job-title {
+    font-weight: bold;
+}
+
+.functional-resume .job-company {
+    font-style: italic;
+    color: #555;
+} 
