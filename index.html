@@ -24,6 +24,8 @@
     <link rel="stylesheet" href="css/animations.css">
     <link rel="stylesheet" href="css/responsive-overrides.css">
     <link rel="stylesheet" href="css/contact-modern.css">
+    <link rel="stylesheet" href="css/content-protection.css">
+    <link rel="stylesheet" href="css/dev-toggle.css">
     <!-- 
         Google Fonts: Applying SRI to Google Fonts is complex due to their dynamic CSS delivery.
         For maximum security, consider downloading and self-hosting these fonts.
@@ -1437,7 +1439,13 @@
                 <button id="closeModalBtn" class="modal-close-btn">&times;</button>
                 <h3>Send me a message</h3>
                 <p>Your message will be sent directly to my inbox securely.</p>
-                <form id="contactForm" name="contact-form" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+                <form id="contactForm" name="contact-form" method="POST" data-netlify="true" netlify-honeypot="bot-field" data-netlify-recaptcha="true">
+                    <!-- 
+                        Note for developer: To activate reCAPTCHA, add the following environment variables 
+                        to your Netlify site configuration:
+                        SITE_RECAPTCHA_KEY: Your Google reCAPTCHA site key.
+                        SITE_RECAPTCHA_SECRET: Your Google reCAPTCHA secret key.
+                    -->
                     <input type="hidden" name="form-name" value="contact-form">
                     <div class="form-group">
                         <label for="name">Your Name</label>
@@ -1451,6 +1459,7 @@
                         <label for="message">Message</label>
                         <textarea id="message" name="message" rows="5" required></textarea>
                     </div>
+                    <div data-netlify-recaptcha="true"></div>
                     <div class="form-group" style="display:none;">
                       <label>Don't fill this out if you're human: <input name="bot-field"></label>
                     </div>
@@ -1497,6 +1506,9 @@
             
         </div>
     </footer>
+
+    <!-- Dev Toggle Button -->
+    <button id="securityToggleBtn" title="Toggle security features for development">Security ON</button>
 
     <!-- Scroll to Top Button -->
     <button id="scrollToTopBtn" title="Go to top" aria-label="Scroll to top of the page"><i class="fas fa-arrow-up"></i></button>

@@ -996,7 +996,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 sanitizedSrc = item.src.replace(/"/g, '&quot;');
                             }
                         }
-                        htmlContentBody += `<img src="${sanitizedSrc}" alt="${escapeHTML(item.alt || '')}" class="${item.isInline ? 'full-blog-image-inline' : 'full-blog-image'}">`;
+                        htmlContentBody += `<div class="protected-image-container"><img src="${sanitizedSrc}" alt="${escapeHTML(item.alt || '')}" class="${item.isInline ? 'full-blog-image-inline' : 'full-blog-image'}"></div>`;
                         break;
                     case 'code':
                         const lang = item.language ? escapeHTML(item.language) : 'plaintext';
@@ -1321,6 +1321,30 @@ document.addEventListener('DOMContentLoaded', () => {
     const contactForm = document.getElementById('contactForm');
     const formSuccessMessage = document.getElementById('formSuccessMessage');
 
+    // Add silent bot protection: disable submit button until user interaction
+    if (contactForm) {
+        const submitButton = contactForm.querySelector('button[type="submit"]');
+        if (submitButton) {
+            submitButton.setAttribute('disabled', 'true');
+            submitButton.style.cursor = 'not-allowed';
+            submitButton.style.opacity = '0.7';
+        }
+
+        const enableSubmit = () => {
+            if (submitButton && submitButton.hasAttribute('disabled')) {
+                submitButton.removeAttribute('disabled');
+                submitButton.style.cursor = 'pointer';
+                submitButton.style.opacity = '1';
+                contactForm.removeEventListener('mousemove', enableSubmit);
+                contactForm.removeEventListener('keydown', enableSubmit);
+            }
+        };
+
+        contactForm.addEventListener('mousemove', enableSubmit, { once: true });
+        contactForm.addEventListener('keydown', enableSubmit, { once: true });
+    }
+
+
     const openModal = () => {
         if (emailModal) emailModal.classList.add('active');
     };
@@ -1361,6 +1385,42 @@ document.addEventListener('DOMContentLoaded', () => {
                 formSuccessMessage.style.display = 'block';
             })
             .catch((error) => alert(error));
+        });
+    }
+
+    // --- Global Content Protection ---
+    // Disable right-click context menu
+    document.addEventListener('contextmenu', event => {
+        if (!document.body.classList.contains('security-features-disabled')) {
+            event.preventDefault();
+        }
+    });
+
+    // Disable common copy/view-source keyboard shortcuts
+    document.addEventListener('keydown', e => {
+        if (document.body.classList.contains('security-features-disabled')) {
+            return; // Do nothing if security is disabled
+        }
+        // Disable F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+C, Ctrl+S, Ctrl+U
+        if (
+            e.key === 'F12' ||
+            (e.ctrlKey && e.shiftKey && ['I', 'J'].includes(e.key.toUpperCase())) ||
+            (e.ctrlKey && ['C', 'S', 'U'].includes(e.key.toUpperCase()))
+        ) {
+            e.preventDefault();
+        }
+    });
+
+    // --- Dev Security Toggle ---
+    const securityToggleButton = document.getElementById('securityToggleBtn');
+    if (securityToggleButton) {
+        securityToggleButton.addEventListener('click', () => {
+            document.body.classList.toggle('security-features-disabled');
+            
+            // Update button text and class
+            const isSecurityDisabled = document.body.classList.contains('security-features-disabled');
+            securityToggleButton.textContent = isSecurityDisabled ? 'Security OFF' : 'Security ON';
+            securityToggleButton.classList.toggle('disabled', isSecurityDisabled);
         });
     }
 }); 

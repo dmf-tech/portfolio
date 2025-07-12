@@ -1238,6 +1238,151 @@
     letter-spacing: 0.5px;
 }
 
+/* Improved Horizontal Flow Pipeline */
+.flow-pipeline {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.flow-step {
+    flex: 1;
+    text-align: center;
+    position: relative;
+    padding: 0 1rem;
+}
+
+.flow-step:not(:last-child)::after {
+    content: '→';
+    position: absolute;
+    right: -1rem;
+    top: 30px;
+    transform: translateY(-50%);
+    font-size: 1.5rem;
+    color: #dee2e6;
+    font-weight: bold;
+}
+
+.flow-icon {
+    width: 60px;
+    height: 60px;
+    background-color: #e7f5ff;
+    border-radius: 50%;
+    margin: 0 auto 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    font-size: 1.5rem;
+}
+
+.flow-step h6 {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: #343a40;
+    margin-bottom: 0.5rem;
+}
+
+.flow-step p {
+    font-size: 0.85rem;
+    color: #6c757d;
+    line-height: 1.4;
+}
+
+/* API Showcase Design */
+.api-showcase {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.api-card {
+    background: #f8f9fa;
+    border-radius: 8px;
+    border: 1px solid #e9ecef;
+    overflow: hidden;
+}
+
+.api-request {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    background: #e9ecef;
+}
+
+.api-response {
+    padding: 1rem;
+}
+
+.api-response pre {
+    background-color: #2b303b;
+    color: #c0c5ce;
+    padding: 1rem;
+    border-radius: 6px;
+    margin: 0;
+    font-size: 0.85rem;
+    white-space: pre-wrap;
+}
+
+/* ERD Diagram Design */
+.erd-diagram {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.erd-entity {
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    padding: 1rem;
+    flex-basis: 200px;
+    flex-grow: 1;
+}
+
+.entity-header {
+    font-weight: 600;
+    text-align: center;
+    padding-bottom: 0.75rem;
+    margin-bottom: 0.75rem;
+    border-bottom: 2px solid var(--primary-color);
+}
+
+.entity-columns span {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.entity-columns span i {
+    margin-right: 8px;
+    color: #adb5bd;
+}
+
+.erd-relationship {
+    flex-basis: 100px;
+    text-align: center;
+}
+
+.relationship-line {
+    width: 100%;
+    height: 2px;
+    background: #adb5bd;
+    position: relative;
+}
+
+.relationship-text {
+    font-size: 0.8rem;
+    color: #6c757d;
+    margin-top: 0.5rem;
+}
+
 /* Deployment Layer Specific */
 .deployment-pipeline {
     display: flex;
@@ -1326,8 +1471,8 @@
 @media (max-width: 1024px) {
     .system-header {
         flex-direction: column;
-        gap: 1.5rem;
-        text-align: center;
+        align-items: flex-start;
+        gap: 1rem;
     }
     
     .system-stats {
@@ -1341,6 +1486,24 @@
     
     .pipeline-arrow {
         transform: rotate(90deg);
+    }
+    .flow-pipeline {
+        flex-direction: column;
+        gap: 2rem;
+        align-items: center;
+    }
+    .flow-step {
+        max-width: 400px;
+        text-align: center;
+    }
+    .flow-step:not(:last-child)::after {
+        content: '↓';
+        top: 100%;
+        left: 50%;
+        transform: translate(-50%, 10px);
+    }
+    .api-showcase {
+        grid-template-columns: 1fr;
     }
 }
 
