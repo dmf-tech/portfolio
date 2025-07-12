@@ -4,29 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daniel Florencio</title>
-    <!-- 
-        Consider adding more meta tags for SEO:
-        <meta name="description" content="Portfolio of Your Name, a passionate software developer specializing in...">
-        <meta name="keywords" content="software developer, web developer, portfolio, Your Name, projects, skills">
-        <meta name="author" content="Your Name">
-    -->
+    <meta name="description" content="Portfolio of Daniel Florencio, a passionate Full-Stack Developer & AI Enthusiast.">
+    <meta name="keywords" content="software developer, web developer, portfolio, Daniel Florencio, projects, skills, AI, Full-Stack">
+    <meta name="author" content="Daniel Florencio">
     <!-- Consider adding a favicon: -->
     <!-- <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon"> -->
 
-    <!-- Content Security Policy -->
-    <meta http-equiv="Content-Security-Policy" 
-          content="default-src 'self'; 
-                   img-src 'self' https://via.placeholder.com data:; 
-                   style-src 'self' https://fonts.googleapis.com https://cdnjs.cloudflare.com; 
-                   font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; 
-                   script-src 'self'; 
-                   connect-src 'self';
-                   object-src 'none';
-                   base-uri 'self';
-                   form-action 'self';
-                   frame-ancestors 'none';
-                   upgrade-insecure-requests;
-                   block-all-mixed-content;">
+    <!-- CSP is now handled via netlify.toml headers -->
 
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/experience-override.css">
@@ -37,6 +21,9 @@
     <link rel="stylesheet" href="css/skills-section.css">
     <link rel="stylesheet" href="css/data-science-dashboard.css">
     <link rel="stylesheet" href="css/ai-ml-intelligence.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive-overrides.css">
+    <link rel="stylesheet" href="css/contact-modern.css">
     <!-- 
         Google Fonts: Applying SRI to Google Fonts is complex due to their dynamic CSS delivery.
         For maximum security, consider downloading and self-hosting these fonts.
@@ -53,7 +40,7 @@
     <!-- Header / Navigation -->
     <header id="header">
         <nav class="container">
-            <a href="#hero" class="logo">Your Name</a>
+            <a href="#hero" class="logo">Daniel Florencio</a>
             <ul class="nav-menu">
                 <li><a href="#about">About</a></li>
                 <li><a href="#experience">Experience</a></li>
@@ -117,17 +104,17 @@
                             <span class="name-highlight">Daniel Florencio</span>
                             <span class="title-decoration"></span>
                         </h1>
-                        <p class="hero-subtitle animate-on-scroll fade-up" style="transition-delay: 0.1s;">
+                        <p class="hero-subtitle animate-on-scroll fade-up delay-0-1s">
                             <span class="subtitle-icon">🚀</span>
                             Full-Stack Developer & AI Enthusiast
                         </p>
-                        <p class="hero-description animate-on-scroll fade-up" style="transition-delay: 0.2s;">
+                        <p class="hero-description animate-on-scroll fade-up delay-0-2s">
                             I craft innovative digital solutions that bridge the gap between complex problems and elegant user experiences. From full-stack development to AI integration, I bring ideas to life with clean code and creative thinking.
                         </p>
                         
                        
                         
-                <div class="hero-buttons animate-on-scroll fade-up" style="transition-delay: 0.3s;">
+                <div class="hero-buttons animate-on-scroll fade-up delay-0-3s">
                             <a href="#projects" class="btn btn-primary hero-btn-primary">
                                 <span class="btn-text">View My Work</span>
                                 <span class="btn-icon">→</span>
@@ -144,7 +131,7 @@
                     </div>
                     
                     <!-- Interactive Visual Element -->
-                    <div class="hero-visual-element animate-on-scroll fade-up" style="transition-delay: 0.4s;">
+                    <div class="hero-visual-element animate-on-scroll fade-up delay-0-4s">
                         <div class="code-window">
                             <div class="window-header">
                                 <div class="window-controls">
@@ -195,7 +182,7 @@
                 </div>
                 
                 <!-- Scroll Indicator -->
-                <div class="scroll-indicator animate-on-scroll fade-up" style="transition-delay: 0.5s;">
+                <div class="scroll-indicator animate-on-scroll fade-up delay-0-5s">
                     <div class="scroll-text">Discover my journey</div>
                     <div class="scroll-arrow">
                         <div class="arrow-line"></div>
@@ -223,7 +210,7 @@
             <div class="container">
                 <div class="section-header">
                     <h2 class="section-title animate-on-scroll fade-up">About Me</h2>
-                    <p class="section-subtitle animate-on-scroll fade-up" style="transition-delay: 0.1s;">
+                    <p class="section-subtitle animate-on-scroll fade-up delay-0-1s">
                         Get to know the person behind the code
                     </p>
                 </div>
@@ -243,23 +230,23 @@
                         </div>
                         
                         <!-- Quick Stats Card -->
-                        <div class="quick-stats-card animate-on-scroll fade-up" style="transition-delay: 0.2s;">
+                        <div class="quick-stats-card animate-on-scroll fade-up delay-0-2s">
                             <div class="stat-row">
-                                <div class="stat-icon">📍</div>
+                                <div class="stat-icon"><i class="fas fa-map-marker-alt"></i></div>
                                 <div class="stat-info">
                                     <span class="stat-label">Location</span>
                                     <span class="stat-value">Philippines</span>
                                 </div>
                             </div>
                             <div class="stat-row">
-                                <div class="stat-icon">🎓</div>
+                                <div class="stat-icon"><i class="fas fa-user-graduate"></i></div>
                                 <div class="stat-info">
                                     <span class="stat-label">Education</span>
                                     <span class="stat-value">CS Graduate</span>
                                 </div>
                             </div>
                             <div class="stat-row">
-                                <div class="stat-icon">💼</div>
+                                <div class="stat-icon"><i class="fas fa-briefcase"></i></div>
                                 <div class="stat-info">
                                     <span class="stat-label">Experience</span>
                                     <span class="stat-value">3+ Years</span>
@@ -268,7 +255,7 @@
                         </div>
                     </div>
 
-                    <div class="about-details-column animate-on-scroll fade-up" style="transition-delay: 0.1s;">
+                    <div class="about-details-column animate-on-scroll fade-up delay-0-1s">
                         <div class="about-tabs-wrapper">
                         <div class="about-tabs-nav">
                             <button class="tab-link active" data-target="about-pane-description" aria-selected="true" role="tab">
@@ -299,13 +286,13 @@
                                     <div class="content-card">
                                         <div class="intro-text">
                                             <p class="highlight-text">
-                                                Hello! I'm Daniel, a software developer with a strong foundation in modern technologies and a passion for creating efficient, scalable, and user-friendly solutions.
-                                </p>
-                                <p>
-                                                My journey into software development started with curiosity about how digital experiences are crafted. Since then, I've been dedicated to honing my skills in full-stack development, AI integration, and creating meaningful digital solutions.
-                                </p>
-                                <p>
-                                                When I'm not coding, I enjoy exploring new technologies, contributing to open-source projects, and sharing knowledge with the developer community.
+                                                Hello! I'm Daniel, a Full-Stack Developer and AI Enthusiast dedicated to building intelligent applications that solve real-world problems. I thrive at the intersection of robust backend architecture and intuitive user experiences.
+                                            </p>
+                                            <p>
+                                                My journey into technology was driven by a fascination with turning complex challenges into elegant, automated solutions. This has led me to specialize in both full-stack development and artificial intelligence, allowing me to not only build feature-rich applications but also to embed them with intelligence. I am passionate about writing clean, scalable code and architecting systems that are both powerful and maintainable.
+                                            </p>
+                                            <p>
+                                                I believe in lifelong learning and am always exploring the frontiers of technology. Whether it's developing a new AI model, contributing to an open-source project, or diving into the latest development framework, I am driven by the desire to create and innovate. Let's connect and build something amazing together.
                                             </p>
                                         </div>
                                         
@@ -321,7 +308,7 @@
                                         </div>
                                         
                                         <div class="action-buttons">
-                                            <a href="path/to/your/resume.pdf" target="_blank" class="btn btn-primary" download>
+                                            <a href="#" class="btn btn-primary" download rel="noopener noreferrer">
                                                 <i class="fas fa-download"></i>
                                                 <span>Download Resume</span>
                                             </a>
@@ -358,32 +345,32 @@
                             </div>
 
                                             <div class="education-achievements">
-                                                <h5><i class="fas fa-trophy"></i> Key Achievements</h5>
+                                                <h5><i class="fas fa-trophy"></i> Key Achievements & Coursework</h5>
                                                 <ul>
                                                     <li>
                                                         <i class="fas fa-star"></i>
-                                                        Graduated <strong>Cum Laude</strong> with academic excellence
-                                    </li>
-                                    <li>
+                                                        <strong>Academic Excellence:</strong> Graduated with Cum Laude honors, consistently demonstrating a high level of academic performance and dedication.
+                                                    </li>
+                                                    <li>
                                                         <i class="fas fa-brain"></i>
-                                                        Completed thesis on Image Classification using CNNs, achieving <strong>95-98% accuracy</strong>
-                                    </li>
-                                    <li>
+                                                        <strong>Advanced Thesis Research:</strong> Designed and implemented a Convolutional Neural Network (CNN) for an image classification thesis, achieving a remarkable 95-98% accuracy rate and showcasing advanced skills in machine learning application.
+                                                    </li>
+                                                    <li>
                                                         <i class="fas fa-code"></i>
-                                                        Developed expertise in Python, Flutter, and machine learning technologies
-                                    </li>
-                                </ul>
-                                            </div>
-                                            
-                                            <div class="honors-highlight">
-                                                <div class="honor-badge">
-                                                    <i class="fas fa-award"></i>
-                                                    <div class="honor-text">
-                                                        <strong>Latin Honors - Cum Laude</strong>
-                                                        <span>Technological Institute of the Philippines • Sep 2024</span>
-                                                    </div>
+                                                        <strong>Technology Mastery:</strong> Developed deep expertise in core technologies including Python for data analysis, Flutter for cross-platform development, and various machine learning frameworks through hands-on project work.
+                                                    </li>
+                                                </ul>
+                                                <h6><i class="fas fa-book"></i> Relevant Coursework</h6>
+                                                <div class="coursework-tags">
+                                                    <span class="course-tag">Data Structures & Algorithms</span>
+                                                    <span class="course-tag">Machine Learning</span>
+                                                    <span class="course-tag">Artificial Intelligence</span>
+                                                    <span class="course-tag">Database Systems</span>
+                                                    <span class="course-tag">Software Engineering</span>
+                                                    <span class="course-tag">Network Security</span>
                                                 </div>
                                             </div>
+                                            
                                         </div>
                                     </div>
                                 </div>
@@ -405,37 +392,37 @@
                                                 </div>
                                                 <div class="interest-content">
                                                     <h5>Continuous Learning</h5>
-                                                    <p>Always curious about emerging technologies, particularly in AI and distributed systems. I explore new frameworks and contribute to the tech community.</p>
+                                                    <p>I am deeply passionate about staying at the forefront of technology. I dedicate time to exploring emerging trends, particularly in AI and distributed systems, and enjoy sharing my findings with the developer community.</p>
                                                 </div>
                                             </div>
                                             
                                             <div class="interest-card">
                                                 <div class="interest-icon">
-                                                    <i class="fas fa-camera"></i>
+                                                    <i class="fas fa-book"></i>
                                                 </div>
                                                 <div class="interest-content">
-                                                    <h5>Photography</h5>
-                                                    <p>Capturing moments and perspectives through a lens is a creative outlet that helps me see the world differently and appreciate the details.</p>
+                                                    <h5>Reading Self-Improvement Books</h5>
+                                                    <p>I am an avid reader of books on personal growth, mindset, and productivity. This habit helps me cultivate discipline, improve my focus, and apply new frameworks for success in both my personal and professional life.</p>
                                                 </div>
                                             </div>
                                             
                                             <div class="interest-card">
                                                 <div class="interest-icon">
-                                                    <i class="fas fa-mountain"></i>
+                                                    <i class="fas fa-podcast"></i>
                                                 </div>
                                                 <div class="interest-content">
-                                                    <h5>Outdoor Activities</h5>
-                                                    <p>Whether it's hiking trails or cycling, spending time in nature helps me recharge and gain fresh perspectives for creative problem-solving.</p>
+                                                    <h5>Listening to Podcasts</h5>
+                                                    <p>I regularly listen to podcasts from industry leaders in technology and business. This practice keeps me updated on the latest trends, exposes me to diverse perspectives, and inspires new ideas for creative problem-solving.</p>
                                                 </div>
                                             </div>
                                             
                                             <div class="interest-card">
                                                 <div class="interest-icon">
-                                                    <i class="fas fa-chess"></i>
+                                                    <i class="fas fa-plane"></i>
                                                 </div>
                                                 <div class="interest-content">
-                                                    <h5>Strategic Gaming</h5>
-                                                    <p>I enjoy strategy games and puzzles that challenge my problem-solving skills in different contexts, often inspiring new approaches to technical work.</p>
+                                                    <h5>Traveling with Friends</h5>
+                                                    <p>Exploring new places with friends is an experience I cherish. It enhances my skills in planning, adaptability, and teamwork, while discovering new cultures broadens my perspective and fuels my creativity.</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -468,10 +455,10 @@
             <div class="container">
                 <div class="section-header">
                     <h2 class="section-title animate-on-scroll fade-up">Professional Experience</h2>
-                    <p class="section-subtitle animate-on-scroll fade-up" style="transition-delay: 0.1s;">
+                    <p class="section-subtitle animate-on-scroll fade-up delay-0-1s">
                         A dynamic journey through diverse technology sectors, from telecommunications to AI innovation
                     </p>
-                    <div class="experience-stats animate-on-scroll fade-up" style="transition-delay: 0.2s;">
+                    <div class="experience-stats animate-on-scroll fade-up delay-0-2s">
                         <div class="exp-stat">
                             <span class="stat-number">3+</span>
                             <span class="stat-label">Years Experience</span>
@@ -884,10 +871,10 @@
             <div class="container">
                 <div class="section-header">
                     <h2 class="section-title animate-on-scroll fade-up">Skills & Expertise</h2>
-                    <p class="section-subtitle animate-on-scroll fade-up" style="transition-delay: 0.1s;">
+                    <p class="section-subtitle animate-on-scroll fade-up delay-0-1s">
                         A comprehensive overview of my technical skills and professional competencies
                     </p>
-                    <div class="skills-stats animate-on-scroll fade-up" style="transition-delay: 0.2s;">
+                    <div class="skills-stats animate-on-scroll fade-up delay-0-2s">
                         <div class="skill-stat">
                             <span class="stat-number">15+</span>
                             <span class="stat-label">Programming Languages</span>
@@ -907,7 +894,7 @@
                     </div>
                 </div>
                 
-                <div class="skills-tabs-wrapper animate-on-scroll fade-up" style="transition-delay: 0.3s;">
+                <div class="skills-tabs-wrapper animate-on-scroll fade-up delay-0-3s">
                     <div class="skills-tabs-nav">
                         <button class="tab-link active" data-target="skills-pane-frontend" aria-selected="true" role="tab">
                             <div class="tab-icon">
@@ -1019,15 +1006,15 @@
                 <!-- <p class="section-subtitle animate-on-scroll fade-up">Here's a selection of my recent work. Filter by category to see more.</p> -->
 
                 <!-- Featured Project -->
-                <div class="featured-project-wrapper animate-on-scroll fade-up">
+                <div class="featured-project-wrapper animate-on-scroll fade-up delay-0-4s">
                     <h3>Featured Project: <span class="highlight">Project Showcase X</span></h3>
                     <div class="featured-project-content">
                         <div class="featured-project-image-area">
                             <div class="image-carousel" data-project-carousel="featured">
                                 <div class="carousel-images">
-                                    <img src="https://via.placeholder.com/700x450/2c3e50/ffffff?text=Featured+Project+Image+1" alt="Featured Project X Screenshot 1" class="carousel-image active" loading="lazy">
-                                    <img src="https://via.placeholder.com/700x450/3498db/ffffff?text=Featured+Project+Image+2" alt="Featured Project X Screenshot 2" class="carousel-image" loading="lazy">
-                                    <img src="https://via.placeholder.com/700x450/e74c3c/ffffff?text=Featured+Project+Image+3" alt="Featured Project X Screenshot 3" class="carousel-image" loading="lazy">
+                                    <img src="data:image/svg+xml;charset=UTF-8,%3csvg width='700' height='450' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 700 450' preserveAspectRatio='none'%3e%3crect width='100%25' height='100%25' fill='%23e9ecef'%3e%3c/rect%3e%3c/svg%3e" alt="Featured Project X Screenshot 1" class="carousel-image active" loading="lazy">
+                                    <img src="data:image/svg+xml;charset=UTF-8,%3csvg width='700' height='450' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 700 450' preserveAspectRatio='none'%3e%3crect width='100%25' height='100%25' fill='%23e9ecef'%3e%3c/rect%3e%3c/svg%3e" alt="Featured Project X Screenshot 2" class="carousel-image" loading="lazy">
+                                    <img src="data:image/svg+xml;charset=UTF-8,%3csvg width='700' height='450' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 700 450' preserveAspectRatio='none'%3e%3crect width='100%25' height='100%25' fill='%23e9ecef'%3e%3c/rect%3e%3c/svg%3e" alt="Featured Project X Screenshot 3" class="carousel-image" loading="lazy">
                                 </div>
                                 <button class="carousel-nav prev" aria-label="Previous image"><i class="fas fa-chevron-left"></i></button>
                                 <button class="carousel-nav next" aria-label="Next image"><i class="fas fa-chevron-right"></i></button>
@@ -1053,7 +1040,7 @@
                 </div>
                 <!-- End Featured Project -->
 
-                <div class="project-filters animate-on-scroll fade-up">
+                <div class="project-filters animate-on-scroll fade-up delay-0-5s">
                     <button class="btn filter-btn active" data-filter="*">All Projects</button>
                     <button class="btn filter-btn" data-filter=".web-app">Web Apps</button>
                     <button class="btn filter-btn" data-filter=".mobile-app">Mobile Apps</button>
@@ -1069,9 +1056,9 @@
                         <div class="project-image-area">
                             <div class="image-carousel" data-project-carousel="card1">
                                 <div class="carousel-images">
-                                    <img src="https://via.placeholder.com/500x300/5DADE2/ffffff?text=Project+Alpha+Img+1" alt="Project Alpha Screenshot 1" class="carousel-image active" loading="lazy">
-                                    <img src="https://via.placeholder.com/500x300/A569BD/ffffff?text=Project+Alpha+Img+2" alt="Project Alpha Screenshot 2" class="carousel-image" loading="lazy">
-                                    <img src="https://via.placeholder.com/500x300/F5B041/ffffff?text=Project+Alpha+Img+3" alt="Project Alpha Screenshot 3" class="carousel-image" loading="lazy">
+                                    <img src="data:image/svg+xml;charset=UTF-8,%3csvg width='500' height='300' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 300' preserveAspectRatio='none'%3e%3crect width='100%25' height='100%25' fill='%23e9ecef'%3e%3c/rect%3e%3c/svg%3e" alt="Project Alpha Screenshot 1" class="carousel-image active" loading="lazy">
+                                    <img src="data:image/svg+xml;charset=UTF-8,%3csvg width='500' height='300' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 300' preserveAspectRatio='none'%3e%3crect width='100%25' height='100%25' fill='%23e9ecef'%3e%3c/rect%3e%3c/svg%3e" alt="Project Alpha Screenshot 2" class="carousel-image" loading="lazy">
+                                    <img src="data:image/svg+xml;charset=UTF-8,%3csvg width='500' height='300' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 300' preserveAspectRatio='none'%3e%3crect width='100%25' height='100%25' fill='%23e9ecef'%3e%3c/rect%3e%3c/svg%3e" alt="Project Alpha Screenshot 3" class="carousel-image" loading="lazy">
                                 </div>
                                 <button class="carousel-nav prev" aria-label="Previous image"><i class="fas fa-chevron-left"></i></button>
                                 <button class="carousel-nav next" aria-label="Next image"><i class="fas fa-chevron-right"></i></button>
@@ -1099,9 +1086,9 @@
                         <div class="project-image-area">
                              <div class="image-carousel" data-project-carousel="card2">
                                 <div class="carousel-images">
-                                    <img src="https://via.placeholder.com/500x300/48C9B0/ffffff?text=Project+Beta+Img+1" alt="Project Beta Screenshot 1" class="carousel-image active" loading="lazy">
-                                    <img src="https://via.placeholder.com/500x300/EC7063/ffffff?text=Project+Beta+Img+2" alt="Project Beta Screenshot 2" class="carousel-image" loading="lazy">
-                                    <img src="https://via.placeholder.com/500x300/AF7AC5/ffffff?text=Project+Beta+Img+3" alt="Project Beta Screenshot 3" class="carousel-image" loading="lazy">
+                                    <img src="data:image/svg+xml;charset=UTF-8,%3csvg width='500' height='300' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 300' preserveAspectRatio='none'%3e%3crect width='100%25' height='100%25' fill='%23e9ecef'%3e%3c/rect%3e%3c/svg%3e" alt="Project Beta Screenshot 1" class="carousel-image active" loading="lazy">
+                                    <img src="data:image/svg+xml;charset=UTF-8,%3csvg width='500' height='300' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 300' preserveAspectRatio='none'%3e%3crect width='100%25' height='100%25' fill='%23e9ecef'%3e%3c/rect%3e%3c/svg%3e" alt="Project Beta Screenshot 2" class="carousel-image" loading="lazy">
+                                    <img src="data:image/svg+xml;charset=UTF-8,%3csvg width='500' height='300' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 300' preserveAspectRatio='none'%3e%3crect width='100%25' height='100%25' fill='%23e9ecef'%3e%3c/rect%3e%3c/svg%3e" alt="Project Beta Screenshot 3" class="carousel-image" loading="lazy">
                                 </div>
                                 <button class="carousel-nav prev" aria-label="Previous image"><i class="fas fa-chevron-left"></i></button>
                                 <button class="carousel-nav next" aria-label="Next image"><i class="fas fa-chevron-right"></i></button>
@@ -1126,9 +1113,9 @@
                         <div class="project-image-area">
                             <div class="image-carousel" data-project-carousel="card3">
                                 <div class="carousel-images">
-                                    <img src="https://via.placeholder.com/500x300/5499C7/ffffff?text=Project+Gamma+1" alt="Project Gamma Screenshot 1" class="carousel-image active" loading="lazy">
-                                    <img src="https://via.placeholder.com/500x300/7D3C98/ffffff?text=Project+Gamma+2" alt="Project Gamma Screenshot 2" class="carousel-image" loading="lazy">
-                                    <img src="https://via.placeholder.com/500x300/1E8449/ffffff?text=Project+Gamma+3" alt="Project Gamma Screenshot 3" class="carousel-image" loading="lazy">
+                                    <img src="data:image/svg+xml;charset=UTF-8,%3csvg width='500' height='300' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 300' preserveAspectRatio='none'%3e%3crect width='100%25' height='100%25' fill='%23e9ecef'%3e%3c/rect%3e%3c/svg%3e" alt="Project Gamma Screenshot 1" class="carousel-image active" loading="lazy">
+                                    <img src="data:image/svg+xml;charset=UTF-8,%3csvg width='500' height='300' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 300' preserveAspectRatio='none'%3e%3crect width='100%25' height='100%25' fill='%23e9ecef'%3e%3c/rect%3e%3c/svg%3e" alt="Project Gamma Screenshot 2" class="carousel-image" loading="lazy">
+                                    <img src="data:image/svg+xml;charset=UTF-8,%3csvg width='500' height='300' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 300' preserveAspectRatio='none'%3e%3crect width='100%25' height='100%25' fill='%23e9ecef'%3e%3c/rect%3e%3c/svg%3e" alt="Project Gamma Screenshot 3" class="carousel-image" loading="lazy">
                                 </div>
                                 <button class="carousel-nav prev" aria-label="Previous image"><i class="fas fa-chevron-left"></i></button>
                                 <button class="carousel-nav next" aria-label="Next image"><i class="fas fa-chevron-right"></i></button>
@@ -1152,9 +1139,9 @@
                          <div class="project-image-area">
                             <div class="image-carousel" data-project-carousel="card4">
                                 <div class="carousel-images">
-                                    <img src="https://via.placeholder.com/500x300/D35400/ffffff?text=Project+Delta+1" alt="Project Delta Screenshot 1" class="carousel-image active" loading="lazy">
-                                    <img src="https://via.placeholder.com/500x300/7F8C8D/ffffff?text=Project+Delta+2" alt="Project Delta Screenshot 2" class="carousel-image" loading="lazy">
-                                    <img src="https://via.placeholder.com/500x300/8E44AD/ffffff?text=Project+Delta+3" alt="Project Delta Screenshot 3" class="carousel-image" loading="lazy">
+                                    <img src="data:image/svg+xml;charset=UTF-8,%3csvg width='500' height='300' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 300' preserveAspectRatio='none'%3e%3crect width='100%25' height='100%25' fill='%23e9ecef'%3e%3c/rect%3e%3c/svg%3e" alt="Project Delta Screenshot 1" class="carousel-image active" loading="lazy">
+                                    <img src="data:image/svg+xml;charset=UTF-8,%3csvg width='500' height='300' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 300' preserveAspectRatio='none'%3e%3crect width='100%25' height='100%25' fill='%23e9ecef'%3e%3c/rect%3e%3c/svg%3e" alt="Project Delta Screenshot 2" class="carousel-image" loading="lazy">
+                                    <img src="data:image/svg+xml;charset=UTF-8,%3csvg width='500' height='300' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 300' preserveAspectRatio='none'%3e%3crect width='100%25' height='100%25' fill='%23e9ecef'%3e%3c/rect%3e%3c/svg%3e" alt="Project Delta Screenshot 3" class="carousel-image" loading="lazy">
                                 </div>
                                 <button class="carousel-nav prev" aria-label="Previous image"><i class="fas fa-chevron-left"></i></button>
                                 <button class="carousel-nav next" aria-label="Next image"><i class="fas fa-chevron-right"></i></button>
@@ -1210,7 +1197,7 @@
                                     <p class="date">Completed: April 30, 2025</p>
                                     <div class="certification-actions">
                                         <button class="btn btn-secondary btn-small view-cert-details">View Details</button>
-                                        <a href="#" target="_blank" class="btn btn-outline btn-small">View Credential</a>
+                                        <a href="#" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-small">View Credential</a>
                                     </div>
                                 </div>
                             </div>
@@ -1234,7 +1221,7 @@
                                     <p class="date">Completed: April 14, 2024</p>
                                     <div class="certification-actions">
                                         <button class="btn btn-secondary btn-small view-cert-details">View Details</button>
-                                        <a href="#" target="_blank" class="btn btn-outline btn-small">View Credential</a>
+                                        <a href="#" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-small">View Credential</a>
                                     </div>
                                 </div>
                             </div>
@@ -1258,7 +1245,7 @@
                                     <p class="date">Completed: April 1, 2024</p>
                                     <div class="certification-actions">
                                         <button class="btn btn-secondary btn-small view-cert-details">View Details</button>
-                                        <a href="#" target="_blank" class="btn btn-outline btn-small">View Credential</a>
+                                        <a href="#" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-small">View Credential</a>
                                     </div>
                                 </div>
                             </div>
@@ -1282,7 +1269,7 @@
                                     <p class="date">Completed: April 22, 2024</p>
                                     <div class="certification-actions">
                                         <button class="btn btn-secondary btn-small view-cert-details">View Details</button>
-                                        <a href="#" target="_blank" class="btn btn-outline btn-small">View Credential</a>
+                                        <a href="#" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-small">View Credential</a>
                                     </div>
                                 </div>
                             </div>
@@ -1306,7 +1293,7 @@
                                     <p class="date">Completed: [Your Date]</p>
                                     <div class="certification-actions">
                                         <button class="btn btn-secondary btn-small view-cert-details">View Details</button>
-                                        <a href="#" target="_blank" class="btn btn-outline btn-small">View Credential</a>
+                                        <a href="#" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-small">View Credential</a>
                                     </div>
                                 </div>
                             </div>
@@ -1330,7 +1317,7 @@
                                     <p class="date">Completed: [Your Date]</p>
                                     <div class="certification-actions">
                                         <button class="btn btn-secondary btn-small view-cert-details">View Details</button>
-                                        <a href="#" target="_blank" class="btn btn-outline btn-small">View Credential</a>
+                                        <a href="#" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-small">View Credential</a>
                                     </div>
                                 </div>
                             </div>
@@ -1354,7 +1341,7 @@
                                     <p class="date">Completed: [Your Date]</p>
                                     <div class="certification-actions">
                                         <button class="btn btn-secondary btn-small view-cert-details">View Details</button>
-                                        <a href="#" target="_blank" class="btn btn-outline btn-small">View Credential</a>
+                                        <a href="#" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-small">View Credential</a>
                                     </div>
                                 </div>
                             </div>
@@ -1365,7 +1352,7 @@
         </section>
 
         <!-- Certification Details Modal -->
-        <div id="certificationModal" class="cert-modal" style="display: none;">
+        <div id="certificationModal" class="cert-modal">
             <div class="cert-modal-content">
                 <div class="cert-modal-header">
                     <h2 id="certModalTitle">Certification Details</h2>
@@ -1412,54 +1399,68 @@
         <section id="contact" class="contact-section">
             <div class="container">
                 <h2 class="section-title animate-on-scroll fade-up">Get In Touch</h2>
-                <p class="contact-intro animate-on-scroll fade-up" style="transition-delay: 0.1s;">
+                <p class="contact-intro animate-on-scroll fade-up delay-0-1s">
                     I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.
                     Feel free to reach out to me!
                 </p>
                 <div class="contact-methods">
-                    <div class="contact-method animate-on-scroll fade-up" style="transition-delay: 0.2s;">
+                    <div class="contact-method animate-on-scroll fade-up delay-0-2s" id="emailContactMethod" style="cursor: pointer;">
                         <i class="fas fa-envelope"></i>
                         <h3>Email</h3>
-                        <p><a href="mailto:your.email@example.com" id="emailLink">your.email@example.com</a></p>
-                        <span class="copy-feedback" id="emailCopyFeedback">Copied!</span>
+                        <p class="contact-description">Click here to send me a message directly from this page.</p>
+                        <p class="contact-email-address">dmflorencio.main@gmail.com</p>
                     </div>
-                    <div class="contact-method animate-on-scroll fade-up" style="transition-delay: 0.3s;">
+                    <div class="contact-method animate-on-scroll fade-up delay-0-3s">
                         <i class="fab fa-linkedin"></i>
                         <h3>LinkedIn</h3>
-                        <p><a href="https://linkedin.com/in/yourprofile" target="_blank">linkedin.com/in/yourprofile</a></p>
+                        <p class="contact-description">Connect with me on my professional network to see my career journey and endorsements.</p>
+                        <p><a href="https://www.linkedin.com/in/daniel-mark-florencio/" target="_blank" rel="noopener noreferrer">linkedin.com/in/daniel-mark-florencio</a></p>
                     </div>
-                    <div class="contact-method animate-on-scroll fade-up" style="transition-delay: 0.4s;">
+                    <div class="contact-method animate-on-scroll fade-up delay-0-4s">
                         <i class="fab fa-github"></i>
                         <h3>GitHub</h3>
-                        <p><a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer">github.com/yourusername</a></p>
+                        <p class="contact-description">Explore my repositories, see my coding style, and check out my open-source contributions.</p>
+                        <p><a href="https://github.com/Daniel-Florencio" target="_blank" rel="noopener noreferrer">github.com/Daniel-Florencio</a></p>
                     </div>
-                    <div class="contact-method animate-on-scroll fade-up" style="transition-delay: 0.5s;">
+                    <div class="contact-method animate-on-scroll fade-up delay-0-5s">
                         <i class="fas fa-archive"></i>
                         <h3>Old Portfolio</h3>
-                        <p><a href="https://your-old-portfolio-url.com" target="_blank" rel="noopener noreferrer">View My Previous Work</a></p>
+                        <p class="contact-description">Take a look at my previous portfolio to see my growth and evolution as a developer.</p>
+                        <p><a href="https://daniel-florencio.github.io/Resume/" target="_blank" rel="noopener noreferrer">View My Previous Work</a></p>
                     </div>
                 </div>
-
-                <!-- Optional: Simple Contact Form (requires mailto or a backend service for GitHub Pages) -->
-                <!--
-                <form action="mailto:your.email@example.com" method="post" enctype="text/plain" class="contact-form">
-                    <div>
-                        <label for="name">Name:</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                    <div>
-                        <label for="email">Email:</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    <div>
-                        <label for="message">Message:</label>
-                        <textarea id="message" name="message" rows="5" required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Send Message</button>
-                </form>
-                -->
             </div>
         </section>
+
+        <div id="emailModal" class="modal-overlay">
+            <div class="modal-content">
+                <button id="closeModalBtn" class="modal-close-btn">&times;</button>
+                <h3>Send me a message</h3>
+                <p>Your message will be sent directly to my inbox securely.</p>
+                <form id="contactForm" name="contact-form" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+                    <input type="hidden" name="form-name" value="contact-form">
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Your Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    <div class="form-group" style="display:none;">
+                      <label>Don't fill this out if you're human: <input name="bot-field"></label>
+                    </div>
+                    <button type="submit" class="btn">Send Message</button>
+                </form>
+                <div id="formSuccessMessage" style="display:none;">
+                    <p>Thank you! Your message has been sent successfully.</p>
+                </div>
+            </div>
+        </div>
     </main>
 
     <!-- Blog Modal -->
@@ -1487,8 +1488,8 @@
             <div class="footer-content">
                 <p class="copyright">&copy; <span id="currentYear"></span> Daniel Mark Florencio. All rights reserved.</p>
                 <div class="social-links">
-                    <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile"><i class="fab fa-github"></i></a>
-                    <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/Daniel-Florencio" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile"><i class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/daniel-mark-florencio/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile"><i class="fab fa-linkedin"></i></a>
                     <!-- Add other social media links if you have them -->
                     <!-- <a href="https://twitter.com/yourusername" target="_blank" rel="noopener noreferrer" aria-label="Twitter Profile"><i class="fab fa-twitter"></i></a> -->
                 </div>

@@ -152,6 +152,28 @@ document.addEventListener('DOMContentLoaded', () => {
         animatedElements.forEach(el => observer.observe(el));
     }
 
+    // --- About Me Tabs ---
+    const aboutTabs = selectAll('.about-tabs-nav .tab-link');
+    const aboutPanes = selectAll('.about-tabs-content .tab-pane');
+
+    aboutTabs.forEach(tab => {
+        tab.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetId = tab.dataset.target;
+
+            aboutTabs.forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+
+            aboutPanes.forEach(pane => {
+                if (pane.id === targetId) {
+                    pane.classList.add('active');
+                } else {
+                    pane.classList.remove('active');
+                }
+            });
+        });
+    });
+
     // --- Enhanced Experience Section Accordion ---
     const experienceCards = selectAll('.experience-card');
     experienceCards.forEach(card => {
@@ -541,6 +563,61 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (response.ok) {
                     const content = await response.text();
                     contentContainer.innerHTML = content;
+
+                    // Apply dynamic styles for data science dashboard after content is loaded
+                    if (targetId === 'skills-pane-devops') { // data science dashboard
+                        const chartBars = contentContainer.querySelectorAll('.chart-bar');
+                        chartBars.forEach(bar => {
+                            const height = bar.dataset.chartHeight;
+                            if (height) {
+                                bar.style.setProperty('--dynamic-height', `${height}%`);
+                            }
+                        });
+
+                        const sparklineBars = contentContainer.querySelectorAll('.sparkline-bar');
+                        sparklineBars.forEach(bar => {
+                            const height = bar.dataset.sparklineHeight;
+                            if (height) {
+                                bar.style.setProperty('--dynamic-height', `${height}%`);
+                            }
+                        });
+
+                        const progressCircles = contentContainer.querySelectorAll('.progress-circle');
+                        progressCircles.forEach(circle => {
+                            const progress = circle.dataset.progressValue;
+                            if (progress) {
+                                circle.style.setProperty('--progress', `${progress}%`);
+                            }
+                        });
+
+                        const lineSegments = contentContainer.querySelectorAll('.line-segment');
+                        lineSegments.forEach(segment => {
+                            const height = segment.dataset.lineHeight;
+                            if (height) {
+                                segment.style.setProperty('--dynamic-height', `${height}%`);
+                            }
+                        });
+
+                        const qualityBars = contentContainer.querySelectorAll('.quality-bar');
+                        qualityBars.forEach(bar => {
+                            const width = bar.dataset.qualityWidth;
+                            if (width) {
+                                bar.style.setProperty('--dynamic-width', `${width}%`);
+                            }
+                        });
+                    }
+
+                    // Apply dynamic styles for AI/ML Intelligence Hub after content is loaded
+                    if (targetId === 'skills-pane-ai') {
+                        const proficiencyBars = contentContainer.querySelectorAll('.tech-proficiency');
+                        proficiencyBars.forEach(bar => {
+                            const level = bar.dataset.level;
+                            if (level) {
+                                bar.style.setProperty('--proficiency-level', `${level}%`);
+                            }
+                        });
+                    }
+
                 } else {
                     throw new Error(`Failed to load ${contentFile}`);
                 }
@@ -1103,7 +1180,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     const moveX = (mouseX - 0.5) * 50 * speed;
                     const moveY = (mouseY - 0.5) * 50 * speed;
                     
-                    element.style.transform = `translate(${moveX}px, ${moveY}px)`;
+                    // element.style.transform = `translate(${moveX}px, ${moveY}px)`;
+                    element.style.setProperty('--move-x', `${moveX}px`);
+                    element.style.setProperty('--move-y', `${moveY}px`);
                     requestAnimationFrame(updatePosition);
                 };
                 updatePosition();
@@ -1122,7 +1201,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     const moveX = (mouseX - 0.5) * 100 * speed;
                     const moveY = (mouseY - 0.5) * 100 * speed;
                     
-                    orb.style.transform = `translate(${moveX}px, ${moveY}px)`;
+                    // orb.style.transform = `translate(${moveX}px, ${moveY}px)`;
+                    orb.style.setProperty('--orb-move-x', `${moveX}px`);
+                    orb.style.setProperty('--orb-move-y', `${moveY}px`);
                 });
             });
         }
@@ -1130,23 +1211,14 @@ document.addEventListener('DOMContentLoaded', () => {
         // Enhanced Button Interactions
         const heroButtons = selectAll('.hero-section .btn');
         heroButtons.forEach(button => {
+            button.classList.add('btn-hover-transform');
             button.addEventListener('mouseenter', () => {
-                button.style.transform = 'translateY(-3px) scale(1.05)';
+                // button.style.transform = 'translateY(-3px) scale(1.05)';
+                button.classList.add('active');
                 
                 // Create ripple effect
                 const ripple = document.createElement('div');
-                ripple.style.cssText = `
-                    position: absolute;
-                    background: rgba(255, 255, 255, 0.6);
-                    border-radius: 50%;
-                    width: 100px;
-                    height: 100px;
-                    left: 50%;
-                    top: 50%;
-                    transform: translate(-50%, -50%) scale(0);
-                    animation: ripple 0.6s ease-out;
-                    pointer-events: none;
-                `;
+                ripple.classList.add('ripple-effect'); // Use the class
                 
                 button.style.position = 'relative';
                 button.style.overflow = 'hidden';
@@ -1160,7 +1232,8 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             button.addEventListener('mouseleave', () => {
-                button.style.transform = '';
+                // button.style.transform = '';
+                button.classList.remove('active');
             });
         });
 
@@ -1175,14 +1248,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Apply parallax effect to background elements
                 const bgElements = select('.hero-bg-elements');
                 if (bgElements) {
-                    bgElements.style.transform = `translateY(${scrolled * 0.5}px)`;
+                    bgElements.style.transform = `translateY(${scrolled * 0.5}px)`; // This is a direct transform, CSP should be ok with this.
                 }
                 
                 // Fade out hero content as user scrolls
                 const heroContent = select('.hero-content-wrapper');
                 if (heroContent) {
                     heroContent.style.opacity = 1 - progress;
-                    heroContent.style.transform = `translateY(${scrolled * 0.3}px)`;
+                    // heroContent.style.transform = `translateY(${scrolled * 0.3}px)`;
+                    heroContent.style.setProperty('--translate-y', `${scrolled * 0.3}px`);
                 }
             };
 
@@ -1221,17 +1295,17 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize hero enhancements
     initializeHeroEnhancements();
 
-    // Add ripple animation keyframes dynamically
-    const rippleStyle = document.createElement('style');
-    rippleStyle.textContent = `
-        @keyframes ripple {
-            to {
-                transform: translate(-50%, -50%) scale(4);
-                opacity: 0;
-            }
-        }
-    `;
-    document.head.appendChild(rippleStyle);
+    // Remove dynamic ripple animation keyframes as they are now in CSS
+    // const rippleStyle = document.createElement('style');
+    // rippleStyle.textContent = `
+    //     @keyframes ripple {
+    //         to {
+    //             transform: translate(-50%, -50%) scale(4);
+    //             opacity: 0;
+    //         }
+    //     }
+    // `;
+    // document.head.appendChild(rippleStyle);
 
     // Initialize skills tabs when DOM is loaded
     // Add a small delay to ensure all elements are properly rendered
@@ -1239,4 +1313,53 @@ document.addEventListener('DOMContentLoaded', () => {
         // Skills tabs removed - section no longer exists
     }, 200);
 
+    // Modal Logic
+    const emailContactMethod = document.getElementById('emailContactMethod');
+    const emailModal = document.getElementById('emailModal');
+    const closeModalBtn = document.getElementById('closeModalBtn');
+    const contactForm = document.getElementById('contactForm');
+    const formSuccessMessage = document.getElementById('formSuccessMessage');
+
+    const openModal = () => {
+        if (emailModal) emailModal.classList.add('active');
+    };
+
+    const closeModal = () => {
+        if (emailModal) emailModal.classList.remove('active');
+    };
+
+    if (emailContactMethod) {
+        emailContactMethod.addEventListener('click', openModal);
+    }
+
+    if (closeModalBtn) {
+        closeModalBtn.addEventListener('click', closeModal);
+    }
+
+    if (emailModal) {
+        emailModal.addEventListener('click', (e) => {
+            if (e.target === emailModal) {
+                closeModal();
+            }
+        });
+    }
+
+    // Netlify Form AJAX submission
+    if (contactForm) {
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const formData = new FormData(contactForm);
+            fetch('/', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: new URLSearchParams(formData).toString(),
+            })
+            .then(() => {
+                contactForm.style.display = 'none';
+                formSuccessMessage.style.display = 'block';
+            })
+            .catch((error) => alert(error));
+        });
+    }
 }); 

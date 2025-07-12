@@ -33,7 +33,7 @@
                     };
 
                     // Show modal immediately
-                    modal.style.display = 'flex';
+                    modal.style.display = 'flex'; // Re-adding for debugging
                     
                     // Small delay for smooth appearance
                     setTimeout(() => {
@@ -51,7 +51,7 @@
         function closeModal() {
             modal.classList.remove('active');
             setTimeout(() => {
-                modal.style.display = 'none';
+                modal.style.display = 'none'; // Re-adding for debugging
             }, 300);
         }
 
@@ -112,10 +112,10 @@
                 if (skillsArray.length > 0) {
                     skillsArray.forEach(skill => {
                         const skillTag = document.createElement('span');
-                        skillTag.className = 'skill-tag';
+                        skillTag.className = 'skill-tag'; // Apply the class
                         skillTag.textContent = skill;
-                        skillTag.style.display = 'inline-block'; // Force display
-                        skillTag.style.opacity = '1'; // Force visibility
+                        // skillTag.style.display = 'inline-block'; // Now in CSS
+                        // skillTag.style.opacity = '1'; // Now in CSS
                         skillsElement.appendChild(skillTag);
                     });
                 } else {
@@ -130,7 +130,7 @@
                 .replace(/\|/g, '<br>')
                 .replace(/COURSES:/g, '<br><br><strong>COURSES:</strong>')
                 .replace(/MODULES:/g, '<br><br><strong>MODULES:</strong>')
-                .replace(/•/g, '<span style="color: #2C3E50; font-weight: 600; margin-right: 0.5rem;">•</span>');
+                .replace(/•/g, '<span class="bullet-point-style">•</span>'); // Use the new class
         }
     }
 
@@ -141,20 +141,20 @@
         cards.forEach(card => {
             // Simple hover effects
             card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-6px)';
+                this.classList.add('certification-card-hover-effect');
             });
 
             card.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0)';
+                this.classList.remove('certification-card-hover-effect');
             });
 
-            // Ensure buttons are visible
-            const buttons = card.querySelectorAll('.certification-actions .btn');
-            buttons.forEach(btn => {
-                btn.style.opacity = '1';
-                btn.style.visibility = 'visible';
-                btn.style.display = 'inline-block';
-            });
+            // Ensure buttons are visible - now handled by CSS by default
+            // const buttons = card.querySelectorAll('.certification-actions .btn');
+            // buttons.forEach(btn => {
+            //     btn.style.opacity = '1';
+            //     btn.style.visibility = 'visible';
+            //     btn.style.display = 'inline-block';
+            // });
         });
     }
 
@@ -220,9 +220,10 @@
                 const cardWidth = getCardWidth();
                 const moveDistance = cardWidth * currentIndex;
                 
-                // Apply precise transition
-                grid.style.transition = 'transform 0.3s ease';
-                grid.style.transform = `translateX(-${moveDistance}px)`;
+                // Apply precise transition - now handled by CSS variable
+                // grid.style.transition = 'transform 0.3s ease';
+                // grid.style.transform = `translateX(-${moveDistance}px)`;
+                grid.style.setProperty('--carousel-translate-x', `-${moveDistance}px`);
                 
                 updateButtonStates();
                 
@@ -260,7 +261,7 @@
                 // Recalculate position with new card width
                 const cardWidth = getCardWidth();
                 const moveDistance = cardWidth * currentIndex;
-                grid.style.transform = `translateX(-${moveDistance}px)`;
+                grid.style.setProperty('--carousel-translate-x', `-${moveDistance}px`);
                 updateButtonStates();
             }
         });
@@ -268,12 +269,12 @@
         // Initialize with proper positioning
         function initialize() {
             // Ensure grid starts at position 0
-            grid.style.transform = 'translateX(0px)';
+            // grid.style.transform = 'translateX(0px)'; // Controlled by CSS variable
             currentIndex = 0;
             updateButtonStates();
             
             // Log for debugging
-            console.log(`Carousel initialized: ${cards.length} cards, ${cardsPerView} per view, maxIndex: ${maxIndex}`);
+            // console.log(`Carousel initialized: ${cards.length} cards, ${cardsPerView} per view, maxIndex: ${maxIndex}`);
         }
 
         // Initialize
@@ -340,7 +341,7 @@
             enhanceCertificationScrollAnimations();
             ensureElementsVisibility();
             
-            console.log('✓ Simplified certification enhancements initialized');
+            // console.log('✓ Simplified certification enhancements initialized');
         } catch (error) {
             console.warn('Certification enhancements initialization error:', error);
         }

@@ -142,23 +142,28 @@
             
             // Create ripple effect
             const ripple = document.createElement('span');
+            ripple.classList.add('ripple-effect');
             const rect = button.getBoundingClientRect();
             const size = Math.max(rect.width, rect.height);
             const x = e.clientX - rect.left - size / 2;
             const y = e.clientY - rect.top - size / 2;
             
-            ripple.style.cssText = `
-                position: absolute;
-                width: ${size}px;
-                height: ${size}px;
-                left: ${x}px;
-                top: ${y}px;
-                background: rgba(255, 255, 255, 0.2);
-                border-radius: 50%;
-                pointer-events: none;
-                transform: scale(0);
-                animation: ripple 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-            `;
+            // ripple.style.cssText = `
+            //     position: absolute;
+            //     width: ${size}px;
+            //     height: ${size}px;
+            //     left: ${x}px;
+            //     top: ${y}px;
+            //     background: rgba(255, 255, 255, 0.2);
+            //     border-radius: 50%;
+            //     pointer-events: none;
+            //     transform: scale(0);
+            //     animation: ripple 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            // `;
+            ripple.style.setProperty('--ripple-width', `${size}px`);
+            ripple.style.setProperty('--ripple-height', `${size}px`);
+            ripple.style.setProperty('--ripple-left', `${x}px`);
+            ripple.style.setProperty('--ripple-top', `${y}px`);
             
             button.style.position = 'relative';
             button.style.overflow = 'hidden';
@@ -172,20 +177,7 @@
             }, 600);
         });
         
-        // Add ripple animation CSS if not exists
-        if (!document.querySelector('#ripple-styles')) {
-            const style = document.createElement('style');
-            style.id = 'ripple-styles';
-            style.textContent = `
-                @keyframes ripple {
-                    to {
-                        transform: scale(2);
-                        opacity: 0;
-                    }
-                }
-            `;
-            document.head.appendChild(style);
-        }
+        // Remove dynamic ripple animation CSS as it is now in animations.css
     }
 
     // Smooth Modal Transitions (preserve existing functionality)

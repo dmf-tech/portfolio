@@ -308,53 +308,67 @@
 }
 
 /* ========================================
-   SIMPLIFIED CERTIFICATION MODAL
+   CERTIFICATION MODAL - SIMPLIFIED
    ======================================== */
-
 .cert-modal {
-    backdrop-filter: blur(6px) !important;
-    background: rgba(30, 34, 44, 0.65) !important;
-    transition: all 0.3s cubic-bezier(.4,0,.2,1) !important;
-    z-index: 2000 !important;
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1050;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.6);
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.cert-modal.active {
+    display: flex; /* Show when active */
+    opacity: 1;
 }
 
 .cert-modal-content {
-    background: #fff !important;
-    border-radius: 18px !important;
-    border: 1.5px solid #e5e7eb !important;
-    box-shadow: 0 8px 48px rgba(44, 62, 80, 0.18) !important;
-    max-width: 980px !important;
-    width: 96% !important;
-    max-height: 90vh !important;
-    overflow-y: auto !important;
-    margin: 2.5rem auto !important;
-    padding: 0 !important;
-    position: relative !important;
-    transition: all 0.3s cubic-bezier(.4,0,.2,1) !important;
+    background: #fff;
+    margin: auto;
+    padding: 2rem;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 800px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+    position: relative;
+    transform: translateY(-20px);
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.cert-modal.active .cert-modal-content {
+    transform: translateY(0);
+    opacity: 1;
 }
 
 .cert-modal-header {
-    padding: 2.2rem 2.8rem 1.2rem 2.8rem !important;
-    border-bottom: 1.5px solid #f1f3f7 !important;
-    background: linear-gradient(90deg, #2C3E50 0%, #34495e 100%);
-    color: #fff !important;
-    border-top-left-radius: 18px !important;
-    border-top-right-radius: 18px !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    position: relative !important;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+    position: relative;
 }
 
 .cert-modal-header h2 {
-    margin: 2.2rem auto 0 auto !important;
-    font-size: 2.2rem !important;
-    font-weight: 700 !important;
-    letter-spacing: -0.5px !important;
-    color: #fff !important;
-    text-align: center !important;
-    line-height: 1.1 !important;
-    flex: 1 1 auto !important;
+    color: #333; /* Changed from white to a dark color for visibility */
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin: 0;
+    flex-grow: 1;
+    text-align: center;
+    margin-top: 60px;
+    /* Removed padding-right, flexbox will handle spacing */
 }
 
 .cert-modal-close {

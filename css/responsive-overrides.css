@@ -1,0 +1,25 @@
+/* Responsive Overrides for Small Screens */
+
+/* Hero Section - Tablet and smaller */
+@media (max-width: 992px) {
+    .hero-content-wrapper {
+        flex-direction: column !important;
+        text-align: center !important;
+    }
+
+    .hero-text-content {
+        align-items: center !important;
+    }
+
+    .hero-visual-element {
+        margin-top: 3rem !important;
+    }
+}
+
+/* About Section - Tablet and smaller */
+@media (max-width: 992px) {
+    .about-layout {
+        flex-direction: column !important;
+        align-items: center !important;
+    }
+} 

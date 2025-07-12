@@ -5,7 +5,7 @@
     "date": "Currently Exploring (Updated January 2024)",
     "author": "Daniel Florencio",
     "mainImage": {
-      "src": "https://via.placeholder.com/700x350/16a085/ffffff?text=Proxmox+Mastery",
+      "src": "data:image/svg+xml;charset=UTF-8,%3csvg width='700' height='350' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 700 350' preserveAspectRatio='none'%3e%3crect width='100%25' height='100%25' fill='%23e9ecef'%3e%3c/rect%3e%3c/svg%3e",
       "alt": "Proxmox VE and PBS logos with server hardware"
     },
     "content": [
@@ -33,7 +33,7 @@
     "date": "Currently Exploring (Updated January 2024)",
     "author": "Daniel Florencio",
     "mainImage": {
-      "src": "https://via.placeholder.com/700x350/8e44ad/ffffff?text=AI+Prompt+Craft",
+      "src": "data:image/svg+xml;charset=UTF-8,%3csvg width='700' height='350' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 700 350' preserveAspectRatio='none'%3e%3crect width='100%25' height='100%25' fill='%23e9ecef'%3e%3c/rect%3e%3c/svg%3e",
       "alt": "Abstract representation of AI and prompt engineering"
     },
     "content": [
@@ -61,7 +61,7 @@
     "date": "Currently Exploring (Updated January 2024)",
     "author": "Daniel Florencio",
     "mainImage": {
-      "src": "https://via.placeholder.com/700x350/41B883/092E20?text=Vue+Django",
+      "src": "data:image/svg+xml;charset=UTF-8,%3csvg width='700' height='350' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 700 350' preserveAspectRatio='none'%3e%3crect width='100%25' height='100%25' fill='%23e9ecef'%3e%3c/rect%3e%3c/svg%3e",
       "alt": "Vue.js and Django logos combined"
     },
     "content": [
@@ -87,7 +87,7 @@
     "date": "Currently Exploring (Updated January 2024)",
     "author": "Daniel Florencio",
     "mainImage": {
-      "src": "https://via.placeholder.com/700x350/2A92C7/ffffff?text=FreeSWITCH+Dev",
+      "src": "data:image/svg+xml;charset=UTF-8,%3csvg width='700' height='350' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 700 350' preserveAspectRatio='none'%3e%3crect width='100%25' height='100%25' fill='%23e9ecef'%3e%3c/rect%3e%3c/svg%3e",
       "alt": "FreeSWITCH logo with Lua and Python icons"
     },
     "content": [
@@ -114,7 +114,7 @@
     "date": "Currently Exploring (Updated January 2024)",
     "author": "Daniel Florencio",
     "mainImage": {
-      "src": "https://via.placeholder.com/700x350/FF69B4/ffffff?text=Notion+Canva+Edu",
+      "src": "data:image/svg+xml;charset=UTF-8,%3csvg width='700' height='350' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 700 350' preserveAspectRatio='none'%3e%3crect width='100%25' height='100%25' fill='%23e9ecef'%3e%3c/rect%3e%3c/svg%3e",
       "alt": "Notion and Canva logos with educational icons"
     },
     "content": [
@@ -129,7 +129,7 @@
           "Commitment to Feedback and Iteration: I see content creation as an ongoing process, continuously refining materials based on student feedback and observed learning outcomes."
         ]
       },
-      { "type": "image", "src": "https://via.placeholder.com/600x300/3498db/ffffff?text=Sample+Lesson+Slide", "alt": "Placeholder for a sample lesson slide created with Canva", "isInline": false },
+      { "type": "image", "src": "data:image/svg+xml;charset=UTF-8,%3csvg width='600' height='300' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 300' preserveAspectRatio='none'%3e%3crect width='100%25' height='100%25' fill='%23e9ecef'%3e%3c/rect%3e%3c/svg%3e", "alt": "Placeholder for a sample lesson slide created with Canva", "isInline": false },
       { "type": "heading", "level": 4, "text": "Harnessing the Strengths of Each Tool" },
       { "type": "paragraph", "text": "I'm really digging into Notion's databases, linked views, and templates to make my content management as efficient as possible. With Canva, I focus on leveraging its vast library of templates and design elements. This allows me to produce professional-quality visuals quickly, ensuring my educational content is not just informative but genuinely motivating for my students." },
       { "type": "paragraph", "text": "My ultimate goal here is to significantly elevate the learning experience for my students. I want to provide them with exceptionally clear, well-structured, and visually engaging educational resources that resonate with diverse learning styles and truly help them succeed." }
