@@ -17,7 +17,7 @@
     # This can complement or replace the CSP meta tag in your index.html.
     # Headers are generally more flexible and can be updated without redeploying HTML.
     # Ensure this matches or is stricter than your meta tag CSP.
-    Content-Security-Policy = "default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; script-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none';"
+    Content-Security-Policy = "default-src 'self'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; script-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests;"
     # Note: If you use the CSP header here, you might remove the meta tag from index.html to avoid redundancy,
     # but having both is not harmful (the stricter of the two will apply).
     # The 'unsafe-inline' for style-src might be needed if you have any inline styles that are not covered by hashes/nonces (your current project seems to avoid complex inline styles).

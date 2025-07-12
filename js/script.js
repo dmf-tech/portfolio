@@ -992,10 +992,11 @@ document.addEventListener('DOMContentLoaded', () => {
                         if (typeof item.src === 'string') {
                             const url = item.src.toLowerCase();
                             if (url.startsWith('https://') || url.startsWith('http://') || url.startsWith('/') || url.startsWith('data:image')) {
-                                sanitizedSrc = escapeHTML(item.src);
+                                // Escape double quotes to prevent breaking out of the src attribute, but leave other characters for valid URLs.
+                                sanitizedSrc = item.src.replace(/"/g, '&quot;');
                             }
                         }
-                        htmlContentBody += `<img src="${sanitizedSrc}" alt="${escapeHTML(item.alt || '')}" class="${item.isInline ? 'full-blog-image-inline' : 'full-blog-image'}" loading="lazy">`;
+                        htmlContentBody += `<img src="${sanitizedSrc}" alt="${escapeHTML(item.alt || '')}" class="${item.isInline ? 'full-blog-image-inline' : 'full-blog-image'}">`;
                         break;
                     case 'code':
                         const lang = item.language ? escapeHTML(item.language) : 'plaintext';
