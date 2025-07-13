@@ -313,25 +313,29 @@
 
 /* Enhanced tech tags */
 .job-technologies {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
     margin-top: 1rem;
 }
 
 .tech-tag {
-    background: linear-gradient(135deg, #2C3E50, #34495e);
-    color: white;
-    padding: 0.4rem 0.8rem;
-    border-radius: 20px;
+    background: #e9ecef;
+    color: #495057;
+    padding: 0.3rem 0.8rem;
+    border-radius: 16px;
     font-size: 0.8rem;
-    font-weight: 500;
-    margin-right: 0.5rem;
-    margin-bottom: 0.5rem;
-    display: inline-block;
+    font-weight: 600;
     transition: all 0.3s ease;
+    border: 1px solid transparent;
 }
 
 .tech-tag:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(44, 62, 80, 0.3);
+    background: #dee2e6;
+    color: #212529;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+    border-color: #cdd4da;
 }
 
 /* Enhanced content styling */

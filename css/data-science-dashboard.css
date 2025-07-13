@@ -421,16 +421,18 @@
     height: 100%;
     background: linear-gradient(135deg, #27ae60, #2ecc71);
     border-radius: 4px;
-    transition: width 0.3s ease;
+    transform: scaleX(var(--width, 0.982));
+    transform-origin: left;
+    transition: transform 0.3s ease;
     animation: qualityBarFill 2s ease-out forwards;
 }
 
 @keyframes qualityBarFill {
     from {
-        width: 0%;
+        transform: scaleX(0);
     }
     to {
-        width: var(--width, 98.2%);
+        transform: scaleX(var(--width, 0.982));
     }
 }
 

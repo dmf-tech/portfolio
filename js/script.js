@@ -471,17 +471,17 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Dynamic Project Loading ---
     const renderProjectCard = (project) => {
         const imagesHTML = project.imageSrcs.map((src, index) => 
-            `<img src="${src}" alt="${project.title} Screenshot ${index + 1}" class="carousel-image ${index === 0 ? 'active' : ''}">`
+            `<img src="${escapeHTML(src)}" alt="${escapeHTML(project.title)} Screenshot ${index + 1}" class="carousel-image ${index === 0 ? 'active' : ''}">`
         ).join('');
 
-        const categoriesHTML = project.categories.map(cat => `<span class="category-tag">${cat}</span>`).join('');
-        const technologiesHTML = project.technologies.map(tech => `<span>${tech}</span>`).join('');
+        const categoriesHTML = project.categories.map(cat => `<span class="category-tag">${escapeHTML(cat)}</span>`).join('');
+        const technologiesHTML = project.technologies.map(tech => `<span>${escapeHTML(tech)}</span>`).join('');
 
         return `
             <div class="project-card ${project.filterClasses} animate-on-scroll fade-up"
                  data-project-title="${escapeHTML(project.title)}"
                  data-project-description="${escapeHTML(project.modalData.description)}"
-                 data-project-features="${project.modalData.features}">
+                 data-project-features="${escapeHTML(project.modalData.features)}">
                 <div class="project-image-area">
                     <div class="image-carousel" data-project-carousel="${project.id}">
                         <div class="carousel-images">${imagesHTML}</div>
@@ -496,7 +496,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="project-technologies">${technologiesHTML}</div>
                     <div class="project-links">
                         <button class="btn btn-secondary btn-small view-project-details">View Details</button>
-                        <a href="${escapeHTML(project.githubUrl)}" class="btn btn-outline btn-small" target="_blank" rel="noopener noreferrer">GitHub</a>
+                        <a href="${escapeHTML(project.githubUrl)}" class="btn btn-outline btn-small" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> GitHub</a>
                     </div>
                 </div>
             </div>
@@ -521,10 +521,10 @@ document.addEventListener('DOMContentLoaded', () => {
             // Render the featured project
             if (featuredProject) {
                 const featuredImagesHTML = featuredProject.imageSrcs.map((src, index) => 
-                    `<img src="${src}" alt="${featuredProject.title} Screenshot ${index + 1}" class="carousel-image ${index === 0 ? 'active' : ''}">`
+                    `<img src="${escapeHTML(src)}" alt="${escapeHTML(featuredProject.title)} Screenshot ${index + 1}" class="carousel-image ${index === 0 ? 'active' : ''}">`
                 ).join('');
-                const featuredCategoriesHTML = featuredProject.categories.map(cat => `<span class="category-tag">${cat}</span>`).join('');
-                const featuredTechnologiesHTML = featuredProject.technologies.map(tech => `<span>${tech}</span>`).join('');
+                const featuredCategoriesHTML = featuredProject.categories.map(cat => `<span class="category-tag">${escapeHTML(cat)}</span>`).join('');
+                const featuredTechnologiesHTML = featuredProject.technologies.map(tech => `<span>${escapeHTML(tech)}</span>`).join('');
 
                 featuredProjectWrapper.innerHTML = `
                     <h3>Featured Project: <span class="highlight">${escapeHTML(featuredProject.title)}</span></h3>
@@ -549,9 +549,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>
                 `;
                  // Add data attributes to the wrapper for the modal
-                featuredProjectWrapper.setAttribute('data-project-title', featuredProject.title);
-                featuredProjectWrapper.setAttribute('data-project-description', featuredProject.modalData.description);
-                featuredProjectWrapper.setAttribute('data-project-features', featuredProject.modalData.features);
+                featuredProjectWrapper.setAttribute('data-project-title', escapeHTML(featuredProject.title));
+                featuredProjectWrapper.setAttribute('data-project-description', escapeHTML(featuredProject.modalData.description));
+                featuredProjectWrapper.setAttribute('data-project-features', escapeHTML(featuredProject.modalData.features));
             }
 
             // Render the rest of the projects
@@ -597,7 +597,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Populate modal
                 select('#projectModalTitle').textContent = title;
                 select('#projectModalDescription').textContent = description;
-                select('#projectModalFeatures').innerHTML = features;
+                
+                const featuresList = select('#projectModalFeatures');
+                featuresList.innerHTML = ''; // Clear previous features
+                if (features) {
+                    // The 'features' variable contains an HTML string that was safely escaped
+                    // and stored in a data attribute. To render it correctly, we must "un-escape" it.
+                    // Using DOMParser is the standard and safe way to decode HTML entities.
+                    const unescapedFeatures = new DOMParser().parseFromString(features, "text/html").documentElement.textContent;
+                    
+                    // Now we can safely set the innerHTML with the decoded content.
+                    // This assumes the original data in projects.json is trusted and formatted correctly with <li> tags.
+                    featuresList.innerHTML = unescapedFeatures;
+                }
+
                 select('#projectModalTechnologies').innerHTML = technologies.replace(/<span>/g, '<span class="skill-tag">');
 
                 // Show modal
@@ -629,6 +642,17 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     };
+
+    // --- Email Obfuscation ---
+    const emailHolder = select('.contact-email-address');
+    if (emailHolder) {
+        const user = 'dmflorencio.main';
+        const domain = 'gmail.com';
+        // Check if it's the specific placeholder before changing
+        if (emailHolder.textContent.includes('[email protected]')) {
+             emailHolder.textContent = `${user}@${domain}`;
+        }
+    }
 
     // --- Dynamic Year in Footer ---
     const yearSpan = select('#currentYear');
@@ -1057,26 +1081,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
             listItem.appendChild(link);
             blogTopicsList.appendChild(listItem);
-        });
-    };
-
-    /**
-     * Escapes HTML characters to prevent XSS when inserting user-generated text.
-     * @param {string} str - The string to escape.
-     * @returns {string} The escaped string.
-     */
-    const escapeHTML = (str) => {
-        if (typeof str !== 'string') return '';
-        // Ensure all specified characters are replaced.
-        return str.replace(/[&<>"']/g, function (match) {
-            const escape = {
-                '&': '&amp;',
-                '<': '&lt;',
-                '>': '&gt;',
-                '"': '&quot;',
-                "'": '&#39;' // Using &#39; for ' is generally preferred over &apos;
-            };
-            return escape[match];
         });
     };
 
@@ -1648,6 +1652,26 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /**
+ * Escapes HTML characters to prevent XSS when inserting user-generated text.
+ * @param {string} str - The string to escape.
+ * @returns {string} The escaped string.
+ */
+const escapeHTML = (str) => {
+    if (typeof str !== 'string') return '';
+    // Ensure all specified characters are replaced.
+    return str.replace(/[&<>"']/g, function (match) {
+        const escape = {
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            '"': '&quot;',
+            "'": '&#39;' // Using &#39; for ' is generally preferred over &apos;
+        };
+        return escape[match];
+    });
+};
+
+/**
  * Fetches resume data from resume.json and renders it.
  */
 async function fetchResumeData() {
@@ -1689,14 +1713,14 @@ function renderResume(data) {
 
     const headerHTML = `
         <div class="resume-header">
-            <h1 class="name">${data.name}</h1>
-            <p class="title">${data.title}</p>
+            <h1 class="name">${escapeHTML(data.name)}</h1>
+            <p class="title">${escapeHTML(data.title)}</p>
             <div class="contact-info">
-                ${data.contact.email ? `<span><i class="fas fa-envelope"></i> <a href="mailto:${data.contact.email}">${data.contact.email}</a></span>` : ''}
-                ${data.contact.phone ? `<span><i class="fas fa-phone"></i> ${data.contact.phone}</span>` : ''}
-                ${data.contact.linkedin ? `<span><i class="fab fa-linkedin"></i> <a href="${data.contact.linkedin}" target="_blank" rel="noopener noreferrer">LinkedIn</a></span>` : ''}
-                ${data.contact.github ? `<span><i class="fab fa-github"></i> <a href="${data.contact.github}" target="_blank" rel="noopener noreferrer">GitHub</a></span>` : ''}
-                ${data.contact.location ? `<span><i class="fas fa-map-marker-alt"></i> ${data.contact.location}</span>` : ''}
+                ${data.contact.email ? `<span><i class="fas fa-envelope"></i> <a href="mailto:${escapeHTML(data.contact.email)}">${escapeHTML(data.contact.email)}</a></span>` : ''}
+                ${data.contact.phone ? `<span><i class="fas fa-phone"></i> ${escapeHTML(data.contact.phone)}</span>` : ''}
+                ${data.contact.linkedin ? `<span><i class="fab fa-linkedin"></i> <a href="${escapeHTML(data.contact.linkedin)}" target="_blank" rel="noopener noreferrer">LinkedIn</a></span>` : ''}
+                ${data.contact.github ? `<span><i class="fab fa-github"></i> <a href="${escapeHTML(data.contact.github)}" target="_blank" rel="noopener noreferrer">GitHub</a></span>` : ''}
+                ${data.contact.location ? `<span><i class="fas fa-map-marker-alt"></i> ${escapeHTML(data.contact.location)}</span>` : ''}
             </div>
         </div>
     `;
@@ -1704,7 +1728,7 @@ function renderResume(data) {
     const summaryHTML = data.summary ? `
         <div class="resume-section resume-summary">
             <h2 class="resume-section-title">Professional Summary</h2>
-            <p>${data.summary}</p>
+            <p>${escapeHTML(data.summary)}</p>
         </div>
     ` : '';
 
@@ -1714,12 +1738,12 @@ function renderResume(data) {
             ${data.experience.map(job => `
                 <div class="chrono-item">
                     <div class="chrono-item-header">
-                        <h3 class="item-title">${job.title}</h3>
-                        <span class="item-dates">${job.dates}</span>
+                        <h3 class="item-title">${escapeHTML(job.title)}</h3>
+                        <span class="item-dates">${escapeHTML(job.dates)}</span>
                     </div>
-                    <p class="item-subtitle">${job.company} | ${job.location}</p>
+                    <p class="item-subtitle">${escapeHTML(job.company)} | ${escapeHTML(job.location)}</p>
                     <ul class="item-details">
-                        ${(job.description || []).map(desc => `<li>${desc}</li>`).join('')}
+                        ${(job.description || []).map(desc => `<li>${escapeHTML(desc)}</li>`).join('')}
                     </ul>
                 </div>
             `).join('')}
@@ -1731,9 +1755,9 @@ function renderResume(data) {
             <h2 class="resume-section-title">Projects</h2>
             ${data.projects.map(project => `
                 <div class="extra-item">
-                    <h3 class="extra-item-header">${project.name}</h3>
-                    <p class="item-subtitle">${(project.technologies || []).join(', ')}</p>
-                    <div class="item-details">${project.description || ''}</div>
+                    <h3 class="extra-item-header">${escapeHTML(project.name)}</h3>
+                    <p class="item-subtitle">${(project.technologies || []).map(t => escapeHTML(t)).join(', ')}</p>
+                    <div class="item-details">${escapeHTML(project.description || '')}</div>
                 </div>
             `).join('')}
         </div>
@@ -1745,10 +1769,13 @@ function renderResume(data) {
             ${data.education.map(edu => `
                 <div class="chrono-item">
                     <div class="chrono-item-header">
-                        <h3 class="item-title">${edu.degree}</h3>
-                        <span class="item-dates">${edu.graduationDate}</span>
+                        <h3 class="item-title">${escapeHTML(edu.degree)}</h3>
+                        <span class="item-dates">${escapeHTML(edu.graduationDate)}</span>
                     </div>
-                    <p class="item-subtitle">${edu.institution}</p>
+                    <p class="item-subtitle">${escapeHTML(edu.institution)}</p>
+                     <ul class="item-details">
+                        ${(edu.details || []).map(detail => `<li>${escapeHTML(detail)}</li>`).join('')}
+                    </ul>
                 </div>
             `).join('')}
         </div>
@@ -1758,7 +1785,7 @@ function renderResume(data) {
         <div class="resume-section resume-skills">
             <h2 class="resume-section-title">Skills</h2>
             <ul class="skills-list">
-                ${data.skills.map(skill => `<li>${skill}</li>`).join('')}
+                ${data.skills.map(skill => `<li>${escapeHTML(skill)}</li>`).join('')}
             </ul>
         </div>
     ` : '';
@@ -1768,8 +1795,8 @@ function renderResume(data) {
             <h2 class="resume-section-title">Certifications</h2>
             ${data.certifications.map(cert => `
                  <div class="extra-item">
-                    <h3 class="extra-item-header">${cert.title}</h3>
-                    <p class="item-subtitle">${cert.issuer} (${cert.date})</p>
+                    <h3 class="extra-item-header">${escapeHTML(cert.title)}</h3>
+                    <p class="item-subtitle">${escapeHTML(cert.issuer)} (${escapeHTML(cert.date)})</p>
                 </div>
             `).join('')}
         </div>
