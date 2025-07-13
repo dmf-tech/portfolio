@@ -42,6 +42,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         });
+
+        // Close mobile nav on window resize if open
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 992 && navMenu.classList.contains('active')) {
+                toggleMobileNav();
+            }
+        });
     }
 
     // --- Smooth Scroll for Anchor Links & Active Link Highlighting ---

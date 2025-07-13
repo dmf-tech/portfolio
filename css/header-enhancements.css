@@ -1,0 +1,55 @@
+/* css/header-enhancements.css */
+
+/* --- Header Navigation Enhancement --- */
+
+/* Base link color - ensure it's white for all states */
+#header .nav-menu a,
+#header.scrolled .nav-menu a {
+    position: relative;
+    color: var(--light-text-color) !important; /* Always white text */
+    padding-bottom: 8px;
+    text-decoration: none !important;
+}
+
+/* Underline effect */
+#header .nav-menu a::after {
+    content: '';
+    position: absolute;
+    bottom: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background-color: currentColor; /* Will be white */
+    transition: width 0.3s ease;
+}
+
+/* On hover, expand the underline */
+#header .nav-menu a:hover::after,
+#header .nav-menu a.active-link::after {
+    width: 100%;
+}
+
+/* Remove old pseudo-element if it exists */
+.nav-menu a::before {
+    display: none !important;
+}
+
+/* --- Mobile Menu Slide-in from Right --- */
+@media (max-width: 992px) {
+    #header .nav-menu {
+        left: auto !important; /* Override the original 'left' property to prevent conflicts */
+        right: -310px; /* Start fully off-screen to the right */
+        width: 300px;
+        opacity: 0; /* Start fully transparent */
+        visibility: hidden;
+        transition: right 0.4s ease-in-out, opacity 0.3s ease-in-out, visibility 0.4s;
+    }
+
+    #header .nav-menu.active {
+        right: 0; /* Animate into view */
+        opacity: 1; /* Fade in */
+        visibility: visible;
+        box-shadow: -8px 0 25px rgba(0, 0, 0, 0.15);
+    }
+} 
