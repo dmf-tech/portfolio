@@ -73,3 +73,5 @@ coverage/
 # If you use any specific tools that generate local files, add them here.
 # Example: Parcel cache
 .cache/ 
+# Local Netlify folder
+.netlify

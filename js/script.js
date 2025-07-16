@@ -227,35 +227,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // --- Legacy Experience Section Accordion (for backwards compatibility) ---
-    const experienceItems = selectAll('.experience-item .experience-header');
-    experienceItems.forEach(header => {
-        header.addEventListener('click', () => {
-            const item = header.parentElement;
-            const details = header.nextElementSibling; // Assumes .experience-details is the immediate next sibling
-            const icon = header.querySelector('.experience-toggle-icon');
-
-            item.classList.toggle('active');
-
-            if (details.style.maxHeight) {
-                details.style.maxHeight = null;
-                header.setAttribute('aria-expanded', 'false');
-                if(icon) icon.classList.replace('fa-chevron-up', 'fa-chevron-down');
-            } else {
-                details.style.maxHeight = details.scrollHeight + "px";
-                header.setAttribute('aria-expanded', 'true');
-                if(icon) icon.classList.replace('fa-chevron-down', 'fa-chevron-up');
-            }
-        });
-         // Keyboard accessibility for accordion
-        header.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                header.click();
-            }
-        });
-    });
-
     // --- Certifications Carousel ---
     const certificationsCarouselContainer = select('.certifications-carousel-container');
     if (certificationsCarouselContainer) {
@@ -517,7 +488,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!projectsGrid || !featuredProjectWrapper) return;
 
         try {
-            const response = await fetch('projects.json');
+            const response = await fetch('/.netlify/functions/getData?file=projects.json');
             if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
             const projects = await response.json();
 
@@ -1044,7 +1015,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return allBlogPosts; // Return cached data
         }
         try {
-            const response = await fetch('blogs.json'); // Ensure blogs.json is in the correct path
+            const response = await fetch('/.netlify/functions/getData?file=blogs.json'); // Ensure blogs.json is in the correct path
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
@@ -1599,41 +1570,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Resume Modal Logic - KEEP THIS NEW IMPLEMENTATION
-    const openResumeModal = async () => {
-        const resumeModal = document.getElementById('resumeModal');
-        if (!resumeModal) return;
-
-        resumeModal.classList.add('active');
-        document.body.style.overflow = 'hidden';
-
-        // Reset to default view
-        const chronoBtn = document.getElementById('chrono-resume-btn');
-        const functionalBtn = document.getElementById('functional-resume-btn');
-        if (chronoBtn) chronoBtn.classList.add('active');
-        if (functionalBtn) functionalBtn.classList.remove('active');
-
-        if (!window.resumeData) {
-            try {
-                const response = await fetch('resume.json');
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                window.resumeData = await response.json();
-                renderResume(window.resumeData); // Always render the chronological format
-            } catch (error) {
-                console.error('Failed to fetch resume data:', error);
-                const resumeContainer = document.getElementById('resumeContainer');
-                if (resumeContainer) {
-                    resumeContainer.innerHTML = '<p>Error loading resume. Please try again later.</p>';
-                }
-            }
-        } else {
-            renderResume(window.resumeData);
-        }
-    };
-
-    // --- Resume Modal ---
-    // This part is now placed in the global scope to be accessible.
     const resumeModal = document.getElementById('resumeModal');
     const openResumeBtn = document.getElementById('viewResumeBtn');
     const closeResumeBtn = document.getElementById('closeResumeModal');
@@ -1696,7 +1632,7 @@ async function fetchResumeData() {
     }
 
     try {
-        const response = await fetch('resume.json');
+        const response = await fetch('/.netlify/functions/getData?file=resume.json');
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
