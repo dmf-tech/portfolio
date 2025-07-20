@@ -2,28 +2,30 @@
   {
     "id": "project-alpha",
     "featured": true,
-    "title": "Project Alpha",
+    "title": "Responsive E-commerce Website",
     "filterClasses": "web-app ui-ux",
     "imageSrcs": [
-      "data:image/svg+xml;charset=UTF-8,%3csvg width='500' height='300' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 300' preserveAspectRatio='none'%3e%3crect width='100%25' height='100%25' fill='%23e9ecef'%3e%3c/rect%3e%3c/svg%3e",
-      "data:image/svg+xml;charset=UTF-8,%3csvg width='500' height='300' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 300' preserveAspectRatio='none'%3e%3crect width='100%25' height='100%25' fill='%23e9ecef'%3e%3c/rect%3e%3c/svg%3e",
-      "data:image/svg+xml;charset=UTF-8,%3csvg width='500' height='300' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 300' preserveAspectRatio='none'%3e%3crect width='100%25' height='100%25' fill='%23e9ecef'%3e%3c/rect%3e%3c/svg%3e"
+      "/img/feature_project1.png",
+      "/img/feature_project2.png",
+      "/img/feature_project3.png",
+      "/img/feature_project4.png",
+      "/img/feature_project5.png"
     ],
     "categories": ["Web App", "UI/UX"],
-    "shortDescription": "A comprehensive web application designed for task management, featuring a clean UI and collaborative tools.",
-    "technologies": ["React", "Node.js", "MongoDB"],
+    "shortDescription": "A responsive e-commerce platform designed for a curated collection of timepieces, featuring dynamic product catalogs and efficient multi-step checkout.",
+    "technologies": ["Vue.js", "Tailwind CSS"],
     "githubUrl": "#",
     "modalData": {
-      "description": "A comprehensive web application designed for task management, featuring a clean UI and collaborative tools. This project was built from the ground up to address the needs of modern teams, focusing on intuitive design and seamless real-time synchronization.",
-      "features": "<li>Real-time collaborative task management</li><li>Drag-and-drop interface for easy organization</li><li>Notification system for updates and deadlines</li><li>OAuth 2.0 for secure authentication</li>"
+      "description": "Developed \"Demure Montres,\" an e-commerce platform for timepieces, focusing on seamless customer journeys from dynamic catalogs to efficient checkout. Implemented a robust user management system with role-based dashboards for administrators, sellers, and buyers, optimizing user experience and operational flow. Built with Vue.js and Tailwind CSS, this project showcases responsive UI, fluid transitions, dynamic stock updates, and simulated backend interactions for order processing, applying practical skills in web solution architecture and data flow management.",
+      "features": "<li>Dynamic landing page with hero section, product categories, and handpicked favorites.</li><li>Responsive product grid with high-quality visuals and quick \"Add to Cart\" functionality.</li><li>Intuitive shopping cart with quantity adjustments and clear checkout path.</li><li>Streamlined seller dashboard for managing listings and monitoring sales, including inline stock updates.</li>"
     }
   },
   {
     "id": "project-beta",
-    "title": "Project Beta",
+    "title": "Mobile App Project",
     "filterClasses": "mobile-app",
     "imageSrcs": [
-      "data:image/svg+xml;charset=UTF-8,%3csvg width='500' height='300' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 300' preserveAspectRatio='none'%3e%3crect width='100%25' height='100%25' fill='%23e9ecef'%3e%3c/rect%3e%3c/svg%3e",
+      "/img/mobile_project1.jpg",
       "data:image/svg+xml;charset=UTF-8,%3csvg width='500' height='300' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 300' preserveAspectRatio='none'%3e%3crect width='100%25' height='100%25' fill='%23e9ecef'%3e%3c/rect%3e%3c/svg%3e",
       "data:image/svg+xml;charset=UTF-8,%3csvg width='500' height='300' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 300' preserveAspectRatio='none'%3e%3crect width='100%25' height='100%25' fill='%23e9ecef'%3e%3c/rect%3e%3c/svg%3e"
     ],
@@ -38,10 +40,10 @@
   },
   {
     "id": "project-gamma",
-    "title": "Project Gamma",
+    "title": "Data Science Project",
     "filterClasses": "data-science",
     "imageSrcs": [
-      "data:image/svg+xml;charset=UTF-8,%3csvg width='500' height='300' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 300' preserveAspectRatio='none'%3e%3crect width='100%25' height='100%25' fill='%23e9ecef'%3e%3c/rect%3e%3c/svg%3e",
+      "/img/ds_project1.jpg",
       "data:image/svg+xml;charset=UTF-8,%3csvg width='500' height='300' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 300' preserveAspectRatio='none'%3e%3crect width='100%25' height='100%25' fill='%23e9ecef'%3e%3c/rect%3e%3c/svg%3e",
       "data:image/svg+xml;charset=UTF-8,%3csvg width='500' height='300' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 300' preserveAspectRatio='none'%3e%3crect width='100%25' height='100%25' fill='%23e9ecef'%3e%3c/rect%3e%3c/svg%3e"
     ],
@@ -56,10 +58,10 @@
   },
   {
     "id": "project-delta",
-    "title": "Project Delta",
+    "title": "Website Project",
     "filterClasses": "other web-app",
     "imageSrcs": [
-      "data:image/svg+xml;charset=UTF-8,%3csvg width='500' height='300' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 300' preserveAspectRatio='none'%3e%3crect width='100%25' height='100%25' fill='%23e9ecef'%3e%3c/rect%3e%3c/svg%3e",
+      "/img/website_project1.jpg",
       "data:image/svg+xml;charset=UTF-8,%3csvg width='500' height='300' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 300' preserveAspectRatio='none'%3e%3crect width='100%25' height='100%25' fill='%23e9ecef'%3e%3c/rect%3e%3c/svg%3e",
       "data:image/svg+xml;charset=UTF-8,%3csvg width='500' height='300' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 300' preserveAspectRatio='none'%3e%3crect width='100%25' height='100%25' fill='%23e9ecef'%3e%3c/rect%3e%3c/svg%3e"
     ],
