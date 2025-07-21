@@ -1053,19 +1053,61 @@
                     </button>
                 </div>
                 <div class="project-modal-body">
+                    <!-- Project Gallery -->
+                    <div class="project-gallery">
+                        <div class="gallery-container">
+                            <div id="projectModalGallery" class="gallery-images">
+                                <!-- Images will be populated by JavaScript -->
+                            </div>
+                            <button class="gallery-nav prev" aria-label="Previous image">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <button class="gallery-nav next" aria-label="Next image">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                            <div class="gallery-caption" id="galleryCaption">
+                                <!-- Caption will be dynamically updated -->
+                            </div>
+                            <div class="gallery-indicators" id="galleryIndicators">
+                                <!-- Indicators will be dynamically inserted -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project Overview -->
                     <div class="project-details-grid">
                         <div class="project-detail-item project-description-item">
-                            <h4><i class="fas fa-info-circle"></i> Description</h4>
+                            <h4><i class="fas fa-info-circle"></i> Project Overview</h4>
                             <p id="projectModalDescription">-</p>
                         </div>
                         <div class="project-detail-item">
-                            <h4><i class="fas fa-cogs"></i> Key Features</h4>
+                            <h4><i class="fas fa-lightbulb"></i> Key Features</h4>
                             <ul id="projectModalFeatures" class="features-list">-</ul>
                         </div>
+                        <div class="project-detail-item">
+                            <h4><i class="fas fa-code-branch"></i> Technical Details</h4>
+                            <p id="projectModalTechnical">-</p>
+                        </div>
+                        <div class="project-detail-item">
+                            <h4><i class="fas fa-rocket"></i> Implementation</h4>
+                            <p id="projectModalImplementation">-</p>
+                        </div>
                     </div>
+
+                    <!-- Technologies Used -->
                     <div class="project-technologies-modal">
-                        <h4><i class="fas fa-tools"></i> Technologies Used</h4>
+                        <h4><i class="fas fa-tools"></i> Technologies & Tools</h4>
                         <div id="projectModalTechnologies" class="skills-tags">-</div>
+                    </div>
+
+                    <!-- Project Links -->
+                    <div class="project-links-modal">
+                        <a href="#" id="projectModalLiveLink" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-external-link-alt"></i> View Live
+                        </a>
+                        <a href="#" id="projectModalGithubLink" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-github"></i> View Code
+                        </a>
                     </div>
                 </div>
             </div>

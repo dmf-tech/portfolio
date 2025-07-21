@@ -39,4 +39,21 @@ This project was built using a combination of modern web technologies:
 *   **Image Carousels:** For showcasing multiple images within projects or certifications.
 *   **Contact Form/Links:** Direct ways to connect.
 
-## Project Structure (Brief Overview) 
+## Project Structure (Brief Overview)
+
+<!-- Add your folder/file structure here -->
+
+## 🚀 Running Locally with Netlify CLI
+
+To preview this site locally using the Netlify CLI:
+
+### Prerequisites
+
+- Node.js and npm installed (https://nodejs.org)
+
+### 1. Install Netlify CLI (Linux/macOS/Windows)
+
+```bash
+sudo/ npm install -g netlify-cli
+
+netlify dev

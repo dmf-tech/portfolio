@@ -5817,23 +5817,28 @@ button.filter-btn:active,
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background-color: rgba(44, 62, 80, 0.5); /* Semi-transparent dark */
+    background-color: rgba(44, 62, 80, 0.7); /* Slightly darker for better visibility */
     color: var(--light-text-color);
     border: none;
     padding: 10px;
-    cursor: pointer;
+    cursor: pointer !important; /* Force cursor to be pointer */
     z-index: 10;
     border-radius: 50%; /* Circular buttons */
     width: 40px;
     height: 40px;
-    display: flex;
+    display: flex !important; /* Force display */
     align-items: center;
     justify-content: center;
-    transition: background-color 0.3s ease;
-    opacity: 0; /* Hidden by default, show on hover */
+    transition: all 0.3s ease;
+    opacity: 1 !important; /* Always visible */
+    pointer-events: auto !important; /* Force pointer events */
+    user-select: none; /* Prevent text selection */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Add subtle shadow for depth */
 }
-.image-carousel:hover .carousel-nav {
-    opacity: 1;
+.carousel-nav:hover {
+    background-color: rgba(44, 62, 80, 0.9); /* Darker on hover */
+    transform: translateY(-50%) scale(1.1); /* Slight scale effect */
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3); /* Enhanced shadow on hover */
 }
 
 
@@ -10013,7 +10018,7 @@ section > .container > h2:first-child {
 
 .skill-tag {
     background-color: #e9ecef;
-    color: var(--primary-color); 
+    color: var(--primary-color);
     padding: 6px 12px;
     border-radius: 20px;
     font-size: 0.85rem;
@@ -10109,11 +10114,11 @@ section > .container > h2:first-child {
     width: 90%;
     max-height: 85vh;
     overflow-y: auto;
-    border-radius: var(--border-radius);
+        border-radius: var(--border-radius);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     transform: scale(0.9);
     transition: transform 0.3s ease;
-    position: relative;
+        position: relative;
 }
 
 .cert-modal.active .cert-modal-content {
@@ -10123,7 +10128,7 @@ section > .container > h2:first-child {
 .cert-modal-header {
     padding: 20px 30px 12px;
     border-bottom: 1px solid var(--border-color);
-    display: flex;
+        display: flex;
     justify-content: space-between;
     align-items: center;
 }
@@ -10138,7 +10143,7 @@ section > .container > h2:first-child {
 .cert-modal-close {
     background: none;
     border: none;
-    font-size: 1.5rem;
+        font-size: 1.5rem;
     color: #6c757d;
     cursor: pointer;
     padding: 5px;
@@ -10193,7 +10198,7 @@ section > .container > h2:first-child {
     font-weight: 600;
     color: var(--primary-color);
     margin-bottom: 15px;
-    display: flex;
+        display: flex;
     align-items: center;
     gap: 8px;
 }
@@ -10307,7 +10312,7 @@ section > .container > h2:first-child {
     }
     
     .certification-actions .btn {
-        width: 100%;
+    width: 100%;
     }
 }
 
@@ -10397,7 +10402,7 @@ section > .container > h2:first-child {
 
 .experience-shapes {
     position: absolute;
-    width: 100%;
+        width: 100%;
         height: 100%;
     }
 
@@ -10611,7 +10616,7 @@ section > .container > h2:first-child {
     position: absolute;
     top: 0;
     left: 0;
-        width: 100%;
+    width: 100%;
     height: 4px;
     background: linear-gradient(90deg, var(--primary-color), #3498db);
 }
@@ -10710,7 +10715,7 @@ section > .container > h2:first-child {
 
 .tech-tag {
     background: #e9ecef;
-    color: var(--primary-color); 
+    color: var(--primary-color);
     padding: 4px 10px;
     border-radius: 12px;
     font-size: 0.8rem;

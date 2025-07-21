@@ -367,23 +367,24 @@ document.addEventListener('DOMContentLoaded', () => {
         function showImage(index) {
             images.forEach((img, i) => {
                 img.classList.remove('active');
-                // img.style.opacity = 0; // Handled by CSS transition
                 if (i === index) {
                     img.classList.add('active');
-                    // img.style.opacity = 1; // Handled by CSS transition
                 }
             });
         }
 
+        // Ensure carousel navigation works regardless of security settings
         if (prevButton) {
-            prevButton.addEventListener('click', () => {
+            prevButton.addEventListener('click', (e) => {
+                e.stopPropagation(); // Prevent event bubbling
                 currentIndex = (currentIndex > 0) ? currentIndex - 1 : images.length - 1;
                 showImage(currentIndex);
             });
         }
 
         if (nextButton) {
-            nextButton.addEventListener('click', () => {
+            nextButton.addEventListener('click', (e) => {
+                e.stopPropagation(); // Prevent event bubbling
                 currentIndex = (currentIndex < images.length - 1) ? currentIndex + 1 : 0;
                 showImage(currentIndex);
             });
@@ -459,7 +460,12 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="project-card ${project.filterClasses} animate-on-scroll fade-up"
                  data-project-title="${escapeHTML(project.title)}"
                  data-project-description="${escapeHTML(project.modalData.description)}"
-                 data-project-features="${escapeHTML(project.modalData.features)}">
+                 data-project-features="${escapeHTML(project.modalData.features)}"
+                 data-project-technical="${escapeHTML(project.modalData.technicalDetails || '')}"
+                 data-project-implementation="${escapeHTML(project.modalData.implementation || '')}"
+                 data-gallery='${escapeHTML(JSON.stringify(project.modalData.gallery || []))}'
+                 data-live-url="${escapeHTML(project.liveUrl || '')}"
+                 data-github-url="${escapeHTML(project.githubUrl || '')}">
                 <div class="project-image-area">
                     <div class="image-carousel" data-project-carousel="${project.id}">
                         <div class="carousel-images">${imagesHTML}</div>
@@ -530,6 +536,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 featuredProjectWrapper.setAttribute('data-project-title', escapeHTML(featuredProject.title));
                 featuredProjectWrapper.setAttribute('data-project-description', escapeHTML(featuredProject.modalData.description));
                 featuredProjectWrapper.setAttribute('data-project-features', escapeHTML(featuredProject.modalData.features));
+                featuredProjectWrapper.setAttribute('data-project-technical', escapeHTML(featuredProject.modalData.technicalDetails || ''));
+                featuredProjectWrapper.setAttribute('data-project-implementation', escapeHTML(featuredProject.modalData.implementation || ''));
+                featuredProjectWrapper.setAttribute('data-gallery', escapeHTML(JSON.stringify(featuredProject.modalData.gallery || [])));
+                featuredProjectWrapper.setAttribute('data-live-url', escapeHTML(featuredProject.liveUrl || ''));
+                featuredProjectWrapper.setAttribute('data-github-url', escapeHTML(featuredProject.githubUrl || ''));
             }
 
             // Render the rest of the projects
@@ -558,6 +569,55 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const viewProjectDetailsButtons = selectAll('.view-project-details');
         const closeProjectModalBtn = select('#closeProjectModal');
+        const galleryContainer = select('#projectModalGallery');
+        const galleryCaption = select('#galleryCaption');
+        const galleryIndicators = select('#galleryIndicators');
+        const prevButton = select('.gallery-nav.prev');
+        const nextButton = select('.gallery-nav.next');
+        let currentImageIndex = 0;
+        let currentGalleryImages = [];
+
+        const showGalleryImage = (index) => {
+            if (!currentGalleryImages.length) return;
+            
+            // Update images
+            const images = galleryContainer.querySelectorAll('.gallery-image');
+            images.forEach(img => img.classList.remove('active'));
+            images[index].classList.add('active');
+
+            // Update indicators
+            const indicators = galleryIndicators.querySelectorAll('.gallery-indicator');
+            indicators.forEach(ind => ind.classList.remove('active'));
+            indicators[index].classList.add('active');
+
+            // Update caption
+            galleryCaption.textContent = currentGalleryImages[index].caption || '';
+
+            // Update current index
+            currentImageIndex = index;
+        };
+
+        const navigateGallery = (direction) => {
+            const newIndex = direction === 'next'
+                ? (currentImageIndex + 1) % currentGalleryImages.length
+                : (currentImageIndex - 1 + currentGalleryImages.length) % currentGalleryImages.length;
+            showGalleryImage(newIndex);
+        };
+
+        // Gallery navigation event listeners
+        if (prevButton) {
+            prevButton.addEventListener('click', (e) => {
+                e.stopPropagation();
+                navigateGallery('prev');
+            });
+        }
+
+        if (nextButton) {
+            nextButton.addEventListener('click', (e) => {
+                e.stopPropagation();
+                navigateGallery('next');
+            });
+        }
 
         viewProjectDetailsButtons.forEach(button => {
             button.addEventListener('click', () => {
@@ -567,6 +627,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 const title = projectCard.dataset.projectTitle;
                 const description = projectCard.dataset.projectDescription;
                 const features = projectCard.dataset.projectFeatures;
+                const technicalDetails = projectCard.dataset.projectTechnical;
+                const implementation = projectCard.dataset.projectImplementation;
+                const liveUrl = projectCard.dataset.liveUrl;
+                const githubUrl = projectCard.dataset.githubUrl;
 
                 // Get technologies from the visible elements
                 const techSpans = projectCard.querySelectorAll('.project-technologies span');
@@ -576,20 +640,82 @@ document.addEventListener('DOMContentLoaded', () => {
                 select('#projectModalTitle').textContent = title;
                 select('#projectModalDescription').textContent = description;
                 
+                // Update features
                 const featuresList = select('#projectModalFeatures');
                 featuresList.innerHTML = ''; // Clear previous features
                 if (features) {
-                    // The 'features' variable contains an HTML string that was safely escaped
-                    // and stored in a data attribute. To render it correctly, we must "un-escape" it.
-                    // Using DOMParser is the standard and safe way to decode HTML entities.
                     const unescapedFeatures = new DOMParser().parseFromString(features, "text/html").documentElement.textContent;
-                    
-                    // Now we can safely set the innerHTML with the decoded content.
-                    // This assumes the original data in projects.json is trusted and formatted correctly with <li> tags.
                     featuresList.innerHTML = unescapedFeatures;
                 }
 
-                select('#projectModalTechnologies').innerHTML = technologies.replace(/<span>/g, '<span class="skill-tag">');
+                // Update technical details
+                const technicalElement = select('#projectModalTechnical');
+                if (technicalElement) {
+                    const unescapedTechnical = technicalDetails ? new DOMParser().parseFromString(technicalDetails, "text/html").documentElement.textContent : '';
+                    technicalElement.textContent = unescapedTechnical || 'Technical details not available';
+                }
+
+                // Update implementation
+                const implementationElement = select('#projectModalImplementation');
+                if (implementationElement) {
+                    const unescapedImplementation = implementation ? new DOMParser().parseFromString(implementation, "text/html").documentElement.textContent : '';
+                    implementationElement.textContent = unescapedImplementation || 'Implementation details not available';
+                }
+
+                // Update technologies
+                const techContainer = select('#projectModalTechnologies');
+                if (techContainer) {
+                    techContainer.innerHTML = technologies.replace(/<span>/g, '<span class="skill-tag">');
+                }
+
+                // Update project links
+                const liveLink = select('#projectModalLiveLink');
+                const githubLink = select('#projectModalGithubLink');
+                
+                if (liveLink) {
+                    liveLink.href = liveUrl || '#';
+                    liveLink.style.display = liveUrl ? 'flex' : 'none';
+                }
+                
+                if (githubLink) {
+                    githubLink.href = githubUrl || '#';
+                    githubLink.style.display = githubUrl ? 'flex' : 'none';
+                }
+
+                // Set up gallery
+                try {
+                    currentGalleryImages = JSON.parse(projectCard.dataset.gallery || '[]');
+                } catch (e) {
+                    console.error('Error parsing gallery data:', e);
+                    currentGalleryImages = [];
+                }
+                if (currentGalleryImages.length > 0) {
+                    // Create gallery HTML
+                    galleryContainer.innerHTML = currentGalleryImages.map((img, index) => `
+                        <img src="${escapeHTML(img.src)}" 
+                             alt="${escapeHTML(img.alt)}" 
+                             class="gallery-image${index === 0 ? ' active' : ''}"
+                        >
+                    `).join('');
+
+                    // Create indicators
+                    galleryIndicators.innerHTML = currentGalleryImages.map((_, index) => `
+                        <button class="gallery-indicator${index === 0 ? ' active' : ''}" 
+                                data-index="${index}"
+                                aria-label="View image ${index + 1}">
+                        </button>
+                    `).join('');
+
+                    // Set initial caption
+                    galleryCaption.textContent = currentGalleryImages[0].caption || '';
+
+                    // Add click handlers to indicators
+                    galleryIndicators.querySelectorAll('.gallery-indicator').forEach((indicator, index) => {
+                        indicator.addEventListener('click', () => showGalleryImage(index));
+                    });
+
+                    currentImageIndex = 0;
+                }
 
                 // Show modal
                 projectModal.style.display = 'flex';
@@ -603,6 +729,12 @@ document.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => {
                 projectModal.style.display = 'none';
                 document.body.style.overflow = 'auto';
+                // Reset gallery
+                currentImageIndex = 0;
+                currentGalleryImages = [];
+                galleryContainer.innerHTML = '';
+                galleryIndicators.innerHTML = '';
+                galleryCaption.textContent = '';
             }, 300);
         };
 
@@ -617,6 +749,13 @@ document.addEventListener('DOMContentLoaded', () => {
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && projectModal.classList.contains('active')) {
                 closeProjectModal();
+            } else if (projectModal.classList.contains('active')) {
+                // Add keyboard navigation for gallery
+                if (e.key === 'ArrowLeft') {
+                    navigateGallery('prev');
+                } else if (e.key === 'ArrowRight') {
+                    navigateGallery('next');
+                }
             }
         });
     };
@@ -1756,4 +1895,4 @@ function renderResume(data) {
             ${certificationsHTML}
         </div>
     `;
-} 
+}

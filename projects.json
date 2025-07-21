@@ -13,11 +13,41 @@
     ],
     "categories": ["Web App", "UI/UX"],
     "shortDescription": "A responsive e-commerce platform designed for a curated collection of timepieces, featuring dynamic product catalogs and efficient multi-step checkout.",
-    "technologies": ["Vue.js", "Tailwind CSS"],
+    "technologies": ["Vue.js", "Tailwind CSS", "Node.js", "MongoDB", "Redis", "Docker"],
     "githubUrl": "#",
+    "liveUrl": "#",
     "modalData": {
-      "description": "Developed \"Demure Montres,\" an e-commerce platform for timepieces, focusing on seamless customer journeys from dynamic catalogs to efficient checkout. Implemented a robust user management system with role-based dashboards for administrators, sellers, and buyers, optimizing user experience and operational flow. Built with Vue.js and Tailwind CSS, this project showcases responsive UI, fluid transitions, dynamic stock updates, and simulated backend interactions for order processing, applying practical skills in web solution architecture and data flow management.",
-      "features": "<li>Dynamic landing page with hero section, product categories, and handpicked favorites.</li><li>Responsive product grid with high-quality visuals and quick \"Add to Cart\" functionality.</li><li>Intuitive shopping cart with quantity adjustments and clear checkout path.</li><li>Streamlined seller dashboard for managing listings and monitoring sales, including inline stock updates.</li>"
+      "description": "Developed \"Demure Montres,\" an e-commerce platform for timepieces, focusing on seamless customer journeys from dynamic catalogs to efficient checkout. The platform serves both customers and administrators with intuitive interfaces and robust functionality.",
+      "features": "<li>Dynamic product catalog with advanced filtering and search</li><li>Real-time inventory management system</li><li>Secure payment processing with multiple gateway support</li><li>Comprehensive admin dashboard with analytics</li><li>Customer account management and order tracking</li>",
+      "technicalDetails": "Built with a modern tech stack including Vue.js for the frontend and Node.js for the backend. Implements a microservices architecture for scalability, with separate services for product management, user authentication, and order processing. Uses MongoDB for flexible data storage and Redis for caching and session management.",
+      "implementation": "Followed an agile development approach with continuous integration/deployment using GitHub Actions. Implemented responsive design principles and progressive enhancement for broad device support. Used Docker containers for consistent development and deployment environments. Integrated automated testing with Jest and Cypress for reliability.",
+      "gallery": [
+        {
+          "src": "/img/feature_project1.png",
+          "alt": "E-commerce Homepage",
+          "caption": "Modern and intuitive homepage design with featured products"
+        },
+        {
+          "src": "/img/feature_project2.png",
+          "alt": "Product Catalog",
+          "caption": "Dynamic product catalog with advanced filtering options"
+        },
+        {
+          "src": "/img/feature_project3.png",
+          "alt": "Shopping Cart",
+          "caption": "Streamlined shopping cart with real-time updates"
+        },
+        {
+          "src": "/img/feature_project4.png",
+          "alt": "Checkout Process",
+          "caption": "Secure and intuitive multi-step checkout process"
+        },
+        {
+          "src": "/img/feature_project5.png",
+          "alt": "Admin Dashboard",
+          "caption": "Comprehensive admin dashboard with analytics"
+        }
+      ]
     }
   },
   {
@@ -26,16 +56,48 @@
     "filterClasses": "mobile-app",
     "imageSrcs": [
       "/img/mobile_project1.jpg",
-      "data:image/svg+xml;charset=UTF-8,%3csvg width='500' height='300' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 300' preserveAspectRatio='none'%3e%3crect width='100%25' height='100%25' fill='%23e9ecef'%3e%3c/rect%3e%3c/svg%3e",
-      "data:image/svg+xml;charset=UTF-8,%3csvg width='500' height='300' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 300' preserveAspectRatio='none'%3e%3crect width='100%25' height='100%25' fill='%23e9ecef'%3e%3c/rect%3e%3c/svg%3e"
+      "/img/placeholder-mobile2.jpg",
+      "/img/placeholder-mobile3.jpg",
+      "/img/placeholder-mobile4.jpg",
+      "/img/placeholder-mobile5.jpg"
     ],
     "categories": ["Mobile App"],
-    "shortDescription": "A native mobile application for iOS and Android that helps users track their fitness goals.",
-    "technologies": ["Swift", "Kotlin", "Firebase"],
+    "shortDescription": "A native mobile application for iOS and Android that helps users track their fitness goals and maintain healthy habits.",
+    "technologies": ["Swift", "Kotlin", "Firebase", "CoreML", "TensorFlow Lite"],
     "githubUrl": "#",
+    "liveUrl": "#",
     "modalData": {
-      "description": "A native mobile application for iOS and Android that helps users track their fitness goals. The app provides a seamless user experience, motivating users to stay active through personalized plans and interactive features.",
-      "features": "<li>Personalized goal setting and tracking</li><li>Integration with Apple Health and Google Fit</li><li>Gamified challenges to encourage consistency</li><li>Progress analytics and visual reports</li>"
+      "description": "A comprehensive fitness tracking application that combines cutting-edge mobile technologies with intuitive user experience. The app helps users set and achieve their fitness goals through personalized plans and AI-powered insights.",
+      "features": "<li>Personalized workout and nutrition planning</li><li>Real-time activity tracking with GPS</li><li>AI-powered form correction for exercises</li><li>Social features for community engagement</li><li>Integration with health platforms</li>",
+      "technicalDetails": "Developed native applications for both iOS (Swift) and Android (Kotlin) platforms. Utilized CoreML and TensorFlow Lite for on-device machine learning capabilities. Implemented Firebase for backend services including authentication, real-time database, and analytics.",
+      "implementation": "Adopted a modular architecture for code reusability across platforms. Implemented MVVM design pattern for better separation of concerns. Used Kotlin Multiplatform for shared business logic. Integrated CI/CD pipelines for automated testing and deployment to app stores.",
+      "gallery": [
+        {
+          "src": "/img/mobile_project1.jpg",
+          "alt": "Fitness App Home",
+          "caption": "Personalized dashboard with daily activity overview"
+        },
+        {
+          "src": "/img/placeholder-mobile2.jpg",
+          "alt": "Workout Tracking",
+          "caption": "Real-time workout tracking with AI form correction"
+        },
+        {
+          "src": "/img/placeholder-mobile3.jpg",
+          "alt": "Nutrition Planning",
+          "caption": "Smart nutrition planning and tracking"
+        },
+        {
+          "src": "/img/placeholder-mobile4.jpg",
+          "alt": "Community Features",
+          "caption": "Social features for community engagement"
+        },
+        {
+          "src": "/img/placeholder-mobile5.jpg",
+          "alt": "Progress Analytics",
+          "caption": "Detailed progress analytics and insights"
+        }
+      ]
     }
   },
   {
@@ -44,34 +106,148 @@
     "filterClasses": "data-science",
     "imageSrcs": [
       "/img/ds_project1.jpg",
-      "data:image/svg+xml;charset=UTF-8,%3csvg width='500' height='300' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 300' preserveAspectRatio='none'%3e%3crect width='100%25' height='100%25' fill='%23e9ecef'%3e%3c/rect%3e%3c/svg%3e",
-      "data:image/svg+xml;charset=UTF-8,%3csvg width='500' height='300' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 300' preserveAspectRatio='none'%3e%3crect width='100%25' height='100%25' fill='%23e9ecef'%3e%3c/rect%3e%3c/svg%3e"
+      "/img/placeholder-ds2.jpg",
+      "/img/placeholder-ds3.jpg",
+      "/img/placeholder-ds4.jpg",
+      "/img/placeholder-ds5.jpg"
     ],
     "categories": ["Data Science"],
-    "shortDescription": "A Python-based tool for analyzing large datasets and generating insightful reports. Utilizes Pandas and Matplotlib.",
-    "technologies": ["Python", "Pandas", "Matplotlib"],
+    "shortDescription": "An advanced data analysis platform that processes large datasets and generates actionable insights through machine learning algorithms.",
+    "technologies": ["Python", "Pandas", "Scikit-learn", "TensorFlow", "Plotly", "FastAPI"],
     "githubUrl": "#",
+    "liveUrl": "#",
     "modalData": {
-      "description": "A Python-based tool for analyzing large datasets and generating insightful reports. Utilizes Pandas for data manipulation and Matplotlib/Seaborn for creating compelling visualizations, enabling data-driven decision-making.",
-      "features": "<li>Automated data ingestion from multiple sources (CSV, SQL)</li><li>Advanced data cleaning and preprocessing pipelines</li><li>Interactive visualizations and dashboards</li><li>Export functionality for reports (PDF, Excel)</li>"
+      "description": "A comprehensive data analysis platform that transforms raw data into actionable insights. The system handles data ingestion, processing, analysis, and visualization, making it easier for organizations to make data-driven decisions.",
+      "features": "<li>Automated data ingestion from multiple sources</li><li>Advanced data cleaning and preprocessing</li><li>Machine learning model training and deployment</li><li>Interactive visualizations and dashboards</li><li>Automated report generation</li>",
+      "technicalDetails": "Built with Python's data science stack including Pandas for data manipulation, Scikit-learn and TensorFlow for machine learning, and Plotly for interactive visualizations. Uses FastAPI for the backend API service and Redis for caching frequently accessed data.",
+      "implementation": "Implemented a modular architecture with separate components for data processing, analysis, and visualization. Used Docker containers for reproducible environments and easy deployment. Integrated automated testing for data pipelines and model validation.",
+      "gallery": [
+        {
+          "src": "/img/ds_project1.jpg",
+          "alt": "Data Analysis Dashboard",
+          "caption": "Interactive data analysis dashboard"
+        },
+        {
+          "src": "/img/placeholder-ds2.jpg",
+          "alt": "Data Processing Pipeline",
+          "caption": "Advanced data processing pipeline"
+        },
+        {
+          "src": "/img/placeholder-ds3.jpg",
+          "alt": "ML Model Training",
+          "caption": "Machine learning model training interface"
+        },
+        {
+          "src": "/img/placeholder-ds4.jpg",
+          "alt": "Visualization Tools",
+          "caption": "Interactive data visualization tools"
+        },
+        {
+          "src": "/img/placeholder-ds5.jpg",
+          "alt": "Report Generation",
+          "caption": "Automated report generation system"
+        }
+      ]
     }
   },
   {
     "id": "project-delta",
-    "title": "Website Project",
+    "title": "WebAssembly Image Processing",
     "filterClasses": "other web-app",
     "imageSrcs": [
       "/img/website_project1.jpg",
-      "data:image/svg+xml;charset=UTF-8,%3csvg width='500' height='300' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 300' preserveAspectRatio='none'%3e%3crect width='100%25' height='100%25' fill='%23e9ecef'%3e%3c/rect%3e%3c/svg%3e",
-      "data:image/svg+xml;charset=UTF-8,%3csvg width='500' height='300' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 300' preserveAspectRatio='none'%3e%3crect width='100%25' height='100%25' fill='%23e9ecef'%3e%3c/rect%3e%3c/svg%3e"
+      "/img/placeholder-web2.jpg",
+      "/img/placeholder-web3.jpg",
+      "/img/placeholder-web4.jpg",
+      "/img/placeholder-web5.jpg"
     ],
     "categories": ["Web App", "Other"],
-    "shortDescription": "An experimental project exploring WebAssembly for browser-based image processing.",
-    "technologies": ["Rust", "WebAssembly", "JavaScript"],
+    "shortDescription": "A high-performance image processing application that leverages WebAssembly for near-native speed in the browser.",
+    "technologies": ["Rust", "WebAssembly", "JavaScript", "Canvas API", "Web Workers"],
     "githubUrl": "#",
+    "liveUrl": "#",
     "modalData": {
-      "description": "An experimental project exploring WebAssembly for browser-based image processing. This tool demonstrates how Rust can be compiled to WASM to perform computationally intensive tasks directly in the browser at high speed.",
-      "features": "<li>High-performance, in-browser image filtering (grayscale, sepia, invert)</li><li>Leverages WebAssembly for near-native processing speed</li><li>Real-time previews and adjustments</li><li>Minimal JavaScript footprint for core functionality</li>"
+      "description": "An innovative web application that brings desktop-level image processing performance to the browser using WebAssembly. The project demonstrates how modern web technologies can be used to create high-performance applications without sacrificing user experience.",
+      "features": "<li>Real-time image processing and filters</li><li>Batch processing capabilities</li><li>Custom filter creation tools</li><li>Performance comparison metrics</li><li>Offline processing support</li>",
+      "technicalDetails": "Core image processing algorithms are written in Rust and compiled to WebAssembly for optimal performance. Uses Web Workers for concurrent processing and the Canvas API for image manipulation. Implements a custom memory management system for handling large images.",
+      "implementation": "Adopted a hybrid approach using Rust for computation-heavy tasks and JavaScript for UI interactions. Implemented progressive enhancement for browsers without WebAssembly support. Used automated benchmarking to ensure consistent performance across different devices.",
+      "gallery": [
+        {
+          "src": "/img/website_project1.jpg",
+          "alt": "Image Processing Interface",
+          "caption": "Main image processing interface"
+        },
+        {
+          "src": "/img/placeholder-web2.jpg",
+          "alt": "Filter Gallery",
+          "caption": "Collection of available filters"
+        },
+        {
+          "src": "/img/placeholder-web3.jpg",
+          "alt": "Custom Filter Creation",
+          "caption": "Custom filter creation interface"
+        },
+        {
+          "src": "/img/placeholder-web4.jpg",
+          "alt": "Batch Processing",
+          "caption": "Batch image processing tool"
+        },
+        {
+          "src": "/img/placeholder-web5.jpg",
+          "alt": "Performance Metrics",
+          "caption": "Performance comparison dashboard"
+        }
+      ]
+    }
+  },
+  {
+    "id": "project-epsilon",
+    "title": "Predictive Analytics Engine",
+    "filterClasses": "data-science machine-learning",
+    "imageSrcs": [
+      "/img/ds_project1.jpg",
+      "/img/placeholder-ml2.jpg",
+      "/img/placeholder-ml3.jpg",
+      "/img/placeholder-ml4.jpg",
+      "/img/placeholder-ml5.jpg"
+    ],
+    "categories": ["Data Science", "Machine Learning"],
+    "shortDescription": "A sophisticated machine learning platform that automates the entire ML pipeline from data preprocessing to model deployment.",
+    "technologies": ["Python", "TensorFlow", "scikit-learn", "MLflow", "Docker", "Kubernetes"],
+    "githubUrl": "#",
+    "liveUrl": "#",
+    "modalData": {
+      "description": "An enterprise-grade machine learning platform that automates and streamlines the entire ML lifecycle. The system handles everything from data preprocessing to model deployment, making advanced analytics accessible to organizations of all sizes.",
+      "features": "<li>Automated feature engineering and selection</li><li>Intelligent model selection and tuning</li><li>Real-time performance monitoring</li><li>Model versioning and A/B testing</li><li>Automated model retraining</li>",
+      "technicalDetails": "Built on a microservices architecture using Python for the core ML components. Utilizes TensorFlow and scikit-learn for model training, MLflow for experiment tracking, and Kubernetes for orchestration. Implements custom algorithms for automated feature engineering and model selection.",
+      "implementation": "Followed MLOps best practices with automated testing and deployment pipelines. Implemented a modular architecture for easy extension and maintenance. Used Docker containers for reproducible environments and Kubernetes for scalable deployment.",
+      "gallery": [
+        {
+          "src": "/img/ds_project1.jpg",
+          "alt": "ML Pipeline Dashboard",
+          "caption": "Machine learning pipeline overview"
+        },
+        {
+          "src": "/img/placeholder-ml2.jpg",
+          "alt": "Model Selection",
+          "caption": "Automated model selection interface"
+        },
+        {
+          "src": "/img/placeholder-ml3.jpg",
+          "alt": "Feature Engineering",
+          "caption": "Advanced feature engineering tools"
+        },
+        {
+          "src": "/img/placeholder-ml4.jpg",
+          "alt": "Performance Monitoring",
+          "caption": "Real-time model performance monitoring"
+        },
+        {
+          "src": "/img/placeholder-ml5.jpg",
+          "alt": "Deployment Dashboard",
+          "caption": "Model deployment and versioning system"
+        }
+      ]
     }
   }
 ] 

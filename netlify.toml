@@ -23,42 +23,66 @@
   to = "/404.html"
   status = 404
 
-# Redirects and Rewrites (Optional, but good to know)
-# Example: Redirect all www to non-www
-# [[redirects]]
-#  from = "https://www.yourdomain.com/*"
-#  to = "https://yourdomain.com/:splat"
-#  status = 301
-#  force = true
+# Force HTTPS for all requests
+[[redirects]]
+  from = "http://*"
+  to = "https://:splat"
+  status = 301
+  force = true
 
 # Custom HTTP Headers for Security & Privacy
 [[headers]]
-  # Apply these headers to all paths served by Netlify
   for = "/*"
   [headers.values]
-    # Content Security Policy (CSP)
-    # This can complement or replace the CSP meta tag in your index.html.
-    # Headers are generally more flexible and can be updated without redeploying HTML.
-    # Ensure this matches or is stricter than your meta tag CSP.
-    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data:;"
-    # Note: If you use the CSP header here, you might remove the meta tag from index.html to avoid redundancy,
-    # but having both is not harmful (the stricter of the two will apply).
-    # The 'unsafe-inline' for style-src might be needed if you have any inline styles that are not covered by hashes/nonces (your current project seems to avoid complex inline styles).
-    # For your current setup, the meta tag CSP is fine. If you choose to use the header CSP, ensure it's correctly configured.
+    # Enhanced Content Security Policy
+    Content-Security-Policy = """
+      default-src 'self';
+      script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com;
+      style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com;
+      font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com;
+      img-src 'self' data: https:;
+      connect-src 'self' https://api.netlify.com;
+      frame-src 'none';
+      object-src 'none';
+      base-uri 'self';
+      form-action 'self';
+      frame-ancestors 'none';
+      upgrade-insecure-requests;
+      block-all-mixed-content"""
 
-    # Prevents your site from being rendered in an iframe/frame/object (clickjacking protection)
+    # Prevents your site from being rendered in an iframe (clickjacking protection)
     X-Frame-Options = "DENY"
 
-    # Prevents browsers from trying to guess the content type, reducing XSS risk
+    # Prevents browsers from trying to guess the content type
     X-Content-Type-Options = "nosniff"
 
-    # Controls how much referrer information is sent with requests
+    # Enhanced referrer policy
     Referrer-Policy = "strict-origin-when-cross-origin"
+
+    # Comprehensive Permissions Policy
+    Permissions-Policy = """
+      accelerometer=(),
+      ambient-light-sensor=(),
+      autoplay=(),
+      camera=(),
+      encrypted-media=(),
+      fullscreen=(self),
+      geolocation=(),
+      gyroscope=(),
+      magnetometer=(),
+      microphone=(),
+      midi=(),
+      payment=(),
+      picture-in-picture=(),
+      speaker=(),
+      usb=(),
+      vibrate=(),
+      vr=()"""
 
     # Permissions Policy (formerly Feature Policy)
     # Explicitly disable features not needed by your site.
     # Example: Deny access to microphone, camera, geolocation, etc.
-    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+    # Permissions-Policy = "camera=(), microphone=(), geolocation=()"
 
     # HTTP Strict Transport Security (HSTS)
     # Tells browsers to always connect to your site via HTTPS.
