@@ -510,28 +510,66 @@ document.addEventListener('DOMContentLoaded', () => {
                 const featuredCategoriesHTML = featuredProject.categories.map(cat => `<span class="category-tag">${escapeHTML(cat)}</span>`).join('');
                 const featuredTechnologiesHTML = featuredProject.technologies.map(tech => `<span>${escapeHTML(tech)}</span>`).join('');
 
-                featuredProjectWrapper.innerHTML = `
-                    <h3>Featured Project: <span class="highlight">${escapeHTML(featuredProject.title)}</span></h3>
-                    <div class="featured-project-content">
-                        <div class="featured-project-image-area">
-                            <div class="image-carousel" data-project-carousel="featured">
-                                <div class="carousel-images">${featuredImagesHTML}</div>
-                                <button class="carousel-nav prev" aria-label="Previous image"><i class="fas fa-chevron-left"></i></button>
-                                <button class="carousel-nav next" aria-label="Next image"><i class="fas fa-chevron-right"></i></button>
-                            </div>
-                        </div>
-                        <div class="featured-project-details">
-                            <p class="project-categories">${featuredCategoriesHTML}</p>
-                            <h4>${escapeHTML(featuredProject.title)}</h4>
-                            <p>${escapeHTML(featuredProject.modalData.description)}</p>
-                            <div class="project-technologies">${featuredTechnologiesHTML}</div>
-                            <div class="project-links">
-                                <button class="btn btn-primary view-project-details">View Details</button>
-                                <a href="${escapeHTML(featuredProject.githubUrl)}" class="btn btn-secondary" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> Explore on GitHub</a>
-                            </div>
-                        </div>
-                    </div>
-                `;
+                const featuredContent = document.createElement('div');
+                featuredContent.className = 'featured-project-content';
+
+                const featuredImageArea = document.createElement('div');
+                featuredImageArea.className = 'featured-project-image-area';
+                const featuredCarousel = document.createElement('div');
+                featuredCarousel.className = 'image-carousel';
+                featuredCarousel.setAttribute('data-project-carousel', 'featured');
+                const featuredCarouselImages = document.createElement('div');
+                featuredCarouselImages.className = 'carousel-images';
+                featuredCarouselImages.innerHTML = featuredImagesHTML;
+                const featuredPrevButton = document.createElement('button');
+                featuredPrevButton.className = 'carousel-nav prev';
+                featuredPrevButton.setAttribute('aria-label', 'Previous image');
+                featuredPrevButton.innerHTML = '<i class="fas fa-chevron-left"></i>';
+                const featuredNextButton = document.createElement('button');
+                featuredNextButton.className = 'carousel-nav next';
+                featuredNextButton.setAttribute('aria-label', 'Next image');
+                featuredNextButton.innerHTML = '<i class="fas fa-chevron-right"></i>';
+
+                featuredCarousel.appendChild(featuredCarouselImages);
+                featuredCarousel.appendChild(featuredPrevButton);
+                featuredCarousel.appendChild(featuredNextButton);
+                featuredImageArea.appendChild(featuredCarousel);
+
+                const featuredProjectDetails = document.createElement('div');
+                featuredProjectDetails.className = 'featured-project-details';
+                const featuredTitle = document.createElement('h4');
+                featuredTitle.textContent = escapeHTML(featuredProject.title);
+                const featuredDescription = document.createElement('p');
+                featuredDescription.textContent = escapeHTML(featuredProject.modalData.description);
+                const featuredTechnologies = document.createElement('div');
+                featuredTechnologies.className = 'project-technologies';
+                featuredTechnologies.innerHTML = featuredTechnologiesHTML;
+                const featuredLinks = document.createElement('div');
+                featuredLinks.className = 'project-links';
+                const featuredViewDetailsBtn = document.createElement('button');
+                featuredViewDetailsBtn.className = 'btn btn-primary view-project-details';
+                featuredViewDetailsBtn.textContent = 'View Details';
+                const featuredGithubLink = document.createElement('a');
+                featuredGithubLink.className = 'btn btn-secondary';
+                featuredGithubLink.setAttribute('href', escapeHTML(featuredProject.githubUrl));
+                featuredGithubLink.setAttribute('target', '_blank');
+                featuredGithubLink.setAttribute('rel', 'noopener noreferrer');
+                featuredGithubLink.innerHTML = '<i class="fab fa-github"></i> Explore on GitHub';
+
+                featuredLinks.appendChild(featuredViewDetailsBtn);
+                featuredLinks.appendChild(featuredGithubLink);
+                featuredProjectDetails.appendChild(featuredTitle);
+                featuredProjectDetails.appendChild(featuredDescription);
+                featuredProjectDetails.appendChild(featuredTechnologies);
+                featuredProjectDetails.appendChild(featuredLinks);
+
+                featuredContent.appendChild(featuredImageArea);
+                featuredContent.appendChild(featuredProjectDetails);
+
+                while (featuredProjectWrapper.firstChild) {
+                    featuredProjectWrapper.removeChild(featuredProjectWrapper.firstChild);
+                }
+                featuredProjectWrapper.appendChild(featuredContent);
                  // Add data attributes to the wrapper for the modal
                 featuredProjectWrapper.setAttribute('data-project-title', escapeHTML(featuredProject.title));
                 featuredProjectWrapper.setAttribute('data-project-description', escapeHTML(featuredProject.modalData.description));
@@ -544,7 +582,27 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             // Render the rest of the projects
-            projectsGrid.innerHTML = regularProjects.map(renderProjectCard).join('');
+            while (projectsGrid.firstChild) {
+                projectsGrid.removeChild(projectsGrid.firstChild);
+            }
+            
+            regularProjects.forEach(project => {
+                // Create the project card element directly
+                const projectElement = document.createElement('div');
+                projectElement.className = `project-card ${project.filterClasses} animate-on-scroll fade-up`;
+                projectElement.setAttribute('data-project-title', escapeHTML(project.title));
+                projectElement.setAttribute('data-project-description', escapeHTML(project.modalData.description));
+                projectElement.setAttribute('data-project-features', escapeHTML(project.modalData.features));
+                projectElement.setAttribute('data-project-technical', escapeHTML(project.modalData.technicalDetails || ''));
+                projectElement.setAttribute('data-project-implementation', escapeHTML(project.modalData.implementation || ''));
+                projectElement.setAttribute('data-gallery', escapeHTML(JSON.stringify(project.modalData.gallery || [])));
+                projectElement.setAttribute('data-live-url', escapeHTML(project.liveUrl || ''));
+                projectElement.setAttribute('data-github-url', escapeHTML(project.githubUrl || ''));
+
+                // Set the inner HTML using the existing renderProjectCard function
+                projectElement.innerHTML = renderProjectCard(project);
+                projectsGrid.appendChild(projectElement);
+            });
             
             // Re-initialize all functionalities that depend on the dynamic content
             selectAll('.image-carousel').forEach(initializeProjectCarousel);
@@ -553,8 +611,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
         } catch (error) {
             console.error("Failed to load projects:", error);
-            projectsGrid.innerHTML = '<p class="error-message">Could not load projects. Please try again later.</p>';
-            featuredProjectWrapper.innerHTML = '';
+            const errorMessage = document.createElement('p');
+            errorMessage.className = 'error-message';
+            errorMessage.textContent = 'Could not load projects. Please try again later.';
+            
+            while (projectsGrid.firstChild) {
+                projectsGrid.removeChild(projectsGrid.firstChild);
+            }
+            projectsGrid.appendChild(errorMessage);
+            
+            while (featuredProjectWrapper.firstChild) {
+                featuredProjectWrapper.removeChild(featuredProjectWrapper.firstChild);
+            }
         }
     };
 
@@ -684,9 +752,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 // Set up gallery
                 try {
-                    currentGalleryImages = JSON.parse(projectCard.dataset.gallery || '[]');
+                    // Safely parse the gallery data with a fallback
+                    const galleryData = projectCard.dataset.gallery || '[]';
+                    currentGalleryImages = JSON.parse(galleryData.replace(/&quot;/g, '"'));
                 } catch (e) {
-                    console.error('Error parsing gallery data:', e);
+                    console.warn('Error parsing gallery data:', e);
                     currentGalleryImages = [];
                 }
                 if (currentGalleryImages.length > 0) {
@@ -866,9 +936,24 @@ document.addEventListener('DOMContentLoaded', () => {
                 const response = await fetch(contentFile);
                 if (response.ok) {
                     const content = await response.text();
-                    contentContainer.innerHTML = content;
+                    
+                    // Create a temporary container in memory
+                    const tempContainer = document.createElement('div');
+                    // Parse the content safely
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(content, 'text/html');
+                    
+                    // Clear existing content
+                    while (contentContainer.firstChild) {
+                        contentContainer.removeChild(contentContainer.firstChild);
+                    }
+                    
+                    // Append the new content safely
+                    Array.from(doc.body.children).forEach(child => {
+                        contentContainer.appendChild(document.importNode(child, true));
+                    });
 
-                    // Apply dynamic styles for data science dashboard after content is loaded
+                    // Apply dynamic styles for data science dashboard
                     if (targetId === 'skills-pane-devops') { // data science dashboard
                         const chartBars = contentContainer.querySelectorAll('.chart-bar');
                         chartBars.forEach(bar => {
@@ -927,12 +1012,24 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             } catch (error) {
                 console.error('Error loading skills content:', error);
-                contentContainer.innerHTML = `
-                    <div class="loading-placeholder">
-                        <i class="fas fa-exclamation-triangle"></i>
-                        <p>Failed to load content. Please try again.</p>
-                    </div>
-                `;
+                // Create error message element safely
+                const errorDiv = document.createElement('div');
+                errorDiv.className = 'loading-placeholder';
+                
+                const icon = document.createElement('i');
+                icon.className = 'fas fa-exclamation-triangle';
+                
+                const message = document.createElement('p');
+                message.textContent = 'Failed to load content. Please try again.';
+                
+                errorDiv.appendChild(icon);
+                errorDiv.appendChild(message);
+                
+                // Clear and append error message
+                while (contentContainer.firstChild) {
+                    contentContainer.removeChild(contentContainer.firstChild);
+                }
+                contentContainer.appendChild(errorDiv);
             }
         };
 
