@@ -52,7 +52,7 @@
   },
   {
     "id": "project-beta",
-    "title": "Mobile App Project",
+    "title": "Fitness Tracker Pro",
     "filterClasses": "mobile-app",
     "imageSrcs": [
       "/img/mobile_project1.jpg",
@@ -62,47 +62,47 @@
       "/img/placeholder-mobile5.jpg"
     ],
     "categories": ["Mobile App"],
-    "shortDescription": "A native mobile application for iOS and Android that helps users track their fitness goals and maintain healthy habits.",
-    "technologies": ["Swift", "Kotlin", "Firebase", "CoreML", "TensorFlow Lite"],
+    "shortDescription": "A comprehensive fitness tracking application leveraging AI for personalized workout plans, real-time form correction, and health analytics.",
+    "technologies": ["Swift", "Kotlin", "Firebase", "CoreML", "TensorFlow Lite", "HealthKit", "Google Fit API"],
     "githubUrl": "#",
     "liveUrl": "#",
     "modalData": {
-      "description": "A comprehensive fitness tracking application that combines cutting-edge mobile technologies with intuitive user experience. The app helps users set and achieve their fitness goals through personalized plans and AI-powered insights.",
-      "features": "<li>Personalized workout and nutrition planning</li><li>Real-time activity tracking with GPS</li><li>AI-powered form correction for exercises</li><li>Social features for community engagement</li><li>Integration with health platforms</li>",
-      "technicalDetails": "Developed native applications for both iOS (Swift) and Android (Kotlin) platforms. Utilized CoreML and TensorFlow Lite for on-device machine learning capabilities. Implemented Firebase for backend services including authentication, real-time database, and analytics.",
-      "implementation": "Adopted a modular architecture for code reusability across platforms. Implemented MVVM design pattern for better separation of concerns. Used Kotlin Multiplatform for shared business logic. Integrated CI/CD pipelines for automated testing and deployment to app stores.",
+      "description": "Fitness Tracker Pro is a cross-platform mobile application that revolutionizes personal fitness tracking through AI-powered insights and real-time feedback. The app provides personalized workout plans, nutrition tracking, and social features while leveraging device sensors and machine learning for accurate exercise form correction.",
+      "features": "<li>AI-powered workout plan generation based on user goals and progress</li><li>Real-time exercise form analysis using device camera</li><li>Integration with HealthKit and Google Fit for comprehensive health tracking</li><li>Social features including workout sharing and community challenges</li><li>Personalized nutrition planning with meal tracking</li>",
+      "technicalDetails": "Developed native applications using Swift for iOS and Kotlin for Android, with shared business logic through Kotlin Multiplatform. Implemented CoreML and TensorFlow Lite for on-device machine learning capabilities, ensuring privacy-first approach to user data. Utilized Firebase for backend services including real-time database, authentication, and analytics.",
+      "implementation": "Adopted MVVM architecture with clean architecture principles for maintainable and testable code. Implemented comprehensive CI/CD pipeline using Fastlane for automated testing and deployment. Used Protocol-Oriented Programming in Swift and Interface-based development in Kotlin for maximum code reuse and flexibility.",
       "gallery": [
         {
           "src": "/img/mobile_project1.jpg",
-          "alt": "Fitness App Home",
-          "caption": "Personalized dashboard with daily activity overview"
+          "alt": "Fitness Dashboard",
+          "caption": "AI-powered fitness dashboard with personalized recommendations"
         },
         {
           "src": "/img/placeholder-mobile2.jpg",
-          "alt": "Workout Tracking",
-          "caption": "Real-time workout tracking with AI form correction"
+          "alt": "Form Analysis",
+          "caption": "Real-time exercise form analysis and correction"
         },
         {
           "src": "/img/placeholder-mobile3.jpg",
-          "alt": "Nutrition Planning",
-          "caption": "Smart nutrition planning and tracking"
+          "alt": "Nutrition Tracking",
+          "caption": "Comprehensive nutrition tracking and meal planning"
         },
         {
           "src": "/img/placeholder-mobile4.jpg",
-          "alt": "Community Features",
-          "caption": "Social features for community engagement"
+          "alt": "Social Features",
+          "caption": "Community features and workout sharing"
         },
         {
           "src": "/img/placeholder-mobile5.jpg",
           "alt": "Progress Analytics",
-          "caption": "Detailed progress analytics and insights"
+          "caption": "Detailed progress tracking and analytics"
         }
       ]
     }
   },
   {
     "id": "project-gamma",
-    "title": "Data Science Project",
+    "title": "Analysis Toolkit",
     "filterClasses": "data-science",
     "imageSrcs": [
       "/img/ds_project1.jpg",
@@ -112,47 +112,47 @@
       "/img/placeholder-ds5.jpg"
     ],
     "categories": ["Data Science"],
-    "shortDescription": "An advanced data analysis platform that processes large datasets and generates actionable insights through machine learning algorithms.",
-    "technologies": ["Python", "Pandas", "Scikit-learn", "TensorFlow", "Plotly", "FastAPI"],
+    "shortDescription": "A comprehensive business intelligence platform that unifies file, website, and text analysis into a single AI-powered web application, reducing analysis time by 70% through advanced data processing and interactive visualizations.",
+    "technologies": ["Python", "Streamlit", "NumPy", "Pandas", "TextBlob", "Groq API", "Altair", "Matplotlib"],
     "githubUrl": "#",
     "liveUrl": "#",
     "modalData": {
-      "description": "A comprehensive data analysis platform that transforms raw data into actionable insights. The system handles data ingestion, processing, analysis, and visualization, making it easier for organizations to make data-driven decisions.",
-      "features": "<li>Automated data ingestion from multiple sources</li><li>Advanced data cleaning and preprocessing</li><li>Machine learning model training and deployment</li><li>Interactive visualizations and dashboards</li><li>Automated report generation</li>",
-      "technicalDetails": "Built with Python's data science stack including Pandas for data manipulation, Scikit-learn and TensorFlow for machine learning, and Plotly for interactive visualizations. Uses FastAPI for the backend API service and Redis for caching frequently accessed data.",
-      "implementation": "Implemented a modular architecture with separate components for data processing, analysis, and visualization. Used Docker containers for reproducible environments and easy deployment. Integrated automated testing for data pipelines and model validation.",
+      "description": "Analysis Toolkit is an enterprise-grade business analysis platform built with Python and Streamlit that seamlessly processes diverse data sources including files (CSV, Excel, PDF), websites, and text content. The platform combines AI-powered insights with interactive visualizations and enterprise-level security to deliver actionable intelligence through an intuitive web interface. Designed for both technical and non-technical users, it eliminates the need for multiple specialized tools while ensuring robust data processing and comprehensive analytical capabilities.",
+      "features": "<li>Multi-domain analysis supporting files, websites, and text processing</li><li>AI-enhanced insights through Groq API integration</li><li>Interactive visualizations with real-time charts and dashboards</li><li>Enterprise-grade security with multi-layer validation</li><li>70% reduction in analysis time through streamlined workflows</li>",
+      "technicalDetails": "Built with Python and Streamlit for a robust web interface, utilizing NumPy and Pandas for data processing. Integrates TextBlob for natural language processing and Groq API for advanced machine learning capabilities. Features Altair and Matplotlib for interactive data visualizations, all wrapped in a modular architecture for scalability.",
+      "implementation": "Implemented a modular architecture focusing on security and scalability. Integrated comprehensive audit logging and secure data processing protocols. Developed custom data processing pipelines for various file formats and web scraping capabilities. Established real-time visualization updates and interactive dashboard components.",
       "gallery": [
         {
           "src": "/img/ds_project1.jpg",
-          "alt": "Data Analysis Dashboard",
-          "caption": "Interactive data analysis dashboard"
+          "alt": "Analysis Dashboard",
+          "caption": "Main analysis dashboard with real-time visualizations"
         },
         {
           "src": "/img/placeholder-ds2.jpg",
-          "alt": "Data Processing Pipeline",
-          "caption": "Advanced data processing pipeline"
+          "alt": "Multi-Domain Analysis",
+          "caption": "Unified interface for file, website, and text analysis"
         },
         {
           "src": "/img/placeholder-ds3.jpg",
-          "alt": "ML Model Training",
-          "caption": "Machine learning model training interface"
+          "alt": "AI Insights",
+          "caption": "AI-powered analysis and insights generation"
         },
         {
           "src": "/img/placeholder-ds4.jpg",
-          "alt": "Visualization Tools",
-          "caption": "Interactive data visualization tools"
+          "alt": "Data Processing",
+          "caption": "Advanced data processing and transformation tools"
         },
         {
           "src": "/img/placeholder-ds5.jpg",
-          "alt": "Report Generation",
-          "caption": "Automated report generation system"
+          "alt": "Security Features",
+          "caption": "Enterprise security and audit logging interface"
         }
       ]
     }
   },
   {
     "id": "project-delta",
-    "title": "WebAssembly Image Processing",
+    "title": "WebAssembly Image Studio",
     "filterClasses": "other web-app",
     "imageSrcs": [
       "/img/website_project1.jpg",
@@ -162,40 +162,40 @@
       "/img/placeholder-web5.jpg"
     ],
     "categories": ["Web App", "Other"],
-    "shortDescription": "A high-performance image processing application that leverages WebAssembly for near-native speed in the browser.",
-    "technologies": ["Rust", "WebAssembly", "JavaScript", "Canvas API", "Web Workers"],
+    "shortDescription": "A high-performance image processing application leveraging WebAssembly and Rust for near-native speed in the browser, featuring real-time filters, batch processing, and advanced image manipulation tools.",
+    "technologies": ["Rust", "WebAssembly", "JavaScript", "Canvas API", "Web Workers", "IndexedDB", "Service Workers"],
     "githubUrl": "#",
     "liveUrl": "#",
     "modalData": {
-      "description": "An innovative web application that brings desktop-level image processing performance to the browser using WebAssembly. The project demonstrates how modern web technologies can be used to create high-performance applications without sacrificing user experience.",
-      "features": "<li>Real-time image processing and filters</li><li>Batch processing capabilities</li><li>Custom filter creation tools</li><li>Performance comparison metrics</li><li>Offline processing support</li>",
-      "technicalDetails": "Core image processing algorithms are written in Rust and compiled to WebAssembly for optimal performance. Uses Web Workers for concurrent processing and the Canvas API for image manipulation. Implements a custom memory management system for handling large images.",
-      "implementation": "Adopted a hybrid approach using Rust for computation-heavy tasks and JavaScript for UI interactions. Implemented progressive enhancement for browsers without WebAssembly support. Used automated benchmarking to ensure consistent performance across different devices.",
+      "description": "WebAssembly Image Studio is a cutting-edge web application that brings desktop-level image processing performance to the browser. Built with Rust and compiled to WebAssembly, it delivers exceptional performance while maintaining a smooth user experience. The application supports complex image manipulations, batch processing, and custom filter creation, all while running entirely in the browser.",
+      "features": "<li>High-performance image processing using Rust and WebAssembly</li><li>Real-time filter preview and application</li><li>Batch processing with progress tracking</li><li>Custom filter creation and sharing</li><li>Offline processing support via Service Workers</li>",
+      "technicalDetails": "Core image processing algorithms implemented in Rust and compiled to WebAssembly for optimal performance. Utilizes Web Workers for concurrent processing and the Canvas API for image manipulation. Features IndexedDB for local storage and Service Workers for offline functionality. Implements custom memory management for handling large images efficiently.",
+      "implementation": "Adopted a hybrid architecture using Rust for computation-heavy tasks and JavaScript for UI interactions. Implemented progressive enhancement for browsers without WebAssembly support. Developed custom memory management system for large image processing. Created automated benchmarking system for performance optimization.",
       "gallery": [
         {
           "src": "/img/website_project1.jpg",
-          "alt": "Image Processing Interface",
-          "caption": "Main image processing interface"
+          "alt": "Main Interface",
+          "caption": "Main image processing interface with real-time preview"
         },
         {
           "src": "/img/placeholder-web2.jpg",
           "alt": "Filter Gallery",
-          "caption": "Collection of available filters"
+          "caption": "Extensive filter gallery with custom options"
         },
         {
           "src": "/img/placeholder-web3.jpg",
-          "alt": "Custom Filter Creation",
-          "caption": "Custom filter creation interface"
+          "alt": "Batch Processing",
+          "caption": "Efficient batch processing interface"
         },
         {
           "src": "/img/placeholder-web4.jpg",
-          "alt": "Batch Processing",
-          "caption": "Batch image processing tool"
+          "alt": "Custom Filters",
+          "caption": "Custom filter creation and sharing platform"
         },
         {
           "src": "/img/placeholder-web5.jpg",
           "alt": "Performance Metrics",
-          "caption": "Performance comparison dashboard"
+          "caption": "Real-time performance monitoring dashboard"
         }
       ]
     }
