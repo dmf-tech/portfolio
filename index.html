@@ -1018,15 +1018,22 @@
         <section id="projects" class="projects-section">
             <div class="container">
                 <h2 class="section-title animate-on-scroll fade-up">My Projects</h2>
-                <!-- Optional: A brief subtitle for the projects section can go here if desired -->
-                <!-- <p class="section-subtitle animate-on-scroll fade-up">Here's a selection of my recent work. Filter by category to see more.</p> -->
-
-                <!-- Featured Project -->
-                <div class="featured-project-wrapper animate-on-scroll fade-up delay-0-4s">
-                    <!-- Featured project will be dynamically loaded here -->
+                
+                <!-- Under Construction Notice -->
+                <div class="under-construction animate-on-scroll fade-up delay-0-2s">
+                    <div class="under-construction-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3>Projects Section Under Development</h3>
+                    <p>I'm currently enhancing this section to showcase my latest work and provide a better experience. Check back soon to see my updated portfolio!</p>
+                    <p class="estimated-date">Expected completion: August 2024</p>
                 </div>
-                <!-- End Featured Project -->
-
+                
+                <!-- Comment out existing content temporarily -->
+                <!--
+                <div class="featured-project-wrapper animate-on-scroll fade-up delay-0-4s">
+                </div>
+                
                 <div class="project-filters animate-on-scroll fade-up delay-0-5s">
                     <button class="btn filter-btn active" data-filter="*">All Projects</button>
                     <button class="btn filter-btn" data-filter=".web-app">Web Apps</button>
@@ -1034,12 +1041,11 @@
                     <button class="btn filter-btn" data-filter=".ui-ux">UI/UX Design</button>
                     <button class="btn filter-btn" data-filter=".data-science">Data Science</button>
                     <button class="btn filter-btn" data-filter=".other">Other</button>
-                    <!-- Add or remove categories as needed -->
                 </div>
 
                 <div class="projects-grid">
-                    <!-- Project cards will be dynamically loaded here -->
                 </div>
+                -->
             </div>
         </section>
 
@@ -1438,7 +1444,7 @@
         <div class="resume-modal-content">
             <div class="resume-modal-header">
                 <div class="resume-actions">
-                    <a href="/resume/Daniel-Florencio-Resume.pdf" id="downloadResumeBtn" class="btn btn-primary btn-small" download>
+                    <a href="/resume/Daniel-Florencio-Resume.pdf" id="downloadResumeBtn" class="btn btn-primary btn-small temporarily-hidden" download>
                         <i class="fas fa-download"></i> Download PDF
                     </a>
                     <button class="resume-modal-close" id="closeResumeModal" aria-label="Close modal">
@@ -1473,7 +1479,7 @@
     </footer>
 
     <!-- Dev Toggle Button -->
-    <button id="securityToggleBtn" title="Toggle security features for development">Security ON</button>
+    <button id="securityToggleBtn" class="temporarily-hidden" title="Toggle security features for development">Security ON</button>
 
     <!-- Scroll to Top Button -->
     <button id="scrollToTopBtn" title="Go to top" aria-label="Scroll to top of the page"><i class="fas fa-arrow-up"></i></button>
