@@ -11028,3 +11028,53 @@ section > .container > h2:first-child {
         opacity: 0 !important;
         pointer-events: none !important;
     }
+
+    /* Under Construction Component */
+.under-construction {
+    background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
+    border-radius: 8px;
+    padding: 2rem;
+    margin: 2rem auto;
+    max-width: 800px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.under-construction::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #ffd700, #ff7f50);
+}
+
+.under-construction-icon {
+    font-size: 3rem;
+    color: #ff7f50;
+    margin-bottom: 1rem;
+}
+
+.under-construction h3 {
+    color: #2c3e50;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.under-construction p {
+    color: #5a6c7d;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.under-construction .estimated-date {
+    font-weight: 600;
+    color: #2c3e50;
+    background: #f0f2f5;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    display: inline-block;
+}
