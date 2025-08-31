@@ -16,7 +16,7 @@ This portfolio is designed to be a dynamic and engaging representation of my wor
 *   **Project Showcase:** Detailed views of my key projects with descriptions, technologies used, and links to live demos or repositories.
 *   **Skills Overview:** A comprehensive list of my technical skills and proficiencies.
 *   **Experience & Education:** Sections detailing my professional background and academic achievements.
-*   **Blog Section:** (If applicable) A place for my thoughts on technology, development, and personal projects.
+
 *   **Contact Information:** Easy ways to get in touch with me.
 
 ## Built With
@@ -35,7 +35,7 @@ This project was built using a combination of modern web technologies:
 *   **Smooth Scrolling Navigation:** Easy navigation between sections.
 *   **Animated Sections on Scroll:** Content gracefully animates into view.
 *   **Project Filtering:** (If applicable) Ability to filter projects by category.
-*   **Interactive Modals:** For detailed views of projects, certifications, or blog posts.
+*   **Interactive Modals:** For detailed views of projects and certifications.
 *   **Image Carousels:** For showcasing multiple images within projects or certifications.
 *   **Contact Form/Links:** Direct ways to connect.
 

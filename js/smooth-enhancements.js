@@ -182,10 +182,10 @@
 
     // Smooth Modal Transitions (preserve existing functionality)
     function enhanceModals() {
-        const modals = document.querySelectorAll('.modal, .cert-modal, .blog-modal');
+        const modals = document.querySelectorAll('.modal, .cert-modal');
         
         modals.forEach(modal => {
-            const content = modal.querySelector('.modal-content, .cert-modal-content, .blog-modal-content');
+            const content = modal.querySelector('.modal-content, .cert-modal-content');
             
             // Enhance opening transition
             const originalDisplay = modal.style.display;

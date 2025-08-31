@@ -4,7 +4,7 @@ const path = require('path');
 exports.handler = async function(event, context) {
     const { file } = event.queryStringParameters || {};
 
-    const allowedFiles = ['resume.json', 'projects.json', 'blogs.json'];
+    const allowedFiles = ['resume.json', 'projects.json'];
 
     if (!file || !allowedFiles.includes(file)) {
         return {

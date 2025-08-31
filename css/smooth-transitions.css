@@ -167,23 +167,20 @@ html {
 
 /* Enhanced Modal Transitions */
 .modal,
-.cert-modal,
-.blog-modal {
+.cert-modal {
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
 }
 
 .modal-content,
-.cert-modal-content,
-.blog-modal-content {
+.cert-modal-content {
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
     will-change: transform, opacity;
 }
 
 .modal.active .modal-content,
-.cert-modal.active .cert-modal-content,
-.blog-modal.active .blog-modal-content {
+.cert-modal.active .cert-modal-content {
     transform: scale(1) translateZ(0) !important;
 }
 
