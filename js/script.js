@@ -494,9 +494,21 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!projectsGrid || !featuredProjectWrapper) return;
 
         try {
-            const response = await fetch('/.netlify/functions/getData?file=projects.json');
-            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-            const projects = await response.json();
+            // Try to fetch from Netlify function first (production), then fallback to direct file (local development)
+            let response;
+            let projects;
+            
+            try {
+                response = await fetch('/.netlify/functions/getData?file=projects.json');
+                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                projects = await response.json();
+            } catch (netlifyError) {
+                console.log('Netlify function not available, trying direct file access...');
+                // Fallback to direct file access for local development
+                response = await fetch('/projects.json');
+                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                projects = await response.json();
+            }
 
             // Find the featured project
             const featuredProject = projects.find(p => p.featured);
