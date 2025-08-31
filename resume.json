@@ -5,10 +5,10 @@
     "email": "dmflorencio.main@gmail.com",
     "phone": "",
     "linkedin": "https://www.linkedin.com/in/dmflorencio/",
-    "github": "https://github.com/Daniel-Florencio",
+    "github": "https://github.com/DMcloud022",
     "location": "Philippines"
   },
-  "summary": "A results-oriented Full-Stack Developer and AI Enthusiast with 3+ years of experience across telecommunications, FinTech, and AI sectors. Passionate about building intelligent, scalable applications that bridge the gap between complex problems and elegant user experiences. Proven ability to architect robust systems, lead AI integration projects, and deliver high-quality software solutions. Graduated Cum Laude with a specialization in Data Science.",
+  "summary": "A results-oriented Full-Stack Developer and AI Enthusiast with 1+ years of experience across telecommunications, FinTech, and AI sectors. Passionate about building intelligent, scalable applications that bridge the gap between complex problems and elegant user experiences. Proven ability to architect robust systems, lead AI integration projects, and deliver high-quality software solutions. Graduated Cum Laude with a specialization in Data Science.",
   "experience": [
     {
       "title": "Full Stack Developer",
@@ -81,11 +81,6 @@
     "Generative AI", "Large Language Models (LLMs)", "RAG Pipelines", "Vector Databases", "Convolutional Neural Networks (CNN)", "Scikit-learn", "TensorFlow", "Python", "Node.js", "REST API Design", "SQL (MySQL, PostgreSQL)", "JavaScript (ES6+)", "HTML5", "CSS3", "React", "Flutter", "Figma", "Linux Administration", "Docker", "Proxmox VE", "Bash Scripting", "FreeSWITCH", "Network Security"
   ],
   "projects": [
-    {
-      "name": "AI-Powered Customer Support Agent",
-      "technologies": ["Python", "FastAPI", "LLMs", "RAG", "ChromaDB", "Docker"],
-      "description": "Developed a conversational AI agent using LLMs and a RAG pipeline to answer customer queries from a knowledge base, improving response time by 90%. Built with Python, FastAPI, and a vector database (ChromaDB), and deployed in a Docker container for scalability."
-    },
     {
       "name": "Personal Portfolio Website",
       "technologies": ["JavaScript (ES6+)", "HTML5", "CSS3", "Netlify"],

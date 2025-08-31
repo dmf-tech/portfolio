@@ -39,23 +39,29 @@
 }
 
 .project-modal-header {
-    padding: 24px 32px;
-    border-bottom: 1px solid #eaeaea;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: sticky;
-    top: 0;
+    padding: 32px 32px 24px 32px;
     background: #ffffff;
-    z-index: 10;
+    position: relative;
+    text-align: center;
 }
 
 .project-modal-header h2 {
-    font-size: 1.8rem;
-    color: #1e293b;
-    margin: 0;
-    font-weight: 600;
-    line-height: 1.4;
+    font-size: 1.8rem !important;
+    color: #1e293b !important;
+    margin: 0 !important;
+    font-weight: 600 !important;
+    line-height: 1.4 !important;
+    text-align: center !important;
+    display: block !important;
+    width: 100% !important;
+}
+
+/* More specific selector to ensure centering */
+#projectModal .project-modal-header h2,
+#projectModalTitle {
+    text-align: center !important;
+    margin: 0 auto !important;
+    display: block !important;
 }
 
 .project-modal-close {
@@ -71,6 +77,9 @@
     cursor: pointer;
     transition: all 0.2s ease;
     font-size: 1.2rem;
+    position: absolute;
+    right: 24px;
+    top: 24px;
 }
 
 .project-modal-close:hover {
@@ -305,12 +314,15 @@
     transform: translateY(-2px);
 }
 
-/* Project Links Section */
+/* Project Links Section - Completely Hidden */
 .project-links-modal {
-    margin-top: 32px;
-    display: flex;
-    gap: 16px;
-    justify-content: center;
+    display: none !important; /* Force hide the entire project links section */
+}
+
+/* Hide individual link buttons if they exist */
+#projectModalLiveLink,
+#projectModalGithubLink {
+    display: none !important;
 }
 
 .project-links-modal .btn {
@@ -355,11 +367,16 @@
 /* Responsive Styles */
 @media (max-width: 768px) {
     .project-modal-header {
-        padding: 20px;
+        padding: 24px 20px 20px 20px;
     }
 
     .project-modal-header h2 {
         font-size: 1.5rem;
+    }
+
+    .project-modal-close {
+        right: 16px;
+        top: 20px;
     }
 
     .project-modal-body {
@@ -392,11 +409,19 @@
 
 @media (max-width: 480px) {
     .project-modal-header {
-        padding: 16px;
+        padding: 20px 16px 16px 16px;
     }
 
     .project-modal-header h2 {
         font-size: 1.3rem;
+    }
+
+    .project-modal-close {
+        right: 12px;
+        top: 16px;
+        width: 36px;
+        height: 36px;
+        font-size: 1rem;
     }
 
     .project-modal-body {

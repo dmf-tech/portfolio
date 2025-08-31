@@ -14,7 +14,7 @@
     "categories": ["Web App", "UI/UX"],
     "shortDescription": "A responsive e-commerce platform designed for a curated collection of timepieces, featuring dynamic product catalogs and efficient multi-step checkout.",
     "technologies": ["Vue.js", "Tailwind CSS", "Node.js", "MongoDB", "Redis", "Docker"],
-    "githubUrl": "#",
+    "githubUrl": "https://github.com/DMcloud022",
     "liveUrl": "#",
     "modalData": {
       "description": "Developed \"Demure Montres,\" an e-commerce platform for timepieces, focusing on seamless customer journeys from dynamic catalogs to efficient checkout. The platform serves both customers and administrators with intuitive interfaces and robust functionality.",
@@ -51,201 +51,42 @@
     }
   },
   {
-    "id": "project-beta",
-    "title": "Fitness Tracker Pro",
-    "filterClasses": "mobile-app",
-    "imageSrcs": [
-      "/img/mobile_project1.jpg",
-      "/img/placeholder-mobile2.jpg",
-      "/img/placeholder-mobile3.jpg",
-      "/img/placeholder-mobile4.jpg",
-      "/img/placeholder-mobile5.jpg"
-    ],
-    "categories": ["Mobile App"],
-    "shortDescription": "A comprehensive fitness tracking application leveraging AI for personalized workout plans, real-time form correction, and health analytics.",
-    "technologies": ["Swift", "Kotlin", "Firebase", "CoreML", "TensorFlow Lite", "HealthKit", "Google Fit API"],
-    "githubUrl": "#",
-    "liveUrl": "#",
-    "modalData": {
-      "description": "Fitness Tracker Pro is a cross-platform mobile application that revolutionizes personal fitness tracking through AI-powered insights and real-time feedback. The app provides personalized workout plans, nutrition tracking, and social features while leveraging device sensors and machine learning for accurate exercise form correction.",
-      "features": "<li>AI-powered workout plan generation based on user goals and progress</li><li>Real-time exercise form analysis using device camera</li><li>Integration with HealthKit and Google Fit for comprehensive health tracking</li><li>Social features including workout sharing and community challenges</li><li>Personalized nutrition planning with meal tracking</li>",
-      "technicalDetails": "Developed native applications using Swift for iOS and Kotlin for Android, with shared business logic through Kotlin Multiplatform. Implemented CoreML and TensorFlow Lite for on-device machine learning capabilities, ensuring privacy-first approach to user data. Utilized Firebase for backend services including real-time database, authentication, and analytics.",
-      "implementation": "Adopted MVVM architecture with clean architecture principles for maintainable and testable code. Implemented comprehensive CI/CD pipeline using Fastlane for automated testing and deployment. Used Protocol-Oriented Programming in Swift and Interface-based development in Kotlin for maximum code reuse and flexibility.",
-      "gallery": [
-        {
-          "src": "/img/mobile_project1.jpg",
-          "alt": "Fitness Dashboard",
-          "caption": "AI-powered fitness dashboard with personalized recommendations"
-        },
-        {
-          "src": "/img/placeholder-mobile2.jpg",
-          "alt": "Form Analysis",
-          "caption": "Real-time exercise form analysis and correction"
-        },
-        {
-          "src": "/img/placeholder-mobile3.jpg",
-          "alt": "Nutrition Tracking",
-          "caption": "Comprehensive nutrition tracking and meal planning"
-        },
-        {
-          "src": "/img/placeholder-mobile4.jpg",
-          "alt": "Social Features",
-          "caption": "Community features and workout sharing"
-        },
-        {
-          "src": "/img/placeholder-mobile5.jpg",
-          "alt": "Progress Analytics",
-          "caption": "Detailed progress tracking and analytics"
-        }
-      ]
-    }
-  },
-  {
-    "id": "project-gamma",
-    "title": "Analysis Toolkit",
-    "filterClasses": "data-science",
-    "imageSrcs": [
-      "/img/ds_project1.jpg",
-      "/img/placeholder-ds2.jpg",
-      "/img/placeholder-ds3.jpg",
-      "/img/placeholder-ds4.jpg",
-      "/img/placeholder-ds5.jpg"
-    ],
-    "categories": ["Data Science"],
-    "shortDescription": "A comprehensive business intelligence platform that unifies file, website, and text analysis into a single AI-powered web application, reducing analysis time by 70% through advanced data processing and interactive visualizations.",
-    "technologies": ["Python", "Streamlit", "NumPy", "Pandas", "TextBlob", "Groq API", "Altair", "Matplotlib"],
-    "githubUrl": "#",
-    "liveUrl": "#",
-    "modalData": {
-      "description": "Analysis Toolkit is an enterprise-grade business analysis platform built with Python and Streamlit that seamlessly processes diverse data sources including files (CSV, Excel, PDF), websites, and text content. The platform combines AI-powered insights with interactive visualizations and enterprise-level security to deliver actionable intelligence through an intuitive web interface. Designed for both technical and non-technical users, it eliminates the need for multiple specialized tools while ensuring robust data processing and comprehensive analytical capabilities.",
-      "features": "<li>Multi-domain analysis supporting files, websites, and text processing</li><li>AI-enhanced insights through Groq API integration</li><li>Interactive visualizations with real-time charts and dashboards</li><li>Enterprise-grade security with multi-layer validation</li><li>70% reduction in analysis time through streamlined workflows</li>",
-      "technicalDetails": "Built with Python and Streamlit for a robust web interface, utilizing NumPy and Pandas for data processing. Integrates TextBlob for natural language processing and Groq API for advanced machine learning capabilities. Features Altair and Matplotlib for interactive data visualizations, all wrapped in a modular architecture for scalability.",
-      "implementation": "Implemented a modular architecture focusing on security and scalability. Integrated comprehensive audit logging and secure data processing protocols. Developed custom data processing pipelines for various file formats and web scraping capabilities. Established real-time visualization updates and interactive dashboard components.",
-      "gallery": [
-        {
-          "src": "/img/ds_project1.jpg",
-          "alt": "Analysis Dashboard",
-          "caption": "Main analysis dashboard with real-time visualizations"
-        },
-        {
-          "src": "/img/placeholder-ds2.jpg",
-          "alt": "Multi-Domain Analysis",
-          "caption": "Unified interface for file, website, and text analysis"
-        },
-        {
-          "src": "/img/placeholder-ds3.jpg",
-          "alt": "AI Insights",
-          "caption": "AI-powered analysis and insights generation"
-        },
-        {
-          "src": "/img/placeholder-ds4.jpg",
-          "alt": "Data Processing",
-          "caption": "Advanced data processing and transformation tools"
-        },
-        {
-          "src": "/img/placeholder-ds5.jpg",
-          "alt": "Security Features",
-          "caption": "Enterprise security and audit logging interface"
-        }
-      ]
-    }
-  },
-  {
     "id": "project-delta",
-    "title": "WebAssembly Image Studio",
-    "filterClasses": "other web-app",
+    "title": "Human Resources Information System",
+    "filterClasses": "web-app",
     "imageSrcs": [
-      "/img/website_project1.jpg",
-      "/img/placeholder-web2.jpg",
-      "/img/placeholder-web3.jpg",
-      "/img/placeholder-web4.jpg",
-      "/img/placeholder-web5.jpg"
+      "/img/hris1.png"
     ],
-    "categories": ["Web App", "Other"],
-    "shortDescription": "A high-performance image processing application leveraging WebAssembly and Rust for near-native speed in the browser, featuring real-time filters, batch processing, and advanced image manipulation tools.",
-    "technologies": ["Rust", "WebAssembly", "JavaScript", "Canvas API", "Web Workers", "IndexedDB", "Service Workers"],
-    "githubUrl": "#",
+    "categories": ["Web App"],
+    "shortDescription": "A comprehensive Human Resource Information System built with Vue.js and Laravel, featuring employee management, payroll processing, attendance tracking, and advanced HR analytics for modern organizations.",
+    "technologies": ["Vue.js", "Laravel", "MySQL", "PHP", "JavaScript", "Bootstrap", "Chart.js", "JWT Authentication"],
+    "githubUrl": "https://github.com/DMcloud022",
     "liveUrl": "#",
     "modalData": {
-      "description": "WebAssembly Image Studio is a cutting-edge web application that brings desktop-level image processing performance to the browser. Built with Rust and compiled to WebAssembly, it delivers exceptional performance while maintaining a smooth user experience. The application supports complex image manipulations, batch processing, and custom filter creation, all while running entirely in the browser.",
-      "features": "<li>High-performance image processing using Rust and WebAssembly</li><li>Real-time filter preview and application</li><li>Batch processing with progress tracking</li><li>Custom filter creation and sharing</li><li>Offline processing support via Service Workers</li>",
-      "technicalDetails": "Core image processing algorithms implemented in Rust and compiled to WebAssembly for optimal performance. Utilizes Web Workers for concurrent processing and the Canvas API for image manipulation. Features IndexedDB for local storage and Service Workers for offline functionality. Implements custom memory management for handling large images efficiently.",
-      "implementation": "Adopted a hybrid architecture using Rust for computation-heavy tasks and JavaScript for UI interactions. Implemented progressive enhancement for browsers without WebAssembly support. Developed custom memory management system for large image processing. Created automated benchmarking system for performance optimization.",
+      "description": "Human Resources Information System is a full-stack web application designed to streamline human resource operations for modern organizations. Built with Vue.js for a dynamic frontend experience and Laravel for robust backend functionality, this system provides comprehensive HR management capabilities including employee lifecycle management, payroll processing, performance tracking, and detailed analytics reporting.",
+      "features": "<li>Complete employee lifecycle management from onboarding to offboarding</li><li>Automated payroll processing with tax calculations and deductions</li><li>Real-time attendance tracking with biometric integration support</li><li>Performance evaluation system with customizable review cycles</li><li>Advanced HR analytics and reporting dashboard</li><li>Leave management with approval workflows</li><li>Document management system for HR records</li><li>Role-based access control for different user levels</li>",
+      "technicalDetails": "Frontend developed using Vue.js 3 with Composition API for reactive user interfaces and component-based architecture. Backend powered by Laravel 10 with RESTful API design, implementing JWT authentication for secure user sessions. MySQL database with optimized queries and proper indexing for handling large employee datasets. Integrated Chart.js for data visualization and Bootstrap for responsive design across all devices.",
+      "implementation": "Followed modern development practices with separation of concerns using Vue.js for frontend and Laravel API for backend services. Implemented comprehensive authentication and authorization system with role-based permissions. Used Laravel's Eloquent ORM for database interactions and Vue Router for client-side routing. Deployed using Docker containers for consistent development and production environments with automated CI/CD pipeline.",
       "gallery": [
         {
-          "src": "/img/website_project1.jpg",
-          "alt": "Main Interface",
-          "caption": "Main image processing interface with real-time preview"
+          "src": "/img/hris1.png",
+          "alt": "HR Dashboard",
+          "caption": "Comprehensive HR dashboard with key metrics and analytics"
         },
         {
-          "src": "/img/placeholder-web2.jpg",
-          "alt": "Filter Gallery",
-          "caption": "Extensive filter gallery with custom options"
+          "src": "/img/hris2.png",
+          "alt": "Employee Management",
+          "caption": "Employee profile management and organizational structure"
         },
         {
-          "src": "/img/placeholder-web3.jpg",
-          "alt": "Batch Processing",
-          "caption": "Efficient batch processing interface"
+          "src": "/img/hris3.png",
+          "alt": "Payroll System",
+          "caption": "Automated payroll processing and salary management"
         },
         {
-          "src": "/img/placeholder-web4.jpg",
-          "alt": "Custom Filters",
-          "caption": "Custom filter creation and sharing platform"
-        },
-        {
-          "src": "/img/placeholder-web5.jpg",
-          "alt": "Performance Metrics",
-          "caption": "Real-time performance monitoring dashboard"
-        }
-      ]
-    }
-  },
-  {
-    "id": "project-epsilon",
-    "title": "Predictive Analytics Engine",
-    "filterClasses": "data-science machine-learning",
-    "imageSrcs": [
-      "/img/ds_project1.jpg",
-      "/img/placeholder-ml2.jpg",
-      "/img/placeholder-ml3.jpg",
-      "/img/placeholder-ml4.jpg",
-      "/img/placeholder-ml5.jpg"
-    ],
-    "categories": ["Data Science", "Machine Learning"],
-    "shortDescription": "A sophisticated machine learning platform that automates the entire ML pipeline from data preprocessing to model deployment.",
-    "technologies": ["Python", "TensorFlow", "scikit-learn", "MLflow", "Docker", "Kubernetes"],
-    "githubUrl": "#",
-    "liveUrl": "#",
-    "modalData": {
-      "description": "An enterprise-grade machine learning platform that automates and streamlines the entire ML lifecycle. The system handles everything from data preprocessing to model deployment, making advanced analytics accessible to organizations of all sizes.",
-      "features": "<li>Automated feature engineering and selection</li><li>Intelligent model selection and tuning</li><li>Real-time performance monitoring</li><li>Model versioning and A/B testing</li><li>Automated model retraining</li>",
-      "technicalDetails": "Built on a microservices architecture using Python for the core ML components. Utilizes TensorFlow and scikit-learn for model training, MLflow for experiment tracking, and Kubernetes for orchestration. Implements custom algorithms for automated feature engineering and model selection.",
-      "implementation": "Followed MLOps best practices with automated testing and deployment pipelines. Implemented a modular architecture for easy extension and maintenance. Used Docker containers for reproducible environments and Kubernetes for scalable deployment.",
-      "gallery": [
-        {
-          "src": "/img/ds_project1.jpg",
-          "alt": "ML Pipeline Dashboard",
-          "caption": "Machine learning pipeline overview"
-        },
-        {
-          "src": "/img/placeholder-ml2.jpg",
-          "alt": "Model Selection",
-          "caption": "Automated model selection interface"
-        },
-        {
-          "src": "/img/placeholder-ml3.jpg",
-          "alt": "Feature Engineering",
-          "caption": "Advanced feature engineering tools"
-        },
-        {
-          "src": "/img/placeholder-ml4.jpg",
-          "alt": "Performance Monitoring",
-          "caption": "Real-time model performance monitoring"
-        },
-        {
-          "src": "/img/placeholder-ml5.jpg",
-          "alt": "Deployment Dashboard",
-          "caption": "Model deployment and versioning system"
+          "src": "/img/hris4.png",
+          "alt": "Attendance Tracking",
+          "caption": "Real-time attendance monitoring and reporting"
         }
       ]
     }

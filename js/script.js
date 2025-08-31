@@ -447,6 +447,36 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
+    // --- JSON File Verification ---
+    const verifyJsonAccess = async () => {
+        const files = ['projects.json', 'resume.json'];
+        const results = {};
+        
+        for (const file of files) {
+            try {
+                const response = await fetch(`/${file}`);
+                results[file] = {
+                    accessible: response.ok,
+                    status: response.status,
+                    statusText: response.statusText
+                };
+                if (response.ok) {
+                    console.log(`✅ ${file} is accessible`);
+                } else {
+                    console.error(`❌ ${file} returned ${response.status}: ${response.statusText}`);
+                }
+            } catch (error) {
+                results[file] = {
+                    accessible: false,
+                    error: error.message
+                };
+                console.error(`❌ Error accessing ${file}:`, error.message);
+            }
+        }
+        
+        return results;
+    };
+
     // --- Simplified Project Rendering ---
     const createProjectCard = (project) => {
         // Create main project card element
@@ -549,16 +579,6 @@ document.addEventListener('DOMContentLoaded', () => {
         detailsBtn.textContent = 'View Details';
         linksDiv.appendChild(detailsBtn);
         
-        if (project.githubUrl && project.githubUrl !== '#') {
-            const githubLink = document.createElement('a');
-            githubLink.href = project.githubUrl;
-            githubLink.className = 'btn btn-outline btn-small';
-            githubLink.target = '_blank';
-            githubLink.rel = 'noopener noreferrer';
-            githubLink.innerHTML = '<i class="fab fa-github"></i> GitHub';
-            linksDiv.appendChild(githubLink);
-        }
-        
         projectInfo.appendChild(linksDiv);
 
         // Assemble the card
@@ -578,24 +598,18 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         try {
-            console.log('Loading projects...');
+            console.log('🚀 Loading projects directly from JSON file...');
             
-            // Try to fetch from Netlify function first (production), then fallback to direct file (local development)
-            let projects;
+            // Directly fetch projects.json with cache busting for development
+            const cacheBuster = new Date().getTime();
+            const response = await fetch(`/projects.json?v=${cacheBuster}`);
             
-            try {
-                const response = await fetch('/.netlify/functions/getData?file=projects.json');
-                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-                projects = await response.json();
-                console.log('✓ Projects loaded from Netlify function');
-            } catch (netlifyError) {
-                console.log('Netlify function not available, trying direct file access...');
-                // Fallback to direct file access for local development
-                const response = await fetch('/projects.json');
-                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-                projects = await response.json();
-                console.log('✓ Projects loaded from direct file access');
+            if (!response.ok) {
+                throw new Error(`Failed to fetch projects.json: ${response.status} ${response.statusText}`);
             }
+            
+            const projects = await response.json();
+            console.log('✅ Projects loaded successfully from direct JSON fetch');
 
             if (!Array.isArray(projects) || projects.length === 0) {
                 throw new Error('No projects data found or invalid format');
@@ -661,15 +675,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 const featuredViewDetailsBtn = document.createElement('button');
                 featuredViewDetailsBtn.className = 'btn btn-primary view-project-details';
                 featuredViewDetailsBtn.textContent = 'View Details';
-                const featuredGithubLink = document.createElement('a');
-                featuredGithubLink.className = 'btn btn-secondary';
-                featuredGithubLink.setAttribute('href', escapeHTML(featuredProject.githubUrl));
-                featuredGithubLink.setAttribute('target', '_blank');
-                featuredGithubLink.setAttribute('rel', 'noopener noreferrer');
-                featuredGithubLink.innerHTML = '<i class="fab fa-github"></i> Explore on GitHub';
 
                 featuredLinks.appendChild(featuredViewDetailsBtn);
-                featuredLinks.appendChild(featuredGithubLink);
                 featuredProjectDetails.appendChild(featuredTitle);
                 featuredProjectDetails.appendChild(featuredDescription);
                 featuredProjectDetails.appendChild(featuredTechnologies);
@@ -734,8 +741,24 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // Initial load
-    loadProjects();
+    // Verify JSON file access before loading projects
+    console.log('🔍 Verifying JSON file accessibility...');
+    verifyJsonAccess().then(results => {
+        if (results['projects.json']?.accessible) {
+            loadProjects();
+        } else {
+            console.error('❌ Cannot access projects.json, skipping project loading');
+            const projectsGrid = document.querySelector('.projects-grid');
+            if (projectsGrid) {
+                projectsGrid.innerHTML = `
+                    <div class="error-message" style="grid-column: 1 / -1; text-align: center; padding: 2rem; color: #e74c3c;">
+                        <h3>Projects Not Available</h3>
+                        <p>Unable to load projects data. Please check if projects.json is accessible.</p>
+                    </div>
+                `;
+            }
+        }
+    });
 
 
     // --- Project Details Modal ---
@@ -844,19 +867,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     techContainer.innerHTML = technologies.replace(/<span>/g, '<span class="skill-tag">');
                 }
 
-                // Update project links
-                const liveLink = select('#projectModalLiveLink');
-                const githubLink = select('#projectModalGithubLink');
-                
-                if (liveLink) {
-                    liveLink.href = liveUrl || '#';
-                    liveLink.style.display = liveUrl ? 'flex' : 'none';
-                }
-                
-                if (githubLink) {
-                    githubLink.href = githubUrl || '#';
-                    githubLink.style.display = githubUrl ? 'flex' : 'none';
-                }
+                // Project links section is hidden via CSS - no need to update links
 
                 // Set up gallery
                 try {
@@ -1720,16 +1731,28 @@ async function fetchResumeData() {
     }
 
     try {
-        const response = await fetch('/.netlify/functions/getData?file=resume.json');
+        console.log('🚀 Loading resume directly from JSON file...');
+        
+        // Directly fetch resume.json with cache busting for development
+        const cacheBuster = new Date().getTime();
+        const response = await fetch(`/resume.json?v=${cacheBuster}`);
+        
         if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+            throw new Error(`Failed to fetch resume.json: ${response.status} ${response.statusText}`);
         }
+        
         const resumeData = await response.json();
+        console.log('✅ Resume loaded successfully from direct JSON fetch');
         renderResume(resumeData);
     } catch (error) {
         console.error("Error fetching or parsing resume data:", error);
         if (resumeContainer) {
-            resumeContainer.innerHTML = '<p style="text-align: center; color: red;">Error loading resume. Please try again later.</p>';
+            resumeContainer.innerHTML = `
+                <div class="error-message">
+                    <h3>Unable to Load Resume</h3>
+                    <p>Could not load resume data. Please try again later.</p>
+                </div>
+            `;
         }
     }
 }

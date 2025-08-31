@@ -1,10 +1,6 @@
 [build]
   command = "echo 'No build command specified'"
   publish = "."
-  functions = "netlify/functions"
-
-[functions]
-  included_files = ["*.json"]
 
 # [[redirects]]
 #   from = "/resume.json"
