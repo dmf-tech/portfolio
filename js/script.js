@@ -492,6 +492,7 @@ document.addEventListener('DOMContentLoaded', () => {
         projectCard.setAttribute('data-gallery', escapeHTML(JSON.stringify(project.modalData?.gallery || [])));
         projectCard.setAttribute('data-live-url', escapeHTML(project.liveUrl || ''));
         projectCard.setAttribute('data-github-url', escapeHTML(project.githubUrl || ''));
+        projectCard.setAttribute('data-technologies', JSON.stringify(project.technologies || []));
 
         // Create image area
         const imageArea = document.createElement('div');
@@ -558,17 +559,7 @@ document.addEventListener('DOMContentLoaded', () => {
         description.textContent = project.shortDescription || '';
         projectInfo.appendChild(description);
         
-        // Technologies
-        if (project.technologies && project.technologies.length > 0) {
-            const techDiv = document.createElement('div');
-            techDiv.className = 'project-technologies';
-            project.technologies.forEach(tech => {
-                const span = document.createElement('span');
-                span.textContent = tech;
-                techDiv.appendChild(span);
-            });
-            projectInfo.appendChild(techDiv);
-        }
+        // Technologies removed from project cards - only shown in modal
         
         // Links
         const linksDiv = document.createElement('div');
@@ -600,9 +591,8 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             console.log('🚀 Loading projects directly from JSON file...');
             
-            // Directly fetch projects.json with cache busting for development
-            const cacheBuster = new Date().getTime();
-            const response = await fetch(`/projects.json?v=${cacheBuster}`);
+            // Use a simpler fetch without cache busting for faster loading
+            const response = await fetch('/projects.json');
             
             if (!response.ok) {
                 throw new Error(`Failed to fetch projects.json: ${response.status} ${response.statusText}`);
@@ -634,7 +624,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     `<img src="${escapeHTML(src)}" alt="${escapeHTML(featuredProject.title)} Screenshot ${index + 1}" class="carousel-image ${index === 0 ? 'active' : ''}">`
                 ).join('');
                 const featuredCategoriesHTML = featuredProject.categories.map(cat => `<span class="category-tag">${escapeHTML(cat)}</span>`).join('');
-                const featuredTechnologiesHTML = featuredProject.technologies.map(tech => `<span>${escapeHTML(tech)}</span>`).join('');
+                // Technologies removed from featured project preview - only shown in modal
 
                 const featuredContent = document.createElement('div');
                 featuredContent.className = 'featured-project-content';
@@ -667,9 +657,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 featuredTitle.textContent = escapeHTML(featuredProject.title);
                 const featuredDescription = document.createElement('p');
                 featuredDescription.textContent = escapeHTML(featuredProject.modalData.description);
-                const featuredTechnologies = document.createElement('div');
-                featuredTechnologies.className = 'project-technologies';
-                featuredTechnologies.innerHTML = featuredTechnologiesHTML;
                 const featuredLinks = document.createElement('div');
                 featuredLinks.className = 'project-links';
                 const featuredViewDetailsBtn = document.createElement('button');
@@ -679,7 +666,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 featuredLinks.appendChild(featuredViewDetailsBtn);
                 featuredProjectDetails.appendChild(featuredTitle);
                 featuredProjectDetails.appendChild(featuredDescription);
-                featuredProjectDetails.appendChild(featuredTechnologies);
                 featuredProjectDetails.appendChild(featuredLinks);
 
                 featuredContent.appendChild(featuredImageArea);
@@ -698,6 +684,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 featuredProjectWrapper.setAttribute('data-gallery', escapeHTML(JSON.stringify(featuredProject.modalData.gallery || [])));
                 featuredProjectWrapper.setAttribute('data-live-url', escapeHTML(featuredProject.liveUrl || ''));
                 featuredProjectWrapper.setAttribute('data-github-url', escapeHTML(featuredProject.githubUrl || ''));
+                featuredProjectWrapper.setAttribute('data-technologies', JSON.stringify(featuredProject.technologies || []));
             }
 
             // Render the rest of the projects
@@ -741,22 +728,30 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // Verify JSON file access before loading projects
-    console.log('🔍 Verifying JSON file accessibility...');
-    verifyJsonAccess().then(results => {
-        if (results['projects.json']?.accessible) {
-            loadProjects();
-        } else {
-            console.error('❌ Cannot access projects.json, skipping project loading');
-            const projectsGrid = document.querySelector('.projects-grid');
-            if (projectsGrid) {
-                projectsGrid.innerHTML = `
-                    <div class="error-message" style="grid-column: 1 / -1; text-align: center; padding: 2rem; color: #e74c3c;">
-                        <h3>Projects Not Available</h3>
-                        <p>Unable to load projects data. Please check if projects.json is accessible.</p>
-                    </div>
-                `;
-            }
+    // Load projects immediately without verification delay
+    console.log('🚀 Loading projects immediately...');
+    loadProjects().catch(error => {
+        console.error('❌ Failed to load projects:', error);
+        const projectsGrid = document.querySelector('.projects-grid');
+        const featuredWrapper = document.querySelector('.featured-project-wrapper');
+        
+        if (projectsGrid) {
+            projectsGrid.innerHTML = `
+                <div class="error-message" style="grid-column: 1 / -1; text-align: center; padding: 2rem; color: #e74c3c;">
+                    <h3>Projects Not Available</h3>
+                    <p>Unable to load projects data. Please try refreshing the page.</p>
+                    <p style="font-size: 0.9em; color: #7f8c8d;">Error: ${error.message}</p>
+                </div>
+            `;
+        }
+        
+        if (featuredWrapper) {
+            featuredWrapper.innerHTML = `
+                <div class="error-message" style="text-align: center; padding: 2rem; color: #e74c3c;">
+                    <h3>Featured Project Unavailable</h3>
+                    <p>Could not load featured project.</p>
+                </div>
+            `;
         }
     });
 
@@ -769,7 +764,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const viewProjectDetailsButtons = selectAll('.view-project-details');
         const closeProjectModalBtn = select('#closeProjectModal');
         const galleryContainer = select('#projectModalGallery');
-        const galleryCaption = select('#galleryCaption');
+                  // Gallery caption removed for cleaner display
         const galleryIndicators = select('#galleryIndicators');
         const prevButton = select('.gallery-nav.prev');
         const nextButton = select('.gallery-nav.next');
@@ -789,8 +784,7 @@ document.addEventListener('DOMContentLoaded', () => {
             indicators.forEach(ind => ind.classList.remove('active'));
             indicators[index].classList.add('active');
 
-            // Update caption
-            galleryCaption.textContent = currentGalleryImages[index].caption || '';
+                         // Caption removed for cleaner display
 
             // Update current index
             currentImageIndex = index;
@@ -831,9 +825,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 const liveUrl = projectCard.dataset.liveUrl;
                 const githubUrl = projectCard.dataset.githubUrl;
 
-                // Get technologies from the visible elements
-                const techSpans = projectCard.querySelectorAll('.project-technologies span');
-                const technologies = Array.from(techSpans).map(span => `<span>${span.innerHTML}</span>`).join('');
+                // Get technologies from project data
+                let technologies = '';
+                try {
+                    // Get technologies from the data attribute
+                    const techData = projectCard.dataset.technologies;
+                    if (techData) {
+                        const techArray = JSON.parse(techData);
+                        technologies = techArray.map(tech => `<span>${escapeHTML(tech)}</span>`).join('');
+                    }
+                } catch (e) {
+                    console.warn('Could not parse technologies data:', e);
+                    console.warn('Tech data:', projectCard.dataset.technologies);
+                    technologies = '';
+                }
                 
                 // Populate modal
                 select('#projectModalTitle').textContent = title;
@@ -863,8 +868,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 // Update technologies
                 const techContainer = select('#projectModalTechnologies');
-                if (techContainer) {
+                if (techContainer && technologies) {
                     techContainer.innerHTML = technologies.replace(/<span>/g, '<span class="skill-tag">');
+                } else if (techContainer) {
+                    techContainer.innerHTML = '<span class="skill-tag">No technologies specified</span>';
                 }
 
                 // Project links section is hidden via CSS - no need to update links
@@ -895,8 +902,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         </button>
                     `).join('');
 
-                    // Set initial caption
-                    galleryCaption.textContent = currentGalleryImages[0].caption || '';
+                                         // Caption removed for cleaner display
 
                     // Add click handlers to indicators
                     galleryIndicators.querySelectorAll('.gallery-indicator').forEach((indicator, index) => {
@@ -923,7 +929,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 currentGalleryImages = [];
                 galleryContainer.innerHTML = '';
                 galleryIndicators.innerHTML = '';
-                galleryCaption.textContent = '';
+                                 // Caption removed for cleaner display
             }, 300);
         };
 

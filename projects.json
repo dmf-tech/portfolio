@@ -12,12 +12,16 @@
       "/img/feature_project5.png"
     ],
     "categories": ["Web App", "UI/UX"],
-    "shortDescription": "A responsive e-commerce platform designed for a curated collection of timepieces, featuring dynamic product catalogs and efficient multi-step checkout.",
-    "technologies": ["Vue.js", "Tailwind CSS", "Node.js", "MongoDB", "Redis", "Docker"],
+    "shortDescription": "A sophisticated e-commerce platform for luxury timepieces featuring dynamic product catalogs, advanced filtering, secure payment processing, and comprehensive admin management tools.",
+    "technologies": [
+      "Vue.js", "Tailwind CSS", "JavaScript",
+      "Node.js", "Express.js", "MongoDB", 
+      "Redis", "Docker", "Payment Integration"
+    ],
     "githubUrl": "https://github.com/DMcloud022",
     "liveUrl": "#",
     "modalData": {
-      "description": "Developed \"Demure Montres,\" an e-commerce platform for timepieces, focusing on seamless customer journeys from dynamic catalogs to efficient checkout. The platform serves both customers and administrators with intuitive interfaces and robust functionality.",
+      "description": "A sophisticated e-commerce platform for luxury timepieces, focusing on creating seamless customer journeys from dynamic product catalogs to efficient checkout processes. The system serves both customers and administrators with intuitive interfaces and robust functionality.",
       "features": "<li>Dynamic product catalog with advanced filtering and search</li><li>Real-time inventory management system</li><li>Secure payment processing with multiple gateway support</li><li>Comprehensive admin dashboard with analytics</li><li>Customer account management and order tracking</li>",
       "technicalDetails": "Built with a modern tech stack including Vue.js for the frontend and Node.js for the backend. Implements a microservices architecture for scalability, with separate services for product management, user authentication, and order processing. Uses MongoDB for flexible data storage and Redis for caching and session management.",
       "implementation": "Followed an agile development approach with continuous integration/deployment using GitHub Actions. Implemented responsive design principles and progressive enhancement for broad device support. Used Docker containers for consistent development and deployment environments. Integrated automated testing with Jest and Cypress for reliability.",
@@ -55,15 +59,22 @@
     "title": "Human Resources Information System",
     "filterClasses": "web-app",
     "imageSrcs": [
-      "/img/hris1.png"
+      "/img/hris1.png",
+      "/img/hris2.png",
+      "/img/hris3.png",
+      "/img/hris4.png"
     ],
     "categories": ["Web App"],
-    "shortDescription": "A comprehensive Human Resource Information System built with Vue.js and Laravel, featuring employee management, payroll processing, attendance tracking, and advanced HR analytics for modern organizations.",
-    "technologies": ["Vue.js", "Laravel", "MySQL", "PHP", "JavaScript", "Bootstrap", "Chart.js", "JWT Authentication"],
+    "shortDescription": "A comprehensive Human Resource Information System featuring complete employee lifecycle management, automated payroll processing, real-time attendance tracking, and advanced analytics dashboard for modern organizations.",
+    "technologies": [
+      "Vue.js", "Laravel", "PHP", "JavaScript",
+      "MySQL", "Bootstrap", "Chart.js",
+      "JWT Authentication", "Docker"
+    ],
     "githubUrl": "https://github.com/DMcloud022",
     "liveUrl": "#",
     "modalData": {
-      "description": "Human Resources Information System is a full-stack web application designed to streamline human resource operations for modern organizations. Built with Vue.js for a dynamic frontend experience and Laravel for robust backend functionality, this system provides comprehensive HR management capabilities including employee lifecycle management, payroll processing, performance tracking, and detailed analytics reporting.",
+      "description": "The Human Resources Information System is a comprehensive full-stack web application designed to streamline and modernize HR operations for organizations of all sizes. Built with Vue.js for dynamic frontend interactions and Laravel for robust backend functionality, this system provides end-to-end HR management capabilities including employee lifecycle management, automated payroll processing, performance tracking, and detailed analytics reporting with real-time insights.",
       "features": "<li>Complete employee lifecycle management from onboarding to offboarding</li><li>Automated payroll processing with tax calculations and deductions</li><li>Real-time attendance tracking with biometric integration support</li><li>Performance evaluation system with customizable review cycles</li><li>Advanced HR analytics and reporting dashboard</li><li>Leave management with approval workflows</li><li>Document management system for HR records</li><li>Role-based access control for different user levels</li>",
       "technicalDetails": "Frontend developed using Vue.js 3 with Composition API for reactive user interfaces and component-based architecture. Backend powered by Laravel 10 with RESTful API design, implementing JWT authentication for secure user sessions. MySQL database with optimized queries and proper indexing for handling large employee datasets. Integrated Chart.js for data visualization and Bootstrap for responsive design across all devices.",
       "implementation": "Followed modern development practices with separation of concerns using Vue.js for frontend and Laravel API for backend services. Implemented comprehensive authentication and authorization system with role-based permissions. Used Laravel's Eloquent ORM for database interactions and Vue Router for client-side routing. Deployed using Docker containers for consistent development and production environments with automated CI/CD pipeline.",

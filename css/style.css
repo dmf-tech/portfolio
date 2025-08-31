@@ -3216,14 +3216,16 @@ button.filter-btn:active,
 
 .featured-project-content {
     display: flex;
-    gap: 35px; /* Increased gap */
+    gap: 40px; /* Increased gap for better separation */
     align-items: flex-start; 
+    min-height: 400px; /* Ensure consistent height */
 }
 
 .featured-project-image-area { /* Renamed from .featured-project-image */
-    flex: 0 0 55%; /* Image area takes a bit more space */
-    max-width: 55%;
+    flex: 0 0 60%; /* Image area takes more space for better 2-column layout */
+    max-width: 60%;
     position: relative; /* For carousel button positioning */
+    min-width: 300px; /* Ensure minimum width for image */
 }
 
 .featured-project-details {
@@ -3261,10 +3263,7 @@ button.filter-btn:active,
 .featured-project-details .project-technologies {
     margin-bottom: 25px; /* More space before links */
 }
-.featured-project-details .project-technologies span {
-    font-size: 0.85rem;
-    padding: 5px 10px;
-}
+/* Featured project technologies removed from preview */
 
 .featured-project-details .project-links .btn {
     margin-right: 10px;
@@ -5713,14 +5712,16 @@ button.filter-btn:active,
 
 .featured-project-content {
     display: flex;
-    gap: 35px; /* Increased gap */
+    gap: 40px; /* Increased gap for better separation */
     align-items: flex-start; 
+    min-height: 400px; /* Ensure consistent height */
 }
 
 .featured-project-image-area { /* Renamed from .featured-project-image */
-    flex: 0 0 55%; /* Image area takes a bit more space */
-    max-width: 55%;
+    flex: 0 0 60%; /* Image area takes more space for better 2-column layout */
+    max-width: 60%;
     position: relative; /* For carousel button positioning */
+    min-width: 300px; /* Ensure minimum width for image */
 }
 
 .featured-project-details {
@@ -5758,10 +5759,7 @@ button.filter-btn:active,
 .featured-project-details .project-technologies {
     margin-bottom: 25px; /* More space before links */
 }
-.featured-project-details .project-technologies span {
-    font-size: 0.85rem;
-    padding: 5px 10px;
-}
+/* Featured project technologies removed from preview */
 
 .featured-project-details .project-links .btn {
     margin-right: 10px;
@@ -5868,16 +5866,18 @@ button.filter-btn:active,
 }
 
 
-/* Responsive for Featured Project */
-@media (max-width: 992px) { /* Tablets and below */
+/* Responsive for Featured Project - Keep 2 columns until very small screens */
+@media (max-width: 768px) { /* Only stack on mobile phones */
     .featured-project-content {
         flex-direction: column; /* Stack image and details */
         gap: 30px;
+        min-height: auto;
     }
     .featured-project-image-area,
     .featured-project-details {
         max-width: 100%;
         width: 100%;
+        min-width: auto;
     }
     .featured-project-details {
         padding-top: 0;
@@ -5895,6 +5895,21 @@ button.filter-btn:active,
     .featured-project-details .project-technologies,
     .featured-project-details .project-links {
         justify-content: center;
+    }
+}
+
+/* Tablet adjustments - maintain 2 columns but adjust spacing */
+@media (max-width: 992px) and (min-width: 769px) {
+    .featured-project-content {
+        gap: 30px;
+    }
+    .featured-project-image-area {
+        flex: 0 0 55%;
+        max-width: 55%;
+        min-width: 280px;
+    }
+    .featured-project-wrapper {
+        padding: 30px;
     }
 }
 /* --- End Featured Project Styles --- */
@@ -5981,93 +5996,137 @@ button.filter-btn:active,
     display: grid;
     grid-template-columns: repeat(2, 1fr); 
     gap: 30px; 
+    min-height: 400px; /* Ensure grid has minimum height to prevent layout shift */
 }
 
 .project-card {
     background-color: var(--light-text-color);
-    border-radius: var(--border-radius);
+    border-radius: 12px; /* Slightly more rounded for modern look */
     overflow: hidden; 
-    box-shadow: 0 4px 15px rgba(0,0,0,0.07); /* Slightly softer shadow */
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08); /* Softer, more professional shadow */
     display: flex;
     flex-direction: column; 
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    opacity: 0;
+    animation: fadeInUp 0.6s ease forwards;
+    border: 1px solid rgba(0,0,0,0.05); /* Subtle border for definition */
+}
+
+/* Stagger animation for project cards */
+.project-card:nth-child(1) { animation-delay: 0.1s; }
+.project-card:nth-child(2) { animation-delay: 0.2s; }
+.project-card:nth-child(3) { animation-delay: 0.3s; }
+.project-card:nth-child(4) { animation-delay: 0.4s; }
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 .project-card:hover {
-    transform: translateY(-6px); 
-    box-shadow: 0 8px 20px rgba(0,0,0,0.1); 
+    transform: translateY(-4px); 
+    box-shadow: 0 8px 25px rgba(0,0,0,0.12); 
+    border-color: rgba(0,0,0,0.1);
 }
 
 .project-image-area { /* New wrapper for project card image carousel */
     position: relative; /* For carousel button positioning */
-    /* height: 220px; */ /* Removed fixed height, using aspect-ratio now */
-    /* background-color: #f0f0f0; */ /* Placeholder */
+    aspect-ratio: 16/10; /* Professional aspect ratio */
+    background: #f8fafc; /* Light background for loading state */
+    overflow: hidden;
 }
 /* .project-image-area .image-carousel styles are inherited */
 
 
 .project-info {
-    padding: 20px;
+    padding: 24px;
     flex-grow: 1; /* Allows info to take remaining space, pushing links down */
     display: flex;
     flex-direction: column; /* Internal stacking for info content */
+    gap: 16px; /* Consistent spacing between elements */
 }
 
 .project-info h3 {
-    font-size: 1.3rem;
-    margin-bottom: 8px;
+    font-size: 1.4rem;
+    margin: 0;
     color: var(--primary-color);
+    font-weight: 600;
+    line-height: 1.3;
 }
 
 .project-categories {
-    margin-bottom: 12px;
+    margin: 0;
     display: flex;
     flex-wrap: wrap; /* Allow tags to wrap */
-    gap: 6px; /* Space between tags */
+    gap: 8px; /* Space between tags */
 }
 
 .category-tag {
-    background-color: #e9ecef; /* Light grey background for tags */
-    color: #495057; /* Darker text for tags */
-    padding: 4px 10px;
-    border-radius: 12px; /* Pill shape */
-    font-size: 0.75rem;
+    background-color: #f1f5f9; /* Lighter, more professional background */
+    color: #475569; /* Better contrast text */
+    padding: 6px 12px;
+    border-radius: 6px; /* Less rounded, more professional */
+    font-size: 0.8rem;
     font-weight: 500;
-    display: inline-block; /* Or inline-flex for better alignment if icons are used */
+    display: inline-block;
+    border: 1px solid #e2e8f0;
+    transition: all 0.2s ease;
+}
+
+.category-tag:hover {
+    background-color: #e2e8f0;
+    transform: translateY(-1px);
 }
 
 .project-info p { /* The main description paragraph within a card */
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     line-height: 1.6;
-    color: #555; /* Slightly lighter than main body text */
-    margin-bottom: 15px;
-    flex-grow: 1; /* Allows description to push tech/links down if content varies */
+    color: #64748b; /* Professional gray color */
+    margin: 0;
+    flex-grow: 1; /* Allows description to push links down if content varies */
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Limit to 3 lines for consistency */
+    line-clamp: 3; /* Standard property for compatibility */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
-.project-technologies {
-    margin-bottom: 15px;
-    display: flex;
-    flex-wrap: wrap; /* Allow tech tags to wrap */
-    gap: 8px; /* Space between tech tags */
-}
+/* .project-technologies removed from project cards - only used in modals now */
 
-.project-technologies span {
-    background-color: var(--primary-color); /* Match primary color for tech tags */
-    color: var(--light-text-color);
-    padding: 3px 10px;
-    border-radius: var(--border-radius);
-    font-size: 0.8rem;
-}
+/* Project technologies spans removed from cards - only in modals now */
 
 .project-links {
     margin-top: auto; /* Pushes links to the bottom of .project-info */
     display: flex;
-    gap: 10px;
+    gap: 12px;
     flex-wrap: wrap; /* Allow buttons to wrap if space is tight */
+    padding-top: 4px; /* Small separation from content above */
 }
 
 .project-links .btn { /* Specific styling for buttons within project cards */
-    padding: 6px 12px; /* Smaller buttons for cards */
-    font-size: 0.85rem;
+    padding: 10px 20px; /* Better proportions for professional look */
+    font-size: 0.9rem;
+    font-weight: 600;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    background-color: var(--primary-color);
+    color: var(--light-text-color);
+    border: 2px solid var(--primary-color);
+    text-transform: none; /* Keep natural casing */
+    letter-spacing: 0.025em; /* Slight letter spacing for readability */
+}
+
+.project-links .btn:hover {
+    background-color: transparent;
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(44, 62, 80, 0.2);
 }
 
 /* Certifications Section */
@@ -6845,10 +6904,7 @@ button.filter-btn:active,
 .project-card.featured .project-technologies {
     margin-bottom: 25px;
 }
-.project-card.featured .project-technologies span {
-    font-size: 0.85rem;
-    padding: 5px 10px;
-}
+/* Project card featured technologies removed */
 .project-card.featured .project-links .btn {
     font-size: 0.85rem; /* Slightly smaller buttons in project cards */
     padding: 8px 15px;
@@ -6923,13 +6979,7 @@ button.filter-btn:active,
     gap: 8px;
 }
 
-.project-technologies span {
-    background-color: var(--primary-color);
-    color: var(--light-text-color);
-    padding: 3px 10px;
-    border-radius: var(--border-radius);
-    font-size: 0.8rem;
-}
+/* Project technologies spans removed from cards - only in modals now */
 
 .project-links {
     margin-top: auto; /* Pushes links to the bottom of .project-info */
@@ -6939,8 +6989,24 @@ button.filter-btn:active,
 }
 
 .project-links .btn { /* Specific styling for buttons within project cards */
-    padding: 6px 12px; /* Smaller buttons for cards */
-    font-size: 0.85rem;
+    padding: 10px 20px; /* Better proportions for professional look */
+    font-size: 0.9rem;
+    font-weight: 600;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    background-color: var(--primary-color);
+    color: var(--light-text-color);
+    border: 2px solid var(--primary-color);
+    text-transform: none; /* Keep natural casing */
+    letter-spacing: 0.025em; /* Slight letter spacing for readability */
+}
+
+.project-links .btn:hover {
+    background-color: transparent;
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(44, 62, 80, 0.2);
 }
 
 /* Modal Styles */
@@ -9793,13 +9859,11 @@ section > .container > h2:first-child {
 /* Certification Actions Styling */
 .certification-actions {
     display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
+    justify-content: center;
     margin-top: 15px;
 }
 
 .certification-actions .btn {
-    flex: 1;
     min-width: 120px;
 }
 
@@ -10036,13 +10100,11 @@ section > .container > h2:first-child {
 /* Certification Actions Styling */
 .certification-actions {
     display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
+    justify-content: center;
     margin-top: 15px;
 }
 
 .certification-actions .btn {
-    flex: 1;
     min-width: 120px;
 }
 
@@ -10065,11 +10127,12 @@ section > .container > h2:first-child {
     }
     
     .certification-actions {
-        flex-direction: column;
+        justify-content: center;
     }
     
     .certification-actions .btn {
-        width: 100%;
+        width: auto;
+        max-width: 200px;
     }
 }
 
@@ -11077,4 +11140,145 @@ section > .container > h2:first-child {
     padding: 0.5rem 1rem;
     border-radius: 4px;
     display: inline-block;
+}
+
+/* Enhanced Loading States */
+.loading-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    color: #6c757d;
+}
+
+.loading-placeholder i {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    animation: spin 1s linear infinite;
+}
+
+.loading-placeholder p {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+/* Featured project loading adjustments */
+.featured-project-wrapper .loading-placeholder {
+    color: #7f8c8d;
+}
+
+.featured-project-wrapper .featured-project-content {
+    width: 100%;
+    display: flex !important; /* Override any conflicting display properties */
+    flex-direction: row !important; /* Ensure horizontal layout */
+    align-items: flex-start !important;
+    gap: 40px !important;
+}
+
+/* Ensure image area maintains proper flex properties */
+.featured-project-wrapper .featured-project-image-area {
+    flex: 0 0 60% !important;
+    max-width: 60% !important;
+    min-width: 300px !important;
+}
+
+/* Ensure details area takes remaining space */
+.featured-project-wrapper .featured-project-details {
+    flex: 1 !important;
+}
+
+/* Override responsive behavior - only stack on mobile */
+@media (max-width: 768px) {
+    .featured-project-wrapper .featured-project-content {
+        flex-direction: column !important;
+        min-height: auto !important;
+    }
+    .featured-project-wrapper .featured-project-image-area,
+    .featured-project-wrapper .featured-project-details {
+        max-width: 100% !important;
+        width: 100% !important;
+        min-width: auto !important;
+    }
+}
+
+/* Error message styles */
+.error-message {
+    text-align: center;
+    padding: 2rem;
+    color: #e74c3c;
+    background: #fdf2f2;
+    border: 1px solid #f5c6cb;
+    border-radius: var(--border-radius);
+    margin: 1rem 0;
+}
+
+.error-message h3 {
+    color: #e74c3c;
+    margin-bottom: 1rem;
+}
+
+.error-message p {
+    margin: 0.5rem 0;
+}
+
+/* Technology tag styling for modals only */
+.modal-technologies span,
+.project-technologies-modal .skill-tag {
+    background-color: #e3f2fd !important; /* Light blue background */
+    color: #1565c0 !important; /* Darker blue text */
+    padding: 4px 12px !important;
+    border-radius: 20px !important; /* More rounded pill shape */
+    font-size: 0.75rem !important;
+    font-weight: 500 !important;
+    border: 1px solid #bbdefb !important; /* Subtle border */
+    transition: all 0.3s ease !important;
+    display: inline-block !important;
+}
+
+.modal-technologies span:hover,
+.project-technologies-modal .skill-tag:hover {
+    background-color: #bbdefb !important;
+    color: #0d47a1 !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Responsive adjustments for project cards */
+@media (max-width: 768px) {
+    .projects-grid {
+        grid-template-columns: 1fr; /* Single column on mobile */
+        gap: 20px; /* Smaller gap on mobile */
+    }
+    
+    .project-info {
+        padding: 20px; /* Slightly less padding on mobile */
+        gap: 14px;
+    }
+    
+    .project-info h3 {
+        font-size: 1.3rem;
+    }
+    
+    .project-links .btn {
+        padding: 8px 16px;
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .project-info {
+        padding: 16px;
+        gap: 12px;
+    }
+    
+    .project-info h3 {
+        font-size: 1.2rem;
+    }
+    
+    .category-tag {
+        font-size: 0.75rem;
+        padding: 4px 8px;
+    }
 }
