@@ -457,15 +457,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const technologiesHTML = project.technologies.map(tech => `<span>${escapeHTML(tech)}</span>`).join('');
 
         return `
-            <div class="project-card ${project.filterClasses} animate-on-scroll fade-up"
-                 data-project-title="${escapeHTML(project.title)}"
-                 data-project-description="${escapeHTML(project.modalData.description)}"
-                 data-project-features="${escapeHTML(project.modalData.features)}"
-                 data-project-technical="${escapeHTML(project.modalData.technicalDetails || '')}"
-                 data-project-implementation="${escapeHTML(project.modalData.implementation || '')}"
-                 data-gallery='${escapeHTML(JSON.stringify(project.modalData.gallery || []))}'
-                 data-live-url="${escapeHTML(project.liveUrl || '')}"
-                 data-github-url="${escapeHTML(project.githubUrl || '')}">
                 <div class="project-image-area">
                     <div class="image-carousel" data-project-carousel="${project.id}">
                         <div class="carousel-images">${imagesHTML}</div>
@@ -483,7 +474,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         <a href="${escapeHTML(project.githubUrl)}" class="btn btn-outline btn-small" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> GitHub</a>
                     </div>
                 </div>
-            </div>
         `;
     };
 
