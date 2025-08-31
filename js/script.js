@@ -447,62 +447,172 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // --- Dynamic Project Loading ---
-    const renderProjectCard = (project) => {
-        const imagesHTML = project.imageSrcs.map((src, index) => 
-            `<img src="${escapeHTML(src)}" alt="${escapeHTML(project.title)} Screenshot ${index + 1}" class="carousel-image ${index === 0 ? 'active' : ''}">`
-        ).join('');
+    // --- Simplified Project Rendering ---
+    const createProjectCard = (project) => {
+        // Create main project card element
+        const projectCard = document.createElement('div');
+        projectCard.className = `project-card ${project.filterClasses} animate-on-scroll fade-up`;
+        
+        // Set data attributes for modal
+        projectCard.setAttribute('data-project-title', escapeHTML(project.title));
+        projectCard.setAttribute('data-project-description', escapeHTML(project.modalData?.description || ''));
+        projectCard.setAttribute('data-project-features', escapeHTML(project.modalData?.features || ''));
+        projectCard.setAttribute('data-project-technical', escapeHTML(project.modalData?.technicalDetails || ''));
+        projectCard.setAttribute('data-project-implementation', escapeHTML(project.modalData?.implementation || ''));
+        projectCard.setAttribute('data-gallery', escapeHTML(JSON.stringify(project.modalData?.gallery || [])));
+        projectCard.setAttribute('data-live-url', escapeHTML(project.liveUrl || ''));
+        projectCard.setAttribute('data-github-url', escapeHTML(project.githubUrl || ''));
 
-        const categoriesHTML = project.categories.map(cat => `<span class="category-tag">${escapeHTML(cat)}</span>`).join('');
-        const technologiesHTML = project.technologies.map(tech => `<span>${escapeHTML(tech)}</span>`).join('');
+        // Create image area
+        const imageArea = document.createElement('div');
+        imageArea.className = 'project-image-area';
+        
+        const carousel = document.createElement('div');
+        carousel.className = 'image-carousel';
+        carousel.setAttribute('data-project-carousel', project.id);
+        
+        const carouselImages = document.createElement('div');
+        carouselImages.className = 'carousel-images';
+        
+        // Add images
+        if (project.imageSrcs && project.imageSrcs.length > 0) {
+            project.imageSrcs.forEach((src, index) => {
+                const img = document.createElement('img');
+                img.src = src;
+                img.alt = `${project.title} Screenshot ${index + 1}`;
+                img.className = `carousel-image ${index === 0 ? 'active' : ''}`;
+                carouselImages.appendChild(img);
+            });
+        }
+        
+        // Add navigation buttons
+        const prevBtn = document.createElement('button');
+        prevBtn.className = 'carousel-nav prev';
+        prevBtn.setAttribute('aria-label', 'Previous image');
+        prevBtn.innerHTML = '<i class="fas fa-chevron-left"></i>';
+        
+        const nextBtn = document.createElement('button');
+        nextBtn.className = 'carousel-nav next';
+        nextBtn.setAttribute('aria-label', 'Next image');
+        nextBtn.innerHTML = '<i class="fas fa-chevron-right"></i>';
+        
+        carousel.appendChild(carouselImages);
+        carousel.appendChild(prevBtn);
+        carousel.appendChild(nextBtn);
+        imageArea.appendChild(carousel);
 
-        return `
-                <div class="project-image-area">
-                    <div class="image-carousel" data-project-carousel="${project.id}">
-                        <div class="carousel-images">${imagesHTML}</div>
-                        <button class="carousel-nav prev" aria-label="Previous image"><i class="fas fa-chevron-left"></i></button>
-                        <button class="carousel-nav next" aria-label="Next image"><i class="fas fa-chevron-right"></i></button>
-                    </div>
-                </div>
-                <div class="project-info">
-                    <h3>${escapeHTML(project.title)}</h3>
-                    <p class="project-categories">${categoriesHTML}</p>
-                    <p>${escapeHTML(project.shortDescription)}</p>
-                    <div class="project-technologies">${technologiesHTML}</div>
-                    <div class="project-links">
-                        <button class="btn btn-secondary btn-small view-project-details">View Details</button>
-                        <a href="${escapeHTML(project.githubUrl)}" class="btn btn-outline btn-small" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> GitHub</a>
-                    </div>
-                </div>
-        `;
+        // Create project info area
+        const projectInfo = document.createElement('div');
+        projectInfo.className = 'project-info';
+        
+        // Title
+        const title = document.createElement('h3');
+        title.textContent = project.title;
+        projectInfo.appendChild(title);
+        
+        // Categories
+        if (project.categories && project.categories.length > 0) {
+            const categoriesP = document.createElement('p');
+            categoriesP.className = 'project-categories';
+            project.categories.forEach(cat => {
+                const span = document.createElement('span');
+                span.className = 'category-tag';
+                span.textContent = cat;
+                categoriesP.appendChild(span);
+            });
+            projectInfo.appendChild(categoriesP);
+        }
+        
+        // Description
+        const description = document.createElement('p');
+        description.textContent = project.shortDescription || '';
+        projectInfo.appendChild(description);
+        
+        // Technologies
+        if (project.technologies && project.technologies.length > 0) {
+            const techDiv = document.createElement('div');
+            techDiv.className = 'project-technologies';
+            project.technologies.forEach(tech => {
+                const span = document.createElement('span');
+                span.textContent = tech;
+                techDiv.appendChild(span);
+            });
+            projectInfo.appendChild(techDiv);
+        }
+        
+        // Links
+        const linksDiv = document.createElement('div');
+        linksDiv.className = 'project-links';
+        
+        const detailsBtn = document.createElement('button');
+        detailsBtn.className = 'btn btn-secondary btn-small view-project-details';
+        detailsBtn.textContent = 'View Details';
+        linksDiv.appendChild(detailsBtn);
+        
+        if (project.githubUrl && project.githubUrl !== '#') {
+            const githubLink = document.createElement('a');
+            githubLink.href = project.githubUrl;
+            githubLink.className = 'btn btn-outline btn-small';
+            githubLink.target = '_blank';
+            githubLink.rel = 'noopener noreferrer';
+            githubLink.innerHTML = '<i class="fab fa-github"></i> GitHub';
+            linksDiv.appendChild(githubLink);
+        }
+        
+        projectInfo.appendChild(linksDiv);
+
+        // Assemble the card
+        projectCard.appendChild(imageArea);
+        projectCard.appendChild(projectInfo);
+        
+        return projectCard;
     };
 
     const loadProjects = async () => {
         const projectsGrid = select('.projects-grid');
         const featuredProjectWrapper = select('.featured-project-wrapper');
 
-        if (!projectsGrid || !featuredProjectWrapper) return;
+        if (!projectsGrid || !featuredProjectWrapper) {
+            console.error('Required project containers not found');
+            return;
+        }
 
         try {
+            console.log('Loading projects...');
+            
             // Try to fetch from Netlify function first (production), then fallback to direct file (local development)
-            let response;
             let projects;
             
             try {
-                response = await fetch('/.netlify/functions/getData?file=projects.json');
+                const response = await fetch('/.netlify/functions/getData?file=projects.json');
                 if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
                 projects = await response.json();
+                console.log('✓ Projects loaded from Netlify function');
             } catch (netlifyError) {
                 console.log('Netlify function not available, trying direct file access...');
                 // Fallback to direct file access for local development
-                response = await fetch('/projects.json');
+                const response = await fetch('/projects.json');
                 if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
                 projects = await response.json();
+                console.log('✓ Projects loaded from direct file access');
             }
+
+            if (!Array.isArray(projects) || projects.length === 0) {
+                throw new Error('No projects data found or invalid format');
+            }
+
+            console.log(`Found ${projects.length} projects to render`);
+
+            // Clear existing content
+            projectsGrid.innerHTML = '';
+            featuredProjectWrapper.innerHTML = '';
 
             // Find the featured project
             const featuredProject = projects.find(p => p.featured);
             const regularProjects = projects.filter(p => !p.featured);
+            
+            console.log(`Featured project: ${featuredProject ? featuredProject.title : 'None'}`);
+            console.log(`Regular projects: ${regularProjects.length}`);
 
             // Render the featured project
             if (featuredProject) {
@@ -588,43 +698,39 @@ document.addEventListener('DOMContentLoaded', () => {
                 projectsGrid.removeChild(projectsGrid.firstChild);
             }
             
-            regularProjects.forEach(project => {
-                // Create the project card element directly
-                const projectElement = document.createElement('div');
-                projectElement.className = `project-card ${project.filterClasses} animate-on-scroll fade-up`;
-                projectElement.setAttribute('data-project-title', escapeHTML(project.title));
-                projectElement.setAttribute('data-project-description', escapeHTML(project.modalData.description));
-                projectElement.setAttribute('data-project-features', escapeHTML(project.modalData.features));
-                projectElement.setAttribute('data-project-technical', escapeHTML(project.modalData.technicalDetails || ''));
-                projectElement.setAttribute('data-project-implementation', escapeHTML(project.modalData.implementation || ''));
-                projectElement.setAttribute('data-gallery', escapeHTML(JSON.stringify(project.modalData.gallery || [])));
-                projectElement.setAttribute('data-live-url', escapeHTML(project.liveUrl || ''));
-                projectElement.setAttribute('data-github-url', escapeHTML(project.githubUrl || ''));
-
-                // Set the inner HTML using the existing renderProjectCard function
-                projectElement.innerHTML = renderProjectCard(project);
-                projectsGrid.appendChild(projectElement);
+            regularProjects.forEach((project, index) => {
+                try {
+                    console.log(`Rendering project ${index + 1}: ${project.title}`);
+                    const projectCard = createProjectCard(project);
+                    projectsGrid.appendChild(projectCard);
+                } catch (projectError) {
+                    console.error(`Error rendering project ${project.title}:`, projectError);
+                }
             });
+            
+            console.log(`✓ Successfully rendered ${regularProjects.length} regular projects`);
             
             // Re-initialize all functionalities that depend on the dynamic content
             selectAll('.image-carousel').forEach(initializeProjectCarousel);
             initializeProjectFiltering();
             initializeProjectModal();
 
+            console.log('✓ All projects loaded and initialized successfully');
+
         } catch (error) {
             console.error("Failed to load projects:", error);
-            const errorMessage = document.createElement('p');
-            errorMessage.className = 'error-message';
-            errorMessage.textContent = 'Could not load projects. Please try again later.';
             
-            while (projectsGrid.firstChild) {
-                projectsGrid.removeChild(projectsGrid.firstChild);
-            }
-            projectsGrid.appendChild(errorMessage);
+            // Show error message in projects grid
+            projectsGrid.innerHTML = `
+                <div class="error-message" style="grid-column: 1 / -1; text-align: center; padding: 2rem; color: #e74c3c;">
+                    <h3>Unable to Load Projects</h3>
+                    <p>Could not load projects. Please try again later.</p>
+                    <p style="font-size: 0.9em; color: #7f8c8d;">Error: ${error.message}</p>
+                </div>
+            `;
             
-            while (featuredProjectWrapper.firstChild) {
-                featuredProjectWrapper.removeChild(featuredProjectWrapper.firstChild);
-            }
+            // Clear featured project area
+            featuredProjectWrapper.innerHTML = '';
         }
     };
 
