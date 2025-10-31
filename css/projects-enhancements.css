@@ -1,18 +1,20 @@
-/* Project Modal Styles */
+/* Project Modal Styles - Simple and Responsive */
 .project-modal {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(0, 0, 0, 0.5);
     display: none;
     justify-content: center;
     align-items: center;
     z-index: 1000;
-    padding: 20px;
+    padding: 16px;
     opacity: 0;
     transition: opacity 0.3s ease;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 .project-modal.active {
@@ -22,18 +24,19 @@
 
 .project-modal-content {
     background: #ffffff;
-    border-radius: 16px;
+    border-radius: 12px;
     width: 100%;
-    max-width: 1000px;
+    max-width: 1100px;
     max-height: 90vh;
-    overflow-y: auto;
+    overflow: hidden;
     position: relative;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
     transform: translateY(20px);
     transition: transform 0.3s ease;
-    border: 1px solid #eaeaea;
+    border: none;
     display: flex;
     flex-direction: column;
+    margin: auto;
 }
 
 .project-modal.active .project-modal-content {
@@ -41,35 +44,53 @@
 }
 
 .project-modal-header {
-    padding: 12px 32px 8px 32px !important; /* Reduced padding to bring title closer to image */
-    background: #ffffff;
-    position: relative;
+    padding: 0 !important;
+    background: transparent;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
     text-align: center;
+    border-bottom: none;
+    flex-shrink: 0;
+    z-index: 100;
+    pointer-events: none;
 }
 
 .project-modal-header h2 {
-    font-size: 1.8rem !important;
-    color: #1e293b !important;
-    margin: 16px 0 0 0 !important; /* Add top margin to bring title closer to image */
-    font-weight: 600 !important;
-    line-height: 1.4 !important;
-    text-align: center !important;
-    display: block !important;
-    width: 100% !important;
+    display: none !important; /* Hide title in header */
 }
 
-/* More specific selector to ensure centering */
-#projectModal .project-modal-header h2,
-#projectModalTitle {
-    text-align: center !important;
-    margin: 0 auto !important;
-    display: block !important;
+/* Project Title below gallery - Simple style */
+.project-modal-title {
+    font-size: 1.75rem !important;
+    color: #2C3E50 !important;
+    margin: 32px auto 20px auto !important;
+    padding: 0 32px !important;
+    font-weight: 600 !important;
+    line-height: 1.4 !important;
+    text-align: left !important;
+    letter-spacing: -0.01em;
+    border: none !important;
+    border-bottom: none !important;
+}
+
+/* Adjust title margin when gallery is hidden */
+.project-gallery[style*="display: none"] + .project-modal-title,
+.project-gallery:not(:has(.gallery-image.active)) + .project-modal-title {
+    margin-top: 24px !important;
+}
+
+.project-modal-title::after,
+.project-modal-title::before {
+    display: none !important;
+    content: none !important;
 }
 
 .project-modal-close {
-    background: transparent;
+    background: rgba(255, 255, 255, 0.95);
     border: none;
-    color: #64748b;
+    color: #2C3E50;
     width: 40px;
     height: 40px;
     border-radius: 50%;
@@ -77,38 +98,59 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    transition: all 0.2s ease;
-    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    font-size: 1.1rem;
     position: absolute;
-    right: 24px;
-    top: 24px;
+    right: 16px;
+    top: 16px;
+    z-index: 100;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    pointer-events: all;
+    backdrop-filter: blur(10px);
 }
 
 .project-modal-close:hover {
-    background: #f1f5f9;
+    background: rgba(255, 255, 255, 1);
     color: #1e293b;
-    transform: rotate(90deg);
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
 }
 
 .project-modal-body {
-    padding: 8px 32px 32px 32px !important;
+    padding: 0 !important;
     color: #334155;
+    flex: 1;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
-/* Gallery Styles */
+.project-content-wrapper {
+    background: #ffffff;
+}
+
+/* Gallery Styles - Hero-style */
 .project-gallery {
-    margin-bottom: 1.5rem;
-    background: #f8fafc;
-    border-radius: 12px;
+    margin-bottom: 0;
+    margin-top: 0;
+    background: #1e293b;
+    border-radius: 12px 12px 0 0;
     overflow: hidden;
     position: relative;
+    border: none;
+    width: 100%;
+}
+
+/* Hide gallery when empty */
+.project-gallery:empty,
+.project-gallery[style*="display: none"] {
+    display: none !important;
 }
 
 .gallery-container {
     position: relative;
     width: 100%;
     aspect-ratio: 16/9;
-    background: #f1f5f9;
+    background: #0f172a;
     overflow: hidden;
 }
 
@@ -139,29 +181,29 @@
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(255, 255, 255, 0.9);
-    color: #1e293b;
-    border: none;
-    width: 44px;
-    height: 44px;
+    background: rgba(255, 255, 255, 0.95);
+    color: #2C3E50;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     opacity: 1;
+    z-index: 5;
 }
 
 .gallery-nav:hover {
     background: #ffffff;
-    transform: translateY(-50%) scale(1.1);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
 
-.gallery-nav.prev { left: 16px; }
-.gallery-nav.next { right: 16px; }
+.gallery-nav.prev { left: 12px; }
+.gallery-nav.next { right: 12px; }
 
 /* Gallery caption removed for cleaner display */
 
@@ -195,48 +237,63 @@
     transform: scale(1.2);
 }
 
-/* Project Details Grid */
+/* Project Details Grid - Website Style Layout */
 .project-details-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-    margin-top: 24px;
+    grid-template-columns: 1fr;
+    gap: 48px;
+    margin-top: 0;
+    padding: 0 32px 40px 32px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .project-detail-item {
-    background: #f8fafc;
-    padding: 20px;
-    border-radius: 12px;
-    transition: all 0.3s ease;
+    background: transparent;
+    padding: 0;
+    border-radius: 0;
+    border: none;
+    transition: none;
 }
 
 .project-detail-item:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    box-shadow: none;
 }
 
 .project-detail-item h4 {
-    color: #1e293b;
-    font-size: 1.1rem;
+    color: #2C3E50;
+    font-size: 1.15rem;
     font-weight: 600;
-    margin-bottom: 16px;
+    margin-bottom: 12px;
     display: flex;
     align-items: center;
     gap: 8px;
+    letter-spacing: -0.005em;
+    border: none !important;
+    border-bottom: none !important;
+}
+
+.project-detail-item h4::after,
+.project-detail-item h4::before {
+    display: none !important;
+    content: none !important;
 }
 
 .project-detail-item h4 i {
-    color: #2563eb;
-    font-size: 1.2rem;
+    color: #2C3E50;
+    font-size: 1.25rem;
+    opacity: 0.9;
 }
 
 .project-detail-item p {
-    color: #334155;
-    line-height: 1.6;
+    color: #475569;
+    line-height: 1.85;
     margin: 0;
+    font-size: 1.05rem;
+    font-weight: 400;
 }
 
-/* Features List */
+/* Features List - Website Style */
 .features-list {
     list-style: none;
     padding: 0;
@@ -244,41 +301,60 @@
 }
 
 .features-list li {
-    padding-left: 24px;
+    padding-left: 28px;
     position: relative;
-    margin-bottom: 12px;
-    color: #334155;
+    margin-bottom: 16px;
+    color: #475569;
+    font-size: 1.05rem;
+    line-height: 1.85;
+    font-weight: 400;
 }
 
 .features-list li::before {
     content: "→";
     position: absolute;
     left: 0;
-    color: #2563eb;
+    color: #2C3E50;
+    font-weight: 600;
+    font-size: 1.1rem;
 }
 
-/* Technologies Section */
+/* Technologies Section - Website Style */
 .project-technologies-modal {
-    margin-top: 24px;
-    padding: 20px;
-    background: #f8fafc;
-    border-radius: 12px;
+    margin-top: 0;
+    padding: 0 32px 48px 32px;
+    background: transparent;
+    border-radius: 0;
+    border: none;
     display: block !important;
     visibility: visible !important;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .project-technologies-modal h4 {
-    color: #1e293b;
-    font-size: 1.1rem;
+    color: #2C3E50;
+    font-size: 1.15rem;
     font-weight: 600;
     margin-bottom: 16px;
     display: flex;
     align-items: center;
     gap: 8px;
+    letter-spacing: -0.005em;
+    border: none !important;
+    border-bottom: none !important;
+}
+
+.project-technologies-modal h4::after,
+.project-technologies-modal h4::before {
+    display: none !important;
+    content: none !important;
 }
 
 .project-technologies-modal h4 i {
-    color: #2563eb;
+    color: #2C3E50;
+    font-size: 1.25rem;
+    opacity: 0.9;
 }
 
 .project-technologies-modal .skills-tags {
@@ -288,23 +364,24 @@
 }
 
 .project-technologies-modal .skill-tag {
-    background: #e3f2fd !important;
-    color: #1565c0 !important;
-    padding: 8px 16px !important;
-    border-radius: 20px !important;
-    font-size: 0.9rem !important;
-    font-weight: 500 !important;
-    border: 1px solid #bbdefb !important;
+    background: #eff6ff !important;
+    color: #2C3E50 !important;
+    padding: 10px 20px !important;
+    border-radius: 8px !important;
+    font-size: 0.95rem !important;
+    font-weight: 600 !important;
+    border: 2px solid #bfdbfe !important;
     transition: all 0.3s ease !important;
     display: inline-block !important;
-    margin: 0 4px 8px 0 !important;
+    margin: 0 8px 12px 0 !important;
 }
 
 .project-technologies-modal .skill-tag:hover {
-    background: #bbdefb !important;
-    color: #0d47a1 !important;
+    background: #dbeafe !important;
+    color: #1e3a8a !important;
+    border-color: #93c5fd !important;
     transform: translateY(-2px) !important;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15) !important;
 }
 
 /* Project Links Section - Completely Hidden */
@@ -357,57 +434,63 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
-/* Responsive Styles */
-@media (max-width: 768px) {
-    .project-modal-header {
-        padding: 12px 20px 8px 20px;
+/* Responsive Styles - Mobile First Approach */
+@media (max-width: 992px) {
+    .project-modal {
+        padding: 16px;
     }
-
-    .project-modal-header h2 {
-        font-size: 1.5rem;
+    
+    .project-modal-content {
+        max-width: 100%;
+        max-height: 90vh;
+        border-radius: 12px;
     }
-
+    
+    .project-modal-title {
+        font-size: 1.6rem !important;
+        margin: 28px auto 18px auto !important;
+        padding: 0 24px !important;
+    }
+    
     .project-modal-close {
-        right: 16px;
-        top: 16px;
+        right: 12px;
+        top: 12px;
+        width: 38px;
+        height: 38px;
     }
-
-    .project-modal-body {
-        padding: 12px 20px 20px 20px;
-    }
-
-    .gallery-container {
-        aspect-ratio: 4/3;
-    }
-
-    .gallery-nav {
-        width: 36px;
-        height: 36px;
-    }
-
+    
     .project-details-grid {
-        grid-template-columns: 1fr;
-        gap: 16px;
-        margin-top: 20px;
+        gap: 32px;
+        padding: 0 24px 24px 24px;
+        margin-top: 24px;
     }
-
-    .project-links-modal {
-        flex-direction: column;
+    
+    .project-technologies-modal {
+        padding: 0 24px 32px 24px;
+        margin-top: 0;
     }
-
-    .project-links-modal .btn {
-        width: 100%;
-        justify-content: center;
+    
+    .project-gallery {
+        border-radius: 12px 12px 0 0;
     }
 }
 
-@media (max-width: 480px) {
-    .project-modal-header {
-        padding: 10px 16px 6px 16px;
+@media (max-width: 768px) {
+    .project-modal {
+        padding: 12px;
+        align-items: center;
+    }
+    
+    .project-modal-content {
+        max-width: 100%;
+        max-height: 92vh;
+        border-radius: 12px;
     }
 
-    .project-modal-header h2 {
-        font-size: 1.3rem;
+    .project-modal-title {
+        font-size: 1.5rem !important;
+        margin: 24px auto 16px auto !important;
+        padding: 0 20px !important;
     }
 
     .project-modal-close {
@@ -418,35 +501,134 @@
         font-size: 1rem;
     }
 
-    .project-modal-body {
-        padding: 10px 16px 16px 16px;
+    .gallery-container {
+        aspect-ratio: 16/9;
+    }
+    
+    .project-gallery {
+        border-radius: 12px 12px 0 0;
+    }
+
+    .gallery-nav {
+        width: 36px;
+        height: 36px;
+        font-size: 0.9rem;
+    }
+    
+    .gallery-nav.prev {
+        left: 8px;
+    }
+    
+    .gallery-nav.next {
+        right: 8px;
+    }
+
+    .project-details-grid {
+        gap: 28px;
+        padding: 0 20px 20px 20px;
+        margin-top: 20px;
+    }
+    
+    .project-detail-item h4 {
+        font-size: 1.3rem;
+    }
+    
+    .project-technologies-modal {
+        margin-top: 0;
+        padding: 0 20px 28px 20px;
+    }
+    
+    .project-technologies-modal h4 {
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .project-modal {
+        padding: 8px;
+        align-items: center;
+    }
+    
+    .project-modal-content {
+        max-width: 100%;
+        max-height: 94vh;
+        border-radius: 12px;
+    }
+    
+    .project-modal-title {
+        font-size: 1.35rem !important;
+        margin: 20px auto 14px auto !important;
+        padding: 0 16px !important;
+    }
+
+    .project-modal-close {
+        right: 10px;
+        top: 10px;
+        width: 34px;
+        height: 34px;
+        font-size: 0.95rem;
     }
 
     .gallery-container {
-        aspect-ratio: 1/1;
+        aspect-ratio: 16/10;
+    }
+    
+    .project-gallery {
+        border-radius: 12px 12px 0 0;
     }
 
     .gallery-nav {
         width: 32px;
         height: 32px;
-    }
-
-    .gallery-caption {
         font-size: 0.85rem;
-        padding: 12px;
+    }
+    
+    .gallery-nav.prev {
+        left: 6px;
+    }
+    
+    .gallery-nav.next {
+        right: 6px;
+    }
+    
+    .gallery-indicators {
+        bottom: 10px;
+    }
+    
+    .gallery-indicator {
+        width: 6px;
+        height: 6px;
     }
 
-    .project-detail-item {
-        padding: 16px;
+    .project-details-grid {
+        gap: 24px;
+        padding: 0 16px 16px 16px;
+        margin-top: 16px;
     }
 
     .project-technologies-modal {
-        margin-top: 16px;
-        padding: 16px;
+        margin-top: 0;
+        padding: 0 16px 24px 16px;
     }
 
     .project-detail-item h4,
     .project-technologies-modal h4 {
-        font-size: 1rem;
+        font-size: 1.05rem;
+        margin-bottom: 10px;
+    }
+    
+    .features-list li {
+        font-size: 0.9rem;
+        margin-bottom: 10px;
+    }
+    
+    .project-detail-item p {
+        font-size: 0.9rem;
+    }
+    
+    .project-technologies-modal .skill-tag {
+        padding: 6px 14px !important;
+        font-size: 0.85rem !important;
+        margin: 0 6px 10px 0 !important;
     }
 } 

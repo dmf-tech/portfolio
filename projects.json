@@ -12,7 +12,7 @@
       "/img/feature_project5.png"
     ],
     "categories": ["Web App", "UI/UX"],
-    "shortDescription": "A sophisticated e-commerce platform for luxury timepieces featuring dynamic product catalogs, advanced filtering, secure payment processing, and comprehensive admin management tools.",
+    "shortDescription": "Full-stack e-commerce platform built with Vue.js and Node.js, featuring real-time inventory management, secure payment processing, and comprehensive admin dashboard with analytics.",
     "technologies": [
       "Vue.js", "Tailwind CSS", "JavaScript",
       "Node.js", "Express.js", "MongoDB", 
@@ -21,10 +21,10 @@
     "githubUrl": "https://github.com/DMcloud022",
     "liveUrl": "#",
     "modalData": {
-      "description": "A sophisticated e-commerce platform for luxury timepieces, focusing on creating seamless customer journeys from dynamic product catalogs to efficient checkout processes. The system serves both customers and administrators with intuitive interfaces and robust functionality.",
+      "description": "A full-stack e-commerce platform built with Vue.js, Node.js, Express.js, and MongoDB, designed for luxury timepieces and retail products. The system provides seamless shopping experiences with dynamic product catalogs, real-time inventory tracking, secure payment processing, and comprehensive administrative tools. Features include advanced filtering, customer account management, order tracking, and analytics dashboards for business insights.",
       "features": "<li>Dynamic product catalog with advanced filtering and search</li><li>Real-time inventory management system</li><li>Secure payment processing with multiple gateway support</li><li>Comprehensive admin dashboard with analytics</li><li>Customer account management and order tracking</li>",
-      "technicalDetails": "Built with a modern tech stack including Vue.js for the frontend and Node.js for the backend. Implements a microservices architecture for scalability, with separate services for product management, user authentication, and order processing. Uses MongoDB for flexible data storage and Redis for caching and session management.",
-      "implementation": "Followed an agile development approach with continuous integration/deployment using GitHub Actions. Implemented responsive design principles and progressive enhancement for broad device support. Used Docker containers for consistent development and deployment environments. Integrated automated testing with Jest and Cypress for reliability.",
+      "technicalDetails": "Frontend built with Vue.js 3 and Tailwind CSS, implementing component-based architecture and reactive user interfaces. Backend powered by Node.js and Express.js with RESTful API architecture. MongoDB used for flexible document storage with optimized queries, and Redis implemented for caching and session management. Docker containers ensure consistent development and deployment environments.",
+      "implementation": "Developed using agile methodology with CI/CD pipeline through GitHub Actions. Implemented responsive design with mobile-first approach ensuring seamless experience across all devices. Automated testing integrated with Jest for unit testing and Cypress for end-to-end testing. Payment gateway integration supports multiple providers for secure transaction processing.",
       "gallery": [
         {
           "src": "/img/feature_project1.png",
@@ -65,7 +65,7 @@
       "/img/hris4.png"
     ],
     "categories": ["Web App"],
-    "shortDescription": "A comprehensive Human Resource Information System featuring complete employee lifecycle management, automated payroll processing, real-time attendance tracking, and advanced analytics dashboard for modern organizations.",
+    "shortDescription": "Full-stack HRIS built with Laravel and Vue.js, featuring complete employee management, automated payroll processing, real-time attendance tracking, and comprehensive analytics dashboard.",
     "technologies": [
       "Vue.js", "Laravel", "PHP", "JavaScript",
       "MySQL", "Bootstrap", "Chart.js",
@@ -74,10 +74,10 @@
     "githubUrl": "https://github.com/DMcloud022",
     "liveUrl": "#",
     "modalData": {
-      "description": "The Human Resources Information System is a comprehensive full-stack web application designed to streamline and modernize HR operations for organizations of all sizes. Built with Vue.js for dynamic frontend interactions and Laravel for robust backend functionality, this system provides end-to-end HR management capabilities including employee lifecycle management, automated payroll processing, performance tracking, and detailed analytics reporting with real-time insights.",
+      "description": "A comprehensive Human Resource Information System (HRIS) built with Laravel and Vue.js, designed to streamline HR operations for modern organizations. The system provides end-to-end employee lifecycle management from onboarding to offboarding, automated payroll processing with tax calculations, real-time attendance tracking, performance evaluation systems, and advanced analytics dashboards. Features role-based access control, leave management workflows, document management, and comprehensive reporting capabilities.",
       "features": "<li>Complete employee lifecycle management from onboarding to offboarding</li><li>Automated payroll processing with tax calculations and deductions</li><li>Real-time attendance tracking with biometric integration support</li><li>Performance evaluation system with customizable review cycles</li><li>Advanced HR analytics and reporting dashboard</li><li>Leave management with approval workflows</li><li>Document management system for HR records</li><li>Role-based access control for different user levels</li>",
-      "technicalDetails": "Frontend developed using Vue.js 3 with Composition API for reactive user interfaces and component-based architecture. Backend powered by Laravel 10 with RESTful API design, implementing JWT authentication for secure user sessions. MySQL database with optimized queries and proper indexing for handling large employee datasets. Integrated Chart.js for data visualization and Bootstrap for responsive design across all devices.",
-      "implementation": "Followed modern development practices with separation of concerns using Vue.js for frontend and Laravel API for backend services. Implemented comprehensive authentication and authorization system with role-based permissions. Used Laravel's Eloquent ORM for database interactions and Vue Router for client-side routing. Deployed using Docker containers for consistent development and production environments with automated CI/CD pipeline.",
+      "technicalDetails": "Frontend built with Vue.js 3 using Composition API for reactive interfaces and component-based architecture. Backend powered by Laravel 10 with RESTful API architecture and JWT authentication for secure user sessions. MySQL database with optimized queries and proper indexing for efficient data retrieval. Integrated Chart.js for data visualization, Bootstrap for responsive layouts, and Docker for containerized deployment.",
+      "implementation": "Developed with separation of concerns architecture using Vue.js frontend and Laravel API backend. Implemented comprehensive authentication and authorization with role-based access control (RBAC). Utilized Laravel Eloquent ORM for efficient database operations and Vue Router for client-side navigation. Deployed with Docker containers ensuring consistent environments, with automated CI/CD pipeline for streamlined deployment.",
       "gallery": [
         {
           "src": "/img/hris1.png",
@@ -100,6 +100,49 @@
           "caption": "Real-time attendance monitoring and reporting"
         }
       ]
+    }
+  },
+  {
+    "id": "project-biblioteca",
+    "title": "Biblioteca - Digital Library Management System",
+    "filterClasses": "web-app",
+    "imageSrcs": [],
+    "categories": ["Web App"],
+    "shortDescription": "Comprehensive digital library management system designed to eliminate barriers to educational resources. Features automated book browsing, borrowing, and return workflows with secure user account management and real-time inventory tracking.",
+    "technologies": [
+      "PHP", "MySQL", "JavaScript",
+      "HTML5", "CSS3", "RESTful API"
+    ],
+    "githubUrl": "https://github.com/DMcloud022",
+    "liveUrl": "#",
+    "modalData": {
+      "description": "Biblioteca is an innovative digital library management system engineered to democratize access to educational resources. The platform addresses critical challenges in academic resource accessibility by providing students and faculty members with a seamless, cost-free solution for discovering, borrowing, and managing library materials. Built with scalability and user experience in mind, Biblioteca transforms traditional library operations into an efficient digital ecosystem that eliminates physical barriers and streamlines resource acquisition processes.",
+      "features": "<li>Advanced book browsing system with comprehensive search and filtering capabilities</li><li>Automated book borrowing workflow with real-time availability tracking</li><li>Intelligent return management system with automated due date tracking</li><li>Secure user authentication and account management system</li><li>Personalized borrowing history and book tracking dashboard</li><li>Role-based access control for students and faculty members</li><li>Real-time inventory management and availability status</li><li>Responsive design ensuring seamless access across all devices</li>",
+      "technicalDetails": "Developed using PHP for server-side logic with object-oriented programming principles. MySQL database architecture with optimized queries and proper indexing for high-performance book catalog searches. RESTful API design enables seamless integration with future mobile applications. Frontend built with modern JavaScript (ES6+) and responsive CSS3 for optimal user experience across desktop and mobile platforms.",
+      "implementation": "Implemented with a focus on security and performance, utilizing prepared statements for SQL operations to prevent injection attacks. User session management implemented with secure authentication protocols. The system architecture follows MVC patterns ensuring maintainable and scalable codebase. Database schema designed with normalization principles for efficient data storage and retrieval.",
+      "gallery": []
+    }
+  },
+  {
+    "id": "project-lira",
+    "title": "LIRA - Intelligent Dialogue Management and Trainable Customer Service",
+    "filterClasses": "mobile-app ai-ml",
+    "imageSrcs": [],
+    "categories": ["Mobile App", "AI/ML"],
+    "shortDescription": "Enterprise-grade intelligent chatbot system powered by Dialogflow, machine learning, and natural language processing. Delivers personalized customer service automation with trainable conversation management and seamless business system integration.",
+    "technologies": [
+      "Flutter", "Dart", "Dialogflow",
+      "Machine Learning", "NLP", "Android Studio",
+      "REST API", "Firebase"
+    ],
+    "githubUrl": "https://github.com/DMcloud022",
+    "liveUrl": "#",
+    "modalData": {
+      "description": "LIRA is an advanced Dialogue Management Application System that revolutionizes customer service through intelligent conversational AI. Built with cutting-edge natural language processing and machine learning technologies, LIRA provides businesses with a customizable, trainable chatbot solution that seamlessly integrates with existing systems. The platform delivers personalized, context-aware responses tailored to specific business domains, enabling 24/7 customer support while reducing operational overhead. LIRA's adaptive learning capabilities continuously improve customer interactions through data-driven insights and user feedback, ensuring exceptional service quality and customer satisfaction.",
+      "features": "<li>Intelligent dialogue management system with context retention and conversation flow control</li><li>Trainable machine learning models that improve through user interactions</li><li>Advanced natural language processing for accurate intent recognition and entity extraction</li><li>Customizable response templates tailored to specific business products and services</li><li>Seamless integration with existing business systems and databases</li><li>Comprehensive analytics dashboard for conversation insights and performance metrics</li><li>Multi-platform support with Flutter for iOS and Android deployment</li><li>Scalable architecture supporting high-volume customer inquiries</li>",
+      "technicalDetails": "Built with Flutter and Dart for cross-platform mobile application development, ensuring consistent user experiences across iOS and Android. Integrated Google Dialogflow for advanced natural language understanding and intent classification. Machine learning algorithms implemented for continuous learning from conversation patterns and user feedback. RESTful API architecture enables seamless backend integration with business systems and databases. Firebase integration for real-time data synchronization and cloud-based infrastructure.",
+      "implementation": "Developed following agile methodology with iterative improvements based on user testing and feedback. Dialogflow integration configured with custom training data and entity recognition for domain-specific conversations. Machine learning models trained on historical customer service data to improve response accuracy and relevance. Implemented robust error handling and fallback mechanisms for edge cases. Comprehensive testing framework ensures high-quality conversational experiences across diverse user scenarios and business contexts.",
+      "gallery": []
     }
   }
 ] 

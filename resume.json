@@ -16,10 +16,10 @@
       "dates": "Feb 2025 - Present",
       "location": "Philippines",
       "description": [
-        "Led the maintenance and enhancement of a FreeSWITCH-based call center infrastructure serving 500+ concurrent users, achieving 99.9% uptime and reducing call routing latency by 40%.",
-        "Developed comprehensive CLI scripting solutions and automation workflows in a Linux environment, reducing manual system administration tasks by 60%.",
+        "Led the maintenance and enhancement of a FreeSWITCH-based call center infrastructure serving multiple concurrent users, achieving high uptime and reducing call routing latency.",
+        "Developed comprehensive CLI scripting solutions and automation workflows in a Linux environment, reducing manual system administration tasks and improving efficiency.",
         "Implemented Docker-based deployment pipelines that streamlined application delivery, reducing deployment time from hours to minutes.",
-        "Architected and configured a Proxmox VE platform managing 50+ virtual machines, implementing high-availability clustering that improved system resilience and resource utilization by 35%."
+        "Architected and configured a Proxmox VE platform managing multiple virtual machines, implementing high-availability clustering that improved system resilience and resource utilization."
       ]
     },
     {
@@ -28,8 +28,8 @@
       "dates": "Nov 2024 - May 2025",
       "location": "Remote",
       "description": [
-        "Delivered tailored tutoring sessions to over 25 students in Computer Science and Mathematics, resulting in a 90% average grade improvement.",
-        "Developed innovative teaching methodologies to explain complex concepts in algorithms, data structures, and advanced mathematics, receiving a 100% student satisfaction rate."
+        "Delivered tailored tutoring sessions to students in Computer Science and Mathematics, resulting in significant grade improvement.",
+        "Developed innovative teaching methodologies to explain complex concepts in algorithms, data structures, and advanced mathematics, receiving high student satisfaction."
       ]
     },
     {
@@ -38,9 +38,9 @@
       "dates": "May 2024 - Oct 2024",
       "location": "Philippines",
       "description": [
-        "Designed and implemented cutting-edge AI solutions integrating Large Language Models (LLMs) that automated 70% of repetitive tasks and improved workflow efficiency by 45%.",
-        "Built scalable vector database solutions and Retrieval-Augmented Generation (RAG) pipelines, enhancing data accessibility by 60% and reducing information retrieval time by 80%.",
-        "Collaborated with senior developers on over 8 AI and web development projects, contributing to 100% on-time delivery and maintaining high code quality standards."
+        "Designed and implemented cutting-edge AI solutions integrating Large Language Models (LLMs) that automated repetitive tasks and improved workflow efficiency.",
+        "Built scalable vector database solutions and Retrieval-Augmented Generation (RAG) pipelines, enhancing data accessibility and reducing information retrieval time.",
+        "Collaborated with senior developers on multiple AI and web development projects, contributing to on-time delivery and maintaining high code quality standards."
       ]
     },
     {
@@ -49,8 +49,8 @@
       "dates": "Feb 2024 - Mar 2024",
       "location": "Philippines",
       "description": [
-        "Designed and developed a high-performance GUI for an ATM Switch Card Management system using Flutter for Windows, reducing transaction processing time by 30%.",
-        "Collaborated with design teams using Figma to translate complex requirements into intuitive, responsive interfaces, improving user adoption by 40%."
+        "Designed and developed a high-performance GUI for an ATM Switch Card Management system using Flutter for Windows, reducing transaction processing time.",
+        "Collaborated with design teams using Figma to translate complex requirements into intuitive, responsive interfaces, improving user adoption."
       ]
     },
     {
@@ -59,8 +59,8 @@
       "dates": "Jan 2024 - May 2024",
       "location": "Philippines",
       "description": [
-        "Co-designed and implemented a comprehensive Management Information System (MIS) serving over 200 military personnel, improving data accessibility by 75% and reducing administrative processing time by 60%.",
-        "Streamlined organizational data management processes through advanced analytics and reporting capabilities, enabling data-informed decision-making that improved operational efficiency by 45%."
+        "Co-designed and implemented a comprehensive Management Information System (MIS) serving military personnel, improving data accessibility and reducing administrative processing time.",
+        "Streamlined organizational data management processes through advanced analytics and reporting capabilities, enabling data-informed decision-making that improved operational efficiency."
       ]
     }
   ],
@@ -82,14 +82,14 @@
   ],
   "projects": [
     {
-      "name": "Personal Portfolio Website",
-      "technologies": ["JavaScript (ES6+)", "HTML5", "CSS3", "Netlify"],
-      "description": "Engineered a fully responsive, modern single-page application using vanilla JavaScript, HTML5, and CSS3 to showcase professional skills and projects. Implemented dynamic content loading from JSON, Intersection Observer for animations, and a Netlify-integrated contact form with reCAPTCHA."
+      "name": "HRMS using Laravel and Vue",
+      "technologies": ["Laravel", "Vue.js", "MySQL", "REST API", "PHP"],
+      "description": "Developed a comprehensive Human Resource Management System using Laravel as the backend framework and Vue.js for the frontend interface. The system manages employee records, attendance tracking, payroll processing, leave management, and performance evaluations. Implemented RESTful API architecture for seamless communication between frontend and backend, with robust authentication and authorization mechanisms. Features include real-time data synchronization, responsive design for multi-device access, automated payroll calculations, and comprehensive reporting dashboards. Built with MySQL database for efficient data storage and retrieval, ensuring data integrity and optimal performance for enterprise-level operations."
     },
     {
-      "name": "High-Accuracy CNN Image Classifier",
-      "technologies": ["Python", "TensorFlow", "Keras", "CNN"],
-      "description": "Authored a university thesis project to classify images with high precision using a custom-built Convolutional Neural Network. Achieved a 95-98% accuracy rate, demonstrating a deep understanding of model architecture, data augmentation, training, and evaluation. Built with Python, TensorFlow, and Keras."
+      "name": "Image Classification System using Convolutional Neural Networks",
+      "technologies": ["Python", "TensorFlow", "Keras", "CNN", "Deep Learning"],
+      "description": "Designed and implemented an advanced image classification system utilizing Convolutional Neural Networks (CNNs) for accurate image recognition and categorization. Developed custom CNN architecture optimized for the specific dataset, incorporating techniques such as data augmentation, dropout regularization, and batch normalization to enhance model performance. The system processes and classifies images across multiple categories with high precision, demonstrating expertise in deep learning model architecture, training pipeline optimization, and evaluation metrics. Built with Python, TensorFlow, and Keras, implementing best practices for data preprocessing, model training, validation, and deployment."
     }
   ],
   "certifications": [

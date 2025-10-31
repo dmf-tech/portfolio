@@ -402,7 +402,8 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // Initialize all project carousels (featured and cards)
-    selectAll('.image-carousel').forEach(carousel => {
+    // Initialize carousel only for featured projects (not regular project cards)
+    selectAll('.featured-project-wrapper .image-carousel').forEach(carousel => {
         initializeProjectCarousel(carousel);
     });
 
@@ -484,9 +485,10 @@ document.addEventListener('DOMContentLoaded', () => {
         projectCard.className = `project-card ${project.filterClasses} animate-on-scroll fade-up`;
         
         // Set data attributes for modal
+        // Note: features contains HTML, so we don't escape it - we'll parse and sanitize when displaying
         projectCard.setAttribute('data-project-title', escapeHTML(project.title));
         projectCard.setAttribute('data-project-description', escapeHTML(project.modalData?.description || ''));
-        projectCard.setAttribute('data-project-features', escapeHTML(project.modalData?.features || ''));
+        projectCard.setAttribute('data-project-features', project.modalData?.features || '');
         projectCard.setAttribute('data-project-technical', escapeHTML(project.modalData?.technicalDetails || ''));
         projectCard.setAttribute('data-project-implementation', escapeHTML(project.modalData?.implementation || ''));
         projectCard.setAttribute('data-gallery', escapeHTML(JSON.stringify(project.modalData?.gallery || [])));
@@ -494,45 +496,8 @@ document.addEventListener('DOMContentLoaded', () => {
         projectCard.setAttribute('data-github-url', escapeHTML(project.githubUrl || ''));
         projectCard.setAttribute('data-technologies', JSON.stringify(project.technologies || []));
 
-        // Create image area
-        const imageArea = document.createElement('div');
-        imageArea.className = 'project-image-area';
-        
-        const carousel = document.createElement('div');
-        carousel.className = 'image-carousel';
-        carousel.setAttribute('data-project-carousel', project.id);
-        
-        const carouselImages = document.createElement('div');
-        carouselImages.className = 'carousel-images';
-        
-        // Add images
-        if (project.imageSrcs && project.imageSrcs.length > 0) {
-            project.imageSrcs.forEach((src, index) => {
-                const img = document.createElement('img');
-                img.src = src;
-                img.alt = `${project.title} Screenshot ${index + 1}`;
-                img.className = `carousel-image ${index === 0 ? 'active' : ''}`;
-                carouselImages.appendChild(img);
-            });
-        }
-        
-        // Add navigation buttons
-        const prevBtn = document.createElement('button');
-        prevBtn.className = 'carousel-nav prev';
-        prevBtn.setAttribute('aria-label', 'Previous image');
-        prevBtn.innerHTML = '<i class="fas fa-chevron-left"></i>';
-        
-        const nextBtn = document.createElement('button');
-        nextBtn.className = 'carousel-nav next';
-        nextBtn.setAttribute('aria-label', 'Next image');
-        nextBtn.innerHTML = '<i class="fas fa-chevron-right"></i>';
-        
-        carousel.appendChild(carouselImages);
-        carousel.appendChild(prevBtn);
-        carousel.appendChild(nextBtn);
-        imageArea.appendChild(carousel);
-
-        // Create project info area
+        // No image area for regular project cards - images are in modal
+        // Create project info area (full-width without image)
         const projectInfo = document.createElement('div');
         projectInfo.className = 'project-info';
         
@@ -572,8 +537,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         projectInfo.appendChild(linksDiv);
 
-        // Assemble the card
-        projectCard.appendChild(imageArea);
+        // Assemble the card (no image area - cleaner design)
         projectCard.appendChild(projectInfo);
         
         return projectCard;
@@ -589,20 +553,34 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         try {
-            console.log('🚀 Loading projects directly from JSON file...');
+            // Rate limiting: Check if we're fetching too frequently
+            const now = Date.now();
+            const lastFetch = window._lastProjectsFetch || 0;
+            const timeSinceLastFetch = now - lastFetch;
+            const MIN_FETCH_INTERVAL = 2000; // 2 seconds minimum between fetches
             
-            // Use a simpler fetch without cache busting for faster loading
-            const response = await fetch('/projects.json');
+            if (timeSinceLastFetch < MIN_FETCH_INTERVAL) {
+                console.warn('Rate limit: Projects fetch throttled');
+                return;
+            }
+            window._lastProjectsFetch = now;
+            
+            // Use fetch with proper error handling and caching
+            const response = await fetch('/projects.json', {
+                method: 'GET',
+                cache: 'default',
+                credentials: 'same-origin'
+            });
             
             if (!response.ok) {
                 throw new Error(`Failed to fetch projects.json: ${response.status} ${response.statusText}`);
             }
             
             const projects = await response.json();
-            console.log('✅ Projects loaded successfully from direct JSON fetch');
-
+            
+            // Validate response is an array before processing
             if (!Array.isArray(projects) || projects.length === 0) {
-                throw new Error('No projects data found or invalid format');
+                throw new Error('Invalid projects data format or empty array');
             }
 
             console.log(`Found ${projects.length} projects to render`);
@@ -654,9 +632,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 const featuredProjectDetails = document.createElement('div');
                 featuredProjectDetails.className = 'featured-project-details';
                 const featuredTitle = document.createElement('h4');
-                featuredTitle.textContent = escapeHTML(featuredProject.title);
+                featuredTitle.textContent = featuredProject.title;
                 const featuredDescription = document.createElement('p');
-                featuredDescription.textContent = escapeHTML(featuredProject.modalData.description);
+                featuredDescription.textContent = featuredProject.modalData.description;
                 const featuredLinks = document.createElement('div');
                 featuredLinks.className = 'project-links';
                 const featuredViewDetailsBtn = document.createElement('button');
@@ -676,9 +654,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
                 featuredProjectWrapper.appendChild(featuredContent);
                  // Add data attributes to the wrapper for the modal
+                 // Note: features contains HTML, so we don't escape it - we'll parse and sanitize when displaying
                 featuredProjectWrapper.setAttribute('data-project-title', escapeHTML(featuredProject.title));
                 featuredProjectWrapper.setAttribute('data-project-description', escapeHTML(featuredProject.modalData.description));
-                featuredProjectWrapper.setAttribute('data-project-features', escapeHTML(featuredProject.modalData.features));
+                featuredProjectWrapper.setAttribute('data-project-features', featuredProject.modalData.features || '');
                 featuredProjectWrapper.setAttribute('data-project-technical', escapeHTML(featuredProject.modalData.technicalDetails || ''));
                 featuredProjectWrapper.setAttribute('data-project-implementation', escapeHTML(featuredProject.modalData.implementation || ''));
                 featuredProjectWrapper.setAttribute('data-gallery', escapeHTML(JSON.stringify(featuredProject.modalData.gallery || [])));
@@ -705,7 +684,8 @@ document.addEventListener('DOMContentLoaded', () => {
             console.log(`✓ Successfully rendered ${regularProjects.length} regular projects`);
             
             // Re-initialize all functionalities that depend on the dynamic content
-            selectAll('.image-carousel').forEach(initializeProjectCarousel);
+            // Initialize carousel only for featured projects (not regular project cards)
+            selectAll('.featured-project-wrapper .image-carousel').forEach(initializeProjectCarousel);
             initializeProjectFiltering();
             initializeProjectModal();
 
@@ -817,66 +797,123 @@ document.addEventListener('DOMContentLoaded', () => {
                 const projectCard = button.closest('.project-card, .featured-project-wrapper');
                 
                 // Get data from the card
-                const title = projectCard.dataset.projectTitle;
-                const description = projectCard.dataset.projectDescription;
-                const features = projectCard.dataset.projectFeatures;
-                const technicalDetails = projectCard.dataset.projectTechnical;
-                const implementation = projectCard.dataset.projectImplementation;
-                const liveUrl = projectCard.dataset.liveUrl;
-                const githubUrl = projectCard.dataset.githubUrl;
+                // Decode HTML entities to ensure proper display (dataset may not always unescape correctly)
+                const title = decodeHTML(projectCard.dataset.projectTitle || '');
+                const description = decodeHTML(projectCard.dataset.projectDescription || '');
+                const features = projectCard.dataset.projectFeatures || '';
+                const technicalDetails = decodeHTML(projectCard.dataset.projectTechnical || '');
+                const implementation = decodeHTML(projectCard.dataset.projectImplementation || '');
+                const liveUrl = decodeHTML(projectCard.dataset.liveUrl || '');
+                const githubUrl = decodeHTML(projectCard.dataset.githubUrl || '');
 
-                // Get technologies from project data
-                let technologies = '';
+                // Get technologies from project data (keep as array for proper processing)
+                let technologiesArray = [];
                 try {
                     // Get technologies from the data attribute
                     const techData = projectCard.dataset.technologies;
                     if (techData) {
-                        const techArray = JSON.parse(techData);
-                        technologies = techArray.map(tech => `<span>${escapeHTML(tech)}</span>`).join('');
+                        technologiesArray = JSON.parse(techData);
                     }
                 } catch (e) {
                     console.warn('Could not parse technologies data:', e);
                     console.warn('Tech data:', projectCard.dataset.technologies);
-                    technologies = '';
+                    technologiesArray = [];
                 }
                 
                 // Populate modal
-                select('#projectModalTitle').textContent = title;
+                select('#projectModalTitle').textContent = title; // Keep for compatibility
+                select('#projectModalTitleBelow').textContent = title; // New title below gallery
                 select('#projectModalDescription').textContent = description;
                 
-                // Update features
+                // Update features - properly handle HTML that already contains <li> tags
                 const featuresList = select('#projectModalFeatures');
                 featuresList.innerHTML = ''; // Clear previous features
                 if (features) {
-                    const unescapedFeatures = new DOMParser().parseFromString(features, "text/html").documentElement.textContent;
-                    featuresList.innerHTML = unescapedFeatures;
+                    // Check if features already contains HTML tags
+                    if (features.trim().startsWith('<li>') || features.includes('<li>')) {
+                        // Features already contain HTML - parse and sanitize safely
+                        const parser = new DOMParser();
+                        const parsed = parser.parseFromString(features, "text/html");
+                        const liElements = parsed.querySelectorAll('li');
+                        
+                        if (liElements.length > 0) {
+                            // Extract text from each <li> and create safe list items
+                            liElements.forEach(li => {
+                                const textContent = li.textContent || li.innerText || '';
+                                const cleanText = escapeHTML(textContent.trim());
+                                if (cleanText) {
+                                    const liElement = document.createElement('li');
+                                    liElement.textContent = cleanText;
+                                    featuresList.appendChild(liElement);
+                                }
+                            });
+                        } else {
+                            // Fallback: treat as plain text
+                            const cleanText = escapeHTML(features.trim());
+                            if (cleanText) {
+                                const liElement = document.createElement('li');
+                                liElement.textContent = cleanText;
+                                featuresList.appendChild(liElement);
+                            }
+                        }
+                    } else {
+                        // Features is plain text - create list items
+                        const textLines = features.split(/\n|\.|;/).filter(item => item.trim());
+                        textLines.forEach(line => {
+                            const cleanText = escapeHTML(line.trim());
+                            if (cleanText) {
+                                const liElement = document.createElement('li');
+                                liElement.textContent = cleanText;
+                                featuresList.appendChild(liElement);
+                            }
+                        });
+                    }
                 }
 
                 // Update technical details
+                // Dataset already unescapes HTML entities, so we can use textContent directly
                 const technicalElement = select('#projectModalTechnical');
                 if (technicalElement) {
-                    const unescapedTechnical = technicalDetails ? new DOMParser().parseFromString(technicalDetails, "text/html").documentElement.textContent : '';
-                    technicalElement.textContent = unescapedTechnical || 'Technical details not available';
+                    // Since dataset automatically unescapes, we just need to use the text as-is
+                    technicalElement.textContent = technicalDetails || 'Technical details not available';
                 }
 
                 // Update implementation
+                // Dataset already unescapes HTML entities, so we can use textContent directly
                 const implementationElement = select('#projectModalImplementation');
                 if (implementationElement) {
-                    const unescapedImplementation = implementation ? new DOMParser().parseFromString(implementation, "text/html").documentElement.textContent : '';
-                    implementationElement.textContent = unescapedImplementation || 'Implementation details not available';
+                    // Since dataset automatically unescapes, we just need to use the text as-is
+                    implementationElement.textContent = implementation || 'Implementation details not available';
                 }
 
-                // Update technologies
+                // Update technologies (create spans directly from array, no double-processing)
                 const techContainer = select('#projectModalTechnologies');
-                if (techContainer && technologies) {
-                    techContainer.innerHTML = technologies.replace(/<span>/g, '<span class="skill-tag">');
-                } else if (techContainer) {
-                    techContainer.innerHTML = '<span class="skill-tag">No technologies specified</span>';
+                if (techContainer) {
+                    techContainer.innerHTML = ''; // Clear previous technologies
+                    if (technologiesArray && technologiesArray.length > 0) {
+                        // Create span elements directly from array
+                        technologiesArray.forEach(tech => {
+                            const cleanTech = escapeHTML(String(tech).trim());
+                            if (cleanTech) {
+                                const spanElement = document.createElement('span');
+                                spanElement.className = 'skill-tag';
+                                spanElement.textContent = cleanTech;
+                                techContainer.appendChild(spanElement);
+                            }
+                        });
+                    } else {
+                        // Show placeholder
+                        const placeholderSpan = document.createElement('span');
+                        placeholderSpan.className = 'skill-tag';
+                        placeholderSpan.textContent = 'No technologies specified';
+                        techContainer.appendChild(placeholderSpan);
+                    }
                 }
 
                 // Project links section is hidden via CSS - no need to update links
 
                 // Set up gallery
+                const projectGallery = select('.project-gallery');
                 try {
                     // Safely parse the gallery data with a fallback
                     const galleryData = projectCard.dataset.gallery || '[]';
@@ -885,7 +922,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     console.warn('Error parsing gallery data:', e);
                     currentGalleryImages = [];
                 }
+                
+                // Hide gallery if no images, show if images exist
                 if (currentGalleryImages.length > 0) {
+                    // Show gallery
+                    if (projectGallery) {
+                        projectGallery.style.display = 'block';
+                    }
+                    
                     // Create gallery HTML
                     galleryContainer.innerHTML = currentGalleryImages.map((img, index) => `
                         <img src="${escapeHTML(img.src)}" 
@@ -902,7 +946,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         </button>
                     `).join('');
 
-                                         // Caption removed for cleaner display
+                    // Caption removed for cleaner display
 
                     // Add click handlers to indicators
                     galleryIndicators.querySelectorAll('.gallery-indicator').forEach((indicator, index) => {
@@ -910,6 +954,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     });
 
                     currentImageIndex = 0;
+                } else {
+                    // Hide gallery when no images
+                    if (projectGallery) {
+                        projectGallery.style.display = 'none';
+                    }
+                    // Clear gallery container
+                    galleryContainer.innerHTML = '';
+                    galleryIndicators.innerHTML = '';
                 }
 
                 // Show modal
@@ -929,7 +981,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 currentGalleryImages = [];
                 galleryContainer.innerHTML = '';
                 galleryIndicators.innerHTML = '';
-                                 // Caption removed for cleaner display
+                // Reset gallery visibility
+                const projectGallery = select('.project-gallery');
+                if (projectGallery) {
+                    projectGallery.style.display = '';
+                }
+                // Caption removed for cleaner display
             }, 300);
         };
 
@@ -956,12 +1013,12 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // --- Email Obfuscation ---
-    const emailHolder = select('.contact-email-address');
+    const emailHolder = select('#emailAddress') || select('.contact-email-address');
     if (emailHolder) {
         const user = 'dmflorencio.main';
         const domain = 'gmail.com';
         // Check if it's the specific placeholder before changing
-        if (emailHolder.textContent.includes('[email protected]')) {
+        if (emailHolder.textContent.trim().includes('[email protected]')) {
              emailHolder.textContent = `${user}@${domain}`;
         }
     }
@@ -972,33 +1029,6 @@ document.addEventListener('DOMContentLoaded', () => {
         yearSpan.textContent = new Date().getFullYear();
     }
 
-    // --- Copy Email to Clipboard ---
-    const emailLink = select('#emailLink');
-    const emailCopyFeedback = select('#emailCopyFeedback');
-
-    if (emailLink && emailCopyFeedback) {
-        emailLink.addEventListener('click', function (e) {
-            e.preventDefault(); // Prevent mailto link from opening immediately
-            const emailAddress = this.textContent;
-
-            if (navigator.clipboard && navigator.clipboard.writeText) {
-                navigator.clipboard.writeText(emailAddress).then(() => {
-                    emailCopyFeedback.classList.add('visible');
-                    setTimeout(() => {
-                        emailCopyFeedback.classList.remove('visible');
-                    }, 2000); // Hide feedback after 2 seconds
-                }).catch(err => {
-                    console.warn('Could not copy email: ', err);
-                    // Fallback or alternative action if copy fails (e.g., open mailto)
-                    window.location.href = `mailto:${emailAddress}`;
-                });
-            } else {
-                // Fallback for older browsers or if clipboard API is not available
-                console.warn('Clipboard API not available. Opening mailto link.');
-                window.location.href = `mailto:${emailAddress}`;
-            }
-        });
-    }
 
     // --- About Me Section Tabs ---
     const aboutTabsNav = select('.about-tabs-nav');
@@ -1564,77 +1594,59 @@ document.addEventListener('DOMContentLoaded', () => {
         // Skills tabs removed - section no longer exists
     }, 200);
 
-    // Modal Logic
-    const emailContactMethod = document.getElementById('emailContactMethod');
-    const emailModal = document.getElementById('emailModal');
-    const closeModalBtn = document.getElementById('closeModalBtn');
-    const contactForm = document.getElementById('contactForm');
-    const formSuccessMessage = document.getElementById('formSuccessMessage');
+    // --- Copy Email to Clipboard (Replaces Modal) ---
+    const emailContactMethod = select('#emailContactMethod');
+    const emailAddress = select('#emailAddress');
+    const emailCopyFeedback = select('#emailCopyFeedback');
 
-    // Add silent bot protection: disable submit button until user interaction
-    if (contactForm) {
-        const submitButton = contactForm.querySelector('button[type="submit"]');
-        if (submitButton) {
-            submitButton.setAttribute('disabled', 'true');
-            submitButton.style.cursor = 'not-allowed';
-            submitButton.style.opacity = '0.7';
-        }
-
-        const enableSubmit = () => {
-            if (submitButton && submitButton.hasAttribute('disabled')) {
-                submitButton.removeAttribute('disabled');
-                submitButton.style.cursor = 'pointer';
-                submitButton.style.opacity = '1';
-                contactForm.removeEventListener('mousemove', enableSubmit);
-                contactForm.removeEventListener('keydown', enableSubmit);
-            }
-        };
-
-        contactForm.addEventListener('mousemove', enableSubmit, { once: true });
-        contactForm.addEventListener('keydown', enableSubmit, { once: true });
-    }
-
-
-    const openModal = () => {
-        if (emailModal) emailModal.classList.add('active');
-    };
-
-    const closeModal = () => {
-        if (emailModal) emailModal.classList.remove('active');
-    };
-
-    if (emailContactMethod) {
-        emailContactMethod.addEventListener('click', openModal);
-    }
-
-    if (closeModalBtn) {
-        closeModalBtn.addEventListener('click', closeModal);
-    }
-
-    if (emailModal) {
-        emailModal.addEventListener('click', (e) => {
-            if (e.target === emailModal) {
-                closeModal();
-            }
-        });
-    }
-
-    // Netlify Form AJAX submission
-    if (contactForm) {
-        contactForm.addEventListener('submit', (e) => {
+    if (emailContactMethod && emailAddress && emailCopyFeedback) {
+        emailContactMethod.addEventListener('click', function(e) {
             e.preventDefault();
-
-            const formData = new FormData(contactForm);
-            fetch('/', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                body: new URLSearchParams(formData).toString(),
-            })
-            .then(() => {
-                contactForm.style.display = 'none';
-                formSuccessMessage.style.display = 'block';
-            })
-            .catch((error) => alert(error));
+            
+            // Get the actual email (after obfuscation is resolved)
+            const user = 'dmflorencio.main';
+            const domain = 'gmail.com';
+            const fullEmail = `${user}@${domain}`;
+            
+            // Copy to clipboard
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(fullEmail).then(() => {
+                        // Show feedback
+                        emailCopyFeedback.classList.add('visible');
+                        
+                        // Hide feedback after 1.5 seconds
+                        setTimeout(() => {
+                            emailCopyFeedback.classList.remove('visible');
+                        }, 1500);
+                }).catch(err => {
+                    console.warn('Could not copy email: ', err);
+                    // Fallback: open mailto link
+                    window.location.href = `mailto:${fullEmail}`;
+                });
+            } else {
+                // Fallback for older browsers
+                const textArea = document.createElement('textarea');
+                textArea.value = fullEmail;
+                textArea.style.position = 'fixed';
+                textArea.style.left = '-999999px';
+                document.body.appendChild(textArea);
+                textArea.focus();
+                textArea.select();
+                
+                try {
+                    document.execCommand('copy');
+                    // Show feedback
+                    emailCopyFeedback.classList.add('visible');
+                    setTimeout(() => {
+                        emailCopyFeedback.classList.remove('visible');
+                    }, 2000);
+                } catch (err) {
+                    console.warn('Could not copy email: ', err);
+                    window.location.href = `mailto:${fullEmail}`;
+                }
+                
+                document.body.removeChild(textArea);
+            }
         });
     }
 
@@ -1720,6 +1732,18 @@ const escapeHTML = (str) => {
 };
 
 /**
+ * Decodes HTML entities to ensure proper display when using textContent.
+ * @param {string} str - The string to decode.
+ * @returns {string} The decoded string.
+ */
+const decodeHTML = (str) => {
+    if (typeof str !== 'string') return '';
+    const textarea = document.createElement('textarea');
+    textarea.innerHTML = str;
+    return textarea.value;
+};
+
+/**
  * Fetches resume data from resume.json and renders it.
  */
 async function fetchResumeData() {
@@ -1728,37 +1752,65 @@ async function fetchResumeData() {
 
     // Show loading state only if content isn't already loaded
     if (!resumeContainer.querySelector('.resume-view')) {
-        resumeContainer.innerHTML = `
-            <div class="loading-placeholder">
-                <i class="fas fa-spinner fa-spin"></i>
-                <p>Loading Resume...</p>
-            </div>
-        `;
+        // Use safe DOM creation instead of innerHTML
+        const loadingDiv = document.createElement('div');
+        loadingDiv.className = 'loading-placeholder';
+        const icon = document.createElement('i');
+        icon.className = 'fas fa-spinner fa-spin';
+        const p = document.createElement('p');
+        p.textContent = 'Loading Resume...';
+        loadingDiv.appendChild(icon);
+        loadingDiv.appendChild(p);
+        resumeContainer.innerHTML = '';
+        resumeContainer.appendChild(loadingDiv);
     }
 
     try {
-        console.log('🚀 Loading resume directly from JSON file...');
+        // Rate limiting: Prevent rapid successive fetches
+        const now = Date.now();
+        const lastFetch = window._lastResumeFetch || 0;
+        const timeSinceLastFetch = now - lastFetch;
+        const MIN_FETCH_INTERVAL = 2000; // 2 seconds minimum between fetches
         
-        // Directly fetch resume.json with cache busting for development
-        const cacheBuster = new Date().getTime();
-        const response = await fetch(`/resume.json?v=${cacheBuster}`);
+        if (timeSinceLastFetch < MIN_FETCH_INTERVAL) {
+            console.warn('Rate limit: Resume fetch throttled');
+            return;
+        }
+        window._lastResumeFetch = now;
+        
+        // Fetch with proper caching (removed cache busting to allow browser caching)
+        const response = await fetch('/resume.json', {
+            method: 'GET',
+            cache: 'default',
+            credentials: 'same-origin'
+        });
         
         if (!response.ok) {
             throw new Error(`Failed to fetch resume.json: ${response.status} ${response.statusText}`);
         }
         
         const resumeData = await response.json();
-        console.log('✅ Resume loaded successfully from direct JSON fetch');
+        
+        // Validate response structure before rendering
+        if (!resumeData || typeof resumeData !== 'object') {
+            throw new Error('Invalid resume data format');
+        }
+        
         renderResume(resumeData);
     } catch (error) {
         console.error("Error fetching or parsing resume data:", error);
         if (resumeContainer) {
-            resumeContainer.innerHTML = `
-                <div class="error-message">
-                    <h3>Unable to Load Resume</h3>
-                    <p>Could not load resume data. Please try again later.</p>
-                </div>
-            `;
+            // Use textContent for safe error display
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'error-message';
+            const h3 = document.createElement('h3');
+            h3.textContent = 'Unable to Load Resume';
+            const p = document.createElement('p');
+            p.textContent = 'Could not load resume data. Please try again later.';
+            errorDiv.appendChild(h3);
+            errorDiv.appendChild(p);
+            resumeContainer.innerHTML = '';
+            resumeContainer.appendChild(errorDiv);
         }
     }
 }

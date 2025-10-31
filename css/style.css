@@ -1,4 +1,4 @@
-/* Global Styles & Variables */
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        /* Global Styles & Variables */
 :root {
     --primary-color: #2c3e50; /* Dark Slate Blue - Used for main headings, primary actions, and dark text elements */
     --dark-text-color: #343a40; /* Near Black - For general paragraph text */
@@ -116,13 +116,11 @@ h2 {
     font-weight: 700;
     color: var(--primary-color); /* Ensure section titles use the dark blue */
 }
-h2::after { 
-    content: '';
-    display: block;
-    width: 70px; 
-    height: 3px; 
-    background-color: var(--primary-color); /* Underline is Dark Blue */
-    margin: 0 auto 60px auto; /* 0 top margin, 60px bottom margin for space after line */
+/* h2::after removed - using section-title instead which has no horizontal line */
+h2.section-title::after,
+h2.section-title::before {
+    display: none !important;
+    content: none !important;
 }
 h3 { font-size: 1.6rem; font-weight: 600; margin-bottom: 1rem; color: var(--primary-color); } 
 h4 { font-size: 1.2rem; color: var(--primary-color); font-weight: 600; margin-bottom: 0.8rem;}
@@ -860,28 +858,8 @@ button.filter-btn:active,
     50% { transform: translateY(-15px); }
 }
 
-/* Section Header */
-.section-header {
-    text-align: center;
-    margin-bottom: 60px;
-    position: relative;
-    z-index: 2;
-}
-
-.section-title {
-    font-size: 2.5rem;
-    color: var(--primary-color);
-    margin-bottom: 15px;
-    font-weight: 700;
-}
-
-.section-subtitle {
-    font-size: 1.2rem;
-    color: #6c757d;
-    max-width: 600px;
-    margin: 0 auto;
-    line-height: 1.6;
-}
+/* Section Header - Styles moved to section-spacing.css to prevent conflicts */
+/* section-spacing.css handles all section header, title, and subtitle styling */
 
 /* About Layout */
 .about-layout {
@@ -1416,13 +1394,7 @@ button.filter-btn:active,
         height: 200px;
     }
     
-    .section-title {
-        font-size: 2rem;
-    }
-    
-    .section-subtitle {
-        font-size: 1rem;
-    }
+    /* Section title/subtitle responsive styles handled by section-spacing.css */
 }
 
 /* --- End About Section --- */
@@ -1549,13 +1521,11 @@ h2 {
     font-weight: 700;
     color: var(--primary-color); /* Ensure section titles use the dark blue */
 }
-h2::after { 
-    content: '';
-    display: block;
-    width: 70px; 
-    height: 3px; 
-    background-color: var(--primary-color); /* Underline is Dark Blue */
-    margin: 0 auto 60px auto; /* 0 top margin, 60px bottom margin for space after line */
+/* h2::after removed - using section-title instead which has no horizontal line */
+h2.section-title::after,
+h2.section-title::before {
+    display: none !important;
+    content: none !important;
 }
 h3 { font-size: 1.6rem; font-weight: 600; margin-bottom: 1rem; color: var(--primary-color); } 
 h4 { font-size: 1.2rem; color: var(--primary-color); font-weight: 600; margin-bottom: 0.8rem;}
@@ -2293,28 +2263,8 @@ button.filter-btn:active,
     50% { transform: translateY(-15px); }
 }
 
-/* Section Header */
-.section-header {
-    text-align: center;
-    margin-bottom: 60px;
-    position: relative;
-    z-index: 2;
-}
-
-.section-title {
-    font-size: 2.5rem;
-    color: var(--primary-color);
-    margin-bottom: 15px;
-    font-weight: 700;
-}
-
-.section-subtitle {
-    font-size: 1.2rem;
-    color: #6c757d;
-    max-width: 600px;
-    margin: 0 auto;
-    line-height: 1.6;
-}
+/* Section Header - Styles moved to section-spacing.css to prevent conflicts */
+/* section-spacing.css handles all section header, title, and subtitle styling */
 
 /* About Layout */
 .about-layout {
@@ -2849,13 +2799,7 @@ button.filter-btn:active,
         height: 200px;
     }
     
-    .section-title {
-        font-size: 2rem;
-    }
-    
-    .section-subtitle {
-        font-size: 1rem;
-    }
+    /* Section title/subtitle responsive styles handled by section-spacing.css */
 }
 
 /* --- End About Section --- */
@@ -2866,15 +2810,8 @@ button.filter-btn:active,
     /* padding: var(--section-padding-desktop); -- Already handled by section tag */
 }
 
-.skills-section .section-subtitle {
-    text-align: center;
-    max-width: 700px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 50px; /* Space after subtitle, before grid */
-    font-size: 1.1rem;
-    color: var(--dark-text-color);
-}
+/* .skills-section .section-subtitle - Styles moved to section-spacing.css */
+/* section-spacing.css handles all subtitle styling with proper overrides */
 
 .skills-grid {
     display: grid;
@@ -3209,8 +3146,10 @@ button.filter-btn:active,
     color: var(--primary-color);
     font-weight: 700;
 }
-.featured-project-wrapper > h3::after { /* Remove global h2::after style if it's applied */
-    display: none;
+.featured-project-wrapper > h3::after,
+.featured-project-wrapper > h3::before { /* Remove global h2::after style if it's applied */
+    display: none !important;
+    content: none !important;
 }
 
 
@@ -3240,8 +3179,10 @@ button.filter-btn:active,
     font-weight: 700;
     line-height: 1.3;
 }
-.featured-project-details h4::after { /* Remove global h2::after style if it's applied */
-    display: none;
+.featured-project-details h4::after,
+.featured-project-details h4::before { /* Remove global h2::after style if it's applied */
+    display: none !important;
+    content: none !important;
 }
 
 
@@ -3465,13 +3406,11 @@ h2 {
     font-weight: 700;
     color: var(--primary-color); /* Ensure section titles use the dark blue */
 }
-h2::after { 
-    content: '';
-    display: block;
-    width: 70px; 
-    height: 3px; 
-    background-color: var(--primary-color); /* Underline is Dark Blue */
-    margin: 0 auto 60px auto; /* 0 top margin, 60px bottom margin for space after line */
+/* h2::after removed - using section-title instead which has no horizontal line */
+h2.section-title::after,
+h2.section-title::before {
+    display: none !important;
+    content: none !important;
 }
 h3 { font-size: 1.6rem; font-weight: 600; margin-bottom: 1rem; color: var(--primary-color); } 
 h4 { font-size: 1.2rem; color: var(--primary-color); font-weight: 600; margin-bottom: 0.8rem;}
@@ -4793,28 +4732,8 @@ button.filter-btn:active,
     50% { transform: translateY(-15px); }
 }
 
-/* Section Header */
-.section-header {
-    text-align: center;
-    margin-bottom: 60px;
-    position: relative;
-    z-index: 2;
-}
-
-.section-title {
-    font-size: 2.5rem;
-    color: var(--primary-color);
-    margin-bottom: 15px;
-    font-weight: 700;
-}
-
-.section-subtitle {
-    font-size: 1.2rem;
-    color: #6c757d;
-    max-width: 600px;
-    margin: 0 auto;
-    line-height: 1.6;
-}
+/* Section Header - Styles moved to section-spacing.css to prevent conflicts */
+/* section-spacing.css handles all section header, title, and subtitle styling */
 
 /* About Layout */
 .about-layout {
@@ -5349,13 +5268,7 @@ button.filter-btn:active,
         height: 200px;
     }
     
-    .section-title {
-        font-size: 2rem;
-    }
-    
-    .section-subtitle {
-        font-size: 1rem;
-    }
+    /* Section title/subtitle responsive styles handled by section-spacing.css */
 }
 
 /* --- End About Section --- */
@@ -5366,15 +5279,8 @@ button.filter-btn:active,
     /* padding: var(--section-padding-desktop); -- Already handled by section tag */
 }
 
-.skills-section .section-subtitle {
-    text-align: center;
-    max-width: 700px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 50px; /* Space after subtitle, before grid */
-    font-size: 1.1rem;
-    color: var(--dark-text-color);
-}
+/* .skills-section .section-subtitle - Styles moved to section-spacing.css */
+/* section-spacing.css handles all subtitle styling with proper overrides */
 
 .skills-grid {
     display: grid;
@@ -5705,8 +5611,10 @@ button.filter-btn:active,
     color: var(--primary-color);
     font-weight: 700;
 }
-.featured-project-wrapper > h3::after { /* Remove global h2::after style if it's applied */
-    display: none;
+.featured-project-wrapper > h3::after,
+.featured-project-wrapper > h3::before { /* Remove global h2::after style if it's applied */
+    display: none !important;
+    content: none !important;
 }
 
 
@@ -5736,8 +5644,10 @@ button.filter-btn:active,
     font-weight: 700;
     line-height: 1.3;
 }
-.featured-project-details h4::after { /* Remove global h2::after style if it's applied */
-    display: none;
+.featured-project-details h4::after,
+.featured-project-details h4::before { /* Remove global h2::after style if it's applied */
+    display: none !important;
+    content: none !important;
 }
 
 
@@ -5995,8 +5905,8 @@ button.filter-btn:active,
 .projects-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr); 
-    gap: 30px; 
-    min-height: 400px; /* Ensure grid has minimum height to prevent layout shift */
+    gap: 24px; /* Compressed from 30px */
+    min-height: 350px; /* Compressed from 400px */
 }
 
 .project-card {
@@ -6010,6 +5920,24 @@ button.filter-btn:active,
     opacity: 0;
     animation: fadeInUp 0.6s ease forwards;
     border: 1px solid rgba(0,0,0,0.05); /* Subtle border for definition */
+    position: relative;
+}
+
+/* Elegant top accent line for cards without images */
+.project-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: #2C3E50;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.project-card:hover::before {
+    opacity: 1;
 }
 
 /* Stagger animation for project cards */
@@ -6031,10 +5959,43 @@ button.filter-btn:active,
 .project-card:hover {
     transform: translateY(-4px); 
     box-shadow: 0 8px 25px rgba(0,0,0,0.12); 
-    border-color: rgba(0,0,0,0.1);
+    border-color: rgba(44, 62, 80, 0.2);
 }
 
-.project-image-area { /* New wrapper for project card image carousel */
+.project-image-area {
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+    border-radius: 8px 8px 0 0;
+    background: #f8fafc;
+    position: relative;
+}
+
+.project-preview-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.project-card:hover .project-preview-image {
+    transform: scale(1.05);
+}
+
+.project-image-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #e2e8f0;
+    color: #94a3b8;
+    font-size: 3rem;
+}
+
+/* Keep carousel for featured projects only */
+.featured-project-wrapper .image-carousel { /* New wrapper for project card image carousel */
     position: relative; /* For carousel button positioning */
     aspect-ratio: 16/10; /* Professional aspect ratio */
     background: #f8fafc; /* Light background for loading state */
@@ -6044,56 +6005,61 @@ button.filter-btn:active,
 
 
 .project-info {
-    padding: 24px;
+    padding: 28px; /* Increased padding for better presentation without images */
     flex-grow: 1; /* Allows info to take remaining space, pushing links down */
     display: flex;
     flex-direction: column; /* Internal stacking for info content */
-    gap: 16px; /* Consistent spacing between elements */
+    gap: 16px; /* Better spacing for readability */
+    position: relative;
 }
 
 .project-info h3 {
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     margin: 0;
-    color: var(--primary-color);
-    font-weight: 600;
+    color: #1e293b;
+    font-weight: 700;
     line-height: 1.3;
+    letter-spacing: -0.01em;
 }
 
 .project-categories {
     margin: 0;
     display: flex;
     flex-wrap: wrap; /* Allow tags to wrap */
-    gap: 8px; /* Space between tags */
+    gap: 10px; /* Space between tags */
 }
 
 .category-tag {
-    background-color: #f1f5f9; /* Lighter, more professional background */
-    color: #475569; /* Better contrast text */
+    background: transparent;
+    color: #2C3E50; 
     padding: 6px 12px;
-    border-radius: 6px; /* Less rounded, more professional */
-    font-size: 0.8rem;
+    border-radius: 4px; 
+    font-size: 0.85rem;
     font-weight: 500;
     display: inline-block;
-    border: 1px solid #e2e8f0;
-    transition: all 0.2s ease;
+    border: 1px solid rgba(44, 62, 80, 0.2);
+    transition: all 0.3s ease;
 }
 
 .category-tag:hover {
-    background-color: #e2e8f0;
+    background: #2C3E50;
+    color: #ffffff;
     transform: translateY(-1px);
+    border-color: #2C3E50;
 }
 
 .project-info p { /* The main description paragraph within a card */
-    font-size: 0.95rem;
-    line-height: 1.6;
-    color: #64748b; /* Professional gray color */
+    font-size: 1rem;
+    line-height: 1.75;
+    color: #475569; /* Better contrast */
     margin: 0;
     flex-grow: 1; /* Allows description to push links down if content varies */
     display: -webkit-box;
-    -webkit-line-clamp: 3; /* Limit to 3 lines for consistency */
-    line-clamp: 3; /* Standard property for compatibility */
+    -webkit-line-clamp: 4; /* Allow 4 lines for better readability */
+    line-clamp: 4; /* Standard property for compatibility */
     -webkit-box-orient: vertical;
     overflow: hidden;
+    font-weight: 400;
 }
 
 /* .project-technologies removed from project cards - only used in modals now */
@@ -6105,20 +6071,28 @@ button.filter-btn:active,
     display: flex;
     gap: 12px;
     flex-wrap: wrap; /* Allow buttons to wrap if space is tight */
-    padding-top: 4px; /* Small separation from content above */
+    padding-top: 16px;
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
 }
 
-.project-links .btn { /* Specific styling for buttons within project cards */
-    padding: 10px 20px; /* Better proportions for professional look */
-    font-size: 0.9rem;
+.project-links .btn-secondary { /* Specific styling for buttons within project cards */
+    background: #2C3E50;
+    color: #ffffff;
+    border: none;
+    padding: 12px 24px;
+    font-size: 0.95rem;
     font-weight: 600;
-    border-radius: 8px;
+    border-radius: 4px;
     transition: all 0.3s ease;
-    background-color: var(--primary-color);
-    color: var(--light-text-color);
-    border: 2px solid var(--primary-color);
+    box-shadow: 0 2px 8px rgba(44, 62, 80, 0.2);
     text-transform: none; /* Keep natural casing */
     letter-spacing: 0.025em; /* Slight letter spacing for readability */
+}
+
+.project-links .btn-secondary:hover {
+    background: #1a2530;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(44, 62, 80, 0.3);
 }
 
 .project-links .btn:hover {
@@ -9874,11 +9848,11 @@ section > .container > h2:first-child {
         max-height: 90vh;
     }
     
-    .cert-modal-header,
-    .cert-modal-body {
-        padding-left: 25px;
-    padding-right: 25px;
+    .cert-modal-header {
+        padding: 10px 25px 4px 25px !important;
     }
+    
+    /* Body padding defined in certifications-modern.css */
     
     .cert-details-grid {
         grid-template-columns: 1fr;
@@ -9895,103 +9869,15 @@ section > .container > h2:first-child {
 }
 
 @media (max-width: 480px) {
-    .cert-modal-header h2 {
-        font-size: 1.5rem;
-    }
+    /* Header removed - no longer needed */
     
-    .cert-modal-header,
-    .cert-modal-body {
-        padding-left: 20px;
-        padding-right: 20px;
-    }
+    /* Body padding defined in certifications-modern.css */
 }
 
 /* --- End Certification Modal Styles --- */
 
-/* --- Certification Modal Styles --- */
-.cert-modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(4px);
-    z-index: 1001;
-    justify-content: center;
-    align-items: center;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.cert-modal.active {
-    opacity: 1;
-}
-
-.cert-modal-content {
-    background: var(--light-text-color);
-    max-width: 800px;
-    width: 90%;
-    max-height: 85vh;
-    overflow-y: auto;
-    border-radius: var(--border-radius);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    transform: scale(0.9);
-    transition: transform 0.3s ease;
-    position: relative;
-}
-
-.cert-modal.active .cert-modal-content {
-    transform: scale(1);
-}
-
-.cert-modal-header {
-    padding: 20px 30px 12px;
-    border-bottom: 1px solid var(--border-color);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.cert-modal-header h2 {
-    margin: 0;
-    color: var(--primary-color);
-    font-size: 1.8rem;
-    text-align: center !important;
-}
-
-.cert-modal-close {
-    background: none;
-    border: none;
-        font-size: 1.5rem;
-    color: #6c757d;
-    cursor: pointer;
-    padding: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 35px;
-    height: 35px;
-    border-radius: 50%;
-    transition: all 0.3s ease;
-}
-
-.cert-modal-close:hover {
-    background-color: #f8f9fa;
-    color: var(--primary-color);
-}
-
-.cert-modal-body {
-    padding: 15px 30px 30px;
-}
-
-.cert-details-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 25px;
-    margin-bottom: 30px;
-}
+/* Certification Modal Styles - All styles moved to certifications-modern.css */
+/* Removed duplicate definitions to prevent conflicts */
 
 .cert-detail-item h4 {
         font-size: 1rem;
@@ -10010,25 +9896,7 @@ section > .container > h2:first-child {
     line-height: 1.4;
 }
 
-.cert-description {
-    margin-bottom: 25px;
-}
-
-.cert-description h4 {
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: var(--primary-color);
-    margin-bottom: 15px;
-        display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.cert-description p {
-    font-size: 0.95rem;
-    line-height: 1.6;
-    color: var(--dark-text-color);
-}
+/* cert-description styles moved to certifications-modern.css */
 
 .courses-section {
     margin: 20px 0;
@@ -10115,11 +9983,11 @@ section > .container > h2:first-child {
         max-height: 90vh;
     }
     
-    .cert-modal-header,
-    .cert-modal-body {
-        padding-left: 25px;
-    padding-right: 25px;
+    .cert-modal-header {
+        padding: 10px 25px 4px 25px !important;
     }
+    
+    /* Body padding defined in certifications-modern.css */
     
     .cert-details-grid {
         grid-template-columns: 1fr;
@@ -10137,140 +10005,15 @@ section > .container > h2:first-child {
 }
 
 @media (max-width: 480px) {
-    .cert-modal-header h2 {
-        font-size: 1.5rem;
-    }
+    /* Header removed - no longer needed */
     
-    .cert-modal-header,
-    .cert-modal-body {
-        padding-left: 20px;
-        padding-right: 20px;
-    }
+    /* Body padding defined in certifications-modern.css */
 }
 
 /* --- End Certification Modal Styles --- */
 
-/* --- Certification Modal Styles --- */
-.cert-modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(4px);
-    z-index: 1001;
-    justify-content: center;
-    align-items: center;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.cert-modal.active {
-    opacity: 1;
-}
-
-.cert-modal-content {
-    background: var(--light-text-color);
-    max-width: 800px;
-    width: 90%;
-    max-height: 85vh;
-    overflow-y: auto;
-        border-radius: var(--border-radius);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    transform: scale(0.9);
-    transition: transform 0.3s ease;
-        position: relative;
-}
-
-.cert-modal.active .cert-modal-content {
-    transform: scale(1);
-}
-
-.cert-modal-header {
-    padding: 20px 30px 12px;
-    border-bottom: 1px solid var(--border-color);
-        display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.cert-modal-header h2 {
-    margin: 0;
-    color: var(--primary-color);
-    font-size: 1.8rem;
-    text-align: center !important;
-}
-
-.cert-modal-close {
-    background: none;
-    border: none;
-        font-size: 1.5rem;
-    color: #6c757d;
-    cursor: pointer;
-    padding: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 35px;
-    height: 35px;
-    border-radius: 50%;
-    transition: all 0.3s ease;
-}
-
-.cert-modal-close:hover {
-    background-color: #f8f9fa;
-    color: var(--primary-color);
-}
-
-.cert-modal-body {
-    padding: 15px 30px 30px;
-}
-
-.cert-details-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 25px;
-    margin-bottom: 30px;
-}
-
-.cert-detail-item h4 {
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--primary-color);
-    margin-bottom: 8px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.cert-detail-item p {
-    font-size: 0.95rem;
-    color: var(--dark-text-color);
-    margin: 0;
-    line-height: 1.4;
-}
-
-.cert-description {
-    margin-bottom: 25px;
-}
-
-.cert-description h4 {
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: var(--primary-color);
-    margin-bottom: 15px;
-        display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.cert-description p {
-    font-size: 0.95rem;
-    line-height: 1.6;
-    color: var(--dark-text-color);
-}
+/* Certification Modal Styles - All styles moved to certifications-modern.css */
+/* Removed duplicate definitions to prevent conflicts */
 
 .courses-section {
     margin: 20px 0;
@@ -10352,43 +10095,23 @@ section > .container > h2:first-child {
     min-width: 120px;
 }
 
-/* Responsive Modal */
+/* Responsive Modal Styles - Moved to certifications-modern.css */
+/* All responsive overrides for certification modal are now in certifications-modern.css */
 @media (max-width: 768px) {
-    .cert-modal-content {
-        width: 95%;
-        max-height: 90vh;
-    }
-    
-    .cert-modal-header,
-    .cert-modal-body {
-        padding-left: 25px;
-        padding-right: 25px;
-    }
-    
-    .cert-details-grid {
-        grid-template-columns: 1fr;
-        gap: 20px;
-    }
-    
-    .certification-actions {
-        flex-direction: column;
-    }
-    
-    .certification-actions .btn {
-    width: 100%;
-    }
+    /* Certification modal responsive styles moved to certifications-modern.css */
 }
 
 @media (max-width: 480px) {
     .cert-modal-header h2 {
-        font-size: 1.5rem;
+        font-size: 1.15rem !important;
+        line-height: 1.2 !important;
     }
     
-    .cert-modal-header,
-    .cert-modal-body {
-        padding-left: 20px;
-        padding-right: 20px;
+    .cert-modal-header {
+        padding: 8px 20px 4px 20px !important;
     }
+    
+    /* Body padding defined in certifications-modern.css */
 }
 
 /* --- End Certification Modal Styles --- */

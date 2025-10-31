@@ -4,282 +4,130 @@
     </div>
     <div class="skill-category-info">
         <h3 class="skill-category-title">Backend Development</h3>
-        <p class="skill-category-subtitle">Architecting and maintaining robust, scalable, and secure server-side solutions, with expertise in API development, database management, and cloud infrastructure.</p>
+        <p class="skill-category-subtitle">Architecting robust backend systems that power scalable applications. Expertise in API development, database optimization, security implementation, and cloud infrastructure deployment.</p>
     </div>
 </div>
 
-<div class="backend-architecture">
-    <!-- Architecture Layers -->
-    <div class="architecture-layers">
-        <!-- API Layer -->
-        <div class="layer-card api-layer">
-            <div class="layer-header">
-                <div class="layer-icon">
-                    <i class="fas fa-exchange-alt"></i>
-                </div>
-                <h4>API Development & Integration</h4>
-                <div class="layer-status">
-                    <span class="status-dot active"></span>
-                    <span>Production Ready</span>
-                </div>
+<div class="frontend-showcase">
+    <div class="products-grid">
+        <!-- Node.js & Express -->
+        <div class="product-card">
+            <div class="product-image">
+                <i class="fab fa-node-js"></i>
             </div>
-            <div class="layer-content">
-                <p class="layer-description">Designing and implementing RESTful and GraphQL APIs that serve as the backbone for frontend applications and third-party integrations. Specialized in creating intuitive API contracts with comprehensive documentation, versioning, and robust authentication strategies like JWT and OAuth 2.0.</p>
-                <div class="api-showcase-simplified">
-                    <div class="api-endpoint">
-                        <span class="method get">GET</span>
-                        <span class="path">/api/v1/users</span>
-                        <span class="description">Retrieve a list of users</span>
-                    </div>
-                    <div class="api-endpoint">
-                        <span class="method post">POST</span>
-                        <span class="path">/api/v1/users</span>
-                        <span class="description">Create a new user</span>
-                    </div>
-                    <div class="api-endpoint">
-                        <span class="method patch">PATCH</span>
-                        <span class="path">/api/v1/users/{id}</span>
-                        <span class="description">Update a user's details</span>
-                    </div>
-                    <div class="api-endpoint">
-                        <span class="method delete">DELETE</span>
-                        <span class="path">/api/v1/users/{id}</span>
-                        <span class="description">Remove a user</span>
+            <div class="product-content">
+                <h4>Node.js & Express</h4>
+                <p class="product-description">Developing high-performance RESTful APIs and server applications using Node.js and Express.js. Implementing real-time communication with WebSockets. Architecting scalable microservices with MongoDB for flexible data storage and retrieval.</p>
+                <div class="product-specs">
+                    <div class="spec-item">
+                        <span class="spec-label">Tech Stack:</span>
+                        <span class="spec-value">Node.js, Express.js, MongoDB, REST API, WebSockets</span>
                     </div>
                 </div>
-                <div class="tech-stack">
-                    <span class="tech-item"><i class="fas fa-random"></i> RESTful APIs</span>
-                    <span class="tech-item"><i class="fas fa-project-diagram"></i> GraphQL</span>
-                    <span class="tech-item"><i class="fas fa-key"></i> JWT Auth</span>
-                    <span class="tech-item"><i class="fas fa-unlock-alt"></i> OAuth 2.0</span>
+                <div class="product-tags">
+                    <span class="tag">Node.js</span>
+                    <span class="tag">Express.js</span>
+                    <span class="tag">MongoDB</span>
+                    <span class="tag">REST API</span>
+                    <span class="tag">WebSockets</span>
                 </div>
             </div>
         </div>
 
-        <!-- Database Layer -->
-        <div class="layer-card database-layer">
-            <div class="layer-header">
-                <div class="layer-icon">
-                    <i class="fas fa-database"></i>
-                </div>
-                <h4>Database Design & Management</h4>
-                <div class="layer-status">
-                    <span class="status-dot active"></span>
-                    <span>Optimized</span>
-                </div>
+        <!-- Laravel & PHP -->
+        <div class="product-card">
+            <div class="product-image">
+                <i class="fab fa-laravel"></i>
             </div>
-            <div class="layer-content">
-                <p class="layer-description">Architecting efficient relational and NoSQL database solutions that balance performance, scalability, and data integrity. Experienced in data modeling, indexing strategies, and query optimization for high-traffic applications. Proficient with PostgreSQL for structured data and MongoDB for flexible, scalable data storage.</p>
-                <div class="database-tables">
-                    <div class="db-table">
-                        <div class="table-header">
-                            <h5><i class="fas fa-table"></i> Users</h5>
-                        </div>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Column</th>
-                                    <th>Type</th>
-                                    <th>Constraints</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><i class="fas fa-key"></i> id</td>
-                                    <td>SERIAL</td>
-                                    <td>PRIMARY KEY</td>
-                                </tr>
-                                <tr>
-                                    <td><i class="fas fa-user-circle"></i> username</td>
-                                    <td>VARCHAR(50)</td>
-                                    <td>UNIQUE, NOT NULL</td>
-                                </tr>
-                                <tr>
-                                    <td><i class="fas fa-envelope"></i> email</td>
-                                    <td>VARCHAR(100)</td>
-                                    <td>UNIQUE, NOT NULL</td>
-                                </tr>
-                                <tr>
-                                    <td><i class="fas fa-calendar-alt"></i> created_at</td>
-                                    <td>TIMESTAMP</td>
-                                    <td>DEFAULT NOW()</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="db-table">
-                        <div class="table-header">
-                            <h5><i class="fas fa-table"></i> Orders</h5>
-                        </div>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Column</th>
-                                    <th>Type</th>
-                                    <th>Constraints</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><i class="fas fa-key"></i> id</td>
-                                    <td>SERIAL</td>
-                                    <td>PRIMARY KEY</td>
-                                </tr>
-                                <tr>
-                                    <td><i class="fas fa-user"></i> user_id</td>
-                                    <td>INTEGER</td>
-                                    <td>FOREIGN KEY (Users)</td>
-                                </tr>
-                                <tr>
-                                    <td><i class="fas fa-box"></i> product</td>
-                                    <td>VARCHAR(100)</td>
-                                    <td>NOT NULL</td>
-                                </tr>
-                                <tr>
-                                    <td><i class="fas fa-shopping-cart"></i> status</td>
-                                    <td>VARCHAR(20)</td>
-                                    <td>DEFAULT 'pending'</td>
-                                </tr>
-                            </tbody>
-                        </table>
+            <div class="product-content">
+                <h4>Laravel & PHP</h4>
+                <p class="product-description">Building enterprise-level backend systems using Laravel framework with MySQL relational databases. Leveraging Eloquent ORM for efficient database operations. Implementing secure REST APIs with JWT authentication and following MVC architectural patterns.</p>
+                <div class="product-specs">
+                    <div class="spec-item">
+                        <span class="spec-label">Tech Stack:</span>
+                        <span class="spec-value">Laravel, PHP, MySQL, Eloquent ORM, JWT Auth</span>
                     </div>
                 </div>
-                <div class="tech-stack">
-                    <span class="tech-item"><i class="fas fa-database"></i> PostgreSQL</span>
-                    <span class="tech-item"><i class="fas fa-leaf"></i> MongoDB</span>
-                    <span class="tech-item"><i class="fas fa-bolt"></i> Redis</span>
-                    <span class="tech-item"><i class="fas fa-sitemap"></i> Data Modeling</span>
+                <div class="product-tags">
+                    <span class="tag">Laravel</span>
+                    <span class="tag">PHP</span>
+                    <span class="tag">MySQL</span>
+                    <span class="tag">Eloquent ORM</span>
+                    <span class="tag">JWT</span>
                 </div>
             </div>
         </div>
 
-        <!-- Security Layer -->
-        <div class="layer-card security-layer">
-            <div class="layer-header">
-                <div class="layer-icon">
-                    <i class="fas fa-shield-alt"></i>
+        <!-- Database Management -->
+        <div class="product-card">
+            <div class="product-image">
+                <i class="fas fa-database"></i>
+            </div>
+            <div class="product-content">
+                <h4>Database Architecture</h4>
+                <p class="product-description">Designing efficient database schemas and optimizing queries for high-performance applications. Expert in PostgreSQL and MySQL for relational data, MongoDB for document storage, and Redis for caching and session management. Implementing indexing strategies and query optimization.</p>
+                <div class="product-specs">
+                    <div class="spec-item">
+                        <span class="spec-label">Tech Stack:</span>
+                        <span class="spec-value">PostgreSQL, MySQL, MongoDB, Redis, Database Design</span>
+                    </div>
                 </div>
+                <div class="product-tags">
+                    <span class="tag">PostgreSQL</span>
+                    <span class="tag">MySQL</span>
+                    <span class="tag">MongoDB</span>
+                    <span class="tag">Redis</span>
+                    <span class="tag">SQL</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Authentication & Security -->
+        <div class="product-card">
+            <div class="product-image">
+                <i class="fas fa-shield-alt"></i>
+            </div>
+            <div class="product-content">
                 <h4>Security & Authentication</h4>
-                <div class="layer-status">
-                    <span class="status-dot active"></span>
-                    <span>Protected</span>
-                </div>
-            </div>
-            <div class="layer-content">
-                <p class="layer-description">Implementing comprehensive security measures to protect applications from common vulnerabilities like SQL injection and XSS. Specialized in secure authentication flows using bcrypt for password hashing, and implementing role-based access control (RBAC) to ensure data privacy and system integrity.</p>
-                <div class="security-features">
-                    <div class="security-item">
-                        <i class="fas fa-lock"></i>
-                        <span>Password Hashing (bcrypt)</span>
-                    </div>
-                    <div class="security-item">
-                        <i class="fas fa-key"></i>
-                        <span>JWT Token Management</span>
-                    </div>
-                    <div class="security-item">
-                        <i class="fas fa-shield-virus"></i>
-                        <span>SQL Injection Prevention</span>
-                    </div>
-                    <div class="security-item">
-                        <i class="fas fa-user-shield"></i>
-                        <span>Role-Based Access Control</span>
+                <p class="product-description">Implementing enterprise-grade security with JWT tokens, OAuth 2.0 authorization, and bcrypt password hashing. Designing role-based access control (RBAC) systems and protecting applications against SQL injection, XSS, and other common vulnerabilities. Ensuring compliance with security best practices.</p>
+                <div class="product-specs">
+                    <div class="spec-item">
+                        <span class="spec-label">Tech Stack:</span>
+                        <span class="spec-value">JWT, OAuth 2.0, bcrypt, RBAC, CORS, Rate Limiting</span>
                     </div>
                 </div>
-                <div class="tech-stack">
-                    <span class="tech-item"><i class="fas fa-lock"></i> bcrypt</span>
-                    <span class="tech-item"><i class="fas fa-key"></i> JWT</span>
-                    <span class="tech-item"><i class="fas fa-exchange-alt"></i> CORS</span>
-                    <span class="tech-item"><i class="fas fa-tachometer-alt"></i> Rate Limiting</span>
+                <div class="product-tags">
+                    <span class="tag">JWT</span>
+                    <span class="tag">OAuth 2.0</span>
+                    <span class="tag">bcrypt</span>
+                    <span class="tag">RBAC</span>
+                    <span class="tag">Security</span>
                 </div>
             </div>
         </div>
 
-        <!-- Performance Layer -->
-        <div class="layer-card performance-layer">
-            <div class="layer-header">
-                <div class="layer-icon">
-                    <i class="fas fa-tachometer-alt"></i>
-                </div>
-                <h4>Performance & Scalability</h4>
-                <div class="layer-status">
-                    <span class="status-dot active"></span>
-                    <span>Optimized</span>
-                </div>
+        <!-- DevOps & Deployment -->
+        <div class="product-card">
+            <div class="product-image">
+                <i class="fas fa-cloud"></i>
             </div>
-            <div class="layer-content">
-                <p class="layer-description">Building high-performance applications that can handle thousands of concurrent users. Implementing advanced caching strategies with Redis, using load balancing to distribute traffic efficiently, and designing scalable microservices architectures. Focused on minimizing response times and ensuring high availability.</p>
-                <div class="performance-metrics">
-                    <div class="metric">
-                        <div class="metric-value">200ms</div>
-                        <div class="metric-label">Avg Response Time</div>
-                    </div>
-                    <div class="metric">
-                        <div class="metric-value">10K</div>
-                        <div class="metric-label">Concurrent Users</div>
-                    </div>
-                    <div class="metric">
-                        <div class="metric-value">99.9%</div>
-                        <div class="metric-label">Uptime SLA</div>
+            <div class="product-content">
+                <h4>DevOps & Cloud Infrastructure</h4>
+                <p class="product-description">Streamlining deployment workflows with Docker containerization and CI/CD pipelines via GitHub Actions. Deploying scalable applications on AWS and Azure cloud platforms. Implementing comprehensive monitoring, logging, and automated scaling strategies for production environments.</p>
+                <div class="product-specs">
+                    <div class="spec-item">
+                        <span class="spec-label">Tech Stack:</span>
+                        <span class="spec-value">Docker, CI/CD, AWS, Azure, GitHub Actions</span>
                     </div>
                 </div>
-                <div class="tech-stack">
-                    <span class="tech-item"><i class="fas fa-bolt"></i> Caching</span>
-                    <span class="tech-item"><i class="fas fa-balance-scale"></i> Load Balancing</span>
-                    <span class="tech-item"><i class="fas fa-cubes"></i> Microservices</span>
-                    <span class="tech-item"><i class="fas fa-cloud"></i> CDN</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- Deployment Layer -->
-        <div class="layer-card deployment-layer">
-            <div class="layer-header">
-                <div class="layer-icon">
-                    <i class="fas fa-rocket"></i>
-                </div>
-                <h4>Deployment & DevOps</h4>
-                <div class="layer-status">
-                    <span class="status-dot active"></span>
-                    <span>Automated</span>
-                </div>
-            </div>
-            <div class="layer-content">
-                <p class="layer-description">Streamlining deployment processes with CI/CD pipelines for automated testing and delivery. Experienced with containerization using Docker for consistent environments and deploying scalable applications on cloud platforms like AWS and Azure. Proficient in setting up monitoring and logging for production systems.</p>
-                <div class="flow-pipeline">
-                    <div class="flow-step">
-                        <div class="flow-icon"><i class="fas fa-code-branch"></i></div>
-                        <h6>1. Commit & Push</h6>
-                        <p>Code is pushed to a Git repository, triggering the pipeline.</p>
-                        </div>
-                    <div class="flow-step">
-                        <div class="flow-icon"><i class="fas fa-box-open"></i></div>
-                        <h6>2. Build & Scan</h6>
-                        <p>Application is built into a Docker image and scanned for vulnerabilities.</p>
-                    </div>
-                    <div class="flow-step">
-                        <div class="flow-icon"><i class="fas fa-tasks"></i></div>
-                        <h6>3. Automated Tests</h6>
-                        <p>Unit, integration, and API tests are run against the build.</p>
-                    </div>
-                    <div class="flow-step">
-                        <div class="flow-icon"><i class="fas fa-flask"></i></div>
-                        <h6>4. Staging Deploy</h6>
-                        <p>The image is deployed to a staging environment for final review.</p>
-                    </div>
-                    <div class="flow-step">
-                        <div class="flow-icon"><i class="fas fa-rocket"></i></div>
-                        <h6>5. Production Release</h6>
-                        <p>Upon approval, the release is rolled out to production users.</p>
-                    </div>
-                </div>
-                <div class="tech-stack">
-                    <span class="tech-item"><i class="fab fa-docker"></i> Docker</span>
-                    <span class="tech-item"><i class="fab fa-aws"></i> AWS/Azure</span>
-                    <span class="tech-item"><i class="fas fa-sync-alt"></i> CI/CD</span>
-                    <span class="tech-item"><i class="fas fa-chart-line"></i> Monitoring</span>
-                </div>
+                <div class="product-tags">
+                    <span class="tag">Docker</span>
+                    <span class="tag">CI/CD</span>
+                    <span class="tag">AWS</span>
+                    <span class="tag">Azure</span>
+                    <span class="tag">GitHub Actions</span>
                 </div>
             </div>
         </div>
     </div>
-</div> 
+</div>

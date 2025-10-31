@@ -335,46 +335,7 @@
     box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
 }
 
-/* Modernized Skill Category Header */
-.skill-category-header {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
-    padding: 2rem;
-    margin: -2rem -2rem 2rem -2rem; /* Pull header to the edges of the card's padding */
-    border-bottom: 1px solid #e5e7eb;
-    border-top-left-radius: 12px;
-    border-top-right-radius: 12px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
-}
-
-.skill-category-icon {
-    font-size: 1.8rem; /* Adjusted for container */
-    color: #ffffff;
-    background: linear-gradient(135deg, var(--primary-color) 0%, #5dade2 100%);
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0; /* Prevent icon from shrinking */
-    box-shadow: 0 4px 12px rgba(44, 62, 80, 0.2);
-}
-
-.skill-category-info h3 {
-    font-size: 2rem;
-    font-weight: 700;
-    color: var(--primary-color);
-    margin: 0 0 0.25rem 0;
-}
-
-.skill-category-info p {
-    font-size: 1rem;
-    color: #5a6c7d;
-    margin: 0;
-}
+/* Modernized Skill Category Header - Removed old styles, using new professional styles below */
 
 /* Responsive Design */
 @media (max-width: 992px) {
@@ -717,167 +678,247 @@
     z-index: 2;
 }
 
-/* Products Grid */
+/* Products Grid - Professional & Elegant */
 .products-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 24px;
+    margin-top: 0;
 }
 
 .product-card {
-    background: white;
-    border-radius: 16px;
-    padding: 2rem;
-    box-shadow: 0 8px 32px rgba(44, 62, 80, 0.08);
-    transition: all 0.3s ease;
-    border: 1px solid rgba(44, 62, 80, 0.05);
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 28px 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(0, 0, 0, 0.08);
     position: relative;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
 .product-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, #2C3E50, #3498DB);
+    display: none; /* Remove gradient accent for flat design */
 }
 
 .product-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 40px rgba(44, 62, 80, 0.15);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    border-color: rgba(44, 62, 80, 0.15);
 }
 
 .product-image {
-    width: 80px;
-    height: 80px;
-    background: linear-gradient(135deg, #2C3E50, #34495E);
-    border-radius: 16px;
+    width: 72px;
+    height: 72px;
+    background: #f8fafc;
+    border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 1.5rem;
+    margin-bottom: 20px;
     font-size: 2rem;
-    color: white;
-    box-shadow: 0 8px 24px rgba(44, 62, 80, 0.15);
+    color: #2C3E50;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+}
+
+.product-card:hover .product-image {
+    background: #f1f5f9;
+    transform: scale(1.05);
+}
+
+.product-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 .product-content h4 {
-    margin: 0 0 1rem 0;
-    font-size: 1.3rem;
+    margin: 0 0 12px 0;
+    font-size: 1.25rem;
     font-weight: 700;
-    color: #2C3E50;
+    color: #1e293b;
     line-height: 1.3;
+    letter-spacing: -0.01em;
 }
 
 .product-description {
-    margin-bottom: 1.5rem;
+    margin-bottom: 18px;
+    flex: 1;
 }
 
 .product-description p {
     margin: 0;
     font-size: 0.95rem;
-    line-height: 1.6;
-    color: #FFFFFF;
+    line-height: 1.65;
+    color: #334155;
 }
 
 .product-specs {
-    margin-bottom: 1.5rem;
+    margin-bottom: 16px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 .spec-item {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.5rem 0;
-    border-bottom: 1px solid rgba(44, 62, 80, 0.08);
-}
-
-.spec-item:last-child {
-    border-bottom: none;
+    flex-direction: column;
+    gap: 6px;
 }
 
 .spec-label {
-    font-size: 0.85rem;
-    color: #7F8C8D;
-    font-weight: 500;
+    font-size: 0.8rem;
+    color: #64748b;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 .spec-value {
-    font-size: 0.85rem;
-    color: #2C3E50;
-    font-weight: 600;
+    font-size: 0.9rem;
+    color: #1e293b;
+    font-weight: 500;
+    line-height: 1.5;
 }
 
 .product-tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.5rem;
+    gap: 8px;
+    margin-top: auto;
 }
 
 .tag {
-    background: linear-gradient(135deg, #3498DB, #2980B9);
-    color: white;
-    padding: 0.4rem 0.8rem;
-    border-radius: 20px;
+    background: #f1f5f9;
+    color: #334155;
+    padding: 6px 14px;
+    border-radius: 6px;
     font-size: 0.8rem;
     font-weight: 500;
-    letter-spacing: 0.3px;
-    transition: all 0.3s ease;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    transition: all 0.2s ease;
 }
 
 .tag:hover {
-    transform: scale(1.05);
-    box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+    background: #e2e8f0;
+    color: #1e293b;
+    border-color: rgba(44, 62, 80, 0.15);
+}
+
+/* Skill Category Header - Professional */
+.skill-category-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 32px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.skill-category-icon {
+    flex-shrink: 0;
+    width: 64px;
+    height: 64px;
+    background: #f8fafc;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: #2C3E50;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.skill-category-info {
+    flex: 1;
+}
+
+.skill-category-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin: 0 0 8px 0;
+    letter-spacing: -0.02em;
+}
+
+.skill-category-subtitle {
+    font-size: 1.05rem;
+    color: #64748b;
+    line-height: 1.6;
+    margin: 0;
 }
 
 /* Responsive Design */
 @media (max-width: 1024px) {
     .products-grid {
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 1.5rem;
+        gap: 20px;
     }
     
-    .featured-product-card {
-        padding: 2rem;
+    .product-card {
+        padding: 24px 20px;
     }
     
-    .product-header {
-        flex-direction: column;
-        gap: 1.5rem;
-        text-align: center;
+    .skill-category-header {
+        margin-bottom: 28px;
+        padding-bottom: 20px;
     }
     
-    .product-features {
-        grid-template-columns: 1fr;
+    .skill-category-icon {
+        width: 56px;
+        height: 56px;
+        font-size: 1.75rem;
+    }
+    
+    .skill-category-title {
+        font-size: 1.75rem;
     }
 }
 
 @media (max-width: 768px) {
     .products-grid {
         grid-template-columns: 1fr;
-        gap: 1.5rem;
-    }
-    
-    .featured-product-card {
-        padding: 1.5rem;
-        margin-bottom: 2rem;
+        gap: 18px;
     }
     
     .product-card {
-        padding: 1.5rem;
+        padding: 22px 18px;
     }
     
     .product-image {
-        width: 60px;
-        height: 60px;
-        font-size: 1.5rem;
+        width: 64px;
+        height: 64px;
+        font-size: 1.75rem;
+        margin-bottom: 16px;
     }
     
     .product-content h4 {
-        font-size: 1.2rem;
+        font-size: 1.15rem;
+        margin-bottom: 10px;
+    }
+    
+    .skill-category-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 16px;
+        margin-bottom: 24px;
+        padding-bottom: 20px;
+    }
+    
+    .skill-category-icon {
+        width: 56px;
+        height: 56px;
+    }
+    
+    .skill-category-title {
+        font-size: 1.6rem;
+    }
+    
+    .skill-category-subtitle {
+        font-size: 1rem;
     }
 }
 

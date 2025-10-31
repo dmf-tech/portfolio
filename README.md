@@ -1,12 +1,11 @@
-# [Your Name]'s Personal Portfolio
+# Personal Portfolio
 
 ![Portfolio Screenshot](https://via.placeholder.com/800x450.png?text=Portfolio+Screenshot+Here)
 <!-- TODO: Replace with an actual screenshot of your portfolio -->
 
 Welcome to the repository for my personal portfolio website. This site showcases my skills, projects, and journey as a software developer.
 
-**Live Demo:** [your-portfolio-url.com](https://your-portfolio-url.com) <!-- TODO: Add your live URL -->
-
+**Live Demo:** [https://danielflorencio.netlify.app/]
 ## About This Project
 
 This portfolio is designed to be a dynamic and engaging representation of my work and capabilities. It features:

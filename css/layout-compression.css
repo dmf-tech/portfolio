@@ -1,0 +1,182 @@
+/* Layout Compression - Compressed spacing and padding throughout with flat design */
+
+/* Featured Project Wrapper Compression - Flat Design */
+.featured-project-wrapper {
+    padding: 28px !important; /* Compressed from 40px - consistent all sides */
+    margin-bottom: 40px !important; /* Compressed from 60px */
+    border-radius: 8px !important; /* Flat design - subtle radius */
+    border: 1px solid rgba(0, 0, 0, 0.1) !important; /* Flat design - subtle border */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important; /* Flat design - minimal shadow */
+    background: #ffffff !important;
+}
+
+.featured-project-wrapper > h3 {
+    font-size: 1.1rem !important; /* Compressed from 1.2rem */
+    margin-bottom: 4px !important; /* Compressed from 5px */
+}
+
+.featured-project-content {
+    gap: 28px !important; /* Compressed from 40px */
+    min-height: 350px !important; /* Compressed from 400px */
+}
+
+.featured-project-details {
+    padding-top: 8px !important; /* Compressed from 10px */
+}
+
+.featured-project-details h4 {
+    font-size: 1.75rem !important; /* Compressed from 1.9rem */
+    margin-bottom: 8px !important; /* Compressed from 10px */
+}
+
+.featured-project-details .project-categories {
+    margin-bottom: 12px !important; /* Compressed from 15px */
+}
+
+.featured-project-details p {
+    font-size: 0.95rem !important; /* Compressed from 1rem */
+    line-height: 1.6 !important; /* Compressed from 1.7 */
+    margin-bottom: 16px !important; /* Compressed from 20px */
+}
+
+.featured-project-details .project-technologies {
+    margin-bottom: 20px !important; /* Compressed from 25px */
+}
+
+.featured-project-details .project-links .btn {
+    padding: 10px 20px !important; /* Compressed from 12px 25px */
+    font-size: 0.9rem !important; /* Compressed from 0.95rem */
+}
+
+/* Projects Grid Compression */
+.projects-grid {
+    gap: 24px !important; /* Compressed from 30px */
+    min-height: 350px !important; /* Compressed from 400px */
+}
+
+/* Project Card - Elegant Design Without Images */
+.project-card {
+    border-radius: 12px !important; /* Modern rounded corners */
+    border: 1px solid rgba(0, 0, 0, 0.08) !important; /* Subtle border */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important; /* Professional shadow */
+    background: #ffffff !important;
+    transition: all 0.3s ease !important;
+}
+
+.project-card:hover {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12) !important; 
+    transform: translateY(-4px) !important;
+    border-color: rgba(44, 62, 80, 0.2) !important;
+}
+
+.project-info {
+    padding: 28px !important; /* Better spacing without images */
+    gap: 16px !important; /* Improved readability */
+}
+
+.project-info h3 {
+    font-size: 1.5rem !important; /* Larger, more prominent */
+    font-weight: 700 !important;
+    color: #1e293b !important;
+}
+
+/* Project Filters Compression */
+.project-filters {
+    margin-bottom: 30px !important; /* Compressed spacing */
+    padding: 0 !important; /* No extra padding */
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 10px !important;
+    justify-content: center !important;
+}
+
+/* Flat Design - Consistent styling for all cards and containers */
+.content-card,
+.skill-flip-card,
+.certification-card {
+    border-radius: 8px !important;
+    border: 1px solid rgba(0, 0, 0, 0.1) !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+    background: #ffffff !important;
+}
+
+/* Ensure all sections maintain flat design consistency */
+.about-section,
+.skills-section,
+.experience-section,
+.projects-section,
+.certifications-section,
+.contact-section {
+    background: #ffffff !important;
+}
+
+/* Responsive Compression - Consistent padding across breakpoints */
+@media (max-width: 992px) {
+    .featured-project-wrapper {
+        padding: 24px !important; /* Consistent with container padding */
+        margin-bottom: 35px !important;
+    }
+    
+    .featured-project-content {
+        gap: 24px !important;
+    }
+    
+    .project-info {
+        padding: 18px !important;
+    }
+    
+    .projects-grid {
+        gap: 22px !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .featured-project-wrapper {
+        padding: 20px !important; /* Consistent with container padding */
+        margin-bottom: 30px !important;
+    }
+    
+    .featured-project-content {
+        gap: 20px !important;
+        min-height: auto !important;
+        flex-direction: column;
+    }
+    
+    .featured-project-details h4 {
+        font-size: 1.5rem !important;
+    }
+    
+    .projects-grid {
+        gap: 20px !important;
+    }
+    
+    .project-info {
+        padding: 18px !important;
+        gap: 12px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .featured-project-wrapper {
+        padding: 16px !important; /* Consistent with container padding */
+        margin-bottom: 24px !important;
+    }
+    
+    .featured-project-content {
+        gap: 16px !important;
+    }
+    
+    .featured-project-details h4 {
+        font-size: 1.3rem !important;
+    }
+    
+    .projects-grid {
+        gap: 16px !important;
+    }
+    
+    .project-info {
+        padding: 16px !important;
+        gap: 10px !important;
+    }
+}
+
