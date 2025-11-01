@@ -477,28 +477,28 @@
 
 @media (max-width: 768px) {
     .project-modal {
-        padding: 12px;
+        padding: 8px; /* Reduced from 12px */
         align-items: center;
     }
     
     .project-modal-content {
-        max-width: 100%;
-        max-height: 92vh;
+        max-width: calc(100% - 16px); /* Smaller width with padding */
+        max-height: 90vh; /* Reduced from 92vh */
         border-radius: 12px;
     }
 
     .project-modal-title {
-        font-size: 1.5rem !important;
-        margin: 24px auto 16px auto !important;
-        padding: 0 20px !important;
+        font-size: 1.4rem !important; /* Reduced from 1.5rem */
+        margin: 20px auto 14px auto !important; /* Reduced margins */
+        padding: 0 16px !important; /* Reduced from 20px */
     }
 
     .project-modal-close {
-        right: 12px;
-        top: 12px;
-        width: 36px;
-        height: 36px;
-        font-size: 1rem;
+        right: 10px; /* Reduced from 12px */
+        top: 10px; /* Reduced from 12px */
+        width: 32px; /* Reduced from 36px */
+        height: 32px; /* Reduced from 36px */
+        font-size: 0.95rem; /* Reduced from 1rem */
     }
 
     .gallery-container {
@@ -524,72 +524,75 @@
     }
 
     .project-details-grid {
-        gap: 28px;
-        padding: 0 20px 20px 20px;
-        margin-top: 20px;
+        gap: 24px; /* Reduced from 28px */
+        padding: 0 16px 16px 16px; /* Reduced from 20px */
+        margin-top: 16px; /* Reduced from 20px */
     }
     
     .project-detail-item h4 {
-        font-size: 1.3rem;
+        font-size: 1.2rem; /* Reduced from 1.3rem */
     }
     
     .project-technologies-modal {
         margin-top: 0;
-        padding: 0 20px 28px 20px;
+        padding: 0 16px 24px 16px; /* Reduced from 20px 28px */
     }
     
     .project-technologies-modal h4 {
-        font-size: 1.3rem;
+        font-size: 1.2rem; /* Reduced from 1.3rem */
     }
 }
 
+/* Extra small mobile devices */
 @media (max-width: 480px) {
     .project-modal {
-        padding: 8px;
-        align-items: center;
+        padding: 6px; /* Further reduced */
     }
     
     .project-modal-content {
-        max-width: 100%;
-        max-height: 94vh;
-        border-radius: 12px;
+        max-width: calc(100% - 12px); /* Even smaller */
+        max-height: 88vh; /* Further reduced */
+        border-radius: 10px; /* Slightly smaller radius */
     }
-    
+
     .project-modal-title {
-        font-size: 1.35rem !important;
-        margin: 20px auto 14px auto !important;
-        padding: 0 16px !important;
+        font-size: 1.3rem !important; /* Further reduced */
+        margin: 18px auto 12px auto !important; /* Further reduced margins */
+        padding: 0 14px !important; /* Further reduced */
     }
 
     .project-modal-close {
-        right: 10px;
-        top: 10px;
-        width: 34px;
-        height: 34px;
-        font-size: 0.95rem;
+        right: 8px; /* Further reduced */
+        top: 8px; /* Further reduced */
+        width: 30px; /* Further reduced */
+        height: 30px; /* Further reduced */
+        font-size: 0.9rem; /* Further reduced */
     }
 
-    .gallery-container {
-        aspect-ratio: 16/10;
+    .project-details-grid {
+        gap: 20px; /* Further reduced */
+        padding: 0 14px 14px 14px; /* Further reduced */
+        margin-top: 14px; /* Further reduced */
     }
     
-    .project-gallery {
-        border-radius: 12px 12px 0 0;
+    .project-detail-item h4 {
+        font-size: 1.15rem; /* Further reduced */
     }
-
+    
+    .project-technologies-modal {
+        padding: 0 14px 20px 14px; /* Further reduced */
+    }
+    
+    .project-technologies-modal h4 {
+        font-size: 1.15rem; /* Further reduced */
+    }
+    
     .gallery-nav {
-        width: 32px;
-        height: 32px;
-        font-size: 0.85rem;
+        width: 32px; /* Reduced */
+        height: 32px; /* Reduced */
+        font-size: 0.85rem; /* Reduced */
     }
-    
-    .gallery-nav.prev {
-        left: 6px;
-    }
-    
-    .gallery-nav.next {
-        right: 6px;
-    }
+}
     
     .gallery-indicators {
         bottom: 10px;
