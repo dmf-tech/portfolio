@@ -383,14 +383,25 @@
     }
     
     .skills-tabs-nav {
-        flex-direction: column;
+        flex-direction: row !important;
+        overflow-x: auto;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
         gap: 5px;
     }
     
+    .skills-tabs-nav::-webkit-scrollbar {
+        display: none;
+    }
+    
     .skills-tabs-nav .tab-link {
-        justify-content: flex-start;
+        justify-content: center;
         padding: 12px 15px;
-        min-width: auto;
+        min-width: fit-content;
+        flex-shrink: 0;
+        white-space: nowrap;
     }
     
     .skills-tabs-content .content-card {

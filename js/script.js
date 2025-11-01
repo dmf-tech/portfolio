@@ -31,6 +31,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const hamburger = select('.hamburger');
     const navMenu = select('.nav-menu');
     const backdrop = select('.mobile-nav-backdrop');
+    
+    // Store closeMobileNav in a wider scope so it can be accessed by smooth scroll
+    let closeMobileNav = null;
 
     if (hamburger && navMenu) {
         let isAnimating = false;
@@ -40,49 +43,42 @@ document.addEventListener('DOMContentLoaded', () => {
             if (isAnimating || navMenu.classList.contains('active')) return;
             
             isAnimating = true;
-            navMenu.classList.add('active');
-            document.body.classList.add('mobile-nav-active');
             
+            // Simply add classes - menu is independent overlay, no page manipulation
             if (backdrop) {
                 backdrop.classList.add('active');
             }
             
-            hamburger.setAttribute('aria-expanded', 'true');
+            navMenu.classList.add('active');
+            document.body.classList.add('mobile-nav-active');
             
-            // Save scroll position before locking
-            const scrollY = window.scrollY;
-            document.body.style.top = `-${scrollY}px`;
+            hamburger.setAttribute('aria-expanded', 'true');
             
             // Reset animation flag after transition
             setTimeout(() => {
                 isAnimating = false;
-            }, 300);
+            }, 250);
         };
 
-        const closeMobileNav = () => {
+        closeMobileNav = () => {
             if (isAnimating || !navMenu.classList.contains('active')) return;
             
             isAnimating = true;
+            
+            // Simply remove classes - menu is independent, no page manipulation needed
             navMenu.classList.remove('active');
-            document.body.classList.remove('mobile-nav-active');
             
             if (backdrop) {
                 backdrop.classList.remove('active');
             }
             
+            document.body.classList.remove('mobile-nav-active');
             hamburger.setAttribute('aria-expanded', 'false');
-            
-            // Restore scroll position
-            const scrollY = document.body.style.top;
-            document.body.style.top = '';
-            if (scrollY) {
-                window.scrollTo(0, parseInt(scrollY || '0') * -1);
-            }
             
             // Reset animation flag after transition
             setTimeout(() => {
                 isAnimating = false;
-            }, 300);
+            }, 250);
         };
 
         const toggleMobileNav = () => {
@@ -109,17 +105,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // Close mobile nav when a link is clicked
-        selectAll('.nav-menu a[href^="#"]').forEach(link => {
-            link.addEventListener('click', (e) => {
-                if (navMenu.classList.contains('active')) {
-                    // Small delay to allow navigation
-                    setTimeout(() => {
-                        closeMobileNav();
-                    }, 100);
-                }
-            }, { passive: true });
-        });
+        // Mobile nav closing is now handled in the smooth scroll section below
+        // This ensures proper coordination between closing menu and scrolling
 
         // Close mobile nav on Escape key
         document.addEventListener('keydown', (e) => {
@@ -191,25 +178,43 @@ document.addEventListener('DOMContentLoaded', () => {
             const targetId = this.getAttribute('href');
             const targetElement = select(targetId);
             if (targetElement) {
-                const headerHeight = header ? header.offsetHeight : 0;
-                const targetPosition = targetElement.offsetTop - headerHeight;
-
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: 'smooth'
-                });
-
-                // If mobile nav is open, close it
-                if (navMenu && navMenu.classList.contains('active')) {
-                    // Assuming toggleMobileNav is the function that handles this
-                    // If not, replicate the close logic here:
-                    navMenu.classList.remove('active');
-                    if (hamburger) hamburger.classList.remove('active');
-                    document.body.classList.remove('mobile-nav-active');
-                    if (hamburger) hamburger.setAttribute('aria-expanded', 'false');
+                // Check if mobile nav is open before closing (to determine scroll delay)
+                const wasMenuOpen = navMenu && navMenu.classList.contains('active');
+                
+                // Close mobile nav first if it's open (before scrolling)
+                if (wasMenuOpen) {
+                    if (closeMobileNav && typeof closeMobileNav === 'function') {
+                        closeMobileNav();
+                    } else if (hamburger) {
+                        // Fallback if closeMobileNav isn't available
+                        navMenu.classList.remove('active');
+                        document.body.classList.remove('mobile-nav-active');
+                        hamburger.setAttribute('aria-expanded', 'false');
+                        if (backdrop) {
+                            backdrop.classList.remove('active');
+                        }
+                        // Restore scroll position
+                        const scrollY = document.body.style.top;
+                        document.body.style.top = '';
+                        if (scrollY) {
+                            window.scrollTo(0, parseInt(scrollY || '0') * -1);
+                        }
+                    }
                 }
+                
+                // Small delay to ensure menu closes before scrolling (350ms matches CSS transition)
+                // Only delay if menu was open, otherwise scroll immediately
+                setTimeout(() => {
+                    const headerHeight = header ? header.offsetHeight : 0;
+                    const targetPosition = targetElement.offsetTop - headerHeight;
+
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }, wasMenuOpen ? 350 : 50);
             }
-        });
+        }, { passive: false });
     });
 
     const updateActiveNavLink = () => {

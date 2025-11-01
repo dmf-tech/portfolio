@@ -1335,13 +1335,25 @@ button.filter-btn:active,
 
 @media (max-width: 768px) {
     .about-tabs-nav {
-        flex-direction: column;
+        flex-direction: row !important;
+        overflow-x: auto;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
         gap: 5px;
     }
     
+    .about-tabs-nav::-webkit-scrollbar {
+        display: none;
+    }
+    
     .tab-link {
-        justify-content: flex-start;
+        justify-content: center;
         padding: 12px 15px;
+        flex-shrink: 0;
+        white-space: nowrap;
+        min-width: fit-content;
     }
     
     .content-card {
@@ -2641,13 +2653,25 @@ button.filter-btn:active,
 
 @media (max-width: 768px) {
     .about-tabs-nav {
-        flex-direction: column;
+        flex-direction: row !important;
+        overflow-x: auto;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
         gap: 5px;
     }
     
+    .about-tabs-nav::-webkit-scrollbar {
+        display: none;
+    }
+    
     .tab-link {
-        justify-content: flex-start;
+        justify-content: center;
         padding: 12px 15px;
+        flex-shrink: 0;
+        white-space: nowrap;
+        min-width: fit-content;
     }
     
     .content-card {
@@ -5013,13 +5037,25 @@ button.filter-btn:active,
 
 @media (max-width: 768px) {
     .about-tabs-nav {
-        flex-direction: column;
+        flex-direction: row !important;
+        overflow-x: auto;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
         gap: 5px;
     }
     
+    .about-tabs-nav::-webkit-scrollbar {
+        display: none;
+    }
+    
     .tab-link {
-        justify-content: flex-start;
+        justify-content: center;
         padding: 12px 15px;
+        flex-shrink: 0;
+        white-space: nowrap;
+        min-width: fit-content;
     }
     
     .content-card {

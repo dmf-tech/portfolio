@@ -42,78 +42,87 @@
     border-radius: 4px;
 }
 
-/* Body Scroll Lock for Mobile Navigation - Improved */
+/* Body Scroll Lock for Mobile Navigation - Pure Overlay (Zero Page Impact) */
 body.mobile-nav-active {
     overflow: hidden !important;
-    position: fixed;
-    width: 100%;
-    height: 100vh;
-    touch-action: none;
+    /* ONLY prevent scroll - do NOT touch position, top, left, right, width, height */
+    /* Menu is completely independent overlay - page remains completely unchanged underneath */
+    /* No position: fixed, no top offset, nothing that affects page layout */
 }
 
-/* Mobile Menu Backdrop/Overlay - Improved */
+/* Mobile Menu Backdrop/Overlay - Simple and Light (Independent) */
 .mobile-nav-backdrop {
     display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.6);
-    z-index: 998;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 99998 !important; /* Just below menu */
     opacity: 0;
-    transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    backdrop-filter: blur(2px);
+    transition: opacity 0.25s ease;
+    pointer-events: none; /* Disable until active */
+    /* Removed backdrop-filter for smoother performance */
 }
 
 .mobile-nav-backdrop.active {
-    display: block;
-    opacity: 1;
-    pointer-events: auto;
+    display: block !important;
+    opacity: 1 !important;
+    pointer-events: auto !important; /* Enable when active */
 }
 
 .mobile-nav-backdrop:not(.active) {
-    pointer-events: none;
+    pointer-events: none !important;
 }
 
 /* --- Mobile Menu Slide-in from Right (Improved & Simplified) --- */
 @media (max-width: 992px) {
     #header {
-        position: relative;
+        position: fixed !important; /* Always fixed on mobile so it stays visible when scrolling */
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
         z-index: 999;
     }
     
-    /* Desktop menu hidden on mobile */
+    /* Desktop menu hidden on mobile - Completely Independent Overlay */
     #header .nav-menu {
-        display: flex !important; /* Keep flex for layout */
+        display: flex !important;
         flex-direction: column;
         left: auto !important;
-        right: -100%;
-        width: min(80%, 280px);
+        right: -100% !important;
+        width: min(80%, 280px) !important;
         opacity: 0;
         visibility: hidden;
-        transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
-                    opacity 0.25s ease, 
-                    visibility 0.3s;
-        height: 100vh;
-        height: 100dvh; /* Dynamic viewport height for mobile */
+        transition: right 0.25s ease-out, 
+                    opacity 0.2s ease,
+                    visibility 0s linear 0.25s;
+        height: 100vh !important;
+        height: 100dvh !important;
         overflow-y: auto;
         overflow-x: hidden;
         -webkit-overflow-scrolling: touch;
-        position: fixed;
-        top: 0;
-        z-index: 999;
+        position: fixed !important; /* Independent overlay - doesn't affect page */
+        top: 0 !important;
+        bottom: 0 !important;
+        z-index: 99999 !important; /* Above everything */
         padding: 65px 0 15px;
         margin: 0;
-        background: linear-gradient(135deg, #2c3e50 0%, #1a2530 100%);
-        box-shadow: none;
+        background: linear-gradient(135deg, #2c3e50 0%, #1a2530 100%) !important;
+        box-shadow: -4px 0 20px rgba(0, 0, 0, 0.3);
+        will-change: right, opacity;
+        pointer-events: none; /* Disable until active */
     }
 
     #header .nav-menu.active {
-        right: 0;
-        opacity: 1;
-        visibility: visible;
-        box-shadow: -4px 0 20px rgba(0, 0, 0, 0.3);
+        right: 0 !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important; /* Enable interactions when active */
+        transition: right 0.25s ease-out, 
+                    opacity 0.2s ease,
+                    visibility 0s linear 0s;
     }
     
     #header .nav-menu li {

@@ -6,17 +6,18 @@
 @media (max-width: 992px) {
     .hero-section {
         min-height: auto;
-        padding: 60px 0 40px !important;
+        padding-top: 100px !important; /* Increased from 90px to account for fixed header + more space */
+        padding-bottom: 60px !important; /* Increased from 40px */
     }
     
     .hero-content {
-        padding: 15px 0 !important;
+        padding: 30px 0 !important; /* Increased from 15px */
     }
     
     .hero-content-wrapper {
         flex-direction: column !important;
         text-align: center !important;
-        gap: 1.75rem !important;
+        gap: 2.5rem !important; /* Increased from 1.75rem */
         padding: 0 1.5rem !important;
     }
 
@@ -27,26 +28,26 @@
     
     .hero-title {
         font-size: clamp(2rem, 6vw, 2.8rem) !important;
-        margin-bottom: 0.75rem !important;
-        line-height: 1.2 !important;
+        margin-bottom: 1rem !important; /* Increased from 0.75rem */
+        line-height: 1.25 !important; /* Increased from 1.2 */
     }
     
     .hero-subtitle {
         font-size: clamp(1.1rem, 3vw, 1.4rem) !important;
-        margin-bottom: 0.75rem !important;
+        margin-bottom: 1rem !important; /* Increased from 0.75rem */
         justify-content: center !important;
     }
     
     .hero-description {
         font-size: clamp(0.95rem, 2.5vw, 1.05rem) !important;
-        line-height: 1.6 !important;
-        margin-bottom: 1.25rem !important;
+        line-height: 1.7 !important; /* Increased from 1.6 */
+        margin-bottom: 1.75rem !important; /* Increased from 1.25rem */
         max-width: 100% !important;
         padding: 0 1rem !important;
     }
 
     .hero-visual-element {
-        margin-top: 1.25rem !important;
+        margin-top: 2rem !important; /* Increased from 1.25rem */
         width: 100% !important;
         max-width: 100% !important;
         display: flex !important;
@@ -103,36 +104,39 @@
 /* Mobile Landscape and smaller tablets */
 @media (max-width: 768px) {
     .hero-section {
-        padding: 50px 0 35px !important;
+        padding-top: 95px !important; /* Increased - account for fixed header + more space */
+        padding-bottom: 50px !important; /* Increased from 35px */
     }
     
     .hero-content {
-        padding: 10px 0 !important;
+        padding: 25px 0 !important; /* Increased from 10px */
     }
     
     .hero-content-wrapper {
-        gap: 1.5rem !important;
+        gap: 2rem !important; /* Increased from 1.5rem */
         padding: 0 1.25rem !important;
     }
     
     .hero-title {
         font-size: clamp(1.75rem, 7vw, 2.5rem) !important;
-        margin-bottom: 0.625rem !important;
+        margin-bottom: 0.875rem !important; /* Increased from 0.625rem */
+        line-height: 1.25 !important;
     }
     
     .hero-subtitle {
         font-size: clamp(1rem, 3.5vw, 1.3rem) !important;
-        margin-bottom: 0.625rem !important;
+        margin-bottom: 0.875rem !important; /* Increased from 0.625rem */
     }
     
     .hero-description {
         font-size: clamp(0.9rem, 3vw, 1rem) !important;
         padding: 0 !important;
-        margin-bottom: 1rem !important;
+        margin-bottom: 1.5rem !important; /* Increased from 1rem */
+        line-height: 1.65 !important;
     }
     
     .hero-visual-element {
-        margin-top: 1rem !important;
+        margin-top: 1.75rem !important; /* Increased from 1rem */
     }
     
     .code-window {
@@ -171,15 +175,41 @@
     
     .hero-buttons {
         flex-direction: row !important;
-        gap: 0.875rem !important;
+        gap: 1rem !important; /* Increased from 0.875rem */
         width: 100% !important;
+        margin-top: 0.5rem !important; /* Add top margin for spacing */
     }
     
     .hero-section .btn {
         flex: 1 1 auto !important;
         min-width: 140px !important;
-        padding: 12px 24px !important;
-        font-size: 0.9rem !important;
+        padding: 12px 22px !important; /* Increased from 10px 20px */
+        font-size: 0.9rem !important; /* Increased from 0.85rem */
+    }
+    
+    /* All other buttons - smaller on mobile (exclude hero section) */
+    .about-section .btn,
+    .skills-section .btn,
+    .projects-section .btn,
+    .experience-section .btn,
+    .contact-section .btn,
+    button.filter-btn,
+    #viewResumeBtn,
+    .action-buttons .btn,
+    .content-card .btn,
+    .btn:not(.hero-section .btn):not(.hero-buttons .btn) {
+        padding: 8px 16px !important;
+        font-size: 0.85rem !important;
+    }
+    
+    .btn-small {
+        padding: 6px 10px !important;
+        font-size: 0.75rem !important;
+    }
+    
+    .btn i {
+        font-size: 0.85rem !important;
+        margin-right: 6px !important;
     }
     
     /* Optimize background elements for mobile */
@@ -196,22 +226,24 @@
 /* Mobile Portrait */
 @media (max-width: 480px) {
     .hero-section {
-        padding: 45px 0 30px !important;
+        padding-top: 90px !important; /* Increased - account for fixed header + more space */
+        padding-bottom: 45px !important; /* Increased from 30px */
         min-height: auto !important;
     }
     
     .hero-content {
-        padding: 10px 0 !important;
+        padding: 20px 0 !important; /* Increased from 10px */
     }
     
     .hero-content-wrapper {
-        gap: 1.25rem !important;
+        gap: 1.75rem !important; /* Increased from 1.25rem */
         padding: 0 1rem !important;
     }
     
     .hero-title {
         font-size: clamp(1.5rem, 8vw, 2rem) !important;
-        margin-bottom: 0.5rem !important;
+        margin-bottom: 0.75rem !important; /* Increased from 0.5rem */
+        line-height: 1.3 !important;
     }
     
     .greeting-text {
@@ -224,7 +256,7 @@
     
     .hero-subtitle {
         font-size: clamp(0.95rem, 4vw, 1.1rem) !important;
-        margin-bottom: 0.625rem !important;
+        margin-bottom: 0.875rem !important; /* Increased from 0.625rem */
         flex-wrap: wrap !important;
         justify-content: center !important;
     }
@@ -235,25 +267,51 @@
     
     .hero-description {
         font-size: clamp(0.85rem, 3.5vw, 0.95rem) !important;
-        line-height: 1.65 !important;
-        margin-bottom: 1rem !important;
+        line-height: 1.7 !important; /* Increased from 1.65 */
+        margin-bottom: 1.5rem !important; /* Increased from 1rem */
         padding: 0 !important;
     }
-    
+
     .hero-buttons {
         flex-direction: column !important;
         width: 100% !important;
-        gap: 0.625rem !important;
+        gap: 0.875rem !important; /* Increased from 0.625rem */
+        margin-top: 0.5rem !important; /* Add top margin */
     }
     
     .hero-section .btn {
         width: 100% !important;
-        padding: 14px 20px !important;
-        font-size: 0.9rem !important;
+        padding: 14px 22px !important; /* Increased from 12px 18px */
+        font-size: 0.9rem !important; /* Increased from 0.85rem */
+    }
+    
+    /* All other buttons - smaller on mobile (exclude hero section) */
+    .about-section .btn,
+    .skills-section .btn,
+    .projects-section .btn,
+    .experience-section .btn,
+    .contact-section .btn,
+    button.filter-btn,
+    #viewResumeBtn,
+    .action-buttons .btn,
+    .content-card .btn,
+    .btn:not(.hero-section .btn):not(.hero-buttons .btn) {
+        padding: 8px 14px !important;
+        font-size: 0.8rem !important;
+    }
+    
+    .btn-small {
+        padding: 6px 10px !important;
+        font-size: 0.75rem !important;
+    }
+    
+    .btn i {
+        font-size: 0.8rem !important;
+        margin-right: 5px !important;
     }
     
     .hero-visual-element {
-        margin-top: 1rem !important;
+        margin-top: 1.5rem !important; /* Increased from 1rem */
         order: -1 !important;
     }
     
@@ -432,8 +490,33 @@
     }
     
     .hero-section .btn {
-        padding: 12px 18px !important;
-        font-size: 0.85rem !important;
+        padding: 10px 16px !important;
+        font-size: 0.8rem !important;
+    }
+    
+    /* All other buttons - smaller on very small devices (exclude hero section) */
+    .about-section .btn,
+    .skills-section .btn,
+    .projects-section .btn,
+    .experience-section .btn,
+    .contact-section .btn,
+    button.filter-btn,
+    #viewResumeBtn,
+    .action-buttons .btn,
+    .content-card .btn,
+    .btn:not(.hero-section .btn):not(.hero-buttons .btn) {
+        padding: 7px 12px !important;
+        font-size: 0.75rem !important;
+    }
+    
+    .btn-small {
+        padding: 5px 8px !important;
+        font-size: 0.7rem !important;
+    }
+    
+    .btn i {
+        font-size: 0.75rem !important;
+        margin-right: 4px !important;
     }
     
     .code-window {

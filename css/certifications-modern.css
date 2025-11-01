@@ -711,20 +711,24 @@
 .certifications-carousel-wrapper {
     position: relative !important;
     width: 100% !important;
+    max-width: 100% !important;
     margin: 0 auto !important;
     padding: 0 !important; /* Remove padding since buttons will be positioned differently */
     overflow: visible !important; /* Allow buttons to be visible outside */
+    box-sizing: border-box !important;
 }
 
 /* New container for certificates only */
 .certifications-container {
     position: relative !important;
     width: 100% !important;
+    max-width: 100% !important;
     overflow: hidden !important; /* Hide overflow for smooth carousel effect */
     background: rgba(255, 255, 255, 0.02) !important; /* Subtle background */
     border-radius: 12px !important; /* Rounded corners */
     padding: 20px 0 !important; /* Reduced padding for more space */
     box-shadow: 0 2px 20px rgba(44, 62, 80, 0.05) !important; /* Subtle shadow */
+    box-sizing: border-box !important; /* Include padding in width */
 }
 
 /* Grid becomes the main carousel element */
@@ -734,6 +738,7 @@
     transition: transform 0.3s ease !important;
     width: fit-content !important;
     padding: 0 20px !important; /* Reduced horizontal padding */
+    box-sizing: border-box !important; /* Include padding in width */
 }
 
 /* Position buttons on opposite sides of the container */
@@ -790,19 +795,25 @@
     .certifications-container {
         padding: 12px 0 !important;
         border-radius: 8px !important;
+        margin: 0 !important; /* Remove any margins */
+        width: 100% !important;
+        max-width: 100% !important;
+        overflow: visible !important; /* Ensure nothing is cropped */
     }
     
     .certifications-grid {
         gap: 14px !important;
         padding: 0 12px !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
     }
     
     .carousel-nav-btn.prev {
-        left: -38px !important;
+        left: 4px !important; /* Position inside on tablet/mobile */
     }
     
     .carousel-nav-btn.next {
-        right: -38px !important;
+        right: 4px !important; /* Position inside on tablet/mobile */
     }
     
     .carousel-nav-btn {
@@ -815,21 +826,24 @@
 @media (max-width: 480px) {
     .certifications-container {
         padding: 10px 0 !important;
-        border-radius: 0 !important;
-        margin: 0 -16px !important; /* Full width on mobile */
+        border-radius: 8px !important;
+        margin: 0 !important; /* Remove negative margin to prevent cropping */
+        width: 100% !important;
+        max-width: 100% !important;
+        overflow: hidden !important; /* Keep hidden for carousel, but ensure cards fit */
     }
     
     .certifications-grid {
         gap: 12px !important;
-        padding: 0 16px !important;
+        padding: 0 12px !important; /* Reduced padding to prevent overflow */
     }
     
     .carousel-nav-btn.prev {
-        left: 8px !important; /* Position inside on mobile */
+        left: 4px !important; /* Position inside on mobile, closer to edge */
     }
     
     .carousel-nav-btn.next {
-        right: 8px !important; /* Position inside on mobile */
+        right: 4px !important; /* Position inside on mobile, closer to edge */
     }
     
     .carousel-nav-btn {
@@ -858,8 +872,9 @@
     .certification-card {
         width: calc(100% - 24px) !important; /* 1 card per view on mobile */
         min-width: auto !important;
-        max-width: 100% !important;
+        max-width: calc(100% - 24px) !important; /* Ensure it doesn't overflow */
         min-height: 250px !important;
+        box-sizing: border-box !important; /* Include padding in width calculation */
     }
     
     .certification-info {
@@ -875,18 +890,32 @@
     .certification-card {
         width: 100% !important;
         min-width: auto !important;
+        max-width: 100% !important; /* Ensure no overflow */
         min-height: 240px !important;
+        box-sizing: border-box !important; /* Include padding in width */
+        margin: 0 !important; /* Remove any margins that could cause cropping */
     }
     
     .certification-info {
         padding: 16px !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
     }
     
     .certification-info h3 {
         font-size: 1rem !important;
+        word-wrap: break-word !important; /* Prevent text overflow */
+        overflow-wrap: break-word !important;
     }
     
     .certification-icon i {
         font-size: 1.8rem !important;
+    }
+    
+    /* Ensure container doesn't cause horizontal scroll */
+    .certifications-carousel-wrapper {
+        overflow-x: hidden !important;
+        width: 100% !important;
+        max-width: 100% !important;
     }
 } 
