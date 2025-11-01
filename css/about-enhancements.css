@@ -20,36 +20,38 @@
     border-radius: 50%;
     background: linear-gradient(135deg, var(--primary-color), #3498db);
     padding: 4px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-    transition: all 0.3s ease;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+    transition: transform 0.25s ease-out, box-shadow 0.25s ease-out;
+    will-change: transform, box-shadow;
 }
 
 .image-wrapper:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+    transform: translateY(-3px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.18);
 }
 
 .image-glow {
     position: absolute;
-    top: -15px;
-    left: -15px;
-    right: -15px;
-    bottom: -15px;
-    background: linear-gradient(135deg, var(--primary-color), #3498db, #9b59b6);
+    top: -8px;
+    left: -8px;
+    right: -8px;
+    bottom: -8px;
+    background: linear-gradient(135deg, var(--primary-color), #3498db);
     border-radius: 50%;
-    opacity: 0.1;
-    animation: pulseGlow 4s ease-in-out infinite;
+    opacity: 0.08;
+    animation: pulseGlow 3s ease-in-out infinite;
     z-index: -1;
+    will-change: opacity, transform;
 }
 
 @keyframes pulseGlow {
     0%, 100% { 
-        opacity: 0.1; 
+        opacity: 0.08; 
         transform: scale(1); 
     }
     50% { 
-        opacity: 0.2; 
-        transform: scale(1.08); 
+        opacity: 0.15; 
+        transform: scale(1.03); 
     }
 }
 
@@ -61,11 +63,12 @@
     border: 4px solid var(--light-text-color);
     position: relative;
     z-index: 2;
-    transition: transform 0.3s ease;
+    transition: transform 0.25s ease-out;
+    will-change: transform;
 }
 
 .image-wrapper:hover img {
-    transform: scale(1.02);
+    transform: scale(1.015);
 }
 
 /* Enhanced Status Indicator */
@@ -357,6 +360,242 @@
     .stat-value {
         font-size: 1rem;
     }
+    
+    /* Reduce text sizes in About tab content on mobile */
+    .content-card,
+    .tab-pane {
+        font-size: 0.95rem !important; /* Slightly smaller */
+    }
+    
+    .highlight-text {
+        font-size: 1rem !important; /* Reduced from 1.1rem */
+        line-height: 1.6 !important; /* Slightly tighter */
+    }
+    
+    .intro-text {
+        font-size: 0.95rem !important; /* Slightly smaller */
+        line-height: 1.6 !important;
+    }
+    
+    .institution-name {
+        font-size: 1.2rem !important; /* Reduced from 1.3rem */
+    }
+    
+    .chrono-item-header .item-title {
+        font-size: 1.05rem !important; /* Reduced from 1.1rem */
+    }
+    
+    .chrono-item .item-subtitle {
+        font-size: 0.95rem !important; /* Reduced from 1rem */
+    }
+    
+    .chrono-item .item-details {
+        font-size: 0.9rem !important; /* Reduced from default */
+    }
+    
+    .education-achievements h6 {
+        font-size: 1rem !important; /* Reduced from 1.1rem */
+    }
+    
+    .achievements-list-grid .achievement-details strong {
+        font-size: 0.95rem !important;
+    }
+    
+    .achievements-list-grid .achievement-details span {
+        font-size: 0.9rem !important;
+    }
+    
+    .degree-info {
+        font-size: 0.95rem !important;
+    }
+    
+    .extra-item-header {
+        font-size: 1rem !important; /* Reduced from 1.05rem */
+    }
+    
+    .extra-item .item-details {
+        font-size: 0.9rem !important; /* Reduced from 0.95rem */
+    }
+    
+    /* Fix Education Tab Layout on Mobile */
+    .education-header {
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center !important;
+        gap: 16px !important;
+        padding: 20px 18px !important;
+    }
+    
+    .institution-logo {
+        width: 56px !important;
+        height: 56px !important;
+        font-size: 1.4rem !important;
+        margin: 0 auto !important;
+    }
+    
+    .institution-details {
+        width: 100% !important;
+        text-align: center !important;
+    }
+    
+    .institution-name {
+        text-align: center !important;
+        margin-bottom: 10px !important;
+        word-wrap: break-word !important;
+        overflow-wrap: break-word !important;
+    }
+    
+    .degree-info {
+        text-align: center !important;
+        margin-bottom: 12px !important;
+    }
+    
+    .degree-info strong {
+        display: block !important;
+        margin-bottom: 6px !important;
+        text-align: center !important;
+    }
+    
+    .degree-info em {
+        display: block !important;
+        text-align: center !important;
+    }
+    
+    .education-duration {
+        justify-content: center !important;
+        margin-bottom: 0 !important;
+    }
+    
+    .grade-badge {
+        width: auto !important;
+        margin: 8px auto 0 auto !important;
+        display: inline-flex !important;
+    }
+    
+    .education-achievements {
+        margin-top: 24px !important;
+    }
+    
+    .education-achievements h5,
+    .education-achievements h6 {
+        text-align: center !important;
+        justify-content: center !important;
+        font-size: 1.1rem !important;
+        margin-bottom: 16px !important;
+    }
+    
+    .education-achievements li {
+        padding: 16px !important;
+        gap: 12px !important;
+    }
+    
+    .education-achievements .achievement-icon {
+        width: 22px !important;
+        height: 22px !important;
+        font-size: 0.85rem !important;
+        flex-shrink: 0 !important;
+    }
+    
+    .education-achievements .achievement-details {
+        text-align: left !important;
+    }
+    
+    .education-achievements .achievement-details strong {
+        font-size: 0.95rem !important;
+        margin-bottom: 6px !important;
+    }
+    
+    .education-achievements .achievement-details span {
+        font-size: 0.9rem !important;
+        line-height: 1.5 !important;
+    }
+    
+    /* Fix About Tab Layout on Mobile */
+    .intro-text p {
+        text-align: left !important;
+        font-size: 0.95rem !important;
+        margin-bottom: 16px !important;
+    }
+    
+    .highlight-text {
+        padding: 16px 18px !important;
+        font-size: 1rem !important;
+        margin-bottom: 20px !important;
+        text-align: left !important;
+    }
+    
+    .skills-preview {
+        padding: 20px !important;
+        margin-bottom: 24px !important;
+    }
+    
+    .skills-preview h4 {
+        font-size: 1.1rem !important;
+        margin-bottom: 14px !important;
+    }
+    
+    .skill-tags {
+        gap: 8px !important;
+    }
+    
+    .skill-tag {
+        padding: 7px 14px !important;
+        font-size: 0.85rem !important;
+    }
+    
+    .action-buttons {
+        flex-direction: column !important;
+        gap: 12px !important;
+        margin-top: 24px !important;
+    }
+    
+    .action-buttons .btn {
+        width: 100% !important;
+        justify-content: center !important;
+    }
+    
+    /* Fix Interests Tab Layout on Mobile */
+    .interests-header {
+        padding: 16px 0 !important;
+        margin-bottom: 24px !important;
+    }
+    
+    .interests-title {
+        font-size: 1.2rem !important;
+        margin-bottom: 12px !important;
+    }
+    
+    .interests-header p {
+        font-size: 0.95rem !important;
+        line-height: 1.6 !important;
+        padding: 0 8px !important;
+    }
+    
+    .interests-grid {
+        grid-template-columns: 1fr !important;
+        gap: 16px !important;
+    }
+    
+    .interest-card {
+        padding: 20px !important;
+    }
+    
+    .interest-icon {
+        width: 50px !important;
+        height: 50px !important;
+        font-size: 1.3rem !important;
+        margin-bottom: 16px !important;
+    }
+    
+    .interest-content h5 {
+        font-size: 1.05rem !important;
+        margin-bottom: 10px !important;
+    }
+    
+    .interest-content p {
+        font-size: 0.9rem !important;
+        line-height: 1.6 !important;
+    }
 }
 
 @media (max-width: 480px) {
@@ -370,10 +609,10 @@
     }
     
     .image-glow {
-        top: -10px;
-        left: -10px;
-        right: -10px;
-        bottom: -10px;
+        top: -6px;
+        left: -6px;
+        right: -6px;
+        bottom: -6px;
     }
     
     .status-indicator {
@@ -416,6 +655,200 @@
     
     .stat-value {
         font-size: 0.95rem;
+    }
+    
+    /* Reduce text sizes in About tab content on small mobile */
+    .content-card,
+    .tab-pane {
+        font-size: 0.92rem !important; /* Slightly smaller */
+    }
+    
+    .highlight-text {
+        font-size: 0.95rem !important; /* Further reduced */
+        line-height: 1.6 !important;
+    }
+    
+    .intro-text {
+        font-size: 0.92rem !important; /* Further reduced */
+        line-height: 1.6 !important;
+    }
+    
+    .institution-name {
+        font-size: 1.15rem !important; /* Further reduced */
+    }
+    
+    .chrono-item-header .item-title {
+        font-size: 1rem !important; /* Further reduced */
+    }
+    
+    .chrono-item .item-subtitle {
+        font-size: 0.9rem !important; /* Further reduced */
+    }
+    
+    .chrono-item .item-details {
+        font-size: 0.85rem !important; /* Further reduced */
+    }
+    
+    .education-achievements h6 {
+        font-size: 0.95rem !important; /* Further reduced */
+    }
+    
+    .achievements-list-grid .achievement-details strong {
+        font-size: 0.9rem !important;
+    }
+    
+    .achievements-list-grid .achievement-details span {
+        font-size: 0.85rem !important;
+    }
+    
+    .degree-info {
+        font-size: 0.9rem !important;
+    }
+    
+    .extra-item-header {
+        font-size: 0.95rem !important; /* Further reduced */
+    }
+    
+    .extra-item .item-details {
+        font-size: 0.85rem !important; /* Further reduced */
+    }
+    
+    /* Further Mobile Fixes for Education Tab */
+    .education-header {
+        padding: 18px 16px !important;
+        gap: 14px !important;
+    }
+    
+    .institution-logo {
+        width: 52px !important;
+        height: 52px !important;
+        font-size: 1.3rem !important;
+    }
+    
+    .institution-name {
+        font-size: 1.1rem !important;
+        line-height: 1.3 !important;
+    }
+    
+    .degree-info strong {
+        font-size: 0.95rem !important;
+    }
+    
+    .degree-info em {
+        font-size: 0.85rem !important;
+    }
+    
+    .education-duration {
+        font-size: 0.85rem !important;
+    }
+    
+    .grade-badge {
+        padding: 10px 16px !important;
+        font-size: 0.9rem !important;
+    }
+    
+    .education-achievements h5,
+    .education-achievements h6 {
+        font-size: 1rem !important;
+        margin-bottom: 14px !important;
+    }
+    
+    .education-achievements li {
+        padding: 14px !important;
+        gap: 10px !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+    }
+    
+    .education-achievements .achievement-icon {
+        width: 20px !important;
+        height: 20px !important;
+        font-size: 0.8rem !important;
+        margin-bottom: 4px !important;
+    }
+    
+    .education-achievements .achievement-details {
+        width: 100% !important;
+    }
+    
+    .education-achievements .achievement-details strong {
+        font-size: 0.9rem !important;
+    }
+    
+    .education-achievements .achievement-details span {
+        font-size: 0.85rem !important;
+    }
+    
+    /* Further Mobile Fixes for About and Interests Tabs */
+    .intro-text p {
+        font-size: 0.9rem !important;
+        margin-bottom: 14px !important;
+    }
+    
+    .highlight-text {
+        padding: 14px 16px !important;
+        font-size: 0.95rem !important;
+        margin-bottom: 18px !important;
+    }
+    
+    .skills-preview {
+        padding: 18px !important;
+        margin-bottom: 20px !important;
+    }
+    
+    .skills-preview h4 {
+        font-size: 1.05rem !important;
+        margin-bottom: 12px !important;
+    }
+    
+    .skill-tag {
+        padding: 6px 12px !important;
+        font-size: 0.8rem !important;
+    }
+    
+    .action-buttons {
+        gap: 10px !important;
+        margin-top: 20px !important;
+    }
+    
+    .interests-header {
+        padding: 12px 0 !important;
+        margin-bottom: 20px !important;
+    }
+    
+    .interests-title {
+        font-size: 1.1rem !important;
+        margin-bottom: 10px !important;
+    }
+    
+    .interests-header p {
+        font-size: 0.9rem !important;
+        padding: 0 !important;
+    }
+    
+    .interests-grid {
+        gap: 14px !important;
+    }
+    
+    .interest-card {
+        padding: 18px !important;
+    }
+    
+    .interest-icon {
+        width: 48px !important;
+        height: 48px !important;
+        font-size: 1.2rem !important;
+        margin-bottom: 14px !important;
+    }
+    
+    .interest-content h5 {
+        font-size: 1rem !important;
+        margin-bottom: 8px !important;
+    }
+    
+    .interest-content p {
+        font-size: 0.85rem !important;
+        line-height: 1.6 !important;
     }
 }
 

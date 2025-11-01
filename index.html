@@ -10,7 +10,7 @@
     <meta name="geo.region" content="PH">
     <meta name="geo.placename" content="Philippines">
     
-    <!-- Primary Meta Tags -->  
+    <!-- Primary Meta Tags -->
     <title>Daniel Florencio</title>
     <meta name="title" content="AI Engineer & Full-Stack Developer from Philippines | Available for Hire | Software Developer Portfolio">
     <meta name="description" content="Expert AI Engineer and Full-Stack Software Developer from Philippines. Specialized in Machine Learning, Python, JavaScript, React, Vue.js, Laravel, and AI/ML solutions. Available for remote opportunities. Perfect candidate for companies seeking skilled Philippines developers with proven AI and full-stack expertise.">
@@ -71,6 +71,7 @@
     <link rel="stylesheet" href="css/dev-toggle.css">
     <link rel="stylesheet" href="css/projects-enhancements.css?v=3.0">
     <link rel="stylesheet" href="css/resume-modal.css">
+    <link rel="stylesheet" href="css/learning-modal.css">
     <link rel="stylesheet" href="css/header-enhancements.css">
     <link rel="stylesheet" href="css/performance-optimizations.css">
     <!-- 
@@ -248,12 +249,60 @@
         <nav class="container">
             <a href="#hero" class="logo">Daniel Florencio</a>
             <ul class="nav-menu">
-                <li><a href="#about">About</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#certifications">Certifications</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li>
+                    <a href="#about">
+                        <span class="nav-icon"><i class="fas fa-user"></i></span>
+                        <span class="nav-content">
+                            <span class="nav-title">About</span>
+                            <span class="nav-description">Learn more about me</span>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#experience">
+                        <span class="nav-icon"><i class="fas fa-briefcase"></i></span>
+                        <span class="nav-content">
+                            <span class="nav-title">Experience</span>
+                            <span class="nav-description">My work history</span>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#skills">
+                        <span class="nav-icon"><i class="fas fa-code"></i></span>
+                        <span class="nav-content">
+                            <span class="nav-title">Skills</span>
+                            <span class="nav-description">Technologies I use</span>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#projects">
+                        <span class="nav-icon"><i class="fas fa-folder-open"></i></span>
+                        <span class="nav-content">
+                            <span class="nav-title">Projects</span>
+                            <span class="nav-description">View my work</span>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#certifications">
+                        <span class="nav-icon"><i class="fas fa-certificate"></i></span>
+                        <span class="nav-content">
+                            <span class="nav-title">Certifications</span>
+                            <span class="nav-description">My credentials</span>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#contact">
+                        <span class="nav-icon"><i class="fas fa-envelope"></i></span>
+                        <span class="nav-content">
+                            <span class="nav-title">Contact</span>
+                            <span class="nav-description">Get in touch</span>
+                        </span>
+                    </a>
+                </li>
             </ul>
             <button class="hamburger" aria-label="Toggle navigation menu" aria-expanded="false" type="button">
                 <i class="fas fa-bars" aria-hidden="true"></i>
@@ -313,10 +362,10 @@
                         </h1>
                         <p class="hero-subtitle animate-on-scroll fade-up delay-0-1s">
                             <span class="subtitle-icon">🚀</span>
-                            AI Engineer and Software Developer
+                            Software Developer and AI Engineer
                         </p>
                         <p class="hero-description animate-on-scroll fade-up delay-0-2s">
-                            Transforming complex challenges into elegant digital solutions through the perfect fusion of full-stack development expertise and cutting-edge AI innovation. I specialize in creating scalable, user-centric applications that drive real business value and exceptional user experiences.
+                            I build full-stack applications and AI-powered solutions that solve real-world problems. With a passion for clean code and thoughtful architecture, I create maintainable software that makes a meaningful difference. I believe in continuous learning, genuine collaboration, and contributing to projects that matter.
                         </p>
                         
                        
@@ -327,10 +376,10 @@
                                 <span class="btn-icon">→</span>
                             </a>
 
-                            <a href="#contact" class="btn btn-outline hero-contact-btn">
-                                <span class="btn-text">Get In Touch</span>
-                                <span class="btn-icon">💬</span>
-                            </a>
+                            <button id="openLearningModalBtn" class="btn btn-outline hero-learning-btn" type="button">
+                                <span class="btn-text">Current Learning</span>
+                                <span class="btn-icon"><i class="fas fa-book-reader"></i></span>
+                            </button>
                         </div>
                     </div>
                     
@@ -415,7 +464,7 @@
                 <div class="section-header">
                     <h2 class="section-title animate-on-scroll fade-up">About Me</h2>
                     <p class="section-subtitle animate-on-scroll fade-up delay-0-1s">
-                        AI Engineer and Software Developer building intelligent applications that solve real-world problems through clean code and innovative solutions.
+                        A brief look into my background, interests, and approach to software development.
                     </p>
                 </div>
                 
@@ -644,7 +693,7 @@
                 <div class="section-header">
                     <h2 class="section-title animate-on-scroll fade-up">Professional Experience</h2>
                     <p class="section-subtitle animate-on-scroll fade-up delay-0-1s">
-                        Building scalable solutions across telecommunications, AI development, and full-stack applications with a focus on quality and innovation.
+                        Experience across telecommunications, AI development, and full-stack applications.
                     </p>
                     <!-- Experience stats cards removed for cleaner design -->
                 </div>
@@ -1096,7 +1145,7 @@
                 <div class="section-header">
                     <h2 class="section-title animate-on-scroll fade-up">Skills & Expertise</h2>
                     <p class="section-subtitle animate-on-scroll fade-up delay-0-1s">
-                        Full-stack expertise across frontend frameworks, backend systems, AI/ML technologies, and infrastructure management.
+                        Frontend frameworks, backend systems, AI/ML technologies, and cloud infrastructure.
                     </p>
                     <!-- Skills stats cards removed for cleaner design -->
                 </div>
@@ -1201,7 +1250,7 @@
                 <div class="section-header">
                     <h2 class="section-title animate-on-scroll fade-up">Featured Projects</h2>
                     <p class="section-subtitle animate-on-scroll fade-up delay-0-1s">
-                        Real-world applications showcasing technical excellence, innovative problem-solving, and user-centered design.
+                        Projects demonstrating technical excellence, problem-solving, and user-centered design.
                     </p>
                 </div>
                 
@@ -1303,7 +1352,7 @@
                 <div class="section-header">
                     <h2 class="section-title animate-on-scroll fade-up">Professional Certifications</h2>
                     <p class="section-subtitle animate-on-scroll fade-up delay-0-1s">
-                        Industry-recognized certifications validating expertise in modern technologies and professional development practices.
+                        Industry-recognized certifications in modern technologies and professional practices.
                     </p>
                 </div>
                 <div class="certifications-carousel-wrapper">
@@ -1521,6 +1570,28 @@
                  <div class="loading-placeholder">
                     <i class="fas fa-spinner fa-spin"></i>
                     <p>Loading Resume...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Learning Modal -->
+    <div id="learningModal" class="learning-modal">
+        <div class="learning-modal-content">
+            <div class="learning-modal-header">
+                <div class="learning-modal-title-section">
+                    <h2 id="learningModalTitle">Currently Learning</h2>
+                    <p id="learningModalSubtitle">Topics I'm currently exploring and focusing on in my career</p>
+                </div>
+                <button class="learning-modal-close" id="closeLearningModal" aria-label="Close modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="learning-modal-body" id="learningContainer">
+                <!-- Learning content will be dynamically loaded here -->
+                <div class="loading-placeholder">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <p>Loading Learning Topics...</p>
                 </div>
             </div>
         </div>

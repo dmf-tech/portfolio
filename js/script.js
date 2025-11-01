@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         const toggleMobileNav = () => {
-            if (navMenu.classList.contains('active')) {
+                if (navMenu.classList.contains('active')) {
                 closeMobileNav();
             } else {
                 openMobileNav();
@@ -178,11 +178,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const targetId = this.getAttribute('href');
             const targetElement = select(targetId);
             if (targetElement) {
-                // Check if mobile nav is open before closing (to determine scroll delay)
-                const wasMenuOpen = navMenu && navMenu.classList.contains('active');
-                
-                // Close mobile nav first if it's open (before scrolling)
-                if (wasMenuOpen) {
+                // Close mobile nav immediately if it's open (before scrolling)
+                if (navMenu && navMenu.classList.contains('active')) {
                     if (closeMobileNav && typeof closeMobileNav === 'function') {
                         closeMobileNav();
                     } else if (hamburger) {
@@ -193,26 +190,17 @@ document.addEventListener('DOMContentLoaded', () => {
                         if (backdrop) {
                             backdrop.classList.remove('active');
                         }
-                        // Restore scroll position
-                        const scrollY = document.body.style.top;
-                        document.body.style.top = '';
-                        if (scrollY) {
-                            window.scrollTo(0, parseInt(scrollY || '0') * -1);
-                        }
                     }
                 }
                 
-                // Small delay to ensure menu closes before scrolling (350ms matches CSS transition)
-                // Only delay if menu was open, otherwise scroll immediately
-                setTimeout(() => {
-                    const headerHeight = header ? header.offsetHeight : 0;
-                    const targetPosition = targetElement.offsetTop - headerHeight;
+                // Scroll immediately with no delay
+                const headerHeight = header ? header.offsetHeight : 0;
+                const targetPosition = targetElement.offsetTop - headerHeight;
 
-                    window.scrollTo({
-                        top: targetPosition,
-                        behavior: 'smooth'
-                    });
-                }, wasMenuOpen ? 350 : 50);
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
             }
         }, { passive: false });
     });
@@ -1598,9 +1586,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 const delay = 1000 + (index * 200);
                 setTimeout(() => {
                     requestAnimationFrame(() => {
-                        line.style.transition = 'all 0.5s ease';
-                        line.style.opacity = '1';
-                        line.style.transform = 'translateX(0)';
+                    line.style.transition = 'all 0.5s ease';
+                    line.style.opacity = '1';
+                    line.style.transform = 'translateX(0)';
                     });
                 }, delay);
             });
@@ -1910,7 +1898,152 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    // Learning Modal Logic
+    const learningModal = document.getElementById('learningModal');
+    const openLearningBtn = document.getElementById('openLearningModalBtn');
+    const closeLearningBtn = document.getElementById('closeLearningModal');
+
+    if (openLearningBtn && learningModal && closeLearningBtn) {
+        // Handle Escape key for learning modal
+        const handleLearningEscape = (e) => {
+            if (e.key === 'Escape' && learningModal.classList.contains('active')) {
+                learningModal.classList.remove('active');
+            }
+        };
+
+        openLearningBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            learningModal.classList.add('active');
+            fetchLearningData();
+            // Add escape listener when modal opens
+            document.addEventListener('keydown', handleLearningEscape);
+        });
+
+        const closeLearningModal = () => {
+            learningModal.classList.remove('active');
+            // Remove escape listener when modal closes
+            document.removeEventListener('keydown', handleLearningEscape);
+        };
+
+        closeLearningBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            closeLearningModal();
+        });
+
+        // Close modal if backdrop is clicked
+        learningModal.addEventListener('click', (e) => {
+            if (e.target === learningModal) {
+                closeLearningModal();
+            }
+        });
+    }
 });
+
+/**
+ * Fetches learning data from learning.json and renders it.
+ */
+async function fetchLearningData() {
+    const learningContainer = document.getElementById('learningContainer');
+    const learningTitle = document.getElementById('learningModalTitle');
+    const learningSubtitle = document.getElementById('learningModalSubtitle');
+    
+    if (!learningContainer) return;
+
+    // Show loading state only if content isn't already loaded
+    if (!learningContainer.querySelector('.learning-topics')) {
+        // Use safe DOM creation instead of innerHTML
+        const loadingDiv = document.createElement('div');
+        loadingDiv.className = 'loading-placeholder';
+        const icon = document.createElement('i');
+        icon.className = 'fas fa-spinner fa-spin';
+        const p = document.createElement('p');
+        p.textContent = 'Loading Learning Topics...';
+        loadingDiv.appendChild(icon);
+        loadingDiv.appendChild(p);
+
+        learningContainer.innerHTML = '';
+        learningContainer.appendChild(loadingDiv);
+    }
+
+    try {
+        const response = await fetch('/learning.json', {
+            method: 'GET',
+            cache: 'default',
+            credentials: 'same-origin'
+        });
+        
+        if (!response.ok) {
+            throw new Error(`Failed to fetch learning.json: ${response.status} ${response.statusText}`);
+        }
+        
+        const learningData = await response.json();
+        
+        // Validate response structure before rendering
+        if (!learningData || typeof learningData !== 'object') {
+            throw new Error('Invalid learning data format');
+        }
+
+        // Update title and subtitle
+        if (learningTitle && learningData.title) {
+            learningTitle.textContent = learningData.title;
+        }
+        if (learningSubtitle && learningData.subtitle) {
+            learningSubtitle.textContent = learningData.subtitle;
+        }
+        
+        renderLearning(learningData);
+    } catch (error) {
+        console.error("Error fetching or parsing learning data:", error);
+        
+        // Display error message using safe DOM creation
+        const errorDiv = document.createElement('div');
+        errorDiv.className = 'error-message';
+        const icon = document.createElement('i');
+        icon.className = 'fas fa-exclamation-triangle';
+        const p = document.createElement('p');
+        p.textContent = 'Failed to load learning topics. Please try again later.';
+        errorDiv.appendChild(icon);
+        errorDiv.appendChild(p);
+        
+        learningContainer.innerHTML = '';
+        learningContainer.appendChild(errorDiv);
+    }
+}
+
+/**
+ * Renders the learning topics in the modal.
+ * @param {object} data - The learning data from learning.json.
+ */
+function renderLearning(data) {
+    const learningContainer = document.getElementById('learningContainer');
+    if (!learningContainer) return;
+
+    if (!data.topics || !Array.isArray(data.topics) || data.topics.length === 0) {
+        learningContainer.innerHTML = '<div class="error-message"><i class="fas fa-info-circle"></i><p>No learning topics available.</p></div>';
+        return;
+    }
+
+    const topicsHTML = `
+        <div class="learning-topics">
+            ${data.topics.map(topic => `
+                <div class="learning-topic-card">
+                    <div class="learning-topic-header">
+                        <div class="learning-topic-icon">
+                            <i class="${escapeHTML(topic.icon || 'fas fa-book')}"></i>
+                        </div>
+                        <h3 class="learning-topic-title">${escapeHTML(topic.title)}</h3>
+                    </div>
+                    <p class="learning-topic-description">${escapeHTML(topic.description)}</p>
+                </div>
+            `).join('')}
+        </div>
+    `;
+
+    learningContainer.innerHTML = topicsHTML;
+}
 
 /**
  * Escapes HTML characters to prevent XSS when inserting user-generated text.

@@ -1,0 +1,43 @@
+{
+  "title": "Currently Learning",
+  "subtitle": "Topics I'm currently exploring and focusing on in my career",
+  "topics": [
+    {
+      "id": "blockchain",
+      "title": "Blockchain",
+      "icon": "fas fa-link",
+      "description": "Exploring blockchain technology, smart contracts, and decentralized applications. Learning about consensus mechanisms, cryptography, and blockchain architecture to understand how distributed systems work.",
+      "focusAreas": [
+        "Smart Contract Development",
+        "Blockchain Architecture",
+        "Cryptography Fundamentals",
+        "Decentralized Applications"
+      ]
+    },
+    {
+      "id": "government-it",
+      "title": "Government IT",
+      "icon": "fas fa-building",
+      "description": "Understanding government IT systems, compliance requirements, and public sector technology implementations. Learning about security standards, data governance, and citizen-facing digital services.",
+      "focusAreas": [
+        "IT Compliance & Standards",
+        "Public Sector Systems",
+        "Data Governance",
+        "Citizen Services"
+      ]
+    },
+    {
+      "id": "ai-agents",
+      "title": "AI Agents",
+      "icon": "fas fa-robot",
+      "description": "Diving deep into AI agents, autonomous systems, and agent-based AI architectures. Exploring how AI agents can make decisions, interact with environments, and solve complex problems autonomously.",
+      "focusAreas": [
+        "Agent Architecture",
+        "Autonomous Decision Making",
+        "Multi-Agent Systems",
+        "Agent Training & Optimization"
+      ]
+    }
+  ]
+}
+

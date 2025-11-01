@@ -197,15 +197,37 @@ input, textarea, select {
 }
 
 #header .nav-menu a::before {
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    transition: width 0.15s ease-out !important;
+    will-change: width;
 }
 
 /* Smooth Hero Section Animations */
+.hero-section {
+    transition: padding 0.3s ease-out !important;
+}
+
+.hero-content {
+    transition: padding 0.3s ease-out !important;
+}
+
+.hero-content-wrapper {
+    transition: gap 0.3s ease-out, flex-direction 0.3s ease-out !important;
+}
+
+.hero-text-content {
+    transition: max-width 0.3s ease-out, align-items 0.3s ease-out !important;
+}
+
 .hero-title,
 .hero-subtitle,
 .hero-description {
     transform: translateZ(0);
     backface-visibility: hidden;
+    transition: margin-bottom 0.3s ease-out, font-size 0.3s ease-out !important;
+}
+
+.hero-buttons {
+    transition: gap 0.3s ease-out, margin-bottom 0.3s ease-out, margin-top 0.3s ease-out !important;
 }
 
 /* Enhanced Stats Animations */

@@ -46,18 +46,22 @@
         padding: 0 1rem !important;
     }
 
+    /* Completely hide Interactive Visual Element on tablets and mobile */
     .hero-visual-element {
-        margin-top: 2rem !important; /* Increased from 1.25rem */
-        width: 100% !important;
-        max-width: 100% !important;
-        display: flex !important;
-        justify-content: center !important;
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        height: 0 !important;
+        width: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        overflow: hidden !important;
+        position: absolute !important;
+        left: -9999px !important;
     }
     
     .code-window {
-        width: 100% !important;
-        max-width: 500px !important; /* Limit max width on tablets */
-        margin: 0 auto !important;
+        display: none !important;
     }
     
     .code-content {
@@ -104,8 +108,8 @@
 /* Mobile Landscape and smaller tablets */
 @media (max-width: 768px) {
     .hero-section {
-        padding-top: 95px !important; /* Increased - account for fixed header + more space */
-        padding-bottom: 50px !important; /* Increased from 35px */
+        padding-top: 105px !important; /* Slightly increased for less compression */
+        padding-bottom: 55px !important; /* Slightly increased for less compression */
     }
     
     .hero-content {
@@ -135,14 +139,22 @@
         line-height: 1.65 !important;
     }
     
+    /* Completely hide Interactive Visual Element on mobile */
     .hero-visual-element {
-        margin-top: 1.75rem !important; /* Increased from 1rem */
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        height: 0 !important;
+        width: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        overflow: hidden !important;
+        position: absolute !important;
+        left: -9999px !important;
     }
     
     .code-window {
-        max-width: 100% !important;
-        width: 100% !important;
-        margin: 0 auto !important;
+        display: none !important;
     }
     
     .code-content {
@@ -221,13 +233,27 @@
     .gradient-orb {
         opacity: 0.4 !important;
     }
+    
+    /* Fix scroll indicator positioning on tablets */
+    .scroll-indicator {
+        bottom: 15px !important; /* Move lower to avoid buttons */
+        left: 50% !important;
+        transform: translateX(-50%) !important; /* Ensure centered */
+        width: 100% !important;
+        text-align: center !important;
+    }
+    
+    /* Ensure hero buttons have enough bottom margin to avoid overlap */
+    .hero-buttons {
+        margin-bottom: 1.5rem !important; /* Add bottom margin to prevent overlap */
+    }
 }
 
 /* Mobile Portrait */
 @media (max-width: 480px) {
     .hero-section {
-        padding-top: 90px !important; /* Increased - account for fixed header + more space */
-        padding-bottom: 45px !important; /* Increased from 30px */
+        padding-top: 100px !important; /* Slightly increased for less compression */
+        padding-bottom: 50px !important; /* Slightly increased for less compression */
         min-height: auto !important;
     }
     
@@ -310,15 +336,23 @@
         margin-right: 5px !important;
     }
     
+    /* Completely hide Interactive Visual Element on small mobile */
     .hero-visual-element {
-        margin-top: 1.5rem !important; /* Increased from 1rem */
-        order: -1 !important;
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        height: 0 !important;
+        width: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        overflow: hidden !important;
+        position: absolute !important;
+        left: -9999px !important;
     }
     
-    .code-window {
-        max-width: 100% !important;
-        width: 100% !important;
-        margin: 0 auto !important;
+    .code-window,
+    .code-window * {
+        display: none !important;
     }
     
     .code-content {
@@ -381,11 +415,20 @@
     }
     
     .scroll-indicator {
-        bottom: 20px !important;
+        bottom: 10px !important; /* Move lower to avoid buttons */
+        left: 50% !important;
+        transform: translateX(-50%) !important; /* Ensure centered */
+        width: 100% !important;
+        text-align: center !important;
     }
     
     .scroll-text {
         font-size: 0.8rem !important;
+    }
+    
+    /* Ensure hero buttons have enough bottom margin to avoid overlap */
+    .hero-buttons {
+        margin-bottom: 2rem !important; /* Add bottom margin to prevent overlap */
     }
 }
 
@@ -434,14 +477,23 @@
         font-size: 0.85rem !important;
     }
     
+    /* Hide Interactive Visual Element on mobile landscape too */
     .hero-visual-element {
-        flex: 0 0 280px !important;
-        margin-top: 0 !important;
-        order: 1 !important;
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        height: 0 !important;
+        width: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        overflow: hidden !important;
+        position: absolute !important;
+        left: -9999px !important;
     }
     
-    .code-window {
-        max-width: 280px !important;
+    .code-window,
+    .code-window * {
+        display: none !important;
     }
     
     .code-content {
@@ -485,8 +537,23 @@
         margin-bottom: 0.875rem !important;
     }
     
+    /* Ensure Interactive Visual Element is completely hidden on very small mobile */
     .hero-visual-element {
-        margin-top: 0.875rem !important;
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        height: 0 !important;
+        width: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        overflow: hidden !important;
+        position: absolute !important;
+        left: -9999px !important;
+    }
+    
+    .code-window,
+    .code-window * {
+        display: none !important;
     }
     
     .hero-section .btn {
