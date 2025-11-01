@@ -43,7 +43,7 @@
     /* Make nav-title display inline like normal text */
     #header .nav-menu .nav-title {
         display: inline !important;
-        font-size: 0.95rem !important; /* Match original desktop size */
+        font-size: 1.1rem !important; /* Increased from 0.95rem for better visibility on large screens */
         font-weight: 500 !important; /* Match original desktop weight */
         color: rgba(255, 255, 255, 0.85) !important; /* Match original desktop color */
         line-height: normal !important;
@@ -61,7 +61,7 @@
         align-items: center !important;
         color: rgba(255, 255, 255, 0.85) !important; /* Original desktop color */
         font-weight: 500 !important;
-        font-size: 0.95rem !important;
+        font-size: 1.1rem !important; /* Increased from 0.95rem for better visibility on large screens */
     }
     
     /* Restore desktop hover/active states */

@@ -156,8 +156,8 @@ Then open `http://localhost:8000` in your browser.
 #### Option 2: Using Netlify CLI
 
 ```bash
-# Install Netlify CLI globally
-npm install -g netlify-cli
+# Install/Update Netlify CLI globally (updating fixes deprecation warnings)
+npm install -g netlify-cli@latest
 
 # Navigate to project directory
 cd portfolio
@@ -168,15 +168,19 @@ netlify dev
 
 The site will be available at `http://localhost:8888`
 
+**Note:** If you see `util._extend` deprecation warnings, update Netlify CLI with `npm install -g netlify-cli@latest`
+
 #### Option 3: Using Node.js http-server
 
 ```bash
-# Install http-server globally
-npm install -g http-server
+# Install/Update http-server globally (updating fixes deprecation warnings)
+npm install -g http-server@latest
 
 # Run server
 http-server -p 8000
 ```
+
+**Note:** If you see `util._extend` deprecation warnings, update your Node.js tools with `npm install -g <tool-name>@latest`
 
 ## Deployment
 
