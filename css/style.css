@@ -1403,79 +1403,6 @@ button.filter-btn:active,
 /* Skills section removed - styles cleaned up */
 
 /* --- Experience Section --- */
-/* Global Styles & Variables */
-:root {
-    --primary-color: #2c3e50; /* Dark Slate Blue - Used for main headings, primary actions, and dark text elements */
-    --dark-text-color: #343a40; /* Near Black - For general paragraph text */
-    --light-text-color: #ffffff; /* Pure White - Dominant background color */
-    --border-color: #e0e0e0; /* Very light grey for subtle borders, adjust if too light/dark */
-    --font-primary: 'Montserrat', sans-serif;
-    --font-secondary: 'Open Sans', sans-serif;
-    --container-width: 1280px; /* Increased container width */
-    --section-padding-desktop: 100px 0; /* Standardized desktop section padding */
-    --section-padding-mobile: 70px 0;  /* Standardized mobile section padding */
-    --card-shadow: none; 
-    --border-radius: 4px; 
-    --global-transition: all 0.3s cubic-bezier(0.4, 0.2, 0.2, 1); 
-    
-    /* Enhanced transition variables for smoother experience */
-    --smooth-transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-    --fast-transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
-    --slow-transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
-    --bounce-transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    
-    /* Professional UI Colors - Modern Design System */
-    --surface-color: #f8f9fa; /* Light surface background */
-    --surface-hover: #e9ecef; /* Surface hover state */
-    --accent-color: #0d6efd; /* Modern blue accent */
-    --accent-hover: #0b5ed7; /* Darker accent for hover */
-    --text-muted: #6c757d; /* Muted text color */
-    --border-light: #dee2e6; /* Light border */
-    --shadow-sm: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075); /* Small shadow */
-    --shadow-md: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1); /* Medium shadow */
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html {
-    scroll-behavior: smooth;
-    /* Improve touch scrolling on mobile */
-    -webkit-overflow-scrolling: touch;
-}
-
-body {
-    font-family: var(--font-secondary);
-    line-height: 1.7; /* Slightly increased for better readability */
-    color: var(--dark-text-color);
-    background-color: var(--light-text-color); /* Pure white background */
-    font-size: 16px; /* Explicit base font size */
-    -webkit-font-smoothing: antialiased; /* Smoother fonts on WebKit */
-    -moz-osx-font-smoothing: grayscale; /* Smoother fonts on Firefox */
-
-    /* Subtle page load animation */
-    opacity: 0;
-    animation: pageFadeIn 0.8s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
-    animation-delay: 0.1s; /* Short delay to ensure assets might start loading */
-    
-    /* Improve mobile performance */
-    -webkit-tap-highlight-color: transparent;
-    touch-action: manipulation;
-}
-
-@keyframes pageFadeIn {
-    to {
-        opacity: 1;
-    }
-}
-
-/* Base Section Styling */
-main > section:not(.hero-section) {
-    padding: var(--section-padding-desktop);
-}
 
 @media (max-width: 768px) {
     main > section:not(.hero-section) {
@@ -3188,6 +3115,9 @@ button.filter-btn:active,
 
 .featured-project-details .project-categories {
     margin-bottom: 15px; /* More space after categories */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* Space between tags */
 }
 .featured-project-details .project-categories .category-tag {
     font-size: 0.8rem;
@@ -3286,80 +3216,6 @@ button.filter-btn:active,
 
 .carousel-nav.next {
     right: 15px;
-}
-
-/* Global Styles & Variables */
-:root {
-    --primary-color: #2c3e50; /* Dark Slate Blue - Used for main headings, primary actions, and dark text elements */
-    --dark-text-color: #343a40; /* Near Black - For general paragraph text */
-    --light-text-color: #ffffff; /* Pure White - Dominant background color */
-    --border-color: #e0e0e0; /* Very light grey for subtle borders, adjust if too light/dark */
-    --font-primary: 'Montserrat', sans-serif;
-    --font-secondary: 'Open Sans', sans-serif;
-    --container-width: 1280px; /* Increased container width */
-    --section-padding-desktop: 100px 0; /* Standardized desktop section padding */
-    --section-padding-mobile: 70px 0;  /* Standardized mobile section padding */
-    --card-shadow: none; 
-    --border-radius: 4px; 
-    --global-transition: all 0.3s cubic-bezier(0.4, 0.2, 0.2, 1); 
-    
-    /* Enhanced transition variables for smoother experience */
-    --smooth-transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-    --fast-transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
-    --slow-transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
-    --bounce-transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    
-    /* Professional UI Colors - Modern Design System */
-    --surface-color: #f8f9fa; /* Light surface background */
-    --surface-hover: #e9ecef; /* Surface hover state */
-    --accent-color: #0d6efd; /* Modern blue accent */
-    --accent-hover: #0b5ed7; /* Darker accent for hover */
-    --text-muted: #6c757d; /* Muted text color */
-    --border-light: #dee2e6; /* Light border */
-    --shadow-sm: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075); /* Small shadow */
-    --shadow-md: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1); /* Medium shadow */
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html {
-    scroll-behavior: smooth;
-    /* Improve touch scrolling on mobile */
-    -webkit-overflow-scrolling: touch;
-}
-
-body {
-    font-family: var(--font-secondary);
-    line-height: 1.7; /* Slightly increased for better readability */
-    color: var(--dark-text-color);
-    background-color: var(--light-text-color); /* Pure white background */
-    font-size: 16px; /* Explicit base font size */
-    -webkit-font-smoothing: antialiased; /* Smoother fonts on WebKit */
-    -moz-osx-font-smoothing: grayscale; /* Smoother fonts on Firefox */
-
-    /* Subtle page load animation */
-    opacity: 0;
-    animation: pageFadeIn 0.8s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
-    animation-delay: 0.1s; /* Short delay to ensure assets might start loading */
-    
-    /* Improve mobile performance */
-    -webkit-tap-highlight-color: transparent;
-    touch-action: manipulation;
-}
-
-@keyframes pageFadeIn {
-    to {
-        opacity: 1;
-    }
-}
-
-/* Base Section Styling */
-main > section:not(.hero-section) {
-    padding: var(--section-padding-desktop);
 }
 
 @media (max-width: 768px) {
@@ -5651,20 +5507,6 @@ button.filter-btn:active,
 }
 
 
-.featured-project-details .project-categories {
-    margin-bottom: 15px; /* More space after categories */
-}
-.featured-project-details .project-categories .category-tag {
-    font-size: 0.8rem;
-    padding: 5px 12px;
-}
-
-.featured-project-details p { 
-    font-size: 1rem; /* Slightly larger description text */
-    line-height: 1.7;
-    margin-bottom: 20px;
-    color: #555;
-}
 
 .featured-project-details .project-technologies {
     margin-bottom: 25px; /* More space before links */
@@ -6026,7 +5868,7 @@ button.filter-btn:active,
     margin: 0;
     display: flex;
     flex-wrap: wrap; /* Allow tags to wrap */
-    gap: 10px; /* Space between tags */
+    gap: 14px; /* Space between tags */
 }
 
 .category-tag {
@@ -6039,6 +5881,7 @@ button.filter-btn:active,
     display: inline-block;
     border: 1px solid rgba(44, 62, 80, 0.2);
     transition: all 0.3s ease;
+    margin: 0; /* Remove any default margins */
 }
 
 .category-tag:hover {
@@ -7335,9 +7178,7 @@ section > .container > h2:first-child {
     padding-bottom: 80px; 
 }
 
-.skills-section .section-title {
-    margin-bottom: 50px; 
-}
+/* Removed duplicate .skills-section .section-title - using section-spacing.css instead */
 
 /* --- Technical Skills Showcase --- */
 .technical-skills-showcase {
@@ -7927,9 +7768,7 @@ section > .container > h2:first-child {
     padding-bottom: 80px; 
 }
 
-.skills-section .section-title {
-    margin-bottom: 50px; 
-}
+/* Removed duplicate .skills-section .section-title - using section-spacing.css instead */
 
 /* --- Technical Skills Showcase --- */
 .technical-skills-showcase {
@@ -8519,9 +8358,7 @@ section > .container > h2:first-child {
     padding-bottom: 80px; 
 }
 
-.skills-section .section-title {
-    margin-bottom: 50px; 
-}
+/* Removed duplicate .skills-section .section-title - using section-spacing.css instead */
 
 /* --- Technical Skills Showcase --- */
 .technical-skills-showcase {
@@ -9111,9 +8948,7 @@ section > .container > h2:first-child {
     padding-bottom: 80px; 
 }
 
-.skills-section .section-title {
-    margin-bottom: 50px; 
-}
+/* Removed duplicate .skills-section .section-title - using section-spacing.css instead */
 
 /* --- Technical Skills Showcase --- */
 .technical-skills-showcase {
@@ -9703,9 +9538,7 @@ section > .container > h2:first-child {
     padding-bottom: 80px; 
 }
 
-.skills-section .section-title {
-    margin-bottom: 50px; 
-}
+/* Removed duplicate .skills-section .section-title - using section-spacing.css instead */
 
 /* --- Technical Skills Showcase --- */
 .technical-skills-showcase {

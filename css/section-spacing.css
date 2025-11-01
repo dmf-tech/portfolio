@@ -68,7 +68,7 @@ main > section:not(.hero-section) {
 .container {
     padding-left: 20px !important;
     padding-right: 20px !important;
-    max-width: 1200px !important;
+    max-width: 1280px !important; /* Match style.css --container-width */
     margin: 0 auto !important;
 }
 

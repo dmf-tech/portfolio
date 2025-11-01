@@ -6,17 +6,17 @@
 @media (max-width: 992px) {
     .hero-section {
         min-height: auto;
-        padding: 80px 0 60px !important;
+        padding: 60px 0 40px !important;
     }
     
     .hero-content {
-        padding: 20px 0 !important;
+        padding: 15px 0 !important;
     }
     
     .hero-content-wrapper {
         flex-direction: column !important;
         text-align: center !important;
-        gap: 2.5rem !important;
+        gap: 1.75rem !important;
         padding: 0 1.5rem !important;
     }
 
@@ -27,26 +27,26 @@
     
     .hero-title {
         font-size: clamp(2rem, 6vw, 2.8rem) !important;
-        margin-bottom: 1rem !important;
+        margin-bottom: 0.75rem !important;
         line-height: 1.2 !important;
     }
     
     .hero-subtitle {
         font-size: clamp(1.1rem, 3vw, 1.4rem) !important;
-        margin-bottom: 1rem !important;
+        margin-bottom: 0.75rem !important;
         justify-content: center !important;
     }
     
     .hero-description {
         font-size: clamp(0.95rem, 2.5vw, 1.05rem) !important;
         line-height: 1.6 !important;
-        margin-bottom: 1.5rem !important;
+        margin-bottom: 1.25rem !important;
         max-width: 100% !important;
         padding: 0 1rem !important;
     }
 
     .hero-visual-element {
-        margin-top: 2rem !important;
+        margin-top: 1.25rem !important;
         width: 100% !important;
         max-width: 100% !important;
     }
@@ -66,27 +66,36 @@
 /* Mobile Landscape and smaller tablets */
 @media (max-width: 768px) {
     .hero-section {
-        padding: 70px 0 50px !important;
+        padding: 50px 0 35px !important;
+    }
+    
+    .hero-content {
+        padding: 10px 0 !important;
     }
     
     .hero-content-wrapper {
-        gap: 2rem !important;
+        gap: 1.5rem !important;
         padding: 0 1.25rem !important;
     }
     
     .hero-title {
         font-size: clamp(1.75rem, 7vw, 2.5rem) !important;
-        margin-bottom: 0.875rem !important;
+        margin-bottom: 0.625rem !important;
     }
     
     .hero-subtitle {
         font-size: clamp(1rem, 3.5vw, 1.3rem) !important;
+        margin-bottom: 0.625rem !important;
     }
     
     .hero-description {
         font-size: clamp(0.9rem, 3vw, 1rem) !important;
         padding: 0 !important;
-        margin-bottom: 1.25rem !important;
+        margin-bottom: 1rem !important;
+    }
+    
+    .hero-visual-element {
+        margin-top: 1rem !important;
     }
     
     .code-window {
@@ -121,22 +130,22 @@
 /* Mobile Portrait */
 @media (max-width: 480px) {
     .hero-section {
-        padding: 60px 0 40px !important;
+        padding: 45px 0 30px !important;
         min-height: auto !important;
     }
     
     .hero-content {
-        padding: 15px 0 !important;
+        padding: 10px 0 !important;
     }
     
     .hero-content-wrapper {
-        gap: 1.5rem !important;
+        gap: 1.25rem !important;
         padding: 0 1rem !important;
     }
     
     .hero-title {
         font-size: clamp(1.5rem, 8vw, 2rem) !important;
-        margin-bottom: 0.75rem !important;
+        margin-bottom: 0.5rem !important;
     }
     
     .greeting-text {
@@ -149,7 +158,7 @@
     
     .hero-subtitle {
         font-size: clamp(0.95rem, 4vw, 1.1rem) !important;
-        margin-bottom: 0.875rem !important;
+        margin-bottom: 0.625rem !important;
         flex-wrap: wrap !important;
         justify-content: center !important;
     }
@@ -161,14 +170,14 @@
     .hero-description {
         font-size: clamp(0.85rem, 3.5vw, 0.95rem) !important;
         line-height: 1.65 !important;
-        margin-bottom: 1.25rem !important;
+        margin-bottom: 1rem !important;
         padding: 0 !important;
     }
     
     .hero-buttons {
         flex-direction: column !important;
         width: 100% !important;
-        gap: 0.75rem !important;
+        gap: 0.625rem !important;
     }
     
     .hero-section .btn {
@@ -178,7 +187,7 @@
     }
     
     .hero-visual-element {
-        margin-top: 1.5rem !important;
+        margin-top: 1rem !important;
         order: -1 !important;
     }
     
@@ -308,25 +317,36 @@
 /* Very small mobile devices */
 @media (max-width: 360px) {
     .hero-section {
-        padding: 50px 0 30px !important;
+        padding: 40px 0 25px !important;
+    }
+    
+    .hero-content {
+        padding: 8px 0 !important;
     }
     
     .hero-content-wrapper {
         padding: 0 0.875rem !important;
-        gap: 1.25rem !important;
+        gap: 1rem !important;
     }
     
     .hero-title {
         font-size: clamp(1.4rem, 9vw, 1.75rem) !important;
+        margin-bottom: 0.5rem !important;
     }
     
     .hero-subtitle {
         font-size: 0.95rem !important;
+        margin-bottom: 0.5rem !important;
     }
     
     .hero-description {
         font-size: 0.85rem !important;
         line-height: 1.6 !important;
+        margin-bottom: 0.875rem !important;
+    }
+    
+    .hero-visual-element {
+        margin-top: 0.875rem !important;
     }
     
     .hero-section .btn {

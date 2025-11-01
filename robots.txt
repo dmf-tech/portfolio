@@ -1,2 +1,7 @@
 User-agent: *
-Disallow: / 
+Allow: /
+Disallow: /resume.json
+Disallow: /projects.json
+
+# Sitemap
+Sitemap: https://danielflorencio.netlify.app/sitemap.xml 

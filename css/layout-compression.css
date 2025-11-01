@@ -31,6 +31,9 @@
 
 .featured-project-details .project-categories {
     margin-bottom: 12px !important; /* Compressed from 15px */
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 10px !important; /* Space between tags */
 }
 
 .featured-project-details p {

@@ -360,7 +360,7 @@
 .project-technologies-modal .skills-tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
+    gap: 12px;
 }
 
 .project-technologies-modal .skill-tag {
@@ -373,7 +373,7 @@
     border: 2px solid #bfdbfe !important;
     transition: all 0.3s ease !important;
     display: inline-block !important;
-    margin: 0 8px 12px 0 !important;
+    margin: 0 !important;
 }
 
 .project-technologies-modal .skill-tag:hover {
@@ -626,9 +626,13 @@
         font-size: 0.9rem;
     }
     
+    .project-technologies-modal .skills-tags {
+        gap: 10px !important;
+    }
+    
     .project-technologies-modal .skill-tag {
         padding: 6px 14px !important;
         font-size: 0.85rem !important;
-        margin: 0 6px 10px 0 !important;
+        margin: 0 !important;
     }
 } 
