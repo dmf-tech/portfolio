@@ -1,6 +1,6 @@
 {
   "name": "Daniel Florencio",
-  "title": "Full-Stack Developer & AI Enthusiast",
+  "title": "AI Engineer & Full-Stack Developer",
   "contact": {
     "email": "dmflorencio.main@gmail.com",
     "phone": "",
@@ -8,14 +8,22 @@
     "github": "https://github.com/DMcloud022",
     "location": "Philippines"
   },
-  "summary": "A results-oriented Full-Stack Developer and AI Enthusiast with 1+ years of experience across telecommunications, FinTech, and AI sectors. Passionate about building intelligent, scalable applications that bridge the gap between complex problems and elegant user experiences. Proven ability to architect robust systems, lead AI integration projects, and deliver high-quality software solutions. Graduated Cum Laude with a specialization in Data Science.",
+  "summary": "AI Engineer and Full-Stack Developer with 2+ years of professional experience specializing in artificial intelligence, machine learning, and enterprise software solutions. Currently serving as an AI Engineer at the Department of Information and Communications Technology (DICT), focusing on AI/ML implementations, LLMs, RAG pipelines, and government IT systems. Proven track record in developing scalable web applications, HRMS platforms, and AI-powered solutions across telecommunications, FinTech, and government sectors. Expertise in Python, TensorFlow, Laravel, Vue.js, React, and modern AI frameworks. Strong background in system architecture, Docker containerization, Linux administration, and database design. Graduated Cum Laude in Computer Science with a specialization in Data Science. Passionate about leveraging cutting-edge AI technologies to solve complex problems and drive innovation in both public and private sectors.",
   "experience": [
     {
-      "title": "Full Stack Developer",
+      "title": "AI Engineer",
+      "company": "Department of Information and Communications Technology",
+      "dates": "Nov 2025 - Present",
+      "location": "Philippines",
+      "description": []
+    },
+    {
+      "title": "Software Developer",
       "company": "Coral System Technologies Inc.",
-      "dates": "Feb 2025 - Present",
+      "dates": "Feb 2025 - Nov 2025",
       "location": "Philippines",
       "description": [
+        "Developed and maintained a comprehensive Human Resource Management System (HRMS) using Laravel and Vue.js, managing employee records, attendance tracking, payroll processing, and performance evaluations with RESTful API architecture.",
         "Led the maintenance and enhancement of a FreeSWITCH-based call center infrastructure serving multiple concurrent users, achieving high uptime and reducing call routing latency.",
         "Developed comprehensive CLI scripting solutions and automation workflows in a Linux environment, reducing manual system administration tasks and improving efficiency.",
         "Implemented Docker-based deployment pipelines that streamlined application delivery, reducing deployment time from hours to minutes.",

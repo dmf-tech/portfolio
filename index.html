@@ -52,6 +52,7 @@
 
     <!-- CSP is now handled via netlify.toml headers -->
 
+    <link rel="preload" href="css/style.css" as="style">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/experience-override.css">
     <link rel="stylesheet" href="css/universal-bg-override.css">
@@ -71,11 +72,14 @@
     <link rel="stylesheet" href="css/projects-enhancements.css?v=3.0">
     <link rel="stylesheet" href="css/resume-modal.css">
     <link rel="stylesheet" href="css/header-enhancements.css">
+    <link rel="stylesheet" href="css/performance-optimizations.css">
     <!-- 
         Google Fonts: Applying SRI to Google Fonts is complex due to their dynamic CSS delivery.
         For maximum security, consider downloading and self-hosting these fonts.
         If self-hosting, include their source in the CSP's font-src and style-src.
     -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <!-- Font Awesome for Icons - SRI hash is already correctly included -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
@@ -240,6 +244,7 @@
 
     <!-- Header / Navigation -->
     <header id="header">
+        <div class="mobile-nav-backdrop"></div>
         <nav class="container">
             <a href="#hero" class="logo">Daniel Florencio</a>
             <ul class="nav-menu">
@@ -250,9 +255,10 @@
                 <li><a href="#certifications">Certifications</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
-            <div class="hamburger" aria-label="Toggle navigation menu" tabindex="0" role="button" aria-expanded="false">
-                <i class="fas fa-bars"></i>
-            </div>
+            <button class="hamburger" aria-label="Toggle navigation menu" aria-expanded="false" type="button">
+                <i class="fas fa-bars" aria-hidden="true"></i>
+                <span class="sr-only">Menu</span>
+            </button>
         </nav>
     </header>
 
@@ -373,7 +379,7 @@
                                     <span class="line-number">5</span>
                                     <span class="code-text">};</span>
                                 </div>
-                                <div class="typing-cursor"></div>
+                               
                             </div>
                         </div>
                     </div>
@@ -646,7 +652,53 @@
                 <div class="experience-timeline">
                     <div class="timeline-line"></div>
                     
-                    <!-- Experience Item 1: Coral System Technologies Inc. -->
+                    <!-- Experience Item 1: Department of Information and Communications Technology -->
+                    <div class="experience-item animate-on-scroll slide-up" data-year="2025">
+                        <div class="timeline-marker">
+                            <div class="marker-icon">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                            <div class="marker-glow"></div>
+                        </div>
+                        
+                        <div class="experience-card">
+                            <div class="card-header" tabindex="0" role="button" aria-expanded="false" aria-controls="exp-details-1">
+                                <div class="job-period">
+                                    <span class="period-label">Government</span>
+                                    <span class="period-duration">Nov 2025 - Present</span>
+                                </div>
+                                <div class="job-info">
+                                    <h3 class="job-title">AI Engineer</h3>
+                                    <p class="company-info">
+                                        <span class="company-name">Department of Information and Communications Technology</span>
+                                        <span class="job-type">Full-time</span>
+                                    </p>
+                                    <div class="job-technologies">
+                                        <span class="tech-tag">Python</span>
+                                        <span class="tech-tag">AI/ML</span>
+                                        <span class="tech-tag">LLMs</span>
+                                        <span class="tech-tag">RAG</span>
+                                        <span class="tech-tag">TensorFlow</span>
+                                        <span class="tech-tag">MCP</span>
+                                        <span class="tech-tag">Government IT</span>
+                                    </div>
+                                </div>
+                                <!-- No expand toggle - new position with no description -->
+                            </div>
+                            
+                            <div class="card-content" id="exp-details-1" role="region" style="display: none;">
+                                <div class="content-wrapper">
+                                    <div class="current-role-badge">
+                                        <i class="fas fa-star"></i>
+                                        <span>Current Position</span>
+                                    </div>
+                                    <!-- Description will be added later -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Experience Item 2: Coral System Technologies Inc. -->
                     <div class="experience-item animate-on-scroll slide-up" data-year="2025">
                         <div class="timeline-marker">
                             <div class="marker-icon">
@@ -656,18 +708,19 @@
                         </div>
                         
                         <div class="experience-card">
-                            <div class="card-header" tabindex="0" role="button" aria-expanded="false" aria-controls="exp-details-1">
+                            <div class="card-header" tabindex="0" role="button" aria-expanded="false" aria-controls="exp-details-2">
                                 <div class="job-period">
-                                    <span class="period-label">Current</span>
-                                    <span class="period-duration">Feb 2025 - Present</span>
+                                    <span class="period-label">Telecommunications</span>
+                                    <span class="period-duration">Feb 2025 - Nov 2025</span>
                                 </div>
                                 <div class="job-info">
-                                    <h3 class="job-title">Full Stack Developer</h3>
+                                    <h3 class="job-title">Software Developer</h3>
                                     <p class="company-info">
                                         <span class="company-name">Coral System Technologies Inc.</span>
                                         <span class="job-type">Full-time</span>
                                     </p>
                                     <div class="job-technologies">
+                                        <span class="tech-tag">HRMS</span>
                                         <span class="tech-tag">FreeSWITCH</span>
                                         <span class="tech-tag">Linux</span>
                                         <span class="tech-tag">Docker</span>
@@ -679,10 +732,16 @@
                                 </div>
                             </div>
                             
-                            <div class="card-content" id="exp-details-1" role="region">
+                            <div class="card-content" id="exp-details-2" role="region">
                                 <div class="content-wrapper">
                                     <h4><i class="fas fa-target"></i> Key Responsibilities & Achievements</h4>
                                     <ul class="achievements-list">
+                                        <li>
+                                            <i class="fas fa-users-cog"></i>
+                                            <div class="achievement-text">
+                                                <strong>HRMS Development:</strong> Developed and maintained a comprehensive Human Resource Management System (HRMS) using Laravel and Vue.js, managing employee records, attendance tracking, payroll processing, and performance evaluations with RESTful API architecture.
+                                            </div>
+                                        </li>
                                         <li>
                                             <i class="fas fa-phone-alt"></i>
                                             <div class="achievement-text">
@@ -719,7 +778,7 @@
                         </div>
                     </div>
 
-                    <!-- Experience Item 2: Freelance Online Tutor -->
+                    <!-- Experience Item 3: Freelance Online Tutor -->
                     <div class="experience-item animate-on-scroll slide-up" data-year="2024">
                         <div class="timeline-marker">
                             <div class="marker-icon">
@@ -729,9 +788,9 @@
                         </div>
                         
                         <div class="experience-card">
-                            <div class="card-header" tabindex="0" role="button" aria-expanded="false" aria-controls="exp-details-2">
+                            <div class="card-header" tabindex="0" role="button" aria-expanded="false" aria-controls="exp-details-4">
                                 <div class="job-period">
-                                    <span class="period-label">Freelance</span>
+                                    <span class="period-label">Education</span>
                                     <span class="period-duration">Nov 2024 - May 2025</span>
                                 </div>
                                 <div class="job-info">
@@ -752,7 +811,7 @@
                                 </div>
                             </div>
                             
-                            <div class="card-content" id="exp-details-2" role="region">
+                            <div class="card-content" id="exp-details-4" role="region">
                                 <div class="content-wrapper">
                                     <h4><i class="fas fa-graduation-cap"></i> Key Contributions & Impact</h4>
                                     <ul class="achievements-list">
@@ -786,7 +845,7 @@
                         </div>
                     </div>
 
-                    <!-- Experience Item 3: Offshorly -->
+                    <!-- Experience Item 4: Offshorly -->
                     <div class="experience-item animate-on-scroll slide-up" data-year="2024">
                         <div class="timeline-marker">
                             <div class="marker-icon">
@@ -798,7 +857,7 @@
                         <div class="experience-card">
                             <div class="card-header" tabindex="0" role="button" aria-expanded="false" aria-controls="exp-details-3">
                                 <div class="job-period">
-                                    <span class="period-label">Tech</span>
+                                    <span class="period-label">AI/ML</span>
                                     <span class="period-duration">May - Oct 2024</span>
                                 </div>
                                 <div class="job-info">
@@ -889,9 +948,9 @@
                         </div>
                         
                         <div class="experience-card">
-                            <div class="card-header" tabindex="0" role="button" aria-expanded="false" aria-controls="exp-details-4">
+                            <div class="card-header" tabindex="0" role="button" aria-expanded="false" aria-controls="exp-details-5">
                                 <div class="job-period">
-                                    <span class="period-label">FinTech</span>
+                                    <span class="period-label">Financial Services</span>
                                     <span class="period-duration">Feb - Mar 2024</span>
                                 </div>
                                 <div class="job-info">
@@ -912,7 +971,7 @@
                                 </div>
                             </div>
                             
-                            <div class="card-content" id="exp-details-4" role="region">
+                            <div class="card-content" id="exp-details-5" role="region">
                                 <div class="content-wrapper">
                                     <h4><i class="fas fa-credit-card"></i> Key Responsibilities & Achievements</h4>
                                     <ul class="achievements-list">
@@ -956,9 +1015,9 @@
                         </div>
                         
                         <div class="experience-card">
-                            <div class="card-header" tabindex="0" role="button" aria-expanded="false" aria-controls="exp-details-5">
+                            <div class="card-header" tabindex="0" role="button" aria-expanded="false" aria-controls="exp-details-6">
                                 <div class="job-period">
-                                    <span class="period-label">Government</span>
+                                    <span class="period-label">Defense</span>
                                     <span class="period-duration">Jan - May 2024</span>
                                 </div>
                                 <div class="job-info">
@@ -979,7 +1038,7 @@
                         </div>
                     </div>
 
-                            <div class="card-content" id="exp-details-5" role="region">
+                            <div class="card-content" id="exp-details-6" role="region">
                                 <div class="content-wrapper">
                                     <h4><i class="fas fa-medal"></i> Key Responsibilities & Achievements</h4>
                                     <ul class="achievements-list">
@@ -1489,8 +1548,8 @@
     <!-- Scroll to Top Button -->
     <button id="scrollToTopBtn" title="Go to top" aria-label="Scroll to top of the page"><i class="fas fa-arrow-up"></i></button>
 
-    <script src="js/script.js?v=2.0"></script>
-    <script src="js/smooth-enhancements.js?v=2.0"></script>
-    <script src="js/certifications-enhancements.js?v=2.0"></script>
+    <script src="js/script.js?v=2.0" defer></script>
+    <script src="js/smooth-enhancements.js?v=2.0" defer></script>
+    <script src="js/certifications-enhancements.js?v=2.0" defer></script>
 </body>
 </html> 

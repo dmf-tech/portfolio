@@ -2,13 +2,13 @@
 
 /* Enhanced Image Container */
 .about-image-container {
-    position: sticky;
-    top: 120px;
+    position: static;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     gap: 2rem;
-    max-width: 350px;
+    width: 100%;
     margin: 0 auto;
 }
 
@@ -302,7 +302,7 @@
     .about-image-container {
         position: static;
         margin-bottom: 2rem;
-        max-width: none;
+        width: 100%;
     }
     
     .image-wrapper {

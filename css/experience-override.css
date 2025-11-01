@@ -1,5 +1,103 @@
 /* Clean Experience Section Override */
 
+/* Current Role Badge - Special Design for DICT Position */
+.current-role-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #ffffff;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+    animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.current-role-badge i {
+    color: #ffd700;
+    animation: star-twinkle 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+    0%, 100% {
+        box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+    }
+    50% {
+        box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+    }
+}
+
+@keyframes star-twinkle {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 0.8;
+    }
+}
+
+/* Special styling for current position card */
+.experience-item:first-child .experience-card {
+    border-left: 3px solid #667eea;
+}
+
+.experience-item:first-child .experience-card .card-header {
+    background: linear-gradient(to right, rgba(102, 126, 234, 0.03), transparent);
+}
+
+/* Hide expand toggle for positions without descriptions (DICT) */
+.experience-item:first-child .card-content:empty,
+.experience-item:first-child .card-content[style*="display: none"] {
+    display: none !important;
+}
+
+.experience-item:first-child .card-header {
+    cursor: default !important;
+    padding-right: 1.25rem !important; /* Remove space for hidden toggle */
+}
+
+/* Force hide the expand toggle button completely - Multiple selectors for maximum specificity */
+.experience-item:first-child .card-header .expand-toggle,
+.experience-item:first-child .experience-card .card-header .expand-toggle,
+.experience-item:first-child .card-header .expand-toggle i,
+.experience-item:nth-child(1) .card-header .expand-toggle,
+.experience-item:nth-child(1) .card-header .expand-toggle i,
+.experience-item[data-year="2025"]:first-of-type .card-header .expand-toggle,
+.experience-item[data-year="2025"]:first-of-type .card-header .expand-toggle i {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    width: 0 !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    position: absolute !important;
+    left: -9999px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    border: none !important;
+    background: transparent !important;
+    pointer-events: none !important;
+}
+
+.experience-item:first-child .card-header[aria-expanded] {
+    cursor: default !important;
+    pointer-events: none !important; /* Prevent any interaction */
+}
+
+.experience-item:first-child .card-header:hover {
+    background: transparent !important; /* No hover effect */
+}
+
+.experience-item:first-child .experience-card {
+    cursor: default !important;
+}
+
 /* Hide complex timeline elements */
 .timeline-line,
 .timeline-marker,
@@ -82,10 +180,15 @@
     border: 1px solid rgba(0, 0, 0, 0.15);
     border-radius: 4px;
     color: #2C3E50;
+    transition: background-color 0.15s ease;
+}
+
+.expand-toggle:hover {
+    background-color: rgba(0, 0, 0, 0.05);
 }
 
 .expand-toggle i {
-    transition: transform 0.3s ease;
+    transition: transform 0.2s ease;
     font-size: 0.875rem;
 }
 
@@ -518,6 +621,21 @@
         right: 1rem;
         width: 28px;
         height: 28px;
+    }
+    
+    /* Hide expand toggle for DICT on mobile */
+    .experience-item:first-child .card-header .expand-toggle,
+    .experience-item:first-child .card-header .expand-toggle i {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        width: 0 !important;
+        height: 0 !important;
+        pointer-events: none !important;
+    }
+    
+    .experience-item:first-child .card-header {
+        padding-right: 1rem !important;
     }
     
     .card-content {

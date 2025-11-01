@@ -8,31 +8,53 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Header Scroll Effect ---
     const header = select('#header');
     if (header) {
+        let ticking = false;
         const headerScrolled = () => {
             if (window.scrollY > 100) {
                 header.classList.add('scrolled');
             } else {
                 header.classList.remove('scrolled');
             }
+            ticking = false;
+        };
+        const requestTick = () => {
+            if (!ticking) {
+                window.requestAnimationFrame(headerScrolled);
+                ticking = true;
+            }
         };
         window.addEventListener('load', headerScrolled);
-        window.addEventListener('scroll', headerScrolled);
+        window.addEventListener('scroll', requestTick, { passive: true });
     }
 
     // --- Mobile Navigation Toggle ---
     const hamburger = select('.hamburger');
     const navMenu = select('.nav-menu');
+    const backdrop = select('.mobile-nav-backdrop');
 
     if (hamburger && navMenu) {
         const toggleMobileNav = () => {
+            const isActive = navMenu.classList.contains('active');
             navMenu.classList.toggle('active');
             hamburger.classList.toggle('active');
             document.body.classList.toggle('mobile-nav-active');
-            const isExpanded = navMenu.classList.contains('active');
+            if (backdrop) {
+                backdrop.classList.toggle('active');
+            }
+            const isExpanded = !isActive;
             hamburger.setAttribute('aria-expanded', isExpanded);
         };
 
+        // Click handler
         hamburger.addEventListener('click', toggleMobileNav);
+
+        // Keyboard handlers for hamburger button
+        hamburger.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                toggleMobileNav();
+            }
+        });
 
         // Close mobile nav when a link is clicked
         selectAll('.nav-menu a[href^="#"]').forEach(link => {
@@ -43,9 +65,33 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
+        // Close mobile nav on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && navMenu.classList.contains('active')) {
+                toggleMobileNav();
+            }
+        });
+
         // Close mobile nav on window resize if open
+        let resizeTimer;
         window.addEventListener('resize', () => {
-            if (window.innerWidth > 992 && navMenu.classList.contains('active')) {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => {
+                if (window.innerWidth > 992 && navMenu.classList.contains('active')) {
+                    toggleMobileNav();
+                }
+            }, 250);
+        });
+
+        // Close mobile nav when clicking backdrop or outside
+        if (backdrop) {
+            backdrop.addEventListener('click', toggleMobileNav);
+        }
+        document.addEventListener('click', (e) => {
+            if (navMenu.classList.contains('active') && 
+                !navMenu.contains(e.target) && 
+                !hamburger.contains(e.target) &&
+                !backdrop?.contains(e.target)) {
                 toggleMobileNav();
             }
         });
@@ -120,21 +166,39 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     };
-    window.addEventListener('scroll', updateActiveNavLink);
+    let scrollTicking = false;
+    const requestScrollTick = () => {
+        if (!scrollTicking) {
+            window.requestAnimationFrame(() => {
+                updateActiveNavLink();
+                scrollTicking = false;
+            });
+            scrollTicking = true;
+        }
+    };
+    window.addEventListener('scroll', requestScrollTick, { passive: true });
     window.addEventListener('load', updateActiveNavLink);
 
 
     // --- Scroll to Top Button ---
     const scrollToTopBtn = select('#scrollToTopBtn');
     if (scrollToTopBtn) {
+        let scrollTopTicking = false;
         const toggleScrollToTopBtn = () => {
             if (window.scrollY > 300) {
                 scrollToTopBtn.classList.add('active');
             } else {
                 scrollToTopBtn.classList.remove('active');
             }
+            scrollTopTicking = false;
         };
-        window.addEventListener('scroll', toggleScrollToTopBtn);
+        const requestScrollTopTick = () => {
+            if (!scrollTopTicking) {
+                window.requestAnimationFrame(toggleScrollToTopBtn);
+                scrollTopTicking = true;
+            }
+        };
+        window.addEventListener('scroll', requestScrollTopTick, { passive: true });
         scrollToTopBtn.addEventListener('click', () => {
             window.scrollTo({
                 top: 0,
@@ -154,7 +218,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         }, {
-            threshold: 0.1 // Adjust threshold as needed (0.1 means 10% visible)
+            threshold: 0.1, // Adjust threshold as needed (0.1 means 10% visible)
+            rootMargin: '50px' // Start animation slightly before element enters viewport
         });
         animatedElements.forEach(el => observer.observe(el));
     }
@@ -183,12 +248,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Enhanced Experience Section Accordion ---
     const experienceCards = selectAll('.experience-card');
-    experienceCards.forEach(card => {
+    experienceCards.forEach((card, index) => {
         const header = card.querySelector('.card-header');
         const content = card.querySelector('.card-content');
-        const toggle = header.querySelector('.expand-toggle');
+        const toggle = header?.querySelector('.expand-toggle');
         
-        if (header && content && toggle) {
+        // Skip first card (DICT) if it has no visible content (new position, no description)
+        const isFirstCardWithNoContent = index === 0 && 
+                                         (content?.style.display === 'none' || 
+                                          !content?.textContent?.trim() ||
+                                          content?.querySelector('.achievements-list')?.children.length === 0);
+        
+        if (header && content && toggle && !isFirstCardWithNoContent) {
             header.addEventListener('click', (e) => {
                 e.preventDefault();
                 
@@ -433,7 +504,11 @@ document.addEventListener('DOMContentLoaded', () => {
                         if (filterValue === '*' || item.classList.contains(filterValue.substring(1))) {
                             item.style.display = '';
                             // Delay to allow display property to apply before animation
-                            setTimeout(() => item.classList.remove('project-hidden'), 10);
+                            requestAnimationFrame(() => {
+                                requestAnimationFrame(() => {
+                                    item.classList.remove('project-hidden');
+                                });
+                            });
                         }
                     });
                 });
@@ -553,17 +628,21 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         try {
-            // Rate limiting: Check if we're fetching too frequently
+            // Rate limiting: Check if we're fetching too frequently (no storage - uses closure)
             const now = Date.now();
-            const lastFetch = window._lastProjectsFetch || 0;
-            const timeSinceLastFetch = now - lastFetch;
             const MIN_FETCH_INTERVAL = 2000; // 2 seconds minimum between fetches
+            
+            // Use closure variable instead of window storage (more secure)
+            if (!loadProjects.lastFetch) {
+                loadProjects.lastFetch = 0;
+            }
+            const timeSinceLastFetch = now - loadProjects.lastFetch;
             
             if (timeSinceLastFetch < MIN_FETCH_INTERVAL) {
                 console.warn('Rate limit: Projects fetch throttled');
                 return;
             }
-            window._lastProjectsFetch = now;
+            loadProjects.lastFetch = now;
             
             // Use fetch with proper error handling and caching
             const response = await fetch('/projects.json', {
@@ -695,13 +774,22 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error("Failed to load projects:", error);
             
             // Show error message in projects grid
-            projectsGrid.innerHTML = `
-                <div class="error-message" style="grid-column: 1 / -1; text-align: center; padding: 2rem; color: #e74c3c;">
-                    <h3>Unable to Load Projects</h3>
-                    <p>Could not load projects. Please try again later.</p>
-                    <p style="font-size: 0.9em; color: #7f8c8d;">Error: ${error.message}</p>
-                </div>
-            `;
+            // Safely create error message without innerHTML
+            projectsGrid.innerHTML = '';
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'error-message';
+            errorDiv.style.cssText = 'grid-column: 1 / -1; text-align: center; padding: 2rem; color: #e74c3c;';
+            const h3 = document.createElement('h3');
+            h3.textContent = 'Unable to Load Projects';
+            const p1 = document.createElement('p');
+            p1.textContent = 'Could not load projects. Please try again later.';
+            const p2 = document.createElement('p');
+            p2.style.cssText = 'font-size: 0.9em; color: #7f8c8d;';
+            p2.textContent = `Error: ${escapeHTML(error.message)}`;
+            errorDiv.appendChild(h3);
+            errorDiv.appendChild(p1);
+            errorDiv.appendChild(p2);
+            projectsGrid.appendChild(errorDiv);
             
             // Clear featured project area
             featuredProjectWrapper.innerHTML = '';
@@ -716,22 +804,37 @@ document.addEventListener('DOMContentLoaded', () => {
         const featuredWrapper = document.querySelector('.featured-project-wrapper');
         
         if (projectsGrid) {
-            projectsGrid.innerHTML = `
-                <div class="error-message" style="grid-column: 1 / -1; text-align: center; padding: 2rem; color: #e74c3c;">
-                    <h3>Projects Not Available</h3>
-                    <p>Unable to load projects data. Please try refreshing the page.</p>
-                    <p style="font-size: 0.9em; color: #7f8c8d;">Error: ${error.message}</p>
-                </div>
-            `;
+            // Safely create error message without innerHTML
+            projectsGrid.innerHTML = '';
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'error-message';
+            errorDiv.style.cssText = 'grid-column: 1 / -1; text-align: center; padding: 2rem; color: #e74c3c;';
+            const h3 = document.createElement('h3');
+            h3.textContent = 'Projects Not Available';
+            const p1 = document.createElement('p');
+            p1.textContent = 'Unable to load projects data. Please try refreshing the page.';
+            const p2 = document.createElement('p');
+            p2.style.cssText = 'font-size: 0.9em; color: #7f8c8d;';
+            p2.textContent = `Error: ${escapeHTML(error.message)}`;
+            errorDiv.appendChild(h3);
+            errorDiv.appendChild(p1);
+            errorDiv.appendChild(p2);
+            projectsGrid.appendChild(errorDiv);
         }
         
         if (featuredWrapper) {
-            featuredWrapper.innerHTML = `
-                <div class="error-message" style="text-align: center; padding: 2rem; color: #e74c3c;">
-                    <h3>Featured Project Unavailable</h3>
-                    <p>Could not load featured project.</p>
-                </div>
-            `;
+            // Safely create error message without innerHTML
+            featuredWrapper.innerHTML = '';
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'error-message';
+            errorDiv.style.cssText = 'text-align: center; padding: 2rem; color: #e74c3c;';
+            const h3 = document.createElement('h3');
+            h3.textContent = 'Featured Project Unavailable';
+            const p = document.createElement('p');
+            p.textContent = 'Could not load featured project.';
+            errorDiv.appendChild(h3);
+            errorDiv.appendChild(p);
+            featuredWrapper.appendChild(errorDiv);
         }
     });
 
@@ -966,7 +1069,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 // Show modal
                 projectModal.style.display = 'flex';
-                setTimeout(() => projectModal.classList.add('active'), 10);
+                requestAnimationFrame(() => {
+                    requestAnimationFrame(() => {
+                        projectModal.classList.add('active');
+                    });
+                });
                 document.body.style.overflow = 'hidden';
             });
         });
@@ -1397,11 +1504,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 line.style.opacity = '0';
                 line.style.transform = 'translateX(-20px)';
                 
+                const delay = 1000 + (index * 200);
                 setTimeout(() => {
-                    line.style.transition = 'all 0.5s ease';
-                    line.style.opacity = '1';
-                    line.style.transform = 'translateX(0)';
-                }, 1000 + (index * 200));
+                    requestAnimationFrame(() => {
+                        line.style.transition = 'all 0.5s ease';
+                        line.style.opacity = '1';
+                        line.style.transform = 'translateX(0)';
+                    });
+                }, delay);
             });
         }
 
@@ -1766,17 +1876,21 @@ async function fetchResumeData() {
     }
 
     try {
-        // Rate limiting: Prevent rapid successive fetches
+        // Rate limiting: Prevent rapid successive fetches (no storage - uses closure)
         const now = Date.now();
-        const lastFetch = window._lastResumeFetch || 0;
-        const timeSinceLastFetch = now - lastFetch;
         const MIN_FETCH_INTERVAL = 2000; // 2 seconds minimum between fetches
+        
+        // Use closure variable instead of window storage
+        if (!fetchResumeData.lastFetch) {
+            fetchResumeData.lastFetch = 0;
+        }
+        const timeSinceLastFetch = now - fetchResumeData.lastFetch;
         
         if (timeSinceLastFetch < MIN_FETCH_INTERVAL) {
             console.warn('Rate limit: Resume fetch throttled');
             return;
         }
-        window._lastResumeFetch = now;
+        fetchResumeData.lastFetch = now;
         
         // Fetch with proper caching (removed cache busting to allow browser caching)
         const response = await fetch('/resume.json', {

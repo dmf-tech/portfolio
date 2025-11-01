@@ -33,7 +33,7 @@
                     };
 
                     // Show modal immediately
-                    modal.style.display = 'flex'; // Re-adding for debugging
+                    modal.style.display = 'flex';
                     
                     // Small delay for smooth appearance
                     setTimeout(() => {
@@ -51,7 +51,7 @@
         function closeModal() {
             modal.classList.remove('active');
             setTimeout(() => {
-                modal.style.display = 'none'; // Re-adding for debugging
+                modal.style.display = 'none';
             }, 300);
         }
 
@@ -273,8 +273,6 @@
             currentIndex = 0;
             updateButtonStates();
             
-            // Log for debugging
-            // console.log(`Carousel initialized: ${cards.length} cards, ${cardsPerView} per view, maxIndex: ${maxIndex}`);
         }
 
         // Initialize
