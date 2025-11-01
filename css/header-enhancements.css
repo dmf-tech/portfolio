@@ -42,14 +42,16 @@
     border-radius: 4px;
 }
 
-/* Body Scroll Lock for Mobile Navigation */
+/* Body Scroll Lock for Mobile Navigation - Improved */
 body.mobile-nav-active {
     overflow: hidden !important;
     position: fixed;
     width: 100%;
+    height: 100vh;
+    touch-action: none;
 }
 
-/* Mobile Menu Backdrop/Overlay */
+/* Mobile Menu Backdrop/Overlay - Improved */
 .mobile-nav-backdrop {
     display: none;
     position: fixed;
@@ -57,64 +59,90 @@ body.mobile-nav-active {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.6);
     z-index: 998;
     opacity: 0;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(2px);
 }
 
 .mobile-nav-backdrop.active {
     display: block;
     opacity: 1;
+    pointer-events: auto;
 }
 
-/* --- Mobile Menu Slide-in from Right (Improved) --- */
+.mobile-nav-backdrop:not(.active) {
+    pointer-events: none;
+}
+
+/* --- Mobile Menu Slide-in from Right (Improved & Simplified) --- */
 @media (max-width: 992px) {
     #header {
         position: relative;
         z-index: 999;
     }
     
+    /* Desktop menu hidden on mobile */
     #header .nav-menu {
-        left: auto !important; /* Override the original 'left' property to prevent conflicts */
-        right: -100%; /* Start fully off-screen to the right */
-        width: 85%;
-        max-width: 320px;
-        opacity: 0; /* Start fully transparent */
+        display: flex !important; /* Keep flex for layout */
+        flex-direction: column;
+        left: auto !important;
+        right: -100%;
+        width: min(80%, 280px);
+        opacity: 0;
         visibility: hidden;
-        transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1), 
-                    opacity 0.3s ease-in-out, 
-                    visibility 0.35s;
-        height: calc(100vh);
+        transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+                    opacity 0.25s ease, 
+                    visibility 0.3s;
+        height: 100vh;
+        height: 100dvh; /* Dynamic viewport height for mobile */
         overflow-y: auto;
+        overflow-x: hidden;
         -webkit-overflow-scrolling: touch;
         position: fixed;
         top: 0;
         z-index: 999;
-        padding-top: 80px; /* Add top padding to account for header */
-        padding-bottom: 20px;
+        padding: 65px 0 15px;
+        margin: 0;
+        background: linear-gradient(135deg, #2c3e50 0%, #1a2530 100%);
+        box-shadow: none;
     }
 
     #header .nav-menu.active {
-        right: 0; /* Animate into view */
-        opacity: 1; /* Fade in */
+        right: 0;
+        opacity: 1;
         visibility: visible;
-        box-shadow: -8px 0 25px rgba(0, 0, 0, 0.25);
+        box-shadow: -4px 0 20px rgba(0, 0, 0, 0.3);
     }
     
     #header .nav-menu li {
         margin: 0;
         width: 100%;
+        padding: 0;
+        list-style: none;
     }
     
     #header .nav-menu a {
         display: block;
-        padding: 14px 25px;
+        padding: 12px 18px;
         width: 100%;
         text-align: left;
-        color: rgba(255, 255, 255, 0.9);
-        font-size: 1rem;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+        color: rgba(255, 255, 255, 0.95);
+        font-size: 0.9rem;
+        font-weight: 500;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        transition: background-color 0.2s ease, color 0.2s ease;
+        position: relative;
+        text-decoration: none;
+    }
+    
+    #header .nav-menu a::after {
+        display: none; /* Remove underline on mobile */
+    }
+    
+    #header .nav-menu li:first-child a {
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
     }
     
     #header .nav-menu li:last-child a {
@@ -123,25 +151,88 @@ body.mobile-nav-active {
     
     #header .nav-menu a:hover,
     #header .nav-menu a:focus {
-        background-color: rgba(255, 255, 255, 0.08);
+        background-color: rgba(255, 255, 255, 0.1);
         color: #ffffff;
+        outline: none;
     }
     
     #header .nav-menu a.active-link {
-        background-color: rgba(255, 255, 255, 0.12);
+        background-color: rgba(255, 255, 255, 0.15);
+        color: #ffffff;
         font-weight: 600;
     }
     
     /* Improve mobile nav link focus states */
-    #header .nav-menu a:focus {
-        outline: 2px solid rgba(255, 255, 255, 0.6);
+    #header .nav-menu a:focus-visible {
+        outline: 2px solid rgba(255, 255, 255, 0.8);
         outline-offset: -2px;
     }
     
-    /* Ensure hamburger is visible on mobile */
+    /* Hamburger button - Simple and robust */
     #header .hamburger {
-        display: block !important;
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
         position: relative;
         z-index: 1000;
+        width: 36px;
+        height: 36px;
+        min-width: 36px;
+        min-height: 36px;
+        padding: 0;
+        margin: 0;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+    
+    #header .hamburger:active {
+        transform: scale(0.95);
+    }
+    
+    #header .hamburger i {
+        font-size: 1.2rem;
+        color: var(--light-text-color);
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        display: block;
+    }
+    
+    #header .hamburger[aria-expanded="true"] i {
+        transform: rotate(90deg);
+    }
+    
+    #header .hamburger:hover {
+        opacity: 0.85;
+    }
+    
+    #header .hamburger:focus-visible {
+        outline: 2px solid rgba(255, 255, 255, 0.8);
+        outline-offset: 2px;
+        border-radius: 4px;
+    }
+}
+
+/* Extra small devices - Further optimizations */
+@media (max-width: 480px) {
+    #header .nav-menu {
+        width: min(85%, 260px);
+        padding: 60px 0 12px;
+    }
+    
+    #header .nav-menu a {
+        padding: 10px 16px;
+        font-size: 0.85rem;
+    }
+    
+    #header .hamburger {
+        width: 32px;
+        height: 32px;
+        min-width: 32px;
+        min-height: 32px;
+    }
+    
+    #header .hamburger i {
+        font-size: 1.1rem;
     }
 }

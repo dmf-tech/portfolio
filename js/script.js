@@ -27,74 +27,160 @@ document.addEventListener('DOMContentLoaded', () => {
         window.addEventListener('scroll', requestTick, { passive: true });
     }
 
-    // --- Mobile Navigation Toggle ---
+    // --- Mobile Navigation Toggle - Improved & Robust ---
     const hamburger = select('.hamburger');
     const navMenu = select('.nav-menu');
     const backdrop = select('.mobile-nav-backdrop');
 
     if (hamburger && navMenu) {
-        const toggleMobileNav = () => {
-            const isActive = navMenu.classList.contains('active');
-            navMenu.classList.toggle('active');
-            hamburger.classList.toggle('active');
-            document.body.classList.toggle('mobile-nav-active');
+        let isAnimating = false;
+        const MOBILE_BREAKPOINT = 992;
+
+        const openMobileNav = () => {
+            if (isAnimating || navMenu.classList.contains('active')) return;
+            
+            isAnimating = true;
+            navMenu.classList.add('active');
+            document.body.classList.add('mobile-nav-active');
+            
             if (backdrop) {
-                backdrop.classList.toggle('active');
+                backdrop.classList.add('active');
             }
-            const isExpanded = !isActive;
-            hamburger.setAttribute('aria-expanded', isExpanded);
+            
+            hamburger.setAttribute('aria-expanded', 'true');
+            
+            // Save scroll position before locking
+            const scrollY = window.scrollY;
+            document.body.style.top = `-${scrollY}px`;
+            
+            // Reset animation flag after transition
+            setTimeout(() => {
+                isAnimating = false;
+            }, 300);
         };
 
-        // Click handler
-        hamburger.addEventListener('click', toggleMobileNav);
+        const closeMobileNav = () => {
+            if (isAnimating || !navMenu.classList.contains('active')) return;
+            
+            isAnimating = true;
+            navMenu.classList.remove('active');
+            document.body.classList.remove('mobile-nav-active');
+            
+            if (backdrop) {
+                backdrop.classList.remove('active');
+            }
+            
+            hamburger.setAttribute('aria-expanded', 'false');
+            
+            // Restore scroll position
+            const scrollY = document.body.style.top;
+            document.body.style.top = '';
+            if (scrollY) {
+                window.scrollTo(0, parseInt(scrollY || '0') * -1);
+            }
+            
+            // Reset animation flag after transition
+            setTimeout(() => {
+                isAnimating = false;
+            }, 300);
+        };
+
+        const toggleMobileNav = () => {
+            if (navMenu.classList.contains('active')) {
+                closeMobileNav();
+            } else {
+                openMobileNav();
+            }
+        };
+
+        // Click handler - with passive listener optimization
+        hamburger.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            toggleMobileNav();
+        }, { passive: false });
 
         // Keyboard handlers for hamburger button
         hamburger.addEventListener('keydown', (e) => {
             if (e.key === 'Enter' || e.key === ' ') {
                 e.preventDefault();
+                e.stopPropagation();
                 toggleMobileNav();
             }
         });
 
         // Close mobile nav when a link is clicked
         selectAll('.nav-menu a[href^="#"]').forEach(link => {
-            link.addEventListener('click', () => {
+            link.addEventListener('click', (e) => {
                 if (navMenu.classList.contains('active')) {
-                    toggleMobileNav();
+                    // Small delay to allow navigation
+                    setTimeout(() => {
+                        closeMobileNav();
+                    }, 100);
                 }
-            });
+            }, { passive: true });
         });
 
         // Close mobile nav on Escape key
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && navMenu.classList.contains('active')) {
-                toggleMobileNav();
+                e.preventDefault();
+                closeMobileNav();
             }
-        });
+        }, { passive: false });
 
-        // Close mobile nav on window resize if open
+        // Close mobile nav on window resize if open (debounced)
         let resizeTimer;
-        window.addEventListener('resize', () => {
+        const handleResize = () => {
             clearTimeout(resizeTimer);
             resizeTimer = setTimeout(() => {
-                if (window.innerWidth > 992 && navMenu.classList.contains('active')) {
-                    toggleMobileNav();
+                const isMobile = window.innerWidth <= MOBILE_BREAKPOINT;
+                const isDesktop = window.innerWidth > MOBILE_BREAKPOINT;
+                
+                // Close on desktop, ensure open state correct on mobile
+                if (isDesktop && navMenu.classList.contains('active')) {
+                    closeMobileNav();
                 }
-            }, 250);
-        });
+            }, 150);
+        };
+        
+        window.addEventListener('resize', handleResize, { passive: true });
 
-        // Close mobile nav when clicking backdrop or outside
+        // Close mobile nav when clicking backdrop
         if (backdrop) {
-            backdrop.addEventListener('click', toggleMobileNav);
+            backdrop.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                closeMobileNav();
+            }, { passive: false });
         }
+
+        // Close mobile nav when clicking outside (with better detection)
         document.addEventListener('click', (e) => {
             if (navMenu.classList.contains('active') && 
                 !navMenu.contains(e.target) && 
                 !hamburger.contains(e.target) &&
-                !backdrop?.contains(e.target)) {
-                toggleMobileNav();
+                (backdrop ? !backdrop.contains(e.target) : true) &&
+                window.innerWidth <= MOBILE_BREAKPOINT) {
+                closeMobileNav();
             }
-        });
+        }, { passive: true });
+
+        // Prevent body scroll when menu is open (touch devices)
+        navMenu.addEventListener('touchmove', (e) => {
+            if (navMenu.classList.contains('active')) {
+                // Allow scrolling within the menu
+                return;
+            }
+            e.preventDefault();
+        }, { passive: false });
+
+        // Handle orientation change
+        window.addEventListener('orientationchange', () => {
+            if (window.innerWidth > MOBILE_BREAKPOINT && navMenu.classList.contains('active')) {
+                closeMobileNav();
+            }
+        }, { passive: true });
     }
 
     // --- Smooth Scroll for Anchor Links & Active Link Highlighting ---
