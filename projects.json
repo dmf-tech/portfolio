@@ -19,7 +19,7 @@
       "Redis", "Docker", "Payment Integration"
     ],
     "githubUrl": "https://github.com/DMcloud022",
-    "liveUrl": "#",
+    "liveUrl": "https://dm-projects.onrender.com/",
     "modalData": {
       "description": "A full-stack e-commerce platform built with Vue.js, Node.js, Express.js, and MongoDB, designed for luxury timepieces and retail products. The system provides seamless shopping experiences with dynamic product catalogs, real-time inventory tracking, secure payment processing, and comprehensive administrative tools. Features include advanced filtering, customer account management, order tracking, and analytics dashboards for business insights.",
       "features": "<li>Dynamic product catalog with advanced filtering and search</li><li>Real-time inventory management system</li><li>Secure payment processing with multiple gateway support</li><li>Comprehensive admin dashboard with analytics</li><li>Customer account management and order tracking</li>",
@@ -72,7 +72,7 @@
       "JWT Authentication", "Docker"
     ],
     "githubUrl": "https://github.com/DMcloud022",
-    "liveUrl": "#",
+    "liveUrl": "https://dm-projects.onrender.com/",
     "modalData": {
       "description": "A comprehensive Human Resource Information System (HRIS) built with Laravel and Vue.js, designed to streamline HR operations for modern organizations. The system provides end-to-end employee lifecycle management from onboarding to offboarding, automated payroll processing with tax calculations, real-time attendance tracking, performance evaluation systems, and advanced analytics dashboards. Features role-based access control, leave management workflows, document management, and comprehensive reporting capabilities.",
       "features": "<li>Complete employee lifecycle management from onboarding to offboarding</li><li>Automated payroll processing with tax calculations and deductions</li><li>Real-time attendance tracking with biometric integration support</li><li>Performance evaluation system with customizable review cycles</li><li>Advanced HR analytics and reporting dashboard</li><li>Leave management with approval workflows</li><li>Document management system for HR records</li><li>Role-based access control for different user levels</li>",
@@ -114,7 +114,7 @@
       "HTML5", "CSS3", "RESTful API"
     ],
     "githubUrl": "https://github.com/DMcloud022",
-    "liveUrl": "#",
+    "liveUrl": "https://dm-projects.onrender.com/",
     "modalData": {
       "description": "Biblioteca is an innovative digital library management system engineered to democratize access to educational resources. The platform addresses critical challenges in academic resource accessibility by providing students and faculty members with a seamless, cost-free solution for discovering, borrowing, and managing library materials. Built with scalability and user experience in mind, Biblioteca transforms traditional library operations into an efficient digital ecosystem that eliminates physical barriers and streamlines resource acquisition processes.",
       "features": "<li>Advanced book browsing system with comprehensive search and filtering capabilities</li><li>Automated book borrowing workflow with real-time availability tracking</li><li>Intelligent return management system with automated due date tracking</li><li>Secure user authentication and account management system</li><li>Personalized borrowing history and book tracking dashboard</li><li>Role-based access control for students and faculty members</li><li>Real-time inventory management and availability status</li><li>Responsive design ensuring seamless access across all devices</li>",
@@ -136,7 +136,7 @@
       "REST API", "Firebase"
     ],
     "githubUrl": "https://github.com/DMcloud022",
-    "liveUrl": "#",
+    "liveUrl": "https://dm-projects.onrender.com/",
     "modalData": {
       "description": "LIRA is an advanced Dialogue Management Application System that revolutionizes customer service through intelligent conversational AI. Built with cutting-edge natural language processing and machine learning technologies, LIRA provides businesses with a customizable, trainable chatbot solution that seamlessly integrates with existing systems. The platform delivers personalized, context-aware responses tailored to specific business domains, enabling 24/7 customer support while reducing operational overhead. LIRA's adaptive learning capabilities continuously improve customer interactions through data-driven insights and user feedback, ensuring exceptional service quality and customer satisfaction.",
       "features": "<li>Intelligent dialogue management system with context retention and conversation flow control</li><li>Trainable machine learning models that improve through user interactions</li><li>Advanced natural language processing for accurate intent recognition and entity extraction</li><li>Customizable response templates tailored to specific business products and services</li><li>Seamless integration with existing business systems and databases</li><li>Comprehensive analytics dashboard for conversation insights and performance metrics</li><li>Multi-platform support with Flutter for iOS and Android deployment</li><li>Scalable architecture supporting high-volume customer inquiries</li>",
