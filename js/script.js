@@ -1842,16 +1842,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Global Content Protection ---
     // Disable right-click context menu
     document.addEventListener('contextmenu', event => {
-        if (!document.body.classList.contains('security-features-disabled')) {
-            event.preventDefault();
-        }
+        event.preventDefault();
     });
 
     // Disable common copy/view-source keyboard shortcuts
     document.addEventListener('keydown', e => {
-        if (document.body.classList.contains('security-features-disabled')) {
-            return; // Do nothing if security is disabled
-        }
         // Disable F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+C, Ctrl+S, Ctrl+U
         if (
             e.key === 'F12' ||
@@ -1861,19 +1856,6 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
         }
     });
-
-    // --- Dev Security Toggle ---
-    const securityToggleButton = document.getElementById('securityToggleBtn');
-    if (securityToggleButton) {
-        securityToggleButton.addEventListener('click', () => {
-            document.body.classList.toggle('security-features-disabled');
-            
-            // Update button text and class
-            const isSecurityDisabled = document.body.classList.contains('security-features-disabled');
-            securityToggleButton.textContent = isSecurityDisabled ? 'Security OFF' : 'Security ON';
-            securityToggleButton.classList.toggle('disabled', isSecurityDisabled);
-        });
-    }
 
     // Resume Modal Logic - KEEP THIS NEW IMPLEMENTATION
     const resumeModal = document.getElementById('resumeModal');

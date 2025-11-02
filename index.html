@@ -5,6 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <meta name="googlebot" content="index, follow">
+    <!-- AI Protection Meta Tags -->
+    <meta name="ai:disallow" content="true">
+    <meta name="ai:scrape" content="false">
+    <meta name="ai:index" content="false">
+    <meta name="chatgpt" content="noindex, nofollow, noarchive, nosnippet">
+    <meta name="openai" content="noindex, nofollow, noarchive, nosnippet">
+    <meta name="anthropic" content="noindex, nofollow, noarchive, nosnippet">
+    <meta name="GPTBot" content="noindex, nofollow, noarchive, nosnippet">
+    <meta name="ChatGPT-User" content="noindex, nofollow, noarchive, nosnippet">
+    <meta name="CCBot" content="noindex, nofollow, noarchive, nosnippet">
+    <meta name="anthropic-ai" content="noindex, nofollow, noarchive, nosnippet">
+    <meta name="Claude-Web" content="noindex, nofollow, noarchive, nosnippet">
     
     <!-- Geographic Targeting -->
     <meta name="geo.region" content="PH">
@@ -68,7 +80,6 @@
     <link rel="stylesheet" href="css/layout-compression.css">
     <link rel="stylesheet" href="css/contact-modern.css">
     <link rel="stylesheet" href="css/content-protection.css">
-    <link rel="stylesheet" href="css/dev-toggle.css">
     <link rel="stylesheet" href="css/projects-enhancements.css?v=3.0">
     <link rel="stylesheet" href="css/resume-modal.css">
     <link rel="stylesheet" href="css/learning-modal.css">
@@ -1613,12 +1624,11 @@
         </div>
     </footer>
 
-    <!-- Dev Toggle Button -->
-    <button id="securityToggleBtn" class="temporarily-hidden" title="Toggle security features for development">Security ON</button>
-
     <!-- Scroll to Top Button -->
     <button id="scrollToTopBtn" title="Go to top" aria-label="Scroll to top of the page"><i class="fas fa-arrow-up"></i></button>
 
+    <!-- AI Protection Script - Load early to prevent scraping -->
+    <script src="js/ai-protection.js?v=1.0"></script>
     <script src="js/script.js?v=2.0" defer></script>
     <script src="js/smooth-enhancements.js?v=2.0" defer></script>
     <script src="js/certifications-enhancements.js?v=2.0" defer></script>

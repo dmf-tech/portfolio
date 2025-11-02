@@ -1,37 +1,41 @@
 /* CSS for comprehensive content protection */
 
 /* Disable text selection for the entire page */
-body:not(.security-features-disabled) {
+body {
     -webkit-user-select: none; /* Safari */
     -moz-user-select: none;    /* Firefox */
     -ms-user-select: none;     /* IE 10+ and Edge */
     user-select: none;         /* Standard */
     -webkit-user-drag: none;   /* Safari, Chrome */
-    user-drag: none;           /* Standard */
     -webkit-touch-callout: none; /* Disable long-press context menu on iOS */
+    position: relative; /* Prevent CSS extraction */
 }
 
 /* Prevent interaction with images and videos */
-body:not(.security-features-disabled) img, 
-body:not(.security-features-disabled) video {
+body img, 
+body video {
     pointer-events: none;
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
 }
 
 /* Add a transparent overlay to specific image containers to further prevent saving */
-body:not(.security-features-disabled) .image-wrapper, 
-body:not(.security-features-disabled) .protected-image-container,
-body:not(.security-features-disabled) .featured-project-image-area,
-body:not(.security-features-disabled) .project-image-area,
-body:not(.security-features-disabled) .certification-icon {
+.image-wrapper, 
+.protected-image-container,
+.featured-project-image-area,
+.project-image-area,
+.certification-icon {
     position: relative;
     display: inline-block; /* Adjust if it causes layout issues, but usually safe for wrappers */
 }
 
-body:not(.security-features-disabled) .image-wrapper::after, 
-body:not(.security-features-disabled) .protected-image-container::after,
-body:not(.security-features-disabled) .featured-project-image-area::after,
-body:not(.security-features-disabled) .project-image-area::after,
-body:not(.security-features-disabled) .certification-icon::after {
+.image-wrapper::after, 
+.protected-image-container::after,
+.featured-project-image-area::after,
+.project-image-area::after,
+.certification-icon::after {
     content: '';
     position: absolute;
     top: 0;
@@ -41,25 +45,32 @@ body:not(.security-features-disabled) .certification-icon::after {
     z-index: 1;
 }
 
+/* Obfuscate structure - add invisible elements to confuse scrapers */
+body::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    opacity: 0;
+    pointer-events: none;
+    z-index: -1;
+}
 
 /* Prevent printing the page content */
 @media print {
-    body.security-features-disabled {
-        /* No print restrictions when security is off */
-        display: block;
-    }
-
-    body:not(.security-features-disabled) * {
+    body * {
         display: none !important;
     }
 
-    body:not(.security-features-disabled) {
+    body {
         width: 100%;
         height: 100%;
         overflow: hidden;
     }
 
-    body:not(.security-features-disabled)::before {
+    body::before {
         content: "Printing is disabled on this website.";
         display: block;
         position: fixed;
