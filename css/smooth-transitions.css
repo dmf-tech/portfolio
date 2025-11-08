@@ -14,7 +14,7 @@ img {
     image-rendering: optimizeQuality;
     backface-visibility: hidden;
     transform: translateZ(0);
-    will-change: transform, opacity;
+    /* will-change removed - managed by lazy loading JS */
 }
 
 /* Smooth Image Loading States */
@@ -74,7 +74,7 @@ html {
 /* Improved Project Card Animations */
 .project-card {
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
-    will-change: transform, box-shadow;
+    /* will-change removed - applied only on hover via JS */
 }
 
 .project-card:hover {
@@ -87,7 +87,7 @@ html {
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1) !important;
     backface-visibility: hidden;
     transform: translateZ(0);
-    will-change: opacity, transform;
+    /* will-change removed - applied only during transitions */
 }
 
 .carousel-image:not(.active) {
@@ -104,7 +104,7 @@ html {
 .carousel-nav,
 .carousel-nav-btn {
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-    will-change: transform, opacity;
+    /* will-change removed - applied only on hover */
 }
 
 .carousel-nav:hover,
@@ -117,7 +117,7 @@ html {
     position: relative;
     overflow: hidden;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-    will-change: transform, box-shadow;
+    /* will-change removed - managed by JS during interactions */
 }
 
 .btn::after {
@@ -142,7 +142,7 @@ html {
 /* Improved Skill Tag Animations */
 .skill-group ul li {
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-    will-change: transform, background, color;
+    /* will-change removed - too many elements, causes memory issues */
 }
 
 .skill-group ul li:hover {
@@ -152,7 +152,7 @@ html {
 /* Enhanced Section Animations */
 .animate-on-scroll {
     transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1) !important;
-    will-change: transform, opacity;
+    /* will-change managed by IntersectionObserver JS for better performance */
 }
 
 /* Smooth Background Element Animations */
@@ -161,7 +161,7 @@ html {
 .projects-section::after,
 .certifications-section::after,
 .contact-section::after {
-    will-change: transform;
+    /* will-change removed - static background elements */
     backface-visibility: hidden;
 }
 
@@ -176,7 +176,7 @@ html {
 .modal-content,
 .cert-modal-content {
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
-    will-change: transform, opacity;
+    /* will-change removed - applied only when modal opens */
 }
 
 .modal.active .modal-content,
@@ -187,18 +187,18 @@ html {
 /* Improved Form Input Transitions */
 input, textarea, select {
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-    will-change: border-color, box-shadow;
+    /* will-change removed - applied only on focus */
 }
 
 /* Enhanced Navigation Menu */
 #header .nav-menu a {
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-    will-change: color, transform;
+    /* will-change removed - applied on hover only */
 }
 
 #header .nav-menu a::before {
     transition: width 0.15s ease-out !important;
-    will-change: width;
+    /* will-change removed - ::before pseudo-element doesn't need it */
 }
 
 /* Smooth Hero Section Animations */
@@ -234,18 +234,18 @@ input, textarea, select {
 .stat-item,
 .exp-stat {
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-    will-change: transform, box-shadow;
+    /* will-change removed - applied on hover only */
 }
 
 /* Improved Tab Transitions */
 .tab-link {
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-    will-change: background, color;
+    /* will-change removed - applied during tab switches only */
 }
 
 .tab-pane {
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
-    will-change: opacity, transform;
+    /* will-change removed - applied during tab switches only */
 }
 
 /* Enhanced Loading States */
@@ -343,7 +343,7 @@ img {
 /* Enhanced Scroll Indicator */
 .scroll-indicator {
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-    will-change: transform, opacity;
+    /* will-change removed - static indicator doesn't need it */
 }
 
 /* Preserve existing functionality while enhancing */
@@ -355,13 +355,13 @@ img {
 /* Smooth Section Transitions */
 section {
     transform: translateZ(0);
-    will-change: transform;
+    /* will-change removed - sections are static containers */
 }
 
 /* Enhanced About Section Image */
 .image-wrapper img {
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
-    will-change: transform;
+    /* will-change removed - applied on hover only */
 }
 
 .image-wrapper:hover img {

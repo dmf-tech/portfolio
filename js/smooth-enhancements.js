@@ -52,6 +52,14 @@
                     const delay = entry.target.dataset.delay || 0;
                     setTimeout(() => {
                         entry.target.classList.add('is-visible');
+
+                        // Add will-change only during animation
+                        entry.target.style.willChange = 'transform, opacity';
+
+                        // Remove will-change after animation completes (600ms)
+                        setTimeout(() => {
+                            entry.target.style.willChange = 'auto';
+                        }, 600);
                     }, delay);
                     observer.unobserve(entry.target);
                 }
@@ -134,12 +142,25 @@
         }, { passive: true });
     }
 
+    // Throttle helper for performance
+    function throttle(func, limit) {
+        let inThrottle;
+        return function(...args) {
+            if (!inThrottle) {
+                func.apply(this, args);
+                inThrottle = true;
+                setTimeout(() => inThrottle = false, limit);
+            }
+        };
+    }
+
     // Enhanced Button Ripple Effect (preserve existing while improving)
     function enhanceButtonInteractions() {
-        document.addEventListener('click', (e) => {
+        // Use throttled click handler for better performance
+        const handleClick = throttle((e) => {
             const button = e.target.closest('.btn');
             if (!button) return;
-            
+
             // Create ripple effect
             const ripple = document.createElement('span');
             ripple.classList.add('ripple-effect');
@@ -147,59 +168,51 @@
             const size = Math.max(rect.width, rect.height);
             const x = e.clientX - rect.left - size / 2;
             const y = e.clientY - rect.top - size / 2;
-            
-            // ripple.style.cssText = `
-            //     position: absolute;
-            //     width: ${size}px;
-            //     height: ${size}px;
-            //     left: ${x}px;
-            //     top: ${y}px;
-            //     background: rgba(255, 255, 255, 0.2);
-            //     border-radius: 50%;
-            //     pointer-events: none;
-            //     transform: scale(0);
-            //     animation: ripple 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-            // `;
+
             ripple.style.setProperty('--ripple-width', `${size}px`);
             ripple.style.setProperty('--ripple-height', `${size}px`);
             ripple.style.setProperty('--ripple-left', `${x}px`);
             ripple.style.setProperty('--ripple-top', `${y}px`);
-            
+
             button.style.position = 'relative';
             button.style.overflow = 'hidden';
+
+            // Add will-change before animation
+            button.style.willChange = 'transform';
+
             button.appendChild(ripple);
-            
-            // Remove ripple after animation
+
+            // Remove ripple and will-change after animation
             setTimeout(() => {
                 if (ripple.parentNode) {
                     ripple.parentNode.removeChild(ripple);
                 }
+                button.style.willChange = 'auto';
             }, 600);
-        });
-        
-        // Remove dynamic ripple animation CSS as it is now in animations.css
+        }, 100); // Throttle to max 10 clicks per second
+
+        document.addEventListener('click', handleClick);
     }
 
     // Smooth Modal Transitions (preserve existing functionality)
     function enhanceModals() {
         const modals = document.querySelectorAll('.modal, .cert-modal');
-        
+
         modals.forEach(modal => {
-            const content = modal.querySelector('.modal-content, .cert-modal-content');
-            
-            // Enhance opening transition
-            const originalDisplay = modal.style.display;
-            
+            // Add will-change during transitions only
             modal.addEventListener('transitionstart', () => {
                 if (modal.classList.contains('active')) {
                     modal.style.pointerEvents = 'auto';
+                    modal.style.willChange = 'opacity';
                 }
             });
-            
+
             modal.addEventListener('transitionend', () => {
                 if (!modal.classList.contains('active')) {
                     modal.style.pointerEvents = 'none';
                 }
+                // Remove will-change after transition
+                modal.style.willChange = 'auto';
             });
         });
     }

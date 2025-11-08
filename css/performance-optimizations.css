@@ -33,19 +33,9 @@ body {
     perspective: 1000px;
 }
 
-/* Optimize will-change usage - only for elements currently animating */
-.project-card:hover,
-.btn:hover,
-.experience-card:hover,
-.certification-card:hover {
-    will-change: transform;
-}
-
-/* Remove will-change after animation completes */
-.project-card:not(:hover),
-.btn:not(:hover) {
-    will-change: auto;
-}
+/* IMPROVED: Only use will-change during active animations */
+/* will-change is now managed via JavaScript for better performance */
+/* Static will-change declarations removed to save memory */
 
 /* Optimize image rendering */
 img {
@@ -67,9 +57,10 @@ img {
 }
 
 /* Optimize heavy animations - use transform instead of position changes */
+/* will-change removed - managed by JavaScript only during interaction */
 .floating-element,
 .gradient-orb {
-    will-change: transform;
+    /* will-change removed for better memory usage */
 }
 
 /* Contain layout for better performance */
@@ -85,7 +76,7 @@ img {
 .modal-overlay,
 .project-modal,
 .cert-modal {
-    will-change: opacity;
+    /* will-change removed - only applied when modal is opening/closing via JS */
     transform: translateZ(0);
 }
 
@@ -122,7 +113,7 @@ h1, h2, h3, h4, h5, h6,
 .hero-bg-elements,
 .about-bg-elements {
     contain: layout style paint;
-    will-change: transform;
+    /* will-change removed - these are static background elements */
 }
 
 /* Optimize scroll performance */
